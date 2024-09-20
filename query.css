@@ -1,0 +1,156 @@
+@media screen and (min-width:760px) {
+
+   header,
+   footer {
+      padding: 24px;
+   }
+
+   section {
+      padding: 40px 24px;
+   }
+
+   .hero {
+      flex-direction: row-reverse;
+      align-items: center;
+   }
+
+   .hero-image,
+   .hero-text,
+   .about-me-img,
+   .about-me-text,
+   .project-img,
+   .form {
+      width: 100%;
+   }
+
+   .skill-boxes {
+      grid-template-columns: repeat(3, 1fr);
+   }
+
+   .box-header {
+      justify-content: space-between;
+
+   }
+
+   .box-header,
+   .about-me {
+      flex-direction: row;
+      align-items: center;
+   }
+   nav {
+      position: static;
+      padding: 2rem 1rem 0;
+      max-width: 1200px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+   }
+
+   
+
+   .nav-header {
+      flex: 1;
+      padding: 0;
+      background-color: transparent;
+   }
+
+   .nav-logo a {
+      color: var(--text-dark);
+   }
+
+   .nav_menu_btn {
+      display: none;
+   }
+
+   .nav_link {
+      position: static;
+      padding: 0;
+      width: fit-content;
+      flex-direction: row;
+      background-color: transparent;
+      transform: none;
+   }
+
+   .nav_link a {
+      color: rgb(139, 79, 0);
+   }
+
+   .nav_link a:hover {
+      color: #ea8212;
+   }
+
+   .nav_btn {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: flex-end;
+   }
+
+   .nav_btn .btn {
+      color: var(--text-dark);
+      background-color: var(--primary-color);
+   }
+
+
+
+
+}
+
+@media (min-width: 1024px) {
+
+   header,
+   footer,
+   section {
+      max-width: 1920px;
+      margin: 0 auto;
+   }
+
+   header,
+   footer {
+      padding: 24px 80px;
+   }
+
+   section {
+      padding: 60px 80px;
+   }
+
+   .menu {
+      display: none;
+   }
+
+   .nav,
+   .resume {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+   }
+
+   nav a {
+      font-size: var(--heading5-size);
+      line-height: var(--heading5-LH);
+      letter-spacing: var(--heading5-Track);
+      font-weight: 500;
+      color: var(--Primary-black);
+   }
+
+   .nav a:hover {
+      font-weight: 600;
+   }
+
+   .resume {
+      font-size: var(--button-text-size);
+      line-height: var(--button-text-LH);
+      letter-spacing: var(--button-text-Track);
+      color: var(--Primary-Neutral);
+      font-weight: 600;
+      background-color: var(--Primary-black);
+      gap: 8px;
+      padding: 16px 20px;
+      border-radius: 4px;
+   }
+}
+
+

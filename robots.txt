@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Ganti domain dengan domain produksi Anda saat dipublikasikan.
+Sitemap: https://premiumcars.example.com/sitemap.xml

@@ -8,6 +8,15 @@
       name="description"
       content="PREMIUM CARS — showroom & katalog mobil mewah, sport, dan keluarga. Temukan unit impian Anda dengan opsi cicilan."
     />
+
+    <!-- SEO / Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PREMIUM CARS" />
+    <meta property="og:title" content="PREMIUM CARS — Showroom Mobil Mewah" />
+    <meta property="og:description" content="Showroom & katalog mobil mewah, sport, dan keluarga dengan opsi cicilan." />
+    <meta property="og:image" content="image/side-view-white-modern-car-outdoors.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="icon/shopping-bag.png" />
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/home.css" />
@@ -128,12 +137,12 @@
         <img src="image/petA.avif" alt="location" />
       </div>
       <div class="location_content">
-        <h2 class="section_header">Cari mobil yang kamu ingin beli</h2>
+        <h2 class="section_header">Cari mobil yang ingin kamu beli</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
-          exercitationem delectus, culpa tenetur ducimus perferendis asperiores
-          praesentium maiores quia itaque? Nobis, illo iusto libero
-          necessitatibus labore vel mollitia totam itaque!
+          Telusuri koleksi kami berdasarkan kategori — hypercar, sport, SUV,
+          hingga mobil keluarga. Setiap unit dilengkapi spesifikasi dan harga
+          yang jelas, plus simulasi cicilan agar Anda bisa merencanakan
+          pembelian dengan tenang.
         </p>
         <div class="location_btn">
           <button class="btn" onclick="location.href='penjualan.html'">Cari jenis mobil mu</button>
@@ -318,14 +327,14 @@
           </div>
         </div>
       </div>
-      <form action="/" class="select_form">
+      <form action="/" class="select_form" onsubmit="return false">
         <div class="select_price">
           <span><i class="ri-price-tag-3-fill"></i></span>
-          <span id="select-price">500</span>/day
+          <span id="select-price">—</span>
         </div>
         <div class="select_btns">
-          <button class="btn">view Details</button>
-          <button class="btn">buy now</button>
+          <button class="btn" type="button" onclick="location.href='penjualan.html'">Lihat Detail</button>
+          <button class="btn" type="button" onclick="location.href='penjualan.html'">Lihat Katalog</button>
         </div>
       </form>
     </section>
@@ -341,14 +350,13 @@
               <p>2024</p>
             </div>
           </div>
-          <h4>ADVENTURES on THE OPEN ROAD</h4>
+          <h4>PETUALANGAN DI JALAN TERBUKA</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
-            iusto. Veniam, enim neque unde maxime sequi molestiae asperiores,
-            omnis suscipit eveniet voluptatibus fugiat veritatis labore velit
-            doloribus maiores, tempore voluptates!
+            Mobil yang tepat mengubah perjalanan biasa menjadi pengalaman tak
+            terlupakan. Temukan kendaraan yang sesuai dengan gaya berkendara dan
+            kebutuhan petualangan Anda bersama PREMIUM CARS.
           </p>
-          <img src="image/mabil van.jpg" alt="story" />
+          <img src="image/mabil van.jpg" alt="Mobil van di perjalanan" />
         </div>
 
         <div class="story_card">
@@ -359,14 +367,13 @@
               <p>2024</p>
             </div>
           </div>
-          <h4>ADVENTURES on THE OPEN ROAD</h4>
+          <h4>MERAWAT MOBIL KESAYANGAN</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
-            iusto. Veniam, enim neque unde maxime sequi molestiae asperiores,
-            omnis suscipit eveniet voluptatibus fugiat veritatis labore velit
-            doloribus maiores, tempore voluptates!
+            Perawatan rutin menjaga performa dan nilai jual mobil Anda. Mulai
+            dari servis berkala, cek kondisi ban, hingga kelengkapan dokumen —
+            tim kami siap membantu Anda merawatnya.
           </p>
-          <img src="image/bskkas.jpg" alt="story" />
+          <img src="image/bskkas.jpg" alt="Perawatan mobil" />
         </div>
         <div class="story_card">
           <div class="story_date">
@@ -376,14 +383,13 @@
               <p>2024</p>
             </div>
           </div>
-          <h4>ADVENTURES on THE OPEN ROAD</h4>
+          <h4>MEMILIH MOBIL KELUARGA IDEAL</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
-            iusto. Veniam, enim neque unde maxime sequi molestiae asperiores,
-            omnis suscipit eveniet voluptatibus fugiat veritatis labore velit
-            doloribus maiores, tempore voluptates!
+            Kenyamanan, kapasitas, dan keamanan adalah kunci memilih mobil
+            keluarga. Konsultasikan kebutuhan Anda dengan tim kami untuk
+            menemukan unit yang paling pas untuk keluarga.
           </p>
-          <img src="image/bagasi alp.jpg" alt="story" />
+          <img src="image/bagasi alp.jpg" alt="Bagasi mobil keluarga" />
         </div>
       </div>
     </section>
@@ -499,6 +505,8 @@
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/data/cars.js"></script>
+    <script src="js/lib/format.js"></script>
     <script src="js/lib/ui.js"></script>
     <script src="js/components/forms.js"></script>
     <script src="js/home.js"></script>

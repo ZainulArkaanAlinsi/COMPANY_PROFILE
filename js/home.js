@@ -70,7 +70,7 @@ if (window.PC && PC.featuredCars) {
         wrapper.innerHTML = featured.map((car) => {
             const s = car.specs;
             return '<div class="swiper-slide"><div class="select_card">' +
-                '<img src="' + car.image + '" alt="' + car.name + '" />' +
+                '<img src="' + car.image + '" alt="' + car.name + '" loading="lazy" />' +
                 '<div class="select_info">' +
                 infoCard("ri-speed-up-line", s.topSpeed, "km/h") +
                 infoCard("ri-flashlight-line", s.power, "hp") +

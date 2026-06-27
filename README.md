@@ -63,6 +63,18 @@ python -m http.server 5500
 - Nomor WhatsApp tujuan lead: ubah `PC.config.whatsapp` di `js/components/cart.js`.
 - Palet & font: `css/tokens.css`. Data unit: `js/data/cars.js`.
 
+## Checklist Produksi (sebelum go-live)
+
+Project sudah lengkap & berfungsi. Tiga hal berikut butuh **data asli Anda**:
+
+- [ ] **Nomor WhatsApp** → `js/components/cart.js` (`PC.config.whatsapp = "62..."`)
+- [ ] **Domain** → ganti `premiumcars.example.com` di `sitemap.xml` & `robots.txt`
+- [ ] **Google Analytics** → buka komentar `<!-- GA4 -->` di `<head>` tiap halaman & isi `G-XXXXXXXXXX`
+
+Opsional (peningkatan performa lanjutan):
+- [ ] Konversi foto besar (`.jpg/.avif`) ke **WebP** untuk ukuran lebih kecil
+- [ ] Jalankan **Lighthouse** di Chrome DevTools untuk skor akhir
+
 ## Dokumentasi
 
 - **[PRD.md](PRD.md)** — kebutuhan produk & aturan desain (anti "AI-look").

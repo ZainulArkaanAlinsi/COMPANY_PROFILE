@@ -1,0 +1,47 @@
+/* ============================================================
+   PREMIUM CARS — Design Tokens (single source of truth)
+   Tema: "Dark Editorial Garage" (PRD.md §8.2–8.6)
+   Dipakai bersama oleh seluruh halaman: home, penjualan, about.
+   ============================================================ */
+
+:root {
+  /* --- Palet inti (dark premium, aksen tunggal) --- */
+  --bg: #0b0b0c;          /* latar utama (hampir hitam)            */
+  --surface: #141417;     /* permukaan kartu / section             */
+  --surface-2: #1c1c21;   /* hover / elevasi via warna (bukan shadow) */
+  --line: #2a2a30;        /* garis hairline 1px (pemisah & border) */
+  --text: #f2f2f0;        /* teks utama (off-white)                */
+  --text-muted: #9a9a93;  /* teks sekunder / caption               */
+  --accent: #ff6a00;      /* AKSEN TUNGGAL (molten amber)          */
+  --accent-press: #e85d00;/* state aktif / ditekan                 */
+
+  /* --- Tipografi (kontras & elegan — PRD §8.4) --- */
+  --display-font: "Archivo", sans-serif; /* headline industrial   */
+  --body-font: "Inter", sans-serif;      /* teks netral terbaca   */
+  --header-font: var(--display-font);    /* alias legacy          */
+
+  /* --- Layout --- */
+  --max-width: 1200px;
+
+  /* --- Skala spasi (basis 8px) — PRD §8.5 --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* --- Radius (tajam & konsisten, maks 4px) --- */
+  --radius: 2px;
+  --radius-lg: 4px;
+
+  /* --- Alias legacy (agar selector lama tetap konsisten) --- */
+  --primary-color: var(--accent);
+  --text-dark: var(--text);
+  --text-light: var(--text-muted);
+  --white: var(--text);
+}

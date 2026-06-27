@@ -3,12 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="stayle.css" />
+    <title>PREMIUM CARS — Showroom Mobil Mewah</title>
+    <meta
+      name="description"
+      content="PREMIUM CARS — showroom & katalog mobil mewah, sport, dan keluarga. Temukan unit impian Anda dengan opsi cicilan."
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/home.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link
@@ -90,28 +96,28 @@
           <img src="image/hyper.avif" alt="range_container" />
           <div class="range_details">
             <h4>HYPERCAR</h4>
-            <a href="#"><i class="ri-arrow-right-line"></i></a>
+            <a href="penjualan.html?cat=hypercar" aria-label="Lihat hypercar"><i class="ri-arrow-right-line"></i></a>
           </div>
         </div>
         <div class="range_card">
           <img src="image/alaref2.avif" alt="range_container" />
           <div class="range_details">
             <h4>FAMILY</h4>
-            <a href="#"><i class="ri-arrow-right-line"></i></a>
+            <a href="penjualan.html?cat=family" aria-label="Lihat mobil keluarga"><i class="ri-arrow-right-line"></i></a>
           </div>
         </div>
         <div class="range_card">
           <img src="image/bmw q.jpg" alt="range_container" />
           <div class="range_details">
             <h4>SPORT</h4>
-            <a href="#"><i class="ri-arrow-right-line"></i></a>
+            <a href="penjualan.html?cat=sport" aria-label="Lihat mobil sport"><i class="ri-arrow-right-line"></i></a>
           </div>
         </div>
         <div class="range_card">
           <img src="image/elea.jpg" alt="range_container" />
           <div class="range_details">
             <h4>ELECTRIC</h4>
-            <a href="#"><i class="ri-arrow-right-line"></i></a>
+            <a href="penjualan.html?cat=electric" aria-label="Lihat mobil listrik"><i class="ri-arrow-right-line"></i></a>
           </div>
         </div>
       </div>
@@ -130,7 +136,7 @@
           necessitatibus labore vel mollitia totam itaque!
         </p>
         <div class="location_btn">
-          <button class="btn">Cari jenis mobil mu</button>
+          <button class="btn" onclick="location.href='penjualan.html'">Cari jenis mobil mu</button>
         </div>
       </div>
     </section>
@@ -493,6 +499,8 @@
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script src="js/lib/ui.js"></script>
+    <script src="js/components/forms.js"></script>
+    <script src="js/home.js"></script>
   </body>
 </html>

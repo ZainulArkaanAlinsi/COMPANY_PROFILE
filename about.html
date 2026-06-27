@@ -1,258 +1,180 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="about.css" />
-    <link rel="stylesheet" href="query.css" />
+    <title>Tentang Kami — PREMIUM CARS</title>
+    <meta
+      name="description"
+      content="Tentang PREMIUM CARS dan hal penting yang perlu diketahui sebelum membeli mobil."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/about.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <header>
-      <nav>
-        <div class="nav-header">
-          <div class="nav-logo">
-            <a href="#">ABOUT US</a>
-          </div>
-          <div class="lol">
-            <a href="about.html">ABOUT</a>
-            <a href="index.html">HOME</a>
-            <a href="index.html">SERVICE</a>
-            <a href="penjualan.html">SHOPPING</a>
-            <a href="penjualan.html">CONTACT</a>
-          </div>
+    <header class="i_header">
+      <nav class="nav bd_grid">
+        <div>
+          <a href="index.html" class="nav_logo">ABOUT US </a>
+        </div>
+        <div class="nav_menu" id="nav_menu">
+          <ul class="nav_list">
+            <li class="nav_item">
+              <a href="index.html" class="nav_link">HOME</a>
+            </li>
+            <li class="nav_item">
+              <a href="about.html" class="nav_link active">ABOUT US</a>
+            </li>
+            <li class="nav_item">
+              <a href="penjualan.html" class="nav_link">SHOPPING</a>
+            </li>
+            <li class="nav_item">
+              <a href="#Contact" class="nav_link">CONTACT</a>
+            </li>
+          </ul>
+        </div>
+        <div class="nav_togle" id="nav_togle">
+          <i class="bx bx-menu-alt-right"></i>
         </div>
       </nav>
-      <div class="header_container" id="HOME">
-        <h1>GET NEW YOUR CARS</h1>
-        <form action="/">
-          <div class="input_group">
-            <label for="location"> pick up & your location </label>
-            <input
-              type="text"
-              name="lacation"
-              id="location"
-              placeholder="Bogor,INDONESIA"
-            />
-          </div>
-          <div class="input_group">
-            <label for="start"> start</label>
-            <input
-              type="text"
-              name="start"
-              id="start"
-              placeholder="SEP 16, 13:32 AM"
-            />
-          </div>
-          <div class="input_group">
-            <label for="stop"> stop </label>
-            <input
-              type="text"
-              name="stop"
-              id="stop"
-              placeholder="SEP 20, 10:00 PM"
-            />
-          </div>
-          <button class="btn">
-            <i class="ri-search-2-line"></i>
-          </button>
-        </form>
-        <img src="about/cae-removebg-preview.png" alt="header" />
-      </div>
     </header>
-    <section class="hero">
-      <div class="hero-logo">
-        <img src="about/orang_9-removebg-preview.png" alt="gambar heronya " />
-      </div>
-      <div class="hero-text">
-        <h1>
-          Hello i'm<strong> ZAINARIL.</strong> <b>DERECTURE</b
-          ><span> CARS</span> in <b>Indonesian.</b>
-        </h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-          molestiae aliquid quis delectus fugit provident eaque nulla quisquam
-          veniam repudiandae repellendus magnam quaerat tempora architecto
-          accusamus, aperiam suscipit sint quia.
-        </p>
-        <div class="button-box">
-          <a
-            href="https://www.linkedin.com/in/zainul-arkaan-3bb51731a/"
-            target="_blank"
-            class="hero-btn"
-          >
-            <img src="about/linkedin-16.png" />
-          </a>
-          <a
-            href="https://www.instagram.com/zainarilbre/?next=%2F"
-            target="_blank"
-            class="hero-btn"
-          >
-            <img src="about/icons8-ig-16.png" />
-          </a>
-          <a href="https://x.com/zainaril" target="_blank" class="hero-btn">
-            <img src="about/twitter-circled-16.png" />
-          </a>
-          <a
-            href="https://github.com/ZainulArkaanAlinsi"
-            target="_blank"
-            class="hero-btn"
-          >
-            <img src="about/github-16.png" />
-          </a>
-          <a
-            href="https://api.whatsapp.com/send/?phone=6285282540833&text&type=phone_number&app_absent=0"
-            target="_blank"
-            class="hero-btn"
-          >
-            <img src="about/whatsapp-16.png" />
-          </a>
-          <a
-            href="https://www.youtube.com/@zainarilbre"
-            target="_blank"
-            class="hero-btn"
-          >
-            <img src="about/video_15714787.png" />
-          </a>
-        </div>
-      </div>
-    </section>
-    <section class="about-me" id="about-me">
-      <div class="about-me-img">
-        <img src="about/pakero_3-removebg-preview.png" />
-      </div>
-      <div class="about-me-text">
-        <h2>About <b> US</b></h2>
-        <p>
-          I'm a passionate, self-proclaimed designer who specializes in full
-          stack development (React.js & Node.js). I am very enthusiastic about
-          bringing the technical and visual aspects of digital products to life.
-          User experience, pixel perfect design, and writing clear, readable,
-          highly performant code matters to me.
-        </p>
-        <p>
-          I began my journey as a web developer in 2015, and since then, I've
-          continued to grow and evolve as a developer, taking on new challenges
-          and learning the latest technologies along the way. Now, in my early
-          thirties, 7 years after starting my web development journey, I'm
-          building cutting-edge web applications using modern technologies such
-          as Next.js, TypeScript, Nestjs, Tailwindcss, Supabase and much more.
-        </p>
-      </div>
-    </section>
 
-    <section>
-      <div class="wrapper" id="TESTIMONIAL">
-        <div class="outer">
-          <h2>MY <span>TESTIMONIAL</span></h2>
-          <!-- _____________________________________________________________________ -->
-          <div class="card" style="--delay: 1">
-            <div class="content">
-              <div class="img">
-                <img src="about/orang 1.jpg" />
-              </div>
-              <div class="rating">
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-              </div>
-              <div class="text">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                  minus, animi dignissimos voluptate quasi tempora nulla.
-                </p>
-                <br />
-                <span class="name">NAYAKA IHSAN MUTAQIN </span>
-                <h1>JAKARTA BARAT</h1>
-              </div>
-            </div>
-          </div>
-          <!-- _______________________________________________________________________ -->
-          <div class="card" style="--delay: 2">
-            <div class="content">
-              <div class="img">
-                <img src="about/orang 2.jpg" />
-              </div>
-              <div class="rating">
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-              </div>
-              <div class="text">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                  minus, animi dignissimos voluptate quasi tempora nulla.
-                </p>
+    <main class="i_main">
+      <section class="home bd_grid" id="home">
+        <div class="home_data">
+          <h1 class="home_title">
+            HI, <br />
+            WITH US <span class="home_title_color"></span>
+          </h1>
 
-                <br />
-                <span class="name">MUFTI ARIFUDIN TAQY</span>
-                <h1>TANGGERANG SELATAN</h1>
-              </div>
-            </div>
-          </div>
-          <!-- _____________________________________________________________________ -->
-          <div class="card" style="--delay: 3">
-            <div class="content">
-              <div class="img">
-                <img src="about/orang 3.jpg" />
-              </div>
-              <div class="rating">
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-              </div>
-              <div class="text">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                  minus, animi dignissimos voluptate quasi tempora nulla.
-                </p>
-                <br />
-                <span class="name">NANIHAN USTMAN RAZIQ </span>
-                <h1>KALIMANTAN TIMUR</h1>
-              </div>
-            </div>
-          </div>
-          <!-- _____________________________________________________________________ -->
-          <div class="card" style="--delay: 4">
-            <div class="content">
-              <div class="img">
-                <img src="about/orang 6.jpg" />
-              </div>
-              <div class="rating">
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-              </div>
-              <div class="text">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                  minus, animi dignissimos voluptate quasi tempora nulla.
-                </p>
-                <br />
-                <span class="name">Afrah mastna</span>
-                <h1>CIKARANG SELATAN</h1>
-              </div>
-            </div>
-          </div>
-          
+          <a href="#Contact" class="button"> Contact</a>
         </div>
-      </div>
-    </section>
+        <div class="home_social">
+          <a href="#" class="home_social_icon"
+            ><i class="bx bxl-instagram-alt"></i
+          ></a>
+          <a href="#" class="home_social_icon"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="home_social_icon"
+            ><i class="bx bxl-linkedin-square"></i
+          ></a>
+          <a href="#" class="home_social_icon"
+            ><i class="bx bxl-whatsapp"></i
+          ></a>
+          <a href="#" class="home_social_icon"><i class="bx bxl-tiktok"></i></a>
+        </div>
+
+        <div class="home_img">
+          <img src="about/bak-removebg-preview.png" alt="" />
+        </div>
+      </section>
+
+      <section class="about_section" id="about">
+        <h2 class="section_title">ABOUT</h2>
+
+        <div class="about_container bd_grid">
+          <div class="about_img">
+            <img src="about/lambo-removebg-preview (2).png" alt="" />
+          </div>
+
+          <div>
+            <h2 class="about_subtitle">I'm zainaril</h2>
+            <p class="about_text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Veritatis, deleniti eveniet ea facilis voluptatibus rem sed
+              repellat maiores, et dicta ipsum voluptatum enim quo eaque.
+              Asperiores labore harum nulla vero?
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="skills_section" id="skills">
+        <h2 class="section_title">ABOUT</h2>
+        <div class="skills_container bd_grid">
+          <div>
+            <h2 class="skills_subtitle">sebelum membeli mobil</h2>
+            <p class="skills_text">
+              Baru pertama membeli mobil? Tahukah Anda soal surat jual beli
+              mobil? Jika belum, maka belajar lebih dulu mengenai surat ini.
+              Baik itu membeli mobil baru atau bekas, surat-surat adalah faktor
+              yang sangat penting. Dokumen atau surat-surat penting dari mobil
+              juga harus diteliti ulang. Ada beberapa jenis dokumen penting yang
+              harus dicek. Setelah itu baru Anda membuat surat perjanjian untuk
+              jual beli mobil.
+            </p>
+            <div class="skills_data">
+              <div class="skills_names">
+                <i class="bx bxs-id-card"></i>
+                <span class="skills_name">BPKB</span>
+              </div>
+            </div>
+            <div class="skills_data">
+              <div class="skills_names">
+                <i class="bx bx-credit-card"></i>
+                <span class="skills_name">STNK</span>
+              </div>
+            </div>
+            <div class="skills_data">
+              <div class="skills_names">
+                <i class="bx bx-detail"></i>
+                <span class="skills_name">SKCK</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <img src="about/surat-removebg-preview.png" class="skills_img" alt="" />
+          </div>
+        </div>
+      </section>
+      <section class="contact_section" id="Contact">
+        <h2 class="section_title">Contact</h2>
+
+        <div class="contact_container bd_grid">
+          <form action="" class="Contact_form">
+            <input type="text" placeholder="Name" class="Contact_input" />
+            <input type="email" placeholder="Email" class="Contact_input" />
+            <textarea
+              name=""
+              id=""
+              cols="0"
+              rows="10"
+              class="Contact_input"
+            ></textarea>
+            <input type="button" value="send" class="Contact_button" />
+          </form>
+        </div>
+      </section>
+    </main>
 
     <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-left">
-          @copyright by zainaril. all right reserved
-        </div>
-        <div class="footer-right">@zainaril.gmail.com</div>
+      <p class="footer_title">PREMIUM CARS</p>
+      <div class="footer_social">
+        <a href="#" class="home_social_icon"
+          ><i class="bx bxl-instagram-alt"></i
+        ></a>
+        <a href="#" class="home_social_icon"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="home_social_icon"
+          ><i class="bx bxl-linkedin-square"></i
+        ></a>
+        <a href="#" class="home_social_icon"><i class="bx bxl-whatsapp"></i></a>
+        <a href="#" class="home_social_icon"><i class="bx bxl-tiktok"></i></a>
       </div>
+      <p>&#169; 2024 PREMIUM CARS. All rights reserved.</p>
     </footer>
-    <script src="about.js"></script>
+
+    <script src="js/lib/ui.js"></script>
+    <script src="js/components/forms.js"></script>
+    <script src="js/about.js"></script>
   </body>
 </html>

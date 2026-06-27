@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="penjualan.css" />
+    <title>Katalog Mobil — PREMIUM CARS</title>
+    <meta
+      name="description"
+      content="Katalog unit PREMIUM CARS: hypercar, sport, SUV, dan mobil keluarga. Cari, filter, simulasi cicilan, dan checkout via WhatsApp."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/penjualan.css" />
   </head>
   <body>
     <header>
@@ -18,376 +30,126 @@
       <nav>
         <ul class="nav-links" id="nav-links">
           <li><a href="index.html">HOME</a></li>
-          <li><a href="index.html">ABOUT</a></li>
-          <li><a href="#SERVICE">SERVICE</a></li>
-          <li><a href="index.html">SHOPPING</a></li>
-          <li><a href="index.html">CONTACT</a></li>
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="penjualan.html">SHOPPING</a></li>
+          <li><a href="#simulasi">CICILAN</a></li>
+          <li><a href="#contact">CONTACT</a></li>
         </ul>
       </nav>
-      <div class="hamburger" id="hamburger">&#9776;</div>
+      <div class="header-actions">
+        <button class="cart-btn" id="cart-btn" type="button" aria-label="Buka daftar minat">
+          <i class="ri-bookmark-line" aria-hidden="true"></i>
+          <span class="cart-badge is-empty" id="cart-count">0</span>
+        </button>
+        <div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="Menu">&#9776;</div>
+      </div>
     </header>
 
     <section>
       <div class="header_container" id="SHOPPING">
-        <h1>GET NEW YOUR CARS</h1>
-        <form action="/">
+        <h1>GET YOUR NEW CAR</h1>
+        <form action="/" onsubmit="return false">
           <div class="input_group">
-            <label for="location"> pick up & your location </label>
-            <input
-              type="text"
-              name="lacation"
-              id="location"
-              placeholder="Bogor,INDONESIA"
-            />
+            <label for="location"> pick up &amp; your location </label>
+            <input type="text" name="location" id="location" placeholder="Bogor, INDONESIA" />
           </div>
           <div class="input_group">
-            <label for="start"> start</label>
-            <input
-              type="text"
-              name="start"
-              id="start"
-              placeholder="SEP 16, 13:32 AM"
-            />
+            <label for="start"> start </label>
+            <input type="text" name="start" id="start" placeholder="SEP 16, 13:32" />
           </div>
           <div class="input_group">
             <label for="stop"> stop </label>
-            <input
-              type="text"
-              name="stop"
-              id="stop"
-              placeholder="SEP 20, 10:00 PM"
-            />
+            <input type="text" name="stop" id="stop" placeholder="SEP 20, 10:00" />
           </div>
         </form>
         <div class="gambar">
-          <img src="image/belanja-removebg-preview.png" alt="gambar" />
-          <img src="image/bmwe-removebg-preview.png" alt="gambar" />
+          <img src="image/belanja-removebg-preview.png" alt="ilustrasi belanja" />
+          <img src="image/bmwe-removebg-preview.png" alt="BMW" />
         </div>
       </div>
     </section>
 
     <section class="hero">
-      <h2>Welcome to MyStore</h2>
-      <p>Your one-stop shop for everything!</p>
-      <button>Shop Now</button>
+      <h2>Showroom Mobil Impian</h2>
+      <p>Hypercar, sport, SUV, hingga mobil keluarga — semua dalam satu etalase.</p>
+      <button type="button" onclick="document.getElementById('katalog').scrollIntoView({behavior:'smooth'})">
+        Lihat Katalog
+      </button>
     </section>
 
-    <section class="products">
-      <h2>GET CARS</h2>
-      <div class="product-grid">
-        <div class="product">
-          <img src="image/bu-removebg-preview (1).png" alt="Product 1" />
-          <h3>Bugatti Chiron Pur Sport</h3>
-          <p>$ 3.584.839,50</p>
-          <button class="add-to-cart">BUY</button>
+    <!-- Katalog interaktif (dirender oleh js/components/catalog.js) -->
+    <section class="catalog" id="katalog">
+      <div class="catalog__head">
+        <h2>Katalog</h2>
+        <div class="catalog__search">
+          <i class="ri-search-line" aria-hidden="true"></i>
+          <label class="visually-hidden" for="catalog-search">Cari mobil</label>
+          <input type="search" id="catalog-search" placeholder="Cari mobil atau brand..." />
         </div>
-        <div class="product">
-          <img src="image/fe-removebg-preview.png" alt="Product 2" />
-          <h3>ferari sf90</h3>
-          <p>$159,00</p>
-          <button class="add-to-cart">BUY</button>
+      </div>
+      <div class="catalog__chips" id="catalog-chips"></div>
+      <div class="catalog__bar">
+        <span id="catalog-count" aria-live="polite">Memuat unit…</span>
+        <div>
+          <label class="visually-hidden" for="catalog-sort">Urutkan</label>
+          <select id="catalog-sort">
+            <option value="featured">Urutkan: Unggulan</option>
+            <option value="price-asc">Harga: Termurah</option>
+            <option value="price-desc">Harga: Termahal</option>
+            <option value="year-desc">Tahun: Terbaru</option>
+          </select>
         </div>
-        <div class="product">
-          <img src="image/mc-removebg-preview.png" alt="Product 3" />
-          <h3>mclaren 720s</h3>
-          <p>$$315.000</p>
-          <button class="add-to-cart">BUY</button>
-        </div>
-        <div class="product">
-          <img src="image/pajero_sport-removebg-preview.png" alt="Product 4" />
-          <h3>pajero sport</h3>
-          <p>$45.875,45</p>
-          <button class="add-to-cart">BUY</button>
-        </div>
-        <div class="product">
-          <img
-            src="image/Toyota_Alphard-removebg-preview.png"
-            alt="Product 5"
-          />
-          <h3>Toyota Alphard</h3>
-          <p>$159,00</p>
-          <button class="add-to-cart">BUY</button>
-        </div>
-        <div class="product">
-          <img src="image/mazda_rx_7-removebg-preview.png" alt="Product 6" />
-          <h3>mazda rx 7</h3>
-          <p>$79.969,46</p>
-          <button class="add-to-cart">BUY</button>
-        </div>
-        <div class="product">
-          <img src="image/mazda_cx_5-removebg-preview.png" alt="Product 7" />
-          <h3>mazda rx 5</h3>
-          <p>$22.153,67</p>
-          <button class="add-to-cart">BUY</button>
-        </div>
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 8"
-          />
-          <h3>Lamborghini Aventador J</h3>
-          <p>$2,8 juta</p>
-          <button class="add-to-cart">BUY</button>
-        </div>
-        <div class="product">
-          <img
-            src="image/Lamborghini_Sesto_Elemento-removebg-preview.png"
-            alt="Product 9"
-          />
-          <h3>Lamborghini Sesto Elemento</h3>
-          <p>$2,7 juta</p>
-          <button class="add-to-cart">BUY</button>
-        </div>
-        <div class="product">
-          <img
-            src="image/Lamborghini_Huracan-removebg-preview.png"
-            alt="Product 10"
-          />
-          <h3>Lamborghini Huracan</h3>
-          <p>$249.865</p>
-          <button class="add-to-cart">BUY</button>
-        </div>
+      </div>
+      <div class="product-grid" id="product-grid"></div>
+    </section>
 
-        <div class="product">
-          <img
-            src="image/Ford_Mustang_Boss_429-removebg-preview.png"
-            alt="Product 12"
-          />
-          <h3>Ford Mustang Boss 429</h3>
-          <p>$312.814</p>
-          <button class="add-to-cart">Add to Cart</button>
+    <!-- Simulasi cicilan (js/components/simulator.js) -->
+    <section class="simulator" id="simulasi">
+      <div class="simulator__inner">
+        <div class="sim-head">
+          <h2>Simulasi Cicilan</h2>
+          <p class="sim-sublabel" id="sim-label">Hitung estimasi angsuran bulanan Anda (bunga flat 5%/tahun).</p>
         </div>
-
-        <div class="product">
-          <img src="image/BMW_M4-removebg-preview.png" alt="Product 13" />
-          <h3>BMW M4</h3>
-          <p>$80.275</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img src="image/BMW_320i-removebg-preview.png" alt="Product 14" />
-          <h3>BMW 320i</h3>
-          <p>$80.200</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img src="image/Lotus_Evija-removebg-preview.png" alt="Product 15" />
-          <h3>Lotus Evija</h3>
-          <p>$2,3 juta</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img src="image/agani_Huayra-removebg-preview.png" alt="Product 16" />
-          <h3>Pagani Huayra</h3>
-          <p>$30 juta</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Chevrolet_Trailblazer_2024-removebg-preview.png"
-            alt="Product 17"
-          />
-          <h3>Chevrolet Trailblazer 2024</h3>
-          <p>$28.395</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Nissan_Skyline_-_R34-removebg-preview.png"
-            alt="Product 18"
-          />
-          <h3>Nissan Skyline - R34</h3>
-          <p>$110.123</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Nissan_Skyline_-_R32-removebg-preview.png"
-            alt="Product 19"
-          />
-          <h3>Nissan Skyline - R32</h3>
-          <p>$47.364</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-        <div class="product">
-          <img src="image/Subaru_BRZ-removebg-preview.png" alt="Product 20" />
-          <h3>subaru BRZ</h3>
-          <p>$31.315</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Rolls-Royce_Phantom-removebg-preview.png"
-            alt="Product 21"
-          />
-          <h3>Rolls-Royce Phantom</h3>
-          <p>$460.000</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 3"
-          />
-          <h3>Product 3</h3>
-          <p>$30.00</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 3"
-          />
-          <h3>Product 3</h3>
-          <p>$30.00</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 3"
-          />
-          <h3>Product 3</h3>
-          <p>$30.00</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 3"
-          />
-          <h3>Product 3</h3>
-          <p>$30.00</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 3"
-          />
-          <h3>Product 3</h3>
-          <p>$30.00</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 3"
-          />
-          <h3>Product 3</h3>
-          <p>$30.00</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 3"
-          />
-          <h3>Product 3</h3>
-          <p>$30.00</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 3"
-          />
-          <h3>Product 3</h3>
-          <p>$30.00</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 3"
-          />
-          <h3>Product 3</h3>
-          <p>$30.00</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 3"
-          />
-          <h3>Product 3</h3>
-          <p>$30.00</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 3"
-          />
-          <h3>Product 3</h3>
-          <p>$30.00</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 3"
-          />
-          <h3>Product 3</h3>
-          <p>$30.00</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 3"
-          />
-          <h3>Product 3</h3>
-          <p>$30.00</p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <div class="product">
-          <img
-            src="image/Lamborghini_Aventador_J-removebg-preview.png"
-            alt="Product 3"
-          />
-          <h3>Product 3</h3>
-          <p>$30.00</p>
-          <button class="add-to-cart">Add to Cart</button>
+        <div class="sim-grid">
+          <form class="sim-form" id="sim-form">
+            <div class="field">
+              <label for="sim-price">Harga unit (Rp)</label>
+              <input type="number" id="sim-price" min="0" step="1000000" value="650000000" />
+            </div>
+            <div class="field">
+              <label for="sim-dp">Uang muka / DP (Rp)</label>
+              <input type="number" id="sim-dp" min="0" step="1000000" value="130000000" />
+            </div>
+            <div class="field">
+              <label for="sim-tenor">Tenor</label>
+              <select id="sim-tenor">
+                <option value="12">12 bulan</option>
+                <option value="24" selected>24 bulan</option>
+                <option value="36">36 bulan</option>
+                <option value="48">48 bulan</option>
+                <option value="60">60 bulan</option>
+              </select>
+            </div>
+            <button class="btn-solid" type="submit">Hitung Angsuran</button>
+          </form>
+          <div class="sim-output" id="sim-output"></div>
         </div>
       </div>
     </section>
 
-    <section class="bdy" id="index.html">
+    <section class="bdy" id="contact">
       <div class="ctr">
         <div class="item">
           <div class="contact">
-            <div class="first-text">Dapatkan informasi new cars</div>
-            <img src="image/gambar-removebg-preview.png" class="gambar2" />
-
+            <div class="first-text">Dapatkan informasi unit terbaru</div>
+            <img src="image/gambar-removebg-preview.png" class="gambar2" alt="kontak" />
             <div class="social-link">
-              <span class="dua-text"> Connect with us </span>
+              <span class="dua-text">Connect with us</span>
               <ul class="social-media">
-                <li><a href="#"></a><i class="bx bxl-instagram-alt"></i></li>
-                <li><a href="#"></a><i class="bx bxl-linkedin-square"></i></li>
-                <li><a href="#"></a><i class="bx bxl-whatsapp"></i></li>
-                <li><a href="#"></a><i class="bx bxl-github"></i></li>
+                <li><a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a></li>
+                <li><a href="#" aria-label="LinkedIn"><i class="ri-linkedin-box-line"></i></a></li>
+                <li><a href="#" aria-label="WhatsApp"><i class="ri-whatsapp-line"></i></a></li>
+                <li><a href="#" aria-label="GitHub"><i class="ri-github-fill"></i></a></li>
               </ul>
             </div>
           </div>
@@ -396,26 +158,19 @@
             <form action="">
               <div class="input-box">
                 <input type="text" class="input" required />
-                <label for="">NAME</label>
+                <label>NAME</label>
               </div>
               <div class="input-box">
-                <input type="text" class="input" required />
-                <label for="">EMAIL</label>
+                <input type="email" class="input" required />
+                <label>EMAIL</label>
               </div>
               <div class="input-box">
-                <input type="text" class="input" required />
-                <label for="">Phone</label>
+                <input type="tel" class="input" required />
+                <label>PHONE</label>
               </div>
               <div class="input-box">
-                <textarea
-                  name=""
-                  class="input"
-                  required
-                  id="message"
-                  cols="30"
-                  rows="10"
-                ></textarea>
-                <label for="">Message</label>
+                <textarea class="input" required id="message" cols="30" rows="10"></textarea>
+                <label>MESSAGE</label>
               </div>
               <input type="submit" class="btn" value="submit" />
             </form>
@@ -423,10 +178,22 @@
         </div>
       </div>
     </section>
+
     <footer>
-      <p>&copy; 2024 MyStore. All rights reserved.</p>
+      <p>&copy; 2024 PREMIUM CARS. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Data → Lib → Components → Entry (urutan penting, lihat SDD §3.1) -->
+    <script src="js/data/cars.js"></script>
+    <script src="js/lib/format.js"></script>
+    <script src="js/lib/storage.js"></script>
+    <script src="js/lib/store.js"></script>
+    <script src="js/lib/ui.js"></script>
+    <script src="js/components/catalog.js"></script>
+    <script src="js/components/cart.js"></script>
+    <script src="js/components/simulator.js"></script>
+    <script src="js/components/forms.js"></script>
+    <script src="js/components/nav.js"></script>
+    <script src="js/penjualan.js"></script>
   </body>
 </html>

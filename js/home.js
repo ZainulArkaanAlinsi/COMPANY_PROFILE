@@ -66,21 +66,21 @@ function updateSwiperImage(eventName, args) {
         selectCards.forEach((item) => {
             item.classList.remove("show_info");
         });
-        selectCards[index].classList.add("Show_info");
+        selectCards[index].classList.add("show_info");
     }
 }
 
 const swiper = new Swiper(".swiper", {
     loop: true,
-    effect: "overflow",
+    effect: "coverflow",
     grabCursor: true,
     slidesPerView: "auto",
-    coverfloweEffect: {
+    coverflowEffect: {
         rotate: 0,
         depth: 500,
-        midifier: 1,
+        modifier: 1,
         scale: 0.75,
-        slidesShadows: false,
+        slideShadows: false,
         stretch: -100,
     },
     onAny(event, ...args) {
@@ -110,9 +110,14 @@ ScrollReveal().reveal(".download_image img", {
 });
 ScrollReveal().reveal(".dowload_content .section_header12", {
     ...ScrollRevealOption,
-    delsy: 500,
+    delay: 500,
 });
 ScrollReveal().reveal(".download_link", {
     ...ScrollRevealOption,
     delay: 1000,
 });
+
+/* Validasi form newsletter (butuh js/lib/ui.js + js/components/forms.js) */
+if (window.PC && PC.forms) {
+    PC.forms.initNewsletter();
+}

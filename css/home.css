@@ -188,18 +188,20 @@ nav {
   inset: 0 0 auto 0;
   z-index: 20;
   isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 72px;
+  padding-inline: max(var(--gutter), calc((100% - var(--max-width)) / 2));
   background-color: rgba(11, 11, 12, 0.72);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line-soft);
 }
 .nav-header {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: var(--max-width);
-  margin-inline: auto;
-  height: 72px;
-  padding-inline: var(--gutter);
 }
 .nav-logo a {
   font-family: var(--display-font);
@@ -372,36 +374,6 @@ nav {
   text-transform: uppercase;
   color: var(--text-dim);
   writing-mode: vertical-rl;
-}
-
-.scroll_down {
-  position: absolute;
-  left: var(--gutter);
-  bottom: 1.5rem;
-  z-index: 5;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-.scroll_down i {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  font-size: 1.1rem;
-  color: var(--accent);
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  animation: scrollPulse 2s ease-in-out infinite;
-}
-@keyframes scrollPulse {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
 }
 
 /* ---------------- Kategori ---------------- */
@@ -915,9 +887,13 @@ footer {
    Desktop (>= 992px) — nav inline & hero matang
    ============================================================ */
 @media (min-width: 992px) {
+  .nav-header {
+    flex: 0 0 auto;
+  }
   .nav_link {
     position: static;
     width: auto;
+    margin-left: auto;
     justify-content: flex-end;
   }
 }

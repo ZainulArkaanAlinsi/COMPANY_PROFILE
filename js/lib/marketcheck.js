@@ -24,10 +24,10 @@ PC.marketcheck = (function () {
     /* Isi key Anda di sini ATAU lewat proxy (lebih aman, lihat di bawah). */
     apiKey: "YOUR_MARKETCHECK_API_KEY",
 
-    /* Jika diisi, modul memanggil proxy ini (tanpa membocorkan key).
-       Proxy yang menyuntik api_key di sisi server — lihat MARKETCHECK.md.
-       Contoh: "/api/cars"  */
-    proxyUrl: "",
+    /* Proxy yang menyuntik api_key di sisi server (anti-CORS & rahasia key).
+       Default cocok dengan server/proxy.js (lokal) & api/cars.js (Vercel).
+       Kosongkan ("") untuk menonaktifkan jalur proxy. Lihat MARKETCHECK.md. */
+    proxyUrl: "/api/cars",
 
     host: "https://api.marketcheck.com",
     usdToIdr: 16000, /* kurs kasar untuk menjaga format Rupiah */
@@ -103,6 +103,8 @@ PC.marketcheck = (function () {
 
   /* ---------- API publik ---------- */
   function enabled() {
+    /* file:// tak punya server proxy → jangan coba-coba (hindari error). */
+    if (typeof location !== "undefined" && location.protocol === "file:") return false;
     return Boolean(config.proxyUrl) ||
       (config.apiKey && config.apiKey !== "YOUR_MARKETCHECK_API_KEY");
   }
@@ -133,13 +135,12 @@ PC.marketcheck = (function () {
         return true;
       })
       .catch(function (err) {
+        /* Diam-diam fallback ke data lokal (mis. proxy belum jalan / belum
+           ada key). Hanya catat di console agar tidak mengganggu pengunjung. */
         console.warn(
           "[marketcheck] gagal memuat (" + err.message +
-          ") — memakai data lokal. Lihat MARKETCHECK.md (kemungkinan CORS/proxy/key)."
+          ") — memakai data lokal. Lihat MARKETCHECK.md (CORS/proxy/key)."
         );
-        if (PC.ui && PC.ui.toast) {
-          PC.ui.toast("Data MarketCheck tak termuat — pakai data lokal", "error");
-        }
         return false;
       });
   }

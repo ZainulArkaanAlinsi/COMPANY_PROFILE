@@ -1,0 +1,12 @@
+# Rahasia / environment — jangan pernah commit API key
+.env
+.env.*
+*.local
+
+# Dependensi & build
+node_modules/
+.vercel/
+
+# OS
+Thumbs.db
+.DS_Store

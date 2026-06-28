@@ -1,80 +1,77 @@
 # Integrasi MarketCheck Cars API
 
-Modul `js/lib/marketcheck.js` (`PC.marketcheck`) bisa mengganti data lokal
-(`js/data/cars.js`) dengan **listing mobil live** dari
-[MarketCheck Cars API](https://docs.marketcheck.com/docs/api/cars).
+Halaman **Shopping** (`penjualan.html`) bisa menampilkan **listing mobil live**
+dari [MarketCheck Cars API](https://docs.marketcheck.com/docs/api/cars)
+(endpoint `GET /v2/search/car/active`, auth via `api_key`).
 
-- Endpoint: `GET https://api.marketcheck.com/v2/search/car/active`
-- Auth: query param `api_key`
-- Dipasang di halaman **Shopping** (`penjualan.html`). Home tetap pakai data kurasi lokal.
-- **Aman by default:** tanpa konfigurasi, modul diam dan situs memakai data lokal. Jika API gagal (CORS/kuota/key salah), otomatis fallback ke data lokal — situs tidak pernah rusak.
+Modul `js/lib/marketcheck.js` mengambil data, **memetakannya** ke model situs
+(kategori, harga USD→IDR, foto), lalu mengisi katalog. **Aman by default:**
+bila belum dikonfigurasi / gagal / dibuka via `file://`, situs memakai data
+lokal (`js/data/cars.js`) — tidak pernah rusak.
+
+> Aku **tidak bisa** mendaftarkan/mendapat API key untukmu — itu harus akunmu.
+> Daftar (ada free trial) di <https://www.marketcheck.com/apis/cars/>.
+
+Karena situs ini statis, browser **tidak boleh** memanggil `api.marketcheck.com`
+langsung (key bocor + diblokir CORS). Jadi semua jalur di bawah memakai **proxy**
+yang menyimpan key di server. `proxyUrl` sudah di-set `"/api/cars"` secara default.
 
 ---
 
-## 1. Dapatkan API key
+## Cara 1 — Jalankan lokal (paling cepat lihat data live)
 
-Daftar (ada free trial) di <https://www.marketcheck.com/apis/cars/> → ambil API key.
-Saya **tidak bisa** mendaftarkan/mendapatkan key untukmu; ini harus akun milikmu.
+Butuh **Node 18+**. Dari folder proyek (PowerShell):
 
-## 2. Pilih salah satu cara pakai
-
-### Cara A — Proxy serverless (DISARANKAN, aman)
-
-Memanggil `api.marketcheck.com` langsung dari browser **membocorkan key** dan
-biasanya **diblokir CORS**. Solusi benar: proxy kecil yang menyimpan key di server.
-
-Contoh **Vercel** — buat `api/cars.js`:
-
-```js
-export default async function handler(req, res) {
-  const params = new URLSearchParams(req.query);
-  params.set("api_key", process.env.MARKETCHECK_API_KEY); // key di env server
-  const r = await fetch(
-    "https://api.marketcheck.com/v2/search/car/active?" + params.toString()
-  );
-  const data = await r.json();
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.status(r.status).json(data);
-}
+```powershell
+$env:MARKETCHECK_API_KEY = "KEY_KAMU"
+node server/proxy.js
 ```
 
-Set env `MARKETCHECK_API_KEY` di dashboard Vercel, lalu di
-`js/lib/marketcheck.js`:
+Buka <http://localhost:3000> → katalog terisi unit live.
+`server/proxy.js` menyajikan situs **dan** meneruskan `/api/cars` ke MarketCheck
+dengan key dari environment (key tidak pernah sampai ke browser).
+
+## Cara 2 — Deploy ke Vercel (produksi)
+
+File `api/cars.js` sudah siap sebagai serverless function.
+
+1. Import proyek ke Vercel.
+2. Tambah Environment Variable: `MARKETCHECK_API_KEY = <key kamu>`.
+3. Deploy. Path `/api/cars` otomatis aktif; situs memanggilnya.
+
+(Netlify: buat `netlify/functions/cars.js` dengan pola serupa, lalu set
+`proxyUrl: "/.netlify/functions/cars"` di `js/lib/marketcheck.js`.)
+
+## Cara 3 — Key langsung di klien (hanya uji coba, TIDAK aman)
+
+Di `js/lib/marketcheck.js`: kosongkan `proxyUrl` dan isi `apiKey`.
 
 ```js
-proxyUrl: "/api/cars",
+proxyUrl: "",
+apiKey: "KEY_KAMU",
 ```
 
-(Netlify: pakai `netlify/functions/cars.js` dengan pola serupa, `proxyUrl: "/.netlify/functions/cars"`.)
+> Key terlihat di kode sumber & kemungkinan gagal CORS. Jangan untuk produksi.
 
-### Cara B — Key langsung di klien (cepat, hanya untuk uji coba)
+---
 
-Di `js/lib/marketcheck.js` ganti:
+## Penyesuaian (opsional)
 
-```js
-apiKey: "MASUKKAN_KEY_ANDA",
-```
-
-> Peringatan: key akan terlihat oleh siapa pun yang membuka kode sumber, dan
-> kemungkinan gagal CORS di hosting statis. Jangan dipakai untuk produksi.
-
-## 3. Sesuaikan (opsional)
-
-Di objek `config` (`js/lib/marketcheck.js`):
+Objek `config` di `js/lib/marketcheck.js`:
 
 | Opsi | Fungsi |
 | --- | --- |
-| `defaultParams` | Filter pencarian (mis. `make`, `model`, `car_type`, `rows`). [100+ parameter](https://docs.marketcheck.com/docs/api/cars/inventory/inventory-search). |
-| `usdToIdr` | Kurs untuk konversi harga USD→Rupiah (default 16000). |
+| `defaultParams` | Filter pencarian (`make`, `model`, `car_type`, `rows`, dll). [100+ parameter](https://docs.marketcheck.com/docs/api/cars/inventory/inventory-search). |
+| `usdToIdr` | Kurs konversi harga USD→Rupiah (default 16000). |
 | `placeholderImage` | Gambar cadangan bila listing tak punya foto. |
 
-## Catatan & batasan
+## Batasan (jujur)
 
-- **Mata uang:** data MarketCheck = pasar AS (USD). Harga dikali `usdToIdr`
-  agar format Rupiah situs tetap konsisten. Sesuaikan kurs sesuai kebutuhan.
-- **Spesifikasi performa:** endpoint inventory **tidak** memberi top speed / hp.
-  Nilai pada kartu = **estimasi kasar**. Untuk spesifikasi asli, pakai VIN decode
-  `/v2/decode/car/{vin}/specs` (pengembangan lanjutan).
-- **Kategori** (hypercar/sport/suv/family/electric/classic) dipetakan secara
-  heuristik dari `body_type` / `fuel_type` / `year`.
-- **Kuota:** trial MarketCheck terbatas; cache hasil bila perlu.
+- **Mata uang:** data MarketCheck = pasar AS (USD); dikali `usdToIdr` agar format
+  Rupiah konsisten. Sesuaikan kurs.
+- **Spesifikasi performa:** endpoint inventory **tidak** memberi top speed / hp —
+  nilai di kartu hanya **estimasi**. Untuk asli pakai VIN decode
+  `/v2/decode/car/{vin}/specs`.
+- **Kategori** dipetakan heuristik dari `body_type` / `fuel_type` / `year`.
+- **Kuota:** trial MarketCheck terbatas; `api/cars.js` sudah meng-cache 5 menit di edge.
+- Key tak akan ter-commit: `.env` & `*.local` ada di `.gitignore`.

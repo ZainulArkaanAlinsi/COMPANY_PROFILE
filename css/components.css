@@ -41,6 +41,26 @@
   color: var(--accent);
 }
 
+/* Animasi masuk halus (hero penjualan & about; home pakai ScrollReveal) */
+@keyframes pc-fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.anim-up {
+  opacity: 0;
+  animation: pc-fade-up 0.7s var(--ease) forwards;
+}
+.anim-up.d1 { animation-delay: 0.08s; }
+.anim-up.d2 { animation-delay: 0.18s; }
+.anim-up.d3 { animation-delay: 0.28s; }
+.anim-up.d4 { animation-delay: 0.38s; }
+@media (prefers-reduced-motion: reduce) {
+  .anim-up {
+    opacity: 1;
+    animation: none;
+  }
+}
+
 /* ---------------- Tombol generik ---------------- */
 .btn-solid,
 .btn-ghost {
@@ -262,7 +282,7 @@
   font-weight: 800;
   font-size: 1.9rem;
   text-transform: uppercase;
-  letter-spacing: -1px;
+  letter-spacing: var(--tracking-head);
   color: var(--text);
 }
 .detail__price {

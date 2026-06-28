@@ -48,7 +48,7 @@ h4 {
   font-weight: 800;
   text-transform: uppercase;
   line-height: 0.98;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--tracking-head);
 }
 
 /* ---------------- Helper editorial ---------------- */
@@ -233,30 +233,37 @@ nav {
   /* di desktop nav_link diposisikan ulang (lihat aturan desktop) */
 }
 .nav_link a {
+  position: relative;
   display: inline-block;
-  padding: 0.55rem 1rem;
-  font-size: 0.8rem;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.78rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-muted);
-  transition: var(--transition);
+  transition: color var(--t-base) var(--ease);
 }
-.nav_link a:hover,
-.nav_link a.is-active {
-  color: var(--text);
-}
-.nav_link a.is-active {
-  position: relative;
-}
-.nav_link a.is-active::after {
+.nav_link a::after {
   content: "";
   position: absolute;
-  left: 1rem;
-  right: 1rem;
-  bottom: 0.2rem;
-  height: 2px;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.1rem;
+  height: 1.5px;
   background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-base) var(--ease);
+}
+.nav_link a:hover {
+  color: var(--text);
+}
+.nav_link a:hover::after,
+.nav_link a.is-active::after {
+  transform: scaleX(1);
+}
+.nav_link a.is-active {
+  color: var(--text);
 }
 .nav_btn .btn {
   padding: 11px 22px;
@@ -395,12 +402,12 @@ nav {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(0.35) brightness(0.78);
+  filter: brightness(0.92) contrast(1.04);
   transition: transform 0.7s var(--ease), filter 0.5s var(--ease);
 }
 .range_card:hover img {
-  transform: scale(1.06);
-  filter: grayscale(0) brightness(0.92);
+  transform: scale(1.05);
+  filter: brightness(1.04) contrast(1.04);
 }
 .range_card__index {
   position: absolute;
@@ -605,11 +612,11 @@ nav {
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
-  filter: brightness(0.85);
+  filter: brightness(0.96);
   transition: var(--transition);
 }
 .story_card:hover img {
-  filter: brightness(1);
+  filter: brightness(1.04);
 }
 .story_body {
   display: flex;
@@ -686,15 +693,15 @@ nav {
   animation: marquee 40s linear infinite;
 }
 .banner_wrapper img {
-  height: 42px;
+  height: 38px;
   width: auto;
   object-fit: contain;
-  filter: grayscale(1) brightness(1.6);
-  opacity: 0.55;
+  filter: grayscale(1);
+  opacity: 0.45;
   transition: var(--transition);
 }
 .banner_wrapper img:hover {
-  filter: grayscale(0) brightness(1);
+  filter: grayscale(0);
   opacity: 1;
 }
 @keyframes marquee {
@@ -808,7 +815,7 @@ footer {
   font-family: var(--display-font);
   font-weight: 900;
   font-size: clamp(2.5rem, 8vw, 5rem);
-  letter-spacing: -0.02em;
+  letter-spacing: var(--tracking-head);
   text-transform: uppercase;
   color: var(--text);
 }

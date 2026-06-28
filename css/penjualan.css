@@ -50,24 +50,29 @@ nav ul li a {
   position: relative;
   text-decoration: none;
   color: var(--text-muted);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  padding: 0.55rem 1rem;
-  transition: var(--transition);
+  padding: 0.5rem 0.9rem;
+  transition: color var(--t-base) var(--ease);
 }
-nav ul li a:hover,
-nav ul li a.is-active { color: var(--text); }
-nav ul li a.is-active::after {
+nav ul li a::after {
   content: "";
   position: absolute;
-  left: 1rem;
-  right: 1rem;
-  bottom: 0.15rem;
-  height: 2px;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.1rem;
+  height: 1.5px;
   background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-base) var(--ease);
 }
+nav ul li a:hover { color: var(--text); }
+nav ul li a:hover::after,
+nav ul li a.is-active::after { transform: scaleX(1); }
+nav ul li a.is-active { color: var(--text); }
 
 .header-actions { display: flex; align-items: center; gap: 0.75rem; }
 
@@ -124,7 +129,7 @@ nav ul li a.is-active::after {
   font-family: var(--display-font);
   text-transform: uppercase;
   color: var(--text);
-  letter-spacing: -0.02em;
+  letter-spacing: var(--tracking-head);
   line-height: 0.95;
 }
 .header_lead {
@@ -206,7 +211,7 @@ nav ul li a.is-active::after {
   font-weight: 800;
   font-size: 2.25rem;
   text-transform: uppercase;
-  letter-spacing: -1px;
+  letter-spacing: var(--tracking-head);
   color: var(--text);
 }
 .hero p { margin-bottom: 1.5rem; color: var(--text-muted); }
@@ -244,10 +249,10 @@ nav ul li a.is-active::after {
 }
 .catalog__head h2 {
   font-family: var(--display-font);
-  font-weight: 800;
-  font-size: 2.75rem;
+  font-weight: 700;
+  font-size: var(--fs-h2);
   text-transform: uppercase;
-  letter-spacing: -1px;
+  letter-spacing: var(--tracking-head);
   color: var(--text);
 }
 .catalog__search { position: relative; flex: 1 1 280px; max-width: 360px; }
@@ -524,10 +529,10 @@ nav ul li a.is-active::after {
 .sim-head .kicker { margin-bottom: 0.85rem; }
 .sim-head h2 {
   font-family: var(--display-font);
-  font-weight: 800;
-  font-size: 2.5rem;
+  font-weight: 700;
+  font-size: var(--fs-h2);
   text-transform: uppercase;
-  letter-spacing: -1px;
+  letter-spacing: var(--tracking-head);
   color: var(--text);
 }
 .sim-sublabel { margin-top: 0.5rem; color: var(--text-muted); }
@@ -712,7 +717,7 @@ textarea.input { resize: none; height: 120px; padding-top: 10px; }
   font-family: var(--display-font);
   font-weight: 900;
   font-size: clamp(2.5rem, 8vw, 5rem);
-  letter-spacing: -0.02em;
+  letter-spacing: var(--tracking-head);
   text-transform: uppercase;
   color: var(--text);
 }
@@ -786,5 +791,4 @@ textarea.input { resize: none; height: 120px; padding-top: 10px; }
 
 @media (max-width: 540px) {
   .product-grid { grid-template-columns: 1fr; }
-  .catalog__head h2 { font-size: 2.25rem; }
 }

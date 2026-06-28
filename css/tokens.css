@@ -19,19 +19,20 @@
   --accent-rgb: 255, 106, 0; /* untuk wash amber transparan        */
 
   /* --- Tipografi (kontras & elegan — PRD §8.4) --- */
-  --display-font: "Archivo", sans-serif; /* headline industrial   */
+  --display-font: "Oswald", sans-serif;  /* headline condensed, otomotif */
   --body-font: "Inter", sans-serif;      /* teks netral terbaca   */
   --header-font: var(--display-font);    /* alias legacy          */
+  --tracking-head: 0.01em;               /* tracking headline (Oswald) */
 
   /* --- Layout --- */
   --max-width: 1280px;
   --gutter: clamp(1.25rem, 5vw, 4rem);  /* padding tepi halaman responsif */
 
   /* --- Skala tipografi editorial (clamp, basis 16px) — PRD §8.4 --- */
-  --fs-display: clamp(3.25rem, 11vw, 11rem);  /* angka/headline raksasa  */
-  --fs-h1: clamp(2.75rem, 7vw, 6rem);
-  --fs-h2: clamp(2rem, 4.5vw, 3.75rem);
-  --fs-h3: clamp(1.25rem, 2vw, 1.6rem);
+  --fs-display: clamp(3rem, 8vw, 7rem);       /* angka/headline raksasa  */
+  --fs-h1: clamp(2.5rem, 6vw, 4.75rem);
+  --fs-h2: clamp(1.875rem, 4vw, 3rem);
+  --fs-h3: clamp(1.2rem, 1.6vw, 1.5rem);
   --fs-kicker: 0.75rem;                       /* overline label          */
 
   /* --- Skala spasi (basis 8px) — PRD §8.5 --- */

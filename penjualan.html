@@ -45,13 +45,13 @@
   <body>
     <header>
       <div class="logo">
-        <h1>SHOPPING</h1>
+        <a href="index.html" class="wordmark">PREMIUM<span>CARS</span></a>
       </div>
       <nav>
         <ul class="nav-links" id="nav-links">
           <li><a href="index.html">HOME</a></li>
           <li><a href="about.html">ABOUT</a></li>
-          <li><a href="penjualan.html">SHOPPING</a></li>
+          <li><a href="penjualan.html" class="is-active">SHOPPING</a></li>
           <li><a href="#simulasi">CICILAN</a></li>
           <li><a href="#contact">CONTACT</a></li>
         </ul>
@@ -67,40 +67,38 @@
 
     <section>
       <div class="header_container" id="SHOPPING">
-        <h1>GET YOUR NEW CAR</h1>
+        <p class="kicker"><span class="kicker__dot"></span> Katalog · Cicilan · Kontak</p>
+        <h1>JELAJAHI<br /><span class="accent-word">KATALOG</span></h1>
+        <p class="header_lead">
+          Hypercar, sport, SUV, hingga mobil keluarga — semua dalam satu etalase.
+          Cari, filter, hitung cicilan, lalu kirim permintaan via WhatsApp.
+        </p>
         <form action="/" onsubmit="return false">
           <div class="input_group">
-            <label for="location"> pick up &amp; your location </label>
+            <label for="location">Lokasi penjemputan</label>
             <input type="text" name="location" id="location" placeholder="Bogor, INDONESIA" />
           </div>
           <div class="input_group">
-            <label for="start"> start </label>
-            <input type="text" name="start" id="start" placeholder="SEP 16, 13:32" />
+            <label for="start">Mulai</label>
+            <input type="text" name="start" id="start" placeholder="16 Sep, 13:32" />
           </div>
           <div class="input_group">
-            <label for="stop"> stop </label>
-            <input type="text" name="stop" id="stop" placeholder="SEP 20, 10:00" />
+            <label for="stop">Selesai</label>
+            <input type="text" name="stop" id="stop" placeholder="20 Sep, 22:00" />
           </div>
         </form>
         <div class="gambar">
-          <img src="image/belanja-removebg-preview.png" alt="ilustrasi belanja" />
+          <img src="image/belanja-removebg-preview.png" alt="ilustrasi belanja" loading="lazy" />
           <img src="image/bmwe-removebg-preview.png" alt="BMW" />
         </div>
       </div>
     </section>
 
-    <section class="hero">
-      <h2>Showroom Mobil Impian</h2>
-      <p>Hypercar, sport, SUV, hingga mobil keluarga — semua dalam satu etalase.</p>
-      <button type="button" onclick="document.getElementById('katalog').scrollIntoView({behavior:'smooth'})">
-        Lihat Katalog
-      </button>
-    </section>
-
     <!-- Katalog interaktif (dirender oleh js/components/catalog.js) -->
     <section class="catalog" id="katalog">
+      <p class="kicker catalog__kicker"><span class="kicker__num">01</span> Katalog unit</p>
       <div class="catalog__head">
-        <h2>Katalog</h2>
+        <h2>PILIH UNITMU</h2>
         <div class="catalog__search">
           <i class="ri-search-line" aria-hidden="true"></i>
           <label class="visually-hidden" for="catalog-search">Cari mobil</label>
@@ -127,7 +125,8 @@
     <section class="simulator" id="simulasi">
       <div class="simulator__inner">
         <div class="sim-head">
-          <h2>Simulasi Cicilan</h2>
+          <p class="kicker"><span class="kicker__num">02</span> Cicilan</p>
+          <h2>SIMULASI CICILAN</h2>
           <p class="sim-sublabel" id="sim-label">Hitung estimasi angsuran bulanan Anda (bunga flat 5%/tahun).</p>
         </div>
         <div class="sim-grid">
@@ -199,8 +198,19 @@
       </div>
     </section>
 
-    <footer>
-      <p>&copy; 2024 PREMIUM CARS. All rights reserved.</p>
+    <footer class="site-footer">
+      <a href="index.html" class="footer_wordmark">PREMIUM<span>CARS</span></a>
+      <nav class="footer_links" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="penjualan.html">Katalog</a>
+        <a href="#simulasi">Cicilan</a>
+        <a href="#contact">Kontak</a>
+      </nav>
+      <div class="footer_bar">
+        <span>&copy; 2024 PREMIUM CARS. All rights reserved.</span>
+        <span>Designed in Jakarta</span>
+      </div>
     </footer>
 
     <!-- Data → Lib → Components → Entry (urutan penting, lihat SDD §3.1) -->

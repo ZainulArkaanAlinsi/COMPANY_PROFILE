@@ -114,8 +114,9 @@ img {
     top: 0;
     left: 0;
     z-index: var(--z-fixed);
-    background-color: var(--surface);
-    border-bottom: 1px solid var(--line);
+    background-color: rgba(11, 11, 12, 0.72);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-soft);
 }
 
 .nav {
@@ -177,6 +178,9 @@ img {
     text-transform: uppercase;
     color: var(--text);
 }
+.nav_logo span {
+    color: var(--accent);
+}
 
 .nav_togle {
     color: var(--text);
@@ -200,12 +204,12 @@ img {
 }
 
 .home_title {
-    font-size: var(--big-font-size);
+    font-size: var(--fs-h1);
     font-family: var(--display-font);
     font-weight: 900;
     text-transform: uppercase;
     line-height: 0.95;
-    letter-spacing: -2px;
+    letter-spacing: -0.02em;
     color: var(--text);
     margin-bottom: var(--mb-5);
 }
@@ -234,16 +238,26 @@ img {
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 300px;
+    width: clamp(260px, 40vw, 560px);
+    filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6));
 }
 
 .home_eyebrow {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
     margin-bottom: 1rem;
     font-size: 0.8rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--text-muted);
+}
+.home_eyebrow::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
 }
 
 .home_lead {

@@ -10,10 +10,13 @@
   --surface: #141417;     /* permukaan kartu / section             */
   --surface-2: #1c1c21;   /* hover / elevasi via warna (bukan shadow) */
   --line: #2a2a30;        /* garis hairline 1px (pemisah & border) */
+  --line-soft: #1f1f24;   /* hairline lebih redup (grid editorial) */
   --text: #f2f2f0;        /* teks utama (off-white)                */
   --text-muted: #9a9a93;  /* teks sekunder / caption               */
+  --text-dim: #6a6a64;    /* teks paling redup (index, meta)       */
   --accent: #ff6a00;      /* AKSEN TUNGGAL (molten amber)          */
   --accent-press: #e85d00;/* state aktif / ditekan                 */
+  --accent-rgb: 255, 106, 0; /* untuk wash amber transparan        */
 
   /* --- Tipografi (kontras & elegan — PRD §8.4) --- */
   --display-font: "Archivo", sans-serif; /* headline industrial   */
@@ -21,7 +24,15 @@
   --header-font: var(--display-font);    /* alias legacy          */
 
   /* --- Layout --- */
-  --max-width: 1200px;
+  --max-width: 1280px;
+  --gutter: clamp(1.25rem, 5vw, 4rem);  /* padding tepi halaman responsif */
+
+  /* --- Skala tipografi editorial (clamp, basis 16px) — PRD §8.4 --- */
+  --fs-display: clamp(3.25rem, 11vw, 11rem);  /* angka/headline raksasa  */
+  --fs-h1: clamp(2.75rem, 7vw, 6rem);
+  --fs-h2: clamp(2rem, 4.5vw, 3.75rem);
+  --fs-h3: clamp(1.25rem, 2vw, 1.6rem);
+  --fs-kicker: 0.75rem;                       /* overline label          */
 
   /* --- Skala spasi (basis 8px) — PRD §8.5 --- */
   --space-1: 4px;

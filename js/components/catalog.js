@@ -155,5 +155,12 @@ PC.catalog = (function () {
     }
   }
 
-  return { init: init, openDetail: openDetail };
+  /** Render ulang chips + grid dari PC.cars terkini (mis. setelah data API). */
+  function refresh() {
+    if (!refs.grid) return;
+    renderChips();
+    renderGrid();
+  }
+
+  return { init: init, openDetail: openDetail, refresh: refresh };
 })();

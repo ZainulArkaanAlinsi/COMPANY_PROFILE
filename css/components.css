@@ -21,15 +21,15 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 12px 20px;
+  padding: 16px 30px;
   font-family: var(--body-font);
   font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: 0.2s;
+  transition: var(--transition);
   border: 1px solid transparent;
 }
 
@@ -39,6 +39,7 @@
 }
 .btn-solid:hover {
   background-color: var(--accent-press);
+  transform: translateY(var(--hover-lift));
 }
 
 .btn-ghost {
@@ -49,6 +50,14 @@
 .btn-ghost:hover {
   border-color: var(--accent);
   color: var(--accent);
+  transform: translateY(var(--hover-lift));
+}
+
+/* Tekanan kembali ke posisi semula saat diklik (terasa "hidup") */
+.btn-solid:active,
+.btn-ghost:active {
+  transform: translateY(0);
+  transition-duration: var(--t-fast);
 }
 
 .btn-link {
@@ -58,12 +67,25 @@
   color: var(--accent);
   font-weight: 600;
   font-size: 0.85rem;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.06em;
   cursor: pointer;
-  transition: 0.2s;
+  transition: color var(--t-base) var(--ease);
 }
 .btn-link:hover {
   color: var(--accent-press);
+}
+
+/* Hormati preferensi gerak minimal (a11y, PRD §8.8) */
+@media (prefers-reduced-motion: reduce) {
+  .btn-solid,
+  .btn-ghost,
+  .btn-link {
+    transition: none;
+  }
+  .btn-solid:hover,
+  .btn-ghost:hover {
+    transform: none;
+  }
 }
 
 /* ---------------- Validasi form ---------------- */
@@ -171,7 +193,7 @@
   border: 1px solid var(--line);
   border-radius: var(--radius);
   cursor: pointer;
-  transition: 0.2s;
+  transition: var(--transition);
 }
 .modal__close:hover {
   color: var(--bg);

@@ -53,24 +53,30 @@ ul {
 }
 
 .btn {
-    padding: 14px 24px;
+    padding: 16px 30px;
     outline: none;
     border: none;
     font-family: var(--body-font);
     font-size: 0.95rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
     color: var(--bg);
     background-color: var(--accent);
     border-radius: var(--radius);
-    transition: 0.2s;
+    transition: var(--transition);
     cursor: pointer;
 }
 
 .btn:hover {
     color: var(--bg);
     background-color: var(--accent-press);
+    transform: translateY(var(--hover-lift));
+}
+
+.btn:active {
+    transform: translateY(0);
+    transition-duration: var(--t-fast);
 }
 
 /* ---------------- Header / Nav ---------------- */
@@ -325,6 +331,7 @@ nav {
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background-color: rgba(20, 20, 23, 0.6);
+    transition: var(--transition);
 }
 
 .range_details a:hover {
@@ -492,6 +499,7 @@ nav {
 }
 
 .select_btns .btn:hover {
+    background-color: transparent;
     border-color: var(--accent);
     color: var(--accent);
 }

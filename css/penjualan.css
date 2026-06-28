@@ -50,7 +50,7 @@ nav ul li a {
   text-transform: uppercase;
   padding: 9px 12px;
   border-radius: var(--radius);
-  transition: 0.2s;
+  transition: var(--transition);
 }
 nav ul li a:hover { color: var(--text); background-color: var(--surface-2); }
 
@@ -68,7 +68,7 @@ nav ul li a:hover { color: var(--text); background-color: var(--surface-2); }
   color: var(--text);
   font-size: 1.3rem;
   cursor: pointer;
-  transition: 0.2s;
+  transition: var(--transition);
 }
 .cart-btn:hover { border-color: var(--accent); color: var(--accent); }
 
@@ -191,16 +191,17 @@ nav ul li a:hover { color: var(--text); background-color: var(--surface-2); }
 .hero button {
   background-color: var(--accent);
   color: var(--bg);
-  padding: 14px 24px;
+  padding: 16px 30px;
   border: none;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: 0.2s;
+  transition: var(--transition);
 }
-.hero button:hover { background-color: var(--accent-press); }
+.hero button:hover { background-color: var(--accent-press); transform: translateY(var(--hover-lift)); }
+.hero button:active { transform: translateY(0); transition-duration: var(--t-fast); }
 
 /* ---------------- Toolbar katalog ---------------- */
 .catalog {
@@ -256,7 +257,7 @@ nav ul li a:hover { color: var(--text); background-color: var(--surface-2); }
   color: var(--text-muted);
   font-size: 0.85rem;
   cursor: pointer;
-  transition: 0.2s;
+  transition: var(--transition);
 }
 .chip:hover { color: var(--text); border-color: #3a3a42; }
 .chip.is-active { color: var(--bg); background: var(--accent); border-color: var(--accent); }
@@ -296,7 +297,7 @@ nav ul li a:hover { color: var(--text); background-color: var(--surface-2); }
   border: 1px solid var(--line);
   border-radius: var(--radius);
   cursor: pointer;
-  transition: 0.2s;
+  transition: var(--transition);
 }
 .product:hover {
   background-color: var(--surface-2);
@@ -320,7 +321,7 @@ nav ul li a:hover { color: var(--text); background-color: var(--surface-2); }
   color: var(--text-muted);
   font-size: 1.1rem;
   cursor: pointer;
-  transition: 0.2s;
+  transition: var(--transition);
 }
 .wishlist-btn:hover,
 .wishlist-btn.is-active { color: var(--accent); border-color: var(--accent); }
@@ -429,7 +430,7 @@ nav ul li a:hover { color: var(--text); background-color: var(--surface-2); }
   color: var(--text);
   font-size: 1.2rem;
   cursor: pointer;
-  transition: 0.2s;
+  transition: var(--transition);
 }
 .cart-close:hover { color: var(--accent); border-color: var(--accent); }
 
@@ -600,7 +601,7 @@ nav ul li a:hover { color: var(--text); background-color: var(--surface-2); }
   border: 1px solid var(--line);
   border-radius: var(--radius);
   color: var(--text-muted);
-  transition: 0.2s;
+  transition: var(--transition);
 }
 .social-media a:hover i,
 .social-media i:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
@@ -655,20 +656,22 @@ textarea.input { resize: none; height: 120px; padding-top: 10px; }
   position: relative;
   top: 10px;
   margin-bottom: 1.5rem;
-  height: 46px;
-  min-width: 140px;
+  height: 50px;
+  min-width: 160px;
+  padding: 0 32px;
   background: var(--accent);
   border: none;
   border-radius: var(--radius);
   font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   color: var(--bg);
   cursor: pointer;
-  transition: 0.2s;
+  transition: var(--transition);
 }
-.bdy .btn:hover { background-color: var(--accent-press); }
+.bdy .btn:hover { background-color: var(--accent-press); transform: translateY(var(--hover-lift)); }
+.bdy .btn:active { transform: translateY(0); transition-duration: var(--t-fast); }
 
 /* ---------------- Footer ---------------- */
 footer {

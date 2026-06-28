@@ -300,6 +300,14 @@ nav {
   flex-direction: column;
   flex: 1;
 }
+/* teks hero selalu di atas foto mobil (lebih kokoh dari z-index negatif) */
+.hero__kicker,
+.header_container h1,
+.hero__lead,
+.hero__search {
+  position: relative;
+  z-index: 1;
+}
 .hero__kicker {
   margin-bottom: 1.5rem;
 }
@@ -319,7 +327,7 @@ nav {
   right: 0;
   bottom: clamp(8rem, 22vh, 13rem);
   width: min(62%, 820px);
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
 }
 .hero__search {
@@ -369,7 +377,7 @@ nav {
 .hero__edge {
   position: absolute;
   right: var(--gutter);
-  top: 55%;
+  top: 30%;
   z-index: 3;
   pointer-events: none;
 }

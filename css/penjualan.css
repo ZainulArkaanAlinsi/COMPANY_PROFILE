@@ -704,6 +704,125 @@ textarea.input { resize: none; height: 120px; padding-top: 10px; }
 .bdy .btn:hover { background-color: var(--accent-press); transform: translateY(var(--hover-lift)); }
 .bdy .btn:active { transform: translateY(0); transition-duration: var(--t-fast); }
 
+/* ---------------- Cek Spesifikasi (API Ninjas) ---------------- */
+.specfinder {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: clamp(4rem, 8vw, 7rem) var(--gutter);
+  border-top: 1px solid var(--line-soft);
+}
+.specfinder .kicker { margin-bottom: 1rem; }
+.specfinder__title {
+  font-family: var(--display-font);
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-head);
+  color: var(--text);
+}
+.sf-intro {
+  max-width: 60ch;
+  margin: 1rem 0 2rem;
+  color: var(--text-muted);
+}
+.sf-intro strong { color: var(--text); }
+
+.sf-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.sf-form input {
+  flex: 1 1 200px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--body-font);
+  font-size: 0.95rem;
+}
+.sf-form input::placeholder { color: var(--text-muted); }
+.sf-form input:focus { outline: none; border-color: var(--accent); }
+.sf-form .btn-solid { flex: 0 0 auto; }
+
+.sf-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.sf-chip {
+  padding: 7px 14px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.sf-chip:hover { color: var(--accent); border-color: var(--accent); }
+
+.sf-count {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.sf-status { padding: 1.5rem 0; color: var(--text-muted); }
+.sf-status--warn { color: #e0a64a; }
+.sf-status--error { color: #ff7a7a; }
+
+.sf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1rem;
+}
+.sf-card {
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+.sf-card:hover { border-color: #3a3a42; background: var(--surface-2); }
+.sf-card__year {
+  font-family: var(--display-font);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+.sf-card h4 {
+  margin: 0.25rem 0 0.35rem;
+  font-family: var(--display-font);
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-head);
+  color: var(--text);
+}
+.sf-card__class {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.sf-specs {
+  display: grid;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+.sf-specs li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.85rem;
+}
+.sf-k { color: var(--text-muted); }
+.sf-v { color: var(--text); font-weight: 500; text-align: right; }
+
 /* ---------------- Footer ---------------- */
 .site-footer {
   border-top: 1px solid var(--line);

@@ -156,6 +156,30 @@
       </div>
     </section>
 
+    <!-- Cek Spesifikasi (data live dari API Ninjas /v1/cars) -->
+    <section class="specfinder" id="spesifikasi">
+      <p class="kicker"><span class="kicker__num">03</span> Spesifikasi resmi</p>
+      <h2 class="specfinder__title">CEK SPESIFIKASI MOBIL</h2>
+      <p class="sf-intro">
+        Tarik spesifikasi nyata (mesin, penggerak, bahan bakar, transmisi) dari
+        database <strong>API Ninjas</strong> — cukup masukkan merek &amp; model.
+      </p>
+      <div class="sf-form">
+        <input id="sf-make" type="text" placeholder="Merek — mis. BMW" aria-label="Merek mobil" />
+        <input id="sf-model" type="text" placeholder="Model — mis. M4" aria-label="Model mobil" />
+        <button id="sf-go" class="btn-solid" type="button">Cek Spesifikasi</button>
+      </div>
+      <div class="sf-chips">
+        <button class="sf-chip" type="button" data-make="BMW" data-model="M4">BMW M4</button>
+        <button class="sf-chip" type="button" data-make="Ford" data-model="Mustang">Ford Mustang</button>
+        <button class="sf-chip" type="button" data-make="Toyota" data-model="Supra">Toyota Supra</button>
+        <button class="sf-chip" type="button" data-make="Subaru" data-model="BRZ">Subaru BRZ</button>
+        <button class="sf-chip" type="button" data-make="Lamborghini" data-model="Aventador">Lamborghini Aventador</button>
+      </div>
+      <span class="sf-count" id="sf-count" aria-live="polite"></span>
+      <div class="sf-results" id="sf-results"></div>
+    </section>
+
     <section class="bdy" id="contact">
       <div class="ctr">
         <div class="item">
@@ -219,10 +243,11 @@
     <script src="js/lib/storage.js"></script>
     <script src="js/lib/store.js"></script>
     <script src="js/lib/ui.js"></script>
-    <script src="js/lib/marketcheck.js"></script>
+    <script src="js/lib/carapi.js"></script>
     <script src="js/components/catalog.js"></script>
     <script src="js/components/cart.js"></script>
     <script src="js/components/simulator.js"></script>
+    <script src="js/components/specfinder.js"></script>
     <script src="js/components/forms.js"></script>
     <script src="js/components/nav.js"></script>
     <script src="js/penjualan.js"></script>

@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
   PC.nav.initCart();
   PC.nav.initMenu("#hamburger", "#nav-links", "active");
 
-  /* Opsional: muat unit live dari MarketCheck bila sudah dikonfigurasi
-     (api key / proxy di js/lib/marketcheck.js). Diam & pakai data lokal
-     bila belum diatur atau bila gagal (CORS/kuota). Lihat MARKETCHECK.md. */
-  if (PC.marketcheck) PC.marketcheck.init();
+  /* Fitur "Cek Spesifikasi" — data live API Ninjas via proxy /api/ninjas
+     (jalankan node server/proxy.js atau deploy api/ninjas.js). Lihat
+     API-NINJAS.md. Diam saat dibuka via file:// (lihat PC.carapi.available). */
+  if (PC.specfinder) PC.specfinder.init();
 });

@@ -20,6 +20,8 @@ const ROOT = path.resolve(__dirname, "..");
 const PORT = process.env.PORT || 3000;
 const API_KEY = process.env.MARKETCHECK_API_KEY || "";
 const MC_URL = "https://api.marketcheck.com/v2/search/car/active";
+const NINJAS_KEY = process.env.API_NINJAS_KEY || "";
+const NINJAS_PATHS = ["cars", "carmakes", "carmodels", "cartrims", "cardetails"];
 
 const MIME = {
   ".html": "text/html; charset=utf-8",
@@ -51,6 +53,30 @@ async function proxyCars(req, res) {
   }
 }
 
+async function proxyNinjas(req, res) {
+  if (!NINJAS_KEY) {
+    res.writeHead(500, { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" });
+    return res.end(JSON.stringify({ error: "API_NINJAS_KEY belum di-set di environment." }));
+  }
+  try {
+    const incoming = new URL(req.url, "http://localhost");
+    const which = incoming.searchParams.get("path") || "cars";
+    if (NINJAS_PATHS.indexOf(which) < 0) {
+      res.writeHead(400, { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" });
+      return res.end(JSON.stringify({ error: "Endpoint tidak diizinkan: " + which }));
+    }
+    incoming.searchParams.delete("path");
+    const upstream = "https://api.api-ninjas.com/v1/" + which + "?" + incoming.searchParams.toString();
+    const r = await fetch(upstream, { headers: { "X-Api-Key": NINJAS_KEY } });
+    const body = await r.text();
+    res.writeHead(r.status, { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" });
+    res.end(body);
+  } catch (e) {
+    res.writeHead(502, { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" });
+    res.end(JSON.stringify({ error: "Proxy gagal: " + e.message }));
+  }
+}
+
 function serveStatic(req, res) {
   let pathname = decodeURIComponent(new URL(req.url, "http://localhost").pathname);
   if (pathname === "/") pathname = "/index.html";
@@ -66,6 +92,7 @@ function serveStatic(req, res) {
 }
 
 const server = http.createServer(function (req, res) {
+  if (req.url.startsWith("/api/ninjas")) return proxyNinjas(req, res);
   if (req.url.startsWith("/api/cars")) return proxyCars(req, res);
   serveStatic(req, res);
 });
@@ -85,8 +112,9 @@ server.on("error", function (e) {
 server.listen(PORT, function () {
   console.log("PREMIUM CARS  →  http://localhost:" + PORT);
   console.log(
-    API_KEY
-      ? "Proxy MarketCheck AKTIF di /api/cars"
-      : "MARKETCHECK_API_KEY belum di-set — katalog memakai data lokal."
+    NINJAS_KEY
+      ? "Proxy API Ninjas AKTIF di /api/ninjas (Cek Spesifikasi siap)"
+      : "API_NINJAS_KEY belum di-set — fitur Cek Spesifikasi nonaktif."
   );
+  if (API_KEY) console.log("Proxy MarketCheck AKTIF di /api/cars");
 });

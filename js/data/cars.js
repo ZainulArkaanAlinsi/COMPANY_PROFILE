@@ -11,7 +11,6 @@ PC.categories = [
   { id: "sport",    label: "Sport",     icon: "ri-roadster-line" },
   { id: "suv",      label: "SUV",       icon: "ri-suv-line" },
   { id: "family",   label: "Keluarga",  icon: "ri-group-line" },
-  { id: "electric", label: "Electric",  icon: "ri-battery-charge-line" },
   { id: "classic",  label: "Klasik",    icon: "ri-vip-crown-2-line" },
 ];
 
@@ -35,10 +34,10 @@ PC.cars = [
     specs: { topSpeed: 341, power: 720, seats: 2, transmission: "Automatic" },
   },
   {
-    id: "lamborghini-aventador-j", name: "Lamborghini Aventador J",
-    brand: "Lamborghini", category: "hypercar", price: 45000000000, year: 2020,
-    image: "image/Lamborghini_Aventador_J-removebg-preview.png", badge: "Roadster", featured: true,
-    specs: { topSpeed: 350, power: 700, seats: 2, transmission: "Automatic" },
+    id: "w-motors-fenyr-supersport", name: "W Motors Fenyr SuperSport",
+    brand: "W Motors", category: "hypercar", price: 42000000000, year: 2020,
+    image: "image/w-motors-fenyr.png", badge: "Hypercar", featured: true,
+    specs: { topSpeed: 400, power: 800, seats: 2, transmission: "Automatic" },
   },
   {
     id: "lamborghini-sesto-elemento", name: "Lamborghini Sesto Elemento",
@@ -47,10 +46,10 @@ PC.cars = [
     specs: { topSpeed: 340, power: 570, seats: 2, transmission: "Automatic" },
   },
   {
-    id: "lamborghini-huracan", name: "Lamborghini Huracán",
-    brand: "Lamborghini", category: "sport", price: 6500000000, year: 2022,
-    image: "image/Lamborghini_Huracan-removebg-preview.png", badge: "Supercar", featured: true,
-    specs: { topSpeed: 325, power: 640, seats: 2, transmission: "Automatic" },
+    id: "lamborghini-aventador-svj", name: "Lamborghini Aventador SVJ",
+    brand: "Lamborghini", category: "hypercar", price: 13500000000, year: 2021,
+    image: "image/lamborghini-aventador-svj.png", badge: "Roadster", featured: true,
+    specs: { topSpeed: 350, power: 770, seats: 2, transmission: "Automatic" },
   },
   {
     id: "pagani-huayra", name: "Pagani Huayra",
@@ -59,10 +58,10 @@ PC.cars = [
     specs: { topSpeed: 383, power: 730, seats: 2, transmission: "Automated Manual" },
   },
   {
-    id: "lotus-evija", name: "Lotus Evija",
-    brand: "Lotus", category: "electric", price: 35000000000, year: 2023,
-    image: "image/Lotus_Evija-removebg-preview.png", badge: "Electric", featured: true,
-    specs: { topSpeed: 320, power: 2012, seats: 2, transmission: "Single-speed" },
+    id: "koenigsegg-jesko", name: "Koenigsegg Jesko",
+    brand: "Koenigsegg", category: "hypercar", price: 48000000000, year: 2022,
+    image: "image/koenigsegg-jesko.png", badge: "Hypercar", featured: true,
+    specs: { topSpeed: 480, power: 1600, seats: 2, transmission: "Automatic" },
   },
   {
     id: "rolls-royce-phantom", name: "Rolls-Royce Phantom",
@@ -113,10 +112,10 @@ PC.cars = [
     specs: { topSpeed: 290, power: 503, seats: 4, transmission: "Automatic" },
   },
   {
-    id: "bmw-320i", name: "BMW 320i",
-    brand: "BMW", category: "sport", price: 1100000000, year: 2023,
-    image: "image/BMW_320i-removebg-preview.png", badge: "Sedan", featured: false,
-    specs: { topSpeed: 235, power: 184, seats: 5, transmission: "Automatic" },
+    id: "bmw-430i-coupe", name: "BMW 430i Coupé",
+    brand: "BMW", category: "sport", price: 1500000000, year: 2023,
+    image: "image/bmw-430i-coupe.png", badge: "Coupe", featured: false,
+    specs: { topSpeed: 250, power: 258, seats: 4, transmission: "Automatic" },
   },
   {
     id: "toyota-alphard", name: "Toyota Alphard",
@@ -137,10 +136,10 @@ PC.cars = [
     specs: { topSpeed: 195, power: 194, seats: 5, transmission: "Automatic" },
   },
   {
-    id: "chevrolet-trailblazer", name: "Chevrolet Trailblazer 2024",
-    brand: "Chevrolet", category: "suv", price: 600000000, year: 2024,
-    image: "image/Chevrolet_Trailblazer_2024-removebg-preview.png", badge: "SUV", featured: false,
-    specs: { topSpeed: 190, power: 155, seats: 5, transmission: "Automatic" },
+    id: "chevrolet-traverse", name: "Chevrolet Traverse 2024",
+    brand: "Chevrolet", category: "suv", price: 900000000, year: 2024,
+    image: "image/chevrolet-traverse.png", badge: "SUV", featured: false,
+    specs: { topSpeed: 200, power: 310, seats: 7, transmission: "Automatic" },
   },
 ];
 

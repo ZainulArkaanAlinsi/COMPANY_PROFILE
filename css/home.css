@@ -151,6 +151,15 @@ h4 {
   justify-self: center;
 }
 
+/* Header cicilan (03) dibuat lebih ringkas & tidak sebesar judul editorial
+   utama — dibatasi lebar agar terbaca sebagai sub-judul, bukan banner. */
+.section-head--center .section_header2 {
+  font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+  max-width: 20ch;
+  line-height: 1.12;
+  letter-spacing: var(--tracking-head);
+}
+
 /* ---------------- Tombol ---------------- */
 .btn {
   display: inline-flex;
@@ -714,6 +723,9 @@ nav {
 
 .select_card img {
   width: 100%;
+  /* Frame konsisten: apa pun rasio asli PNG (MPV lebar vs hypercar
+     rendah-panjang), semua unit menempati kotak yang sama → slider rapi. */
+  aspect-ratio: 16 / 10;
   object-fit: contain;
   filter: drop-shadow(0 30px 35px rgba(0, 0, 0, 0.65));
   transition: var(--transition);

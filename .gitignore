@@ -10,3 +10,23 @@ node_modules/
 # OS
 Thumbs.db
 .DS_Store
+
+# Folder Claude Code (memori & konfigurasi lokal agent)
+.claude/
+.agents/
+
+# Data runtime aplikasi (leads, users)
+premium-cars-web/data/
+premium-cars-web/.next/
+
+.vercel
+.env*
+
+# Data runtime server lokal (leads DB) — jangan pernah commit data pelanggan
+server/data/
+
+# Konfigurasi editor lokal
+.vscode/
+
+# Lock file skills (tooling Claude/AI)
+skills-lock.json

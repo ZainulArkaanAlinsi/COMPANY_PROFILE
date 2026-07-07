@@ -1,0 +1,20 @@
+{
+    "name": "company-profile",
+    "version": "1.0.0",
+    "description": "PREMIUM CARS — Company Profile (revamp)",
+    "main": "server/app.js",
+    "scripts": {
+        "start": "node server/app.js",
+        "dev": "nodemon server/app.js"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "dependencies": {
+        "express": "^4.18.2",
+        "better-sqlite3": "^8.4.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.22"
+    }
+}

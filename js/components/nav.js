@@ -27,9 +27,29 @@ PC.nav = (function () {
   function initMenu(btnSel, targetSel, cls) {
     var btn = $(btnSel), target = $(targetSel);
     if (!btn || !target) return;
-    btn.addEventListener("click", function () { target.classList.toggle(cls); });
+    var openLabel = btn.getAttribute("aria-label") || "Buka menu";
+    var closeLabel = openLabel.toLowerCase().includes("tutup") ? openLabel : "Tutup menu";
+    function setMenuState(isOpen) {
+      btn.setAttribute("aria-expanded", String(isOpen));
+      btn.setAttribute("aria-label", isOpen ? closeLabel : openLabel);
+    }
+    setMenuState(false);
+    function toggleMenu() {
+      var isOpen = target.classList.toggle(cls);
+      setMenuState(isOpen);
+    }
+    btn.addEventListener("click", toggleMenu);
+    btn.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggleMenu();
+      }
+    });
     target.addEventListener("click", function (e) {
-      if (e.target.closest("a")) target.classList.remove(cls);
+      if (e.target.closest("a")) {
+        target.classList.remove(cls);
+        setMenuState(false);
+      }
     });
   }
 

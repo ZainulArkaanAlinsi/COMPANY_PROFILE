@@ -3,7 +3,7 @@
    Lihat SDD.md §5.5 & §6.3
    ============================================================ */
 window.PC = window.PC || {};
-PC.config = PC.config || { whatsapp: "6281234567890", brand: "PREMIUM CARS" };
+PC.config = PC.config || { whatsapp: "622151408888", brand: "PREMIUM CARS" };
 
 PC.cart = (function () {
   var el = PC.ui.el, fmt = PC.format;

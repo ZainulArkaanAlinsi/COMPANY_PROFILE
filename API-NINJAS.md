@@ -9,11 +9,11 @@ mesin (silinder & cc), penggerak, bahan bakar, transmisi, tahun.
 
 ## Plan key kamu (tier gratis)
 
-| Endpoint | Status |
-| --- | --- |
-| `/v1/cars` (spesifikasi) | ✅ jalan — dipakai fitur ini |
-| `carmakes`, `carmodels`, `cartrims`, `cardetails` | 🔒 butuh plan berbayar |
-| field MPG & param `limit` | 🔒 premium |
+| Endpoint                                          | Status                       |
+| ------------------------------------------------- | ---------------------------- |
+| `/v1/cars` (spesifikasi)                          | ✅ jalan — dipakai fitur ini |
+| `carmakes`, `carmodels`, `cartrims`, `cardetails` | 🔒 butuh plan berbayar       |
+| field MPG & param `limit`                         | 🔒 premium                   |
 
 Jika nanti upgrade plan, proxy sudah mengizinkan endpoint lain — tinggal panggil
 `PC.carapi.get("carmodels", { make: "BMW" })`.

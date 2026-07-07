@@ -2,114 +2,130 @@
 
 **Product Requirements Document (Dokumen Persyaratan Produk)**
 
-|                      |                                                                                                        |
-| -------------------- | ------------------------------------------------------------------------------------------------------ |
-| **Nama Produk**      | PREMIUM CARS — Company Profile & Katalog Showroom Mobil                                                |
-| **Versi Dokumen**    | 1.0                                                                                                    |
-| **Tanggal**          | 27 Juni 2026                                                                                           |
-| **Pemilik / Author** | Zainul Arkaan                                                                                          |
-| **Status**           | Draft untuk Implementasi                                                                               |
-| **Jenis Proyek**     | Landing Page / Company Profile Web (multi-halaman, statis)                                             |
-| **Stack Saat Ini**   | HTML5, CSS3 (vanilla), JavaScript (vanilla), Swiper.js, ScrollReveal, RemixIcon/BoxIcons, Google Fonts |
+|                      |                                                                                                                        |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **Nama Produk**      | PREMIUM CARS — Company Profile & Katalog Showroom Mobil                                                               |
+| **Versi Dokumen**    | 2.0 (revamp UI/UX + integrasi API)                                                                                   |
+| **Tanggal**          | 2 Juli 2026                                                                                                          |
+| **Pemilik / Author** | Zainul Arkaan                                                                                                        |
+| **Status**           | Aktif — dasar untuk redesign profesional "Dark Editorial Garage v2"                                                 |
+| **Jenis Proyek**     | Company Profile Web multi-halaman (statis-first) + tier backend opsional (proxy API & lead)                          |
+| **Stack Saat Ini**   | HTML5, CSS3 (vanilla, design tokens), JavaScript (vanilla ES6, namespace `PC`), Swiper.js, ScrollReveal, Three.js, RemixIcon, Google Fonts, Node.js 18+ (Express/http), better-sqlite3 |
+
+> **Perubahan v1.0 → v2.0.** Dokumen ini memperbarui PRD lama agar mencerminkan kondisi produk **saat ini** (katalog interaktif penuh, simulasi cicilan, integrasi data live MarketCheck / API Ninjas / CarAPI, penyimpanan lead, hero Three.js) sekaligus menetapkan **mandat redesign**: menyatukan tampilan lintas halaman menjadi satu sistem yang benar-benar terlihat profesional (kelas agensi), bukan gabungan template.
 
 ---
 
 ## 1. Ringkasan Eksekutif
 
-PREMIUM CARS adalah **website company profile sekaligus katalog digital** untuk sebuah showroom/dealer mobil mewah dan sport (hypercar, sport, family, electric). Tujuan situs adalah membangun **kesan brand premium**, menampilkan koleksi unit, memberi informasi cicilan/harga, dan menjadi kanal kontak utama bagi calon pembeli.
+PREMIUM CARS adalah **website company profile sekaligus katalog digital** untuk showroom/dealer mobil mewah dan sport (hypercar, sport, SUV, family, electric, classic). Tujuan situs: membangun **kesan brand premium**, memamerkan koleksi unit yang mudah dijelajahi, memberi informasi harga/cicilan yang transparan, dan menjadi **kanal lead** utama (Daftar Minat → WhatsApp, form kontak).
 
 Situs terdiri dari tiga halaman inti:
 
-1. **Home (`index.html`)** — etalase brand: hero, kategori mobil, sorotan unit cicilan, cerita/blog, brand partner, newsletter.
-2. **Shopping / Penjualan (`penjualan.html`)** — katalog produk mobil dengan harga + form kontak.
-3. **About (`about.html`)** — profil perusahaan, visi-misi, nilai.
+1. **Home (`index.html`)** — etalase brand: hero sinematik, kategori mobil, sorotan unit cicilan (slider), jurnal/cerita, partner brand (marquee), newsletter.
+2. **Shopping / Penjualan (`penjualan.html`)** — katalog interaktif: cari, filter kategori, urutkan, detail unit (modal), Daftar Minat + checkout lead WhatsApp, simulasi cicilan, **Cek Spesifikasi** (API Ninjas), **CarAPI Lookup** (trim resmi), form kontak.
+3. **About (`about.html`)** — profil perusahaan, visi-misi, nilai, edukasi dokumen sebelum membeli, kontak.
 
-Dokumen ini menetapkan persyaratan **fungsional, non-fungsional, desain, dan teknis** agar produk bisa dibangun secara utuh, konsisten, dan terlihat seperti karya **agensi desain profesional — bukan template AI generik**.
+Di atas lapisan statis, tersedia **tier backend opsional** (Node) yang berfungsi sebagai *proxy* aman ke API pihak ketiga (kunci API tidak pernah bocor ke browser) dan penyimpanan lead ke SQLite. Tanpa backend, situs **tetap berjalan penuh** memakai data unit yang di-*embed*.
+
+Dokumen ini menetapkan persyaratan **fungsional, non-fungsional, desain, dan teknis** agar produk tampil dan terasa seperti karya **agensi desain profesional — bukan template AI generik**.
 
 ---
 
 ## 2. Latar Belakang & Masalah yang Diselesaikan
 
-| Masalah                                                 | Dampak                                   | Solusi yang Ditawarkan                             |
-| ------------------------------------------------------- | ---------------------------------------- | -------------------------------------------------- |
-| Showroom belum punya etalase digital yang kredibel      | Calon pembeli ragu, brand terlihat kecil | Company profile dengan estetika premium            |
-| Katalog unit tersebar (chat/sosmed)                     | Sulit membandingkan unit & harga         | Halaman katalog terstruktur dengan grid konsisten  |
-| Tidak ada kanal kontak terpusat                         | Lead hilang / lambat ditindaklanjuti     | Form kontak + CTA WhatsApp di tiap halaman         |
-| Desain lama tidak konsisten (warna, font, spacing acak) | Terlihat amatir / "buatan template"      | Design system tegas (token warna, tipografi, grid) |
+| Masalah                                                            | Dampak                                        | Solusi yang Ditawarkan                                            |
+| ----------------------------------------------------------------- | --------------------------------------------- | ---------------------------------------------------------------- |
+| Showroom belum punya etalase digital yang kredibel                | Calon pembeli ragu, brand terlihat kecil      | Company profile dengan estetika premium & konsisten              |
+| Katalog unit tersebar (chat/sosmed)                               | Sulit membandingkan unit & harga              | Katalog terstruktur: cari, filter, urutkan, detail               |
+| Tidak ada kanal lead terpusat                                     | Lead hilang / lambat ditindaklanjuti          | Daftar Minat + CTA WhatsApp + form kontak → tersimpan (leads DB) |
+| **Tampilan tidak konsisten antar halaman** (nav, ikon, komponen)  | Terlihat "gabungan template" / amatir         | **Redesign v2**: satu design system tegas untuk semua halaman    |
+| Spesifikasi unit sering diragukan pembeli                         | Kepercayaan turun                             | Integrasi data spesifikasi live (API Ninjas / CarAPI)            |
+
+**Temuan audit (utang teknis nyata yang memicu kesan "kurang profesional"):**
+
+- **Tiga implementasi navbar berbeda** di tiga halaman: `index.html` (`.nav_link` / `#menu-btn`), `penjualan.html` (`.nav-links` / `#hamburger`), `about.html` (`.nav_list` / `#nav_togle`). Markup, kelas, dan perilaku toggle tidak seragam.
+- **Dua library ikon** dipakai bersamaan: RemixIcon (home, penjualan) dan **BoxIcons** (about) — melanggar aturan "satu library ikon".
+- **`css/design-system.css` menimpa token** inti saat dimuat paling akhir di `index.html` (aksen bergeser `#FF6A00` → `#FF6B3D`, radius `2px` → `12px`) sehingga hasil visual tak sesuai design system.
+- **Dua server** hidup berdampingan: `server/proxy.js` (tanpa dependensi) dan `server/app.js` (Express + SQLite). Perlu satu yang kanonik.
+- Kosakata kelas **About** berbeda total (`bd_grid`, `i_header`, `home_social`) dari Home/Penjualan.
 
 ---
 
 ## 3. Tujuan & Sasaran (Goals)
 
 ### 3.1 Tujuan Bisnis
-
 - Meningkatkan kredibilitas brand showroom secara online.
-- Menghasilkan **lead** (kontak/WhatsApp/form) dari calon pembeli.
-- Menyajikan katalog unit yang mudah dijelajahi.
+- Menghasilkan **lead** berkualitas (Daftar Minat / WhatsApp / form kontak).
+- Menyajikan katalog unit yang mudah dijelajahi & dibandingkan.
 
 ### 3.2 Tujuan Produk
+- Situs **responsif penuh** (mobile, tablet, desktop) tanpa horizontal scroll.
+- **Page load cepat** (< 3 detik di 4G) walau kaya interaksi.
+- Desain **konsisten, premium, satu sistem** di semua halaman — tidak terlihat "AI-generated" atau tempelan template.
 
-- Situs **responsif penuh** (mobile, tablet, desktop).
-- **Page load cepat** (< 3 detik di koneksi 4G).
-- Desain **konsisten, premium, dan tidak terlihat "AI-generated"**.
+### 3.3 Sasaran Terukur (KPI)
 
-### 3.3 Sasaran Terukur (Success Metrics / KPI)
-
-| Metrik                               | Target                                         |
-| ------------------------------------ | ---------------------------------------------- |
-| Lighthouse Performance (mobile)      | ≥ 85                                           |
-| Lighthouse Accessibility             | ≥ 90                                           |
-| Largest Contentful Paint (LCP)       | < 2,5 detik                                    |
-| Cumulative Layout Shift (CLS)        | < 0,1                                          |
-| Bounce rate halaman Home             | < 55%                                          |
-| Konversi klik CTA "Hubungi/WhatsApp" | ≥ 5% dari pengunjung                           |
-| Kompatibilitas browser               | 2 versi terakhir Chrome, Firefox, Safari, Edge |
+| Metrik                                 | Target                                          |
+| -------------------------------------- | ----------------------------------------------- |
+| Lighthouse Performance (mobile)        | ≥ 85                                            |
+| Lighthouse Accessibility               | ≥ 90                                            |
+| Largest Contentful Paint (LCP)         | < 2,5 detik                                     |
+| Cumulative Layout Shift (CLS)          | < 0,1                                           |
+| Bounce rate halaman Home               | < 55%                                           |
+| Konversi klik CTA "Hubungi/WhatsApp"   | ≥ 5% dari pengunjung                            |
+| Konsistensi komponen lintas halaman    | 100% (nav, footer, tombol, ikon = 1 sistem)     |
+| Kompatibilitas browser                 | 2 versi terakhir Chrome, Firefox, Safari, Edge  |
 
 ---
 
 ## 4. Target Pengguna (User Personas)
 
-**Persona 1 — "Andre, Kolektor Mobil" (32 th)**
-Mencari hypercar/sport edisi terbatas. Mengutamakan tampilan premium dan detail spesifikasi. Akses dari desktop.
+**Persona 1 — "Andre, Kolektor Mobil" (32 th).** Mencari hypercar/sport edisi terbatas. Mengutamakan tampilan premium & detail spesifikasi. Desktop.
 
-**Persona 2 — "Bu Sinta, Keluarga Muda" (38 th)**
-Mencari mobil keluarga (Alphard, SUV). Peduli pada harga, opsi cicilan, dan kemudahan kontak. Akses dari ponsel.
+**Persona 2 — "Bu Sinta, Keluarga Muda" (38 th).** Mencari mobil keluarga (Alphard, SUV). Peduli harga, opsi cicilan, kemudahan kontak. Ponsel.
 
-**Persona 3 — "Rizki, First-time Buyer" (26 th)**
-Tertarik sport/electric. Sensitif harga, ingin simulasi cicilan, banyak membandingkan. Akses campuran mobile/desktop.
+**Persona 3 — "Rizki, First-time Buyer" (26 th).** Tertarik sport/electric. Sensitif harga, memakai simulasi cicilan, banyak membandingkan. Mobile/desktop campuran.
+
+**Persona 4 — "Tim Sales PREMIUM CARS" (internal).** Butuh lead masuk terpusat, tersimpan rapi (nama, kontak, unit yang diminati), siap ditindaklanjuti.
 
 ---
 
 ## 5. Lingkup Produk (Scope)
 
-### 5.1 Termasuk (In Scope) — MVP
+### 5.1 Termasuk (In Scope)
 
-- 3 halaman: Home, Shopping/Penjualan, About.
-- Navigasi konsisten + menu hamburger untuk mobile.
-- Hero dengan headline + form pencarian/booking (UI saja pada MVP).
-- Grid kategori mobil (Hypercar, Family, Sport, Electric).
+**Frontend (statis-first, wajib jalan tanpa backend):**
+- 3 halaman: Home, Shopping/Penjualan, About — **satu design system**.
+- Navigasi & footer **identik** di semua halaman (satu komponen, satu perilaku).
+- Hero Home: headline + form pencarian (UI) + visual mobil (opsional hero Three.js dengan fallback gambar).
+- Grid kategori (Hypercar, Family, Sport, Electric, dst.).
 - Slider unit unggulan (Swiper) dengan info spesifikasi + harga.
-- Katalog produk (grid kartu mobil: gambar, nama, harga, tombol).
-- Form kontak (Nama, Email, Telepon, Pesan).
-- Bagian cerita/blog, brand partner (marquee logo), newsletter.
-- Footer dengan tautan & sosial media.
-- Design system (token warna, tipografi, komponen).
+- **Katalog interaktif:** pencarian real-time (debounce), filter kategori (chip), urutkan (harga/tahun/unggulan), grid kartu konsisten, modal detail unit.
+- **Daftar Minat** (wishlist/keranjang) persist di `localStorage` → **checkout sebagai lead WhatsApp**.
+- **Simulasi cicilan** (harga, DP, tenor, bunga flat).
+- **Cek Spesifikasi** unit dari **API Ninjas** (merek + model → mesin, transmisi, bahan bakar).
+- **CarAPI Lookup** (pilih merek → model → trim resmi).
+- Form kontak & newsletter dengan validasi + notifikasi toast.
+- Jurnal/cerita, marquee partner, footer lengkap.
 
-### 5.2 Tidak Termasuk (Out of Scope) — MVP
+**Backend (tier opsional, meningkatkan keamanan & fitur):**
+- **Proxy API** aman: `/api/cars` (MarketCheck), `/api/ninjas` (API Ninjas), `/api/carapi` (CarAPI) — kunci API hanya di server (ENV), **tak pernah** sampai ke browser.
+- **Penyimpanan lead**: `POST /api/leads` (simpan ke SQLite) & `GET /api/leads` (daftar untuk admin).
+- Deployment ganda: **lokal** (Node) dan **serverless** (fungsi di folder `api/` untuk Vercel).
 
-- Backend / database / autentikasi.
-- Transaksi pembayaran nyata (tombol "Buy" bersifat lead, bukan checkout).
-- Sistem keranjang belanja fungsional / akun pengguna.
-- CMS / panel admin.
-- Multi-bahasa (i18n) — bahasa default: campuran ID/EN sesuai konten sekarang (disarankan distandarkan; lihat §11).
+### 5.2 Tidak Termasuk (Out of Scope)
+- Pembayaran/checkout nyata (semua CTA "beli" bersifat **lead**, bukan transaksi).
+- Autentikasi pengguna / akun / panel admin ber-login (endpoint `GET /api/leads` masih tanpa auth — lihat §9 Keamanan, backlog).
+- CMS untuk konten.
+- Multi-bahasa (i18n) penuh — bahasa utama **Bahasa Indonesia** (istilah otomotif EN diperbolehkan).
 
 ### 5.3 Backlog / Fase Berikutnya
-
-- Integrasi form ke email/WhatsApp API atau layanan seperti Formspree.
-- Halaman detail unit (`/car/:id`).
-- Filter & pencarian katalog (by brand, harga, kategori).
-- Simulasi cicilan interaktif.
-- Integrasi analytics (GA4) & SEO lanjutan.
+- Halaman detail unit ber-URL (`/car/:id`) untuk SEO & share.
+- Autentikasi & dashboard admin untuk lead.
+- Notifikasi lead ke email/WhatsApp otomatis (webhook).
+- Caching hasil API (mengurangi kuota panggilan pihak ketiga).
+- Sinkronisasi katalog dari MarketCheck ke data lokal.
 
 ---
 
@@ -118,35 +134,38 @@ Tertarik sport/electric. Sensitif harga, ingin simulasi cicilan, banyak membandi
 ```
 PREMIUM CARS
 ├── Home (index.html)
-│   ├── Hero + Form pencarian
-│   ├── Kategori Mobil (grid 4)
-│   ├── Sorotan / "Cari mobil yang ingin dibeli"
+│   ├── Hero + form pencarian (+ hero Three.js opsional)
+│   ├── Kategori Mobil (grid)
+│   ├── Sorotan / "Cari mobil yang ingin dimiliki"
 │   ├── Unit Cicilan (slider Swiper)
-│   ├── Stories Behind the Wheel (blog grid 3)
-│   ├── Brand Partner (marquee logo)
+│   ├── Stories / Jurnal (grid)
+│   ├── Partner Brand (marquee)
 │   ├── Download App / Promo
 │   ├── Newsletter
 │   └── Footer
 ├── Shopping / Penjualan (penjualan.html)
 │   ├── Hero
-│   ├── Welcome
-│   ├── Katalog Produk (grid kartu)
+│   ├── Katalog interaktif (cari · filter · urut · detail · Daftar Minat)
+│   ├── Simulasi Cicilan
+│   ├── Cek Spesifikasi (API Ninjas)
+│   ├── CarAPI Lookup (trim resmi)
 │   ├── Kontak (form + sosial)
 │   └── Footer
 └── About (about.html)
-    ├── Profil Perusahaan
-    ├── Visi & Misi / Nilai
+    ├── Profil Perusahaan + statistik
+    ├── Visi & Misi
+    ├── Nilai / Kenapa PREMIUM CARS
+    ├── Sebelum Membeli (dokumen penting)
+    ├── Kontak
     └── Footer
 ```
 
-**Aturan navigasi:**
-
-- Navbar identik di semua halaman: `HOME · ABOUT · SERVICE · SHOPPING · CONTACT`.
-- State aktif menandai halaman saat ini.
-- Mobile: menu hamburger (toggle), menutup otomatis saat link diklik.
-- Logo selalu mengarah ke Home.
-
-> ⚠️ **Catatan konsistensi (utang teknis yang harus dirapikan):** saat ini ada duplikasi folder `penjulan/` (typo) vs file root, dan link nav menunjuk file yang belum ada (`about.html`, `penjualan.html` di root). Implementasi harus **menyatukan struktur file** dan memperbaiki seluruh tautan agar tidak ada link mati. Lihat §10.
+**Aturan navigasi (WAJIB seragam setelah redesign):**
+- Satu markup navbar dipakai ketiga halaman: item, urutan, kelas, dan perilaku toggle **identik**.
+- Item nav final yang disepakati (menghilangkan link mati): **HOME · ABOUT · KATALOG · CICILAN · KONTAK**.
+- State aktif menandai halaman/anchor saat ini (indikator aksen / underline).
+- Mobile: satu pola hamburger; menutup otomatis saat link diklik; `aria-expanded` sinkron.
+- Logo selalu mengarah ke Home. **Tidak ada link mati** (semua `href` valid).
 
 ---
 
@@ -157,320 +176,230 @@ Format: **User Story → Kriteria Penerimaan (Acceptance Criteria).**
 ### 7.1 Global (Semua Halaman)
 
 **FR-G1 — Navigasi konsisten**
+- [ ] Navbar identik (markup, item, urutan) di semua halaman.
+- [ ] < 992px → hamburger; tap buka/tutup; `aria-expanded` benar; menu tutup saat link diklik.
+- [ ] Link aktif punya indikator visual; tidak ada link mati.
 
-> Sebagai pengunjung, saya ingin berpindah halaman dengan mudah dari mana saja.
+**FR-G2 — Footer konsisten**
+- [ ] Struktur footer sama di semua halaman (brand, kolom link, sosial, copyright).
+- [ ] Ikon sosial memakai **satu** library ikon.
 
-- [ ] Navbar tampil di semua halaman dengan item & urutan identik.
-- [ ] Di < 768px, menu berubah jadi hamburger; tap membuka/menutup.
-- [ ] Link yang aktif memiliki indikator visual (warna aksen / underline).
-- [ ] Tidak ada link mati (semua `href` valid).
-
-**FR-G2 — Footer**
-
-- [ ] Footer berisi kolom Resource, Company, kategori, dan sosial media.
-- [ ] Ikon sosial dapat diklik (placeholder `#` boleh pada MVP, tapi konsisten).
-- [ ] Baris copyright menampilkan tahun & nama brand.
-
-**FR-G3 — Responsif**
-
-- [ ] Tidak ada horizontal scroll pada 320px–1440px.
-- [ ] Gambar tidak overflow / pecah.
+**FR-G3 — Responsif & satu ikonografi**
+- [ ] Tidak ada horizontal scroll 320px–1440px; gambar tidak overflow.
+- [ ] Hanya **satu** library ikon di seluruh situs (RemixIcon).
 
 ### 7.2 Home (`index.html`)
 
-**FR-H1 — Hero**
+**FR-H1 — Hero.** Headline besar + visual mobil + form pencarian (Lokasi/Mulai/Selesai). Form MVP = UI + validasi field tak kosong. Hero Three.js **opsional**, wajib ada fallback gambar dan **tidak** menghambat LCP (skip di `file://` & saat `prefers-reduced-motion`).
 
-> Sebagai pengunjung, saya ingin langsung memahami value proposition dan bisa mulai mencari mobil.
+**FR-H2 — Grid Kategori.** Kartu kategori bergambar + judul + tautan ke katalog terfilter (`penjualan.html?cat=<id>`). Hover memberi feedback tegas (tanpa shadow berlebihan).
 
-- [ ] Headline besar ("GET YOUR NEW CAR") + ilustrasi mobil utama.
-- [ ] Form pencarian: Lokasi, Tanggal Mulai, Tanggal Selesai + tombol cari.
-- [ ] Pada MVP form bersifat UI (tidak submit ke backend); validasi dasar field tidak kosong.
-- [ ] Animasi masuk (ScrollReveal) halus, tidak mengganggu LCP.
+**FR-H3 — Slider Unit Cicilan (Swiper).** Geser kiri/kanan; saat slide aktif berubah, info spesifikasi & harga ikut update; kelas `show_info` benar.
 
-**FR-H2 — Grid Kategori**
+**FR-H4 — Stories/Jurnal.** Grid kartu artikel (tanggal, judul, ringkasan, gambar) — konten nyata sebelum rilis.
 
-- [ ] 4 kartu kategori: Hypercar, Family, Sport, Electric.
-- [ ] Tiap kartu punya gambar + judul + tautan panah.
-- [ ] Hover memberi feedback visual (tegas, tanpa shadow berlebihan).
+**FR-H5 — Marquee Partner.** Loop mulus; grayscale default → berwarna saat hover; hormati `prefers-reduced-motion`.
 
-**FR-H3 — Slider Unit Cicilan (Swiper)**
-
-- [ ] Slider menampilkan unit; geser kiri/kanan (grab cursor / swipe).
-- [ ] Saat slide berubah, **harga/hari** & info spesifikasi ikut update.
-- [ ] Info kartu aktif (kecepatan, seats, dll) ditampilkan benar (perbaiki bug class `show_info` vs `Show_info` di `script.js`).
-
-**FR-H4 — Stories / Blog**
-
-- [ ] Grid 3 kartu artikel: tanggal, judul, ringkasan, gambar.
-- [ ] Placeholder "Lorem ipsum" diganti konten nyata sebelum rilis.
-
-**FR-H5 — Brand Partner (Marquee)**
-
-- [ ] Deret logo brand bergerak otomatis (loop mulus, digandakan via JS).
-- [ ] Animasi `prefers-reduced-motion` dihormati (berhenti jika user minta).
-
-**FR-H6 — Newsletter**
-
-- [ ] Input email + tombol kirim; validasi format email.
-- [ ] MVP: tampilkan state sukses/echo (tanpa backend) atau integrasi layanan form.
+**FR-H6 — Newsletter.** Input email + tombol; validasi format email; tampilkan state sukses (toast).
 
 ### 7.3 Shopping / Penjualan (`penjualan.html`)
 
-**FR-S1 — Katalog Produk**
+**FR-S1 — Katalog.**
+- [ ] Grid kartu konsisten (rasio media sama, harga & CTA sejajar baseline).
+- [ ] Pencarian real-time (debounce ~200ms) atas nama/brand.
+- [ ] Filter kategori via chip; urutkan (unggulan / harga naik-turun / tahun).
+- [ ] Empty-state saat tak ada hasil.
+- [ ] Format harga **Rupiah** konsisten (mis. `Rp 56.000.000.000`).
 
-> Sebagai calon pembeli, saya ingin melihat daftar mobil beserta harga.
+**FR-S2 — Detail Unit (Modal).** Klik kartu → modal aksesibel (fokus terjebak, `Esc`/overlay menutup) berisi media, spesifikasi, harga, aksi (Daftar Minat / kontak).
 
-- [ ] Grid kartu produk: gambar, nama, harga, tombol aksi.
-- [ ] **Hapus kartu placeholder duplikat** ("Product 3 / $30.00") — hanya tampilkan unit nyata.
-- [ ] Standarkan format harga (lihat §11) — satu mata uang & format konsisten.
-- [ ] Tombol aksi konsisten labelnya ("BELI" / "Hubungi") — saat ini campur "BUY" & "Add to Cart".
-- [ ] Klik tombol mengarah ke kontak/WhatsApp (lead), bukan checkout.
+**FR-S3 — Daftar Minat + Lead.**
+- [ ] Toggle Daftar Minat per unit; badge jumlah di header sinkron; persist `localStorage`.
+- [ ] Checkout menyusun ringkasan (unit × qty, total) → **WhatsApp** (`wa.me`, teks di-`encodeURIComponent`).
+- [ ] Bila backend aktif, lead juga dapat dikirim ke `POST /api/leads`.
 
-**FR-S2 — Form Kontak**
+**FR-S4 — Simulasi Cicilan.** Input harga/DP/tenor → angsuran bulanan (bunga flat); validasi DP < harga; tampilkan angsuran + total bayar.
 
-- [ ] Field: Nama, Email, Telepon, Pesan — semua wajib.
-- [ ] Validasi: email format valid, telepon angka, pesan tidak kosong.
-- [ ] Submit menampilkan konfirmasi; MVP boleh kirim via `mailto:`/Formspree/WhatsApp link.
-- [ ] Tautan sosial media aktif.
+**FR-S5 — Cek Spesifikasi (API Ninjas).**
+- [ ] Input merek + model → panggil `/api/ninjas?path=cars` → tampilkan kartu spesifikasi (mesin, silinder, transmisi, penggerak, bahan bakar, konsumsi).
+- [ ] Chip contoh (BMW M4, Ford Mustang, dst.) sebagai jalan pintas.
+- [ ] State jelas: memuat, kosong, error/kuota (pesan ramah), dan info bila key belum di-set.
+
+**FR-S6 — CarAPI Lookup.**
+- [ ] Pilih Merek → Model (aktif setelah merek) → Trim; tombol "Muat trim".
+- [ ] Tampilkan kartu trim resmi; opsi tambah ke Daftar Minat.
+- [ ] State memuat/kosong/error yang informatif.
+
+**FR-S7 — Form Kontak.** Field Nama, Email, Telepon, Pesan (wajib); validasi (email valid, telepon angka); submit → konfirmasi toast + (opsional) `POST /api/leads`.
 
 ### 7.4 About (`about.html`)
-
-**FR-A1 — Profil Perusahaan**
-
-- [ ] Bagian narasi perusahaan (siapa, sejak kapan, keunggulan).
-- [ ] Visi, Misi, dan/atau Nilai inti.
-- [ ] Minimal satu CTA menuju Shopping atau Kontak.
-- [ ] Konten nyata (bukan placeholder) sebelum rilis.
+- [ ] Profil perusahaan + statistik (unit, kategori, dokumen).
+- [ ] Visi, Misi, Nilai inti.
+- [ ] Edukasi "Sebelum Membeli" (BPKB, STNK, faktur).
+- [ ] Form kontak (konsisten dengan Penjualan) + minimal satu CTA ke Katalog/Kontak.
+- [ ] Konten nyata (bukan placeholder).
 
 ---
 
 ## 8. Persyaratan Desain (Design Requirements) ⭐
 
-> **Bagian ini wajib dipatuhi ketat.** Tujuannya: tampilan **mantap, rapi, menawan, premium — seperti buatan agensi profesional**, dan **TIDAK terlihat dihasilkan AI**.
+> **Wajib dipatuhi ketat.** Target: tampilan **mantap, rapi, menawan, premium — seperti agensi profesional**, dan **TIDAK terlihat dihasilkan AI**. Redesign v2 fokus pada **konsistensi lintas halaman** sebagai sumber utama kesan profesional.
 
 ### 8.1 Prinsip Anti-"AI Look" (Aturan Keras)
 
-**DILARANG:**
+**DILARANG:** ❌ `box-shadow` berlebihan/mengambang di mana-mana · ❌ gradien pelangi/multi-warna norak · ❌ radius besar di semua kartu · ❌ layout "aman" generik (hero tengah + 3 kartu identik + emoji) · ❌ glassmorphism blur di mana-mana, pastel acak, ikon emoji.
 
-- ❌ Bayangan (`box-shadow`) berlebihan / mengambang di semua elemen.
-- ❌ Gradien pelangi / multi-warna norak.
-- ❌ Kartu dengan sudut terlalu membulat (radius besar di mana-mana).
-- ❌ Tata letak "aman" generik: hero tengah + 3 kartu identik + emoji.
-- ❌ Glassmorphism blur di mana-mana, warna pastel acak, ikon emoji.
+**WAJIB:** ✅ **satu** arah desain, komit penuh (§8.2) · ✅ grid disiplin / editorial asimetris yang disengaja · ✅ **garis hairline 1px** + kontras warna sebagai pemisah (bukan shadow) · ✅ sudut tajam / radius kecil konsisten (maks 4px) · ✅ **whitespace** generous & ritmis (skala spasi) · ✅ hierarki tipografi jelas & kontras.
 
-**WAJIB:**
+### 8.2 Arah Desain Terkunci — "Dark Editorial Garage"
 
-- ✅ **Pilih SATU arah desain yang tegas dan berkomitmen penuh** padanya (lihat §8.2).
-- ✅ Tata letak berani: grid rapi & disiplin, atau editorial asimetris yang disengaja.
-- ✅ Pakai **garis hairline 1px** dan **kontras warna** sebagai pemisah, bukan shadow.
-- ✅ Sudut tajam atau radius kecil & konsisten (maks 4px), bukan pill di semua tempat.
-- ✅ **Whitespace** generous dan ritmis (skala spasi konsisten).
-- ✅ Hierarki tipografi jelas dan kontras.
+> Latar charcoal, **satu** aksen molten-amber tajam, tipografi industrial kontras, grid disiplin, hairline sebagai pemisah. Premium, maskulin, otomotif, tidak norak. **Arah ini dikunci** — redesign v2 mengangkat kualitas eksekusinya, bukan mengganti arahnya.
 
-### 8.2 Arah Desain Terpilih (COMMITTED) — _Dark Premium, Aksen Tunggal_
-
-Untuk showroom mobil mewah, arah yang dipilih dan dikunci adalah:
-
-> **"Dark Editorial Garage"** — latar gelap charcoal, **satu** warna aksen molten-amber yang tajam, tipografi industrial kontras, grid disiplin, garis hairline sebagai pemisah. Premium, maskulin, otomotif, tidak norak.
-
-_(Alternatif yang juga valid jika klien memilih terang: "Minimalist Grid" — kanvas putih bersih, grid ketat, satu aksen gelap pekat, tipografi besar. Pilih SATU saja; dokumen ini mengunci Dark Editorial Garage sebagai default.)_
-
-### 8.3 Token Warna (Design Tokens)
-
-Palet **terbatas & disengaja** (hindari banyak warna). Mengembangkan amber lama (`#a84d07`) menjadi aksen yang lebih tajam.
+### 8.3 Token Warna (single source of truth: `css/tokens.css`)
 
 | Token            | HEX       | Penggunaan                                        |
 | ---------------- | --------- | ------------------------------------------------- |
 | `--bg`           | `#0B0B0C` | Latar utama (hampir hitam)                        |
-| `--surface`      | `#141417` | Permukaan kartu / section alternatif              |
+| `--surface`      | `#141417` | Permukaan kartu / section                         |
 | `--surface-2`    | `#1C1C21` | Hover / elevasi via warna (bukan shadow)          |
 | `--line`         | `#2A2A30` | Garis hairline 1px (pemisah & border)             |
-| `--text`         | `#F2F2F0` | Teks utama (off-white, bukan putih murni)         |
+| `--line-soft`    | `#1F1F24` | Hairline lebih redup (grid editorial)             |
+| `--text`         | `#F2F2F0` | Teks utama (off-white)                            |
 | `--text-muted`   | `#9A9A93` | Teks sekunder / caption                           |
+| `--text-dim`     | `#6A6A64` | Teks paling redup (index, meta)                   |
 | `--accent`       | `#FF6A00` | **Aksen tunggal** (molten amber) — CTA, highlight |
 | `--accent-press` | `#E85D00` | State aktif/ditekan                               |
 
-**Aturan warna:**
+**Aturan warna:** maksimal **satu** aksen; hanya untuk elemen penting (CTA primer, angka harga, garis fokus); tidak ada gradien selain dark-to-darker halus di overlay hero. **`css/design-system.css` yang menimpa token ini harus dihapus/dinetralkan** (lihat §10 utang teknis).
 
-- Maksimal **satu** warna aksen. Tidak ada warna aksen kedua.
-- Aksen hanya untuk elemen penting (CTA primer, angka harga, garis fokus).
-- Tidak ada gradien selain (opsional) dark-to-darker yang sangat halus pada hero overlay.
+### 8.4 Tipografi
 
-### 8.4 Tipografi (Type System) ⭐
+| Peran                  | Font (default aktif)                | Aturan                                                     |
+| ---------------------- | ----------------------------------- | ---------------------------------------------------------- |
+| **Display / Headline** | **Oswald** 600–800, UPPERCASE       | tracking rapat; industrial, otomotif, percaya diri         |
+| **Body / UI**          | **Inter** 400/500                   | netral, sangat terbaca; panjang baris 60–75 karakter       |
 
-> **Aturan: kombinasi font yang KONTRAS dan ELEGAN.** Satu font display berkarakter kuat dipasangkan dengan satu font teks netral yang sangat terbaca.
-
-**Pasangan terpilih (default):**
-
-| Peran                  | Font                                                                                               | Kenapa                                             |
-| ---------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| **Display / Headline** | **Archivo** (atau Oswald sebagai alternatif condensed) — weight 800–900, UPPERCASE, tracking rapat | Industrial, otomotif, percaya diri — kontras tegas |
-| **Body / UI**          | **Inter** — weight 400/500, normal-case                                                            | Netral, modern, sangat terbaca di semua ukuran     |
-
-**Pasangan editorial alternatif (jika ingin lebih mewah/klasik):**
-_Display serif kontras tinggi_ **Fraunces** atau **Playfair Display** + _body_ **Inter**. Pilih SATU sistem dan konsisten.
-
-**Skala tipografi (type scale, basis 1rem = 16px):**
-
-| Token    | Ukuran                                | Penggunaan               |
-| -------- | ------------------------------------- | ------------------------ |
-| Display  | `clamp(2.75rem, 6vw, 4.5rem)`         | Hero headline            |
-| H2       | `clamp(2rem, 4vw, 3.25rem)`           | Judul section            |
-| H3       | `1.5rem`                              | Judul kartu              |
-| H4       | `1.125rem`                            | Sub-judul                |
-| Body     | `1rem` (line-height 1.6)              | Paragraf                 |
-| Caption  | `0.875rem`                            | Meta, label, harga kecil |
-| Overline | `0.75rem`, tracking 0.15em, UPPERCASE | Label kategori           |
-
-**Aturan tipografi:**
-
-- Maksimal **2 font family** di seluruh situs.
-- Headline UPPERCASE + tracking negatif/rapat untuk kesan editorial.
-- Panjang baris paragraf 60–75 karakter.
-- Jangan pakai lebih dari 3 weight per family.
+Maksimal **2 font family**; ≤ 3 weight per family. (Alternatif display mewah: Archivo/Fraunces — pilih SATU sistem & konsisten.) Skala tipografi memakai `clamp()` di `tokens.css` (`--fs-display`, `--fs-h1`, `--fs-h2`, `--fs-h3`, `--fs-kicker`).
 
 ### 8.5 Layout, Spacing & Grid
+- **Grid:** `max-width: 1280px`, gutter responsif `clamp(1.25rem, 5vw, 4rem)`, padding section vertikal `clamp(4.5rem, 9vw, 8.5rem)`.
+- **Skala spasi (8px base):** 4, 8, 12, 16, 24, 32, 48, 64, 96, 128 px — **hanya nilai dari skala ini**.
+- **Radius:** `--radius: 2px`, `--radius-lg: 4px`. Tidak ada pill kecuali elemen kecil yang disengaja (chip).
+- **Pemisah:** border 1px `--line`; elevasi lewat kenaikan warna surface, **bukan** shadow dekoratif.
+- **Kartu:** rasio media konsisten, padding seragam, harga & CTA align baseline yang sama.
 
-- **Grid:** 12 kolom, `max-width: 1200px`, gutter 24px, padding section vertikal 80–120px.
-- **Skala spasi (8px base):** 4, 8, 12, 16, 24, 32, 48, 64, 96, 128 px. **Hanya gunakan nilai dari skala ini.**
-- **Radius:** 0–4px (tajam/konsisten). Tidak ada pill kecuali tombol kecil tertentu yang disengaja.
-- **Border:** 1px `--line` sebagai pemisah; **shadow dihindari**. Jika perlu elevasi, naikkan warna surface.
-- **Kartu produk:** rasio gambar konsisten (mis. 4:3), padding seragam, harga & CTA align ke baseline yang sama di semua kartu.
+### 8.6 Komponen (Component Spec — dipakai lintas halaman)
 
-### 8.6 Komponen (Component Spec)
-
-| Komponen            | Spesifikasi                                                                                                                     |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| **Tombol primer**   | Bg `--accent`, teks `--bg`, radius 2px, padding 14px 24px, uppercase, tracking 0.05em, hover → `--accent-press` (transisi 0.2s) |
-| **Tombol sekunder** | Transparan, border 1px `--line`, teks `--text`, hover border `--accent`                                                         |
-| **Kartu**           | Bg `--surface`, border 1px `--line`, radius 2px, hover → bg `--surface-2` (tanpa shadow/translate berlebihan)                   |
-| **Input**           | Bg transparan, border-bottom 1px `--line`, fokus border-bottom `--accent`, label di atas                                        |
-| **Navbar**          | Sticky atas, bg `--bg` dengan border-bottom hairline saat scroll; tinggi 72px                                                   |
-| **Marquee logo**    | Grayscale default, opacity 0.6; hover satu logo → opacity 1                                                                     |
+| Komponen            | Spesifikasi                                                                                                              |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **Tombol primer**   | Bg `--accent`, teks `--bg`, radius 2px, padding lega (≥ 16–18px vertikal), UPPERCASE, tracking `0.12em`, hover `--accent-press` + lift halus (easing premium) |
+| **Tombol sekunder** | Transparan, border 1px `--line`, hover border/teks `--accent`                                                            |
+| **Kartu**           | Bg `--surface`, border 1px `--line`, radius 2px, hover → `--surface-2` (tanpa translate/shadow berlebihan)              |
+| **Input**           | Bg gelap/transparan, border `--line`, fokus border `--accent`, label uppercase kecil                                    |
+| **Navbar**          | Sticky/fixed, tinggi 72px, bg gelap + blur, border-bottom hairline; **satu** implementasi untuk semua halaman           |
+| **Chip filter**     | Border 1px `--line`, aktif → bg `--accent` teks `--bg`                                                                   |
+| **Toast/Modal/Drawer** | Di `css/components.css`; token-based; radius ≤4px; pemisah hairline; aksesibel                                        |
+| **Marquee logo**    | Grayscale + opacity rendah default; hover satu logo → penuh                                                              |
 
 ### 8.7 Ikonografi & Gambar
-
-- **Satu** library ikon saja (pilih RemixIcon **atau** BoxIcons — jangan campur seperti sekarang).
-- Foto mobil: latar transparan (PNG) konsisten; objek di-align dan diberi ruang napas seragam.
-- Gunakan format efisien (AVIF/WebP) + `loading="lazy"` untuk gambar di bawah lipatan.
+- **Satu** library ikon: **RemixIcon**. Migrasikan seluruh ikon BoxIcons di About ke RemixIcon.
+- Foto mobil PNG latar transparan, di-align & diberi ruang napas seragam.
+- Format efisien (AVIF/WebP) + `loading="lazy"` di bawah lipatan; sediakan `alt` deskriptif.
 
 ### 8.8 Motion / Animasi
-
-- Animasi halus & fungsional (fade/slide masuk via ScrollReveal), durasi 200–600ms, easing `ease-out`.
-- Hormati `prefers-reduced-motion: reduce` → matikan animasi non-esensial.
-- Marquee & slider tidak boleh menyebabkan layout shift (CLS).
+- Transisi halus & fungsional (fade/slide, 200–600ms, easing `cubic-bezier(0.22,1,0.36,1)`).
+- Hormati `prefers-reduced-motion: reduce` (token motion dinetralkan di `tokens.css`).
+- Marquee, slider, hero Three.js **tidak** boleh menimbulkan CLS.
 
 ---
 
 ## 9. Persyaratan Non-Fungsional
 
-| Kategori                 | Persyaratan                                                                                                                                 |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Performa**             | LCP < 2,5s; total bobot halaman awal < 2MB; gambar dikompres (AVIF/WebP); CSS/JS di-minify untuk produksi                                   |
-| **Responsif**            | Breakpoint: ≤480 (mobile), 481–768 (tablet kecil), 769–1024 (tablet/landscape), ≥1025 (desktop)                                             |
-| **Aksesibilitas (a11y)** | Kontras teks ≥ 4.5:1; semua `img` punya `alt` bermakna; navigasi keyboard; fokus terlihat; `aria-label` pada tombol ikon; `lang` HTML benar |
-| **SEO**                  | `<title>` & `<meta description>` unik per halaman; heading hierarkis (1× `h1`/halaman); Open Graph tags; `sitemap.xml`; URL bersih          |
-| **Kompatibilitas**       | 2 versi terakhir Chrome, Firefox, Safari, Edge; degradasi anggun tanpa JS                                                                   |
-| **Keamanan**             | Tidak ada data sensitif di klien; form pakai HTTPS; sanitasi input bila kelak ada backend                                                   |
-| **Maintainability**      | Token desain via CSS custom properties; penamaan kelas konsisten (BEM atau utility); satu sumber kebenaran untuk warna & spacing            |
+| Kategori            | Persyaratan                                                                                                                         |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **Performa**        | LCP < 2,5s; bobot awal < 2MB; gambar AVIF/WebP; render katalog via DocumentFragment; debounce search; script per-halaman           |
+| **Responsif**       | Breakpoint ≤480 / 481–768 / 769–991 / ≥992; grid katalog `4→3→2→1`; drawer full-width di mobile                                     |
+| **Aksesibilitas**   | Kontras ≥ 4.5:1; `alt` bermakna; navigasi keyboard; fokus terlihat; `aria-label` tombol ikon; `aria-live` toast & jumlah hasil     |
+| **SEO**             | `<title>` & `meta description` unik/halaman; 1× `h1`/halaman; Open Graph; `sitemap.xml`; `robots.txt`; URL bersih                   |
+| **Kompatibilitas**  | 2 versi terakhir Chrome, Firefox, Safari, Edge; degradasi anggun tanpa JS & tanpa backend                                          |
+| **Keamanan**        | Kunci API **hanya** di server (ENV), tak pernah di klien; render via `textContent`; parameter `wa.me`/upstream di-`encodeURIComponent`; allowlist path proxy |
+| **Maintainability** | Token via CSS custom properties (satu sumber); komponen lintas-halaman dipisah; namespace `PC`; penamaan kelas konsisten            |
+| **Ketahanan**       | Statis-first: semua konten inti & katalog tetap tampil jika JS/back-end gagal atau kuota API habis (fallback data lokal)            |
 
 ---
 
-## 10. Arsitektur Teknis & Struktur File
+## 10. Arsitektur Ringkas & Utang Teknis
 
-**Stack:** HTML statis + CSS + JS vanilla (tanpa build wajib). Library via CDN: Swiper, ScrollReveal, ikon, Google Fonts.
+> Desain teknis lengkap ada di **[SDD.md](SDD.md)**. Ringkasnya: frontend berlapis (`data → lib → components → entry`) dengan namespace global `PC`, plus **tier backend opsional** (Node proxy + SQLite lead; mirror serverless di `api/`).
 
-**Struktur file target (dirapikan):**
+**Utang teknis yang HARUS diselesaikan pada redesign v2:**
 
-```
-COMPANY PROFILE/
-├── index.html              # Home
-├── penjualan.html          # Shopping (satu sumber, hapus duplikat folder)
-├── about.html              # About
-├── css/
-│   ├── tokens.css          # variabel: warna, font, spacing (design tokens)
-│   ├── base.css            # reset + tipografi global + komponen dasar
-│   ├── home.css
-│   ├── penjualan.css
-│   └── about.css
-├── js/
-│   └── main.js             # nav toggle, swiper, scrollreveal, marquee
-├── image/                  # foto unit (AVIF/WebP/PNG transparan)
-├── logo/                   # logo brand partner
-└── icon/                   # favicon & ikon
-```
-
-**Utang teknis yang harus diselesaikan saat implementasi:**
-
-1. **Hapus duplikasi** `penjulan/` (folder typo) — satukan ke file root `penjualan.html`.
-2. Perbaiki **semua tautan nav** agar menunjuk file yang benar-benar ada (`about.html`, `penjualan.html`).
-3. Perbaiki bug `script.js`: typo `Show_info` → `show_info`, `coverfloweEffect` → `coverflowEffect`, `midifier` → `modifier`, `delsy`/`delay` di ScrollReveal.
-4. Hapus **kartu produk placeholder** ("Product 3 / $30.00") yang berulang ~14×.
-5. Pilih **satu** library ikon (RemixIcon atau BoxIcons), bukan keduanya.
-6. Standarkan `<title>` tiap halaman (saat ini semua "Document").
-7. Rename file aset bertipo (mis. `stayle.css` → `base.css`) — opsional tapi disarankan.
+1. **Satukan navbar** menjadi satu markup + satu `nav.js` untuk ketiga halaman (hapus 3 varian).
+2. **Satu library ikon** (RemixIcon) — konversi BoxIcons di `about.html`.
+3. **Hapus/netralkan `css/design-system.css`** yang menimpa token (aksen & radius).
+4. **Tetapkan satu server kanonik.** Rekomendasi: `server/app.js` (Express) sebagai default karena mendukung lead SQLite; `server/proxy.js` (tanpa dependensi) sebagai alternatif ringan. Samakan daftar endpoint & perilaku, dokumentasikan salah satu di README.
+5. **Selaraskan kosakata kelas** About agar memakai komponen/utility yang sama (kicker, section-head, btn, footer).
+6. **Standarkan bahasa & format harga** (Bahasa Indonesia; Rupiah).
+7. Pastikan urutan muat script benar di tiap halaman (lihat SDD §3.1) dan tak ada file yang hilang.
 
 ---
 
 ## 11. Konten & Aset
-
-- **Bahasa:** standarkan satu gaya (disarankan **Bahasa Indonesia** untuk konten utama, istilah otomotif EN boleh). Saat ini campur ID/EN tidak konsisten.
-- **Harga:** pilih **satu mata uang & format** (disarankan Rupiah, mis. `Rp 3.584.839.500`) — saat ini campur `$`, `juta`, format desimal tidak konsisten.
-- **Copywriting:** ganti semua **Lorem ipsum** dengan deskripsi unit & narasi brand nyata sebelum rilis.
-- **Foto unit:** konsisten (sudut, latar transparan, ukuran). Sediakan `alt` deskriptif (mis. "Bugatti Chiron Pur Sport tampak samping").
-- **Logo brand:** versi grayscale konsisten untuk marquee.
+- **Bahasa:** utama **Bahasa Indonesia** (istilah otomotif EN boleh); konsisten satu gaya.
+- **Harga:** **Rupiah**, format `Rp 56.000.000.000` (helper `PC.format.rupiah`).
+- **Copywriting:** ganti semua placeholder/Lorem ipsum dengan narasi & deskripsi unit nyata sebelum rilis.
+- **Foto unit:** konsisten (sudut, latar transparan, ukuran); `alt` deskriptif.
+- **Logo partner:** versi grayscale konsisten untuk marquee.
+- **Konfigurasi sebelum go-live:** nomor WhatsApp (`PC.config.whatsapp` di `js/components/cart.js`), domain di `sitemap.xml`/`robots.txt`, GA4 opsional, dan **kunci API** di ENV server (`MARKETCHECK_API_KEY`, `API_NINJAS_KEY`, `CARAPI_TOKEN`, `CARAPI_SECRET`).
 
 ---
 
-## 12. Roadmap / Fase Pengerjaan
+## 12. Roadmap / Fase Pengerjaan (Redesign v2)
 
-| Fase                    | Cakupan                                                                                           | Output             |
-| ----------------------- | ------------------------------------------------------------------------------------------------- | ------------------ |
-| **Fase 0 — Foundation** | Bersihkan struktur file, buat `tokens.css` + `base.css`, set tipografi & warna                    | Design system siap |
-| **Fase 1 — Home**       | Bangun ulang `index.html` sesuai design system; perbaiki slider & animasi                         | Home final         |
-| **Fase 2 — Shopping**   | Katalog bersih (tanpa placeholder), harga distandarkan, form kontak fungsional (mailto/Formspree) | Penjualan final    |
-| **Fase 3 — About**      | Konten profil nyata + CTA                                                                         | About final        |
-| **Fase 4 — Polish**     | A11y, SEO meta, optimasi gambar, uji Lighthouse, lintas-browser                                   | Siap rilis         |
-| **Fase 5 — Backlog**    | Filter katalog, halaman detail unit, simulasi cicilan, analytics                                  | Iterasi berikutnya |
+| Fase                          | Cakupan                                                                                                    | Output                       |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| **Fase 0 — Foundation**       | Rapikan token (hapus override `design-system.css`), pastikan `tokens.css` satu-satunya sumber; audit link  | Design system bersih         |
+| **Fase 1 — Unifikasi Global** | Satu navbar + footer + ikonografi (RemixIcon) untuk semua halaman; komponen tombol/kartu seragam           | Konsistensi lintas halaman   |
+| **Fase 2 — Home**             | Poles hero, kategori, slider, jurnal, marquee sesuai design system v2                                       | Home final                   |
+| **Fase 3 — Penjualan**        | Poles katalog, detail, Daftar Minat, simulasi, Cek Spesifikasi, CarAPI Lookup, kontak                      | Penjualan final              |
+| **Fase 4 — About**            | Konversi kosakata kelas ke sistem bersama; konten nyata + CTA                                              | About final                  |
+| **Fase 5 — Backend**          | Tetapkan server kanonik; uji proxy (MarketCheck/Ninjas/CarAPI) & lead SQLite; dokumentasikan ENV & Vercel  | Backend rapi & terdokumentasi |
+| **Fase 6 — Polish**           | A11y, SEO meta, optimasi gambar, uji Lighthouse & lintas-browser                                          | Siap rilis                   |
 
 ---
 
 ## 13. Risiko & Asumsi
 
-**Asumsi:**
+**Asumsi:** situs harus tetap jalan **tanpa** backend (statis-first); aset gambar/logo tersedia; hosting statis (GitHub Pages/Netlify) atau Node/Vercel bila backend dipakai; kunci API disimpan aman di ENV.
 
-- Tetap statis tanpa backend pada MVP; form pakai layanan pihak ketiga (Formspree/WhatsApp link/`mailto:`).
-- Aset gambar & logo brand tersedia dengan kualitas memadai.
-- Hosting statis (mis. GitHub Pages / Netlify / Vercel).
-
-**Risiko:**
-| Risiko | Mitigasi |
-|---|---|
-| Gambar berat memperlambat load | Kompres ke AVIF/WebP, lazy-load, ukuran responsif |
-| Konten placeholder bocor ke produksi | Checklist konten wajib sebelum rilis |
-| Desain melenceng jadi "AI generik" | Patuhi §8 secara ketat; review desain per fase |
-| Link mati akibat struktur lama | Audit link di Fase 0 |
-| Hak penggunaan logo/foto brand | Pastikan lisensi/izin untuk publikasi |
+| Risiko                                        | Mitigasi                                                            |
+| --------------------------------------------- | ------------------------------------------------------------------ |
+| Gambar berat memperlambat load                | Kompres AVIF/WebP, lazy-load, ukuran responsif                     |
+| Kuota / kegagalan API pihak ketiga            | State fallback ramah; fitur API opsional; data unit lokal tetap ada |
+| Kunci API bocor ke klien                      | **Wajib** lewat proxy server (ENV); jangan pernah embed di JS klien |
+| Desain melenceng jadi "AI generik"            | Patuhi §8 ketat; review per fase; jaga konsistensi lintas halaman  |
+| Dua server membingungkan                      | Pilih satu kanonik; dokumentasikan di README                       |
+| Endpoint `GET /api/leads` tanpa auth          | Batasi/di-nonaktifkan di produksi hingga ada auth (backlog)        |
+| Konten placeholder bocor ke produksi          | Checklist konten wajib sebelum rilis                               |
 
 ---
 
 ## 14. Definition of Done (DoD)
 
-Sebuah halaman dianggap **selesai** bila:
-
+Sebuah halaman/fitur dianggap **selesai** bila:
 - [ ] Memenuhi seluruh Acceptance Criteria fungsionalnya (§7).
 - [ ] Mematuhi design system & aturan anti-AI (§8) — diverifikasi review.
+- [ ] **Navbar, footer, tombol, kartu, ikon identik** dengan halaman lain (konsistensi 100%).
 - [ ] Responsif 320px–1440px tanpa overflow.
 - [ ] Lighthouse: Performance ≥ 85, A11y ≥ 90 (mobile).
 - [ ] Tidak ada link mati, tidak ada placeholder/Lorem ipsum.
-- [ ] Harga & bahasa terstandar.
-- [ ] Lulus uji di Chrome, Firefox, Safari, Edge (2 versi terakhir).
+- [ ] Harga & bahasa terstandar (Rupiah, Bahasa Indonesia).
+- [ ] Fitur API punya state memuat/kosong/error yang benar & tetap aman tanpa key.
+- [ ] Lulus uji Chrome, Firefox, Safari, Edge (2 versi terakhir).
 
 ---
 
 ## 15. Lampiran — Prompt Singkat untuk Generator Desain/AI
-
-> Gunakan ini bila membuat mockup via tool desain/AI, agar hasil sesuai PRD:
 
 ```
 Buat desain [Landing Page / katalog] untuk showroom mobil mewah "PREMIUM CARS".
@@ -480,21 +409,23 @@ JANGAN gaya AI generik yang membosankan.
 Arah: "Dark Editorial Garage" — latar charcoal (#0B0B0C), satu warna aksen
 molten-amber (#FF6A00) saja, teks off-white (#F2F2F0). Tidak ada gradien
 pelangi, tidak ada shadow mengambang, sudut tajam (radius ≤ 4px), pemisah
-pakai garis hairline 1px (#2A2A30). Grid disiplin 12 kolom, whitespace luas.
+pakai garis hairline 1px (#2A2A30). Grid disiplin, whitespace luas.
 
-Tipografi KONTRAS & ELEGAN: headline 'Archivo' weight 900 UPPERCASE tracking
-rapat, body 'Inter' 400/500. Maksimal 2 font. Hierarki jelas.
+Tipografi KONTRAS & ELEGAN: headline 'Oswald' UPPERCASE tracking rapat,
+body 'Inter' 400/500. Maksimal 2 font. Hierarki jelas.
 
-Layout berani & berkomitmen: hero sinematik foto mobil + headline besar,
-grid kategori rapi, kartu produk konsisten (rasio gambar sama, harga & CTA
-sejajar). Satu library ikon. Premium, maskulin, otomotif — bukan template.
+Konsistensi mutlak: navbar, footer, tombol, kartu, dan ikon (RemixIcon)
+sama persis di semua halaman. Layout berani & berkomitmen. Bukan template.
 ```
 
 ---
 
-_Dokumen ini adalah sumber kebenaran (single source of truth) untuk pembangunan PREMIUM CARS. Perubahan signifikan harus memperbarui versi dokumen._
+## 16. Aturan Baku Project (perhatikan ini)
 
-## 16. Aturan baru di dalam project ini okk perhatikan ini
+> "Desain ini tidak boleh terlihat seperti dihasilkan oleh AI. Hindari pola umum seperti bayangan (shadow) yang berlebihan, gradien pelangi, dan kartu (cards) dengan sudut yang terlalu membulat. Buat pilihan tata letak yang tegas, berani, dan berkomitmen pada pilihan tersebut (misalnya: minimalist grid yang rapi atau dark mode dengan aksen tunggal)."
 
-"Desain ini tidak boleh terlihat seperti dihasilkan oleh AI. Hindari pola umum seperti bayangan (shadow) yang berlebihan, gradien pelangi, dan kartu (cards) dengan sudut yang terlalu membulat. Buat pilihan tata letak yang tegas, berani, dan berkomitmen pada pilihan tersebut (misalnya: pilih gaya minimalist grid yang rapi atau dark mode dengan aksen neon)."
-dan juga "Draf awalnya sudah bagus, tapi terasa kurang 'hidup'. Buat spasi (padding) di bagian tombol menjadi lebih lebar. Berikan jarak antar teks yang lebih renggang agar terkesan lebih premium dan mudah dibaca. Gunakan efek animasi transisi (easing) yang halus saat kursor mengarah ke tombol."
+> "Draf awalnya sudah bagus, tapi terasa kurang 'hidup'. Buat spasi (padding) di bagian tombol menjadi lebih lebar. Berikan jarak antar teks yang lebih renggang agar terkesan lebih premium dan mudah dibaca. Gunakan efek animasi transisi (easing) yang halus saat kursor mengarah ke tombol."
+
+---
+
+_Dokumen ini adalah sumber kebenaran (single source of truth) untuk pembangunan PREMIUM CARS. Perubahan signifikan wajib memperbarui versi dokumen. Lihat **[SDD.md](SDD.md)** untuk desain teknis._

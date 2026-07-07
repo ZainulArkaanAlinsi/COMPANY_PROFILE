@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -13,8 +13,14 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="PREMIUM CARS" />
     <meta property="og:title" content="Tentang Kami — PREMIUM CARS" />
-    <meta property="og:description" content="Showroom mobil mewah tepercaya: visi, misi, dan nilai kami." />
-    <meta property="og:image" content="image/side-view-white-modern-car-outdoors.png" />
+    <meta
+      property="og:description"
+      content="Showroom mobil mewah tepercaya: visi, misi, dan nilai kami."
+    />
+    <meta
+      property="og:image"
+      content="image/side-view-white-modern-car-outdoors.png"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="icon/shopping-bag.png" />
 
@@ -28,11 +34,10 @@
     </script>
     -->
 
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/tokens.css" />
@@ -44,26 +49,46 @@
     />
   </head>
   <body>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+    <a class="skip-link" href="#main-content">Langsung ke konten</a>
     <header class="i_header">
-      <nav class="nav bd_grid">
+      <nav class="nav bd_grid" aria-label="Navigasi utama">
         <div>
           <a href="index.html" class="nav_logo">PREMIUM<span>CARS</span></a>
         </div>
         <div class="nav_menu" id="nav_menu">
           <ul class="nav_list">
-            <li class="nav_item"><a href="index.html" class="nav_link">HOME</a></li>
-            <li class="nav_item"><a href="about.html" class="nav_link active">ABOUT</a></li>
-            <li class="nav_item"><a href="penjualan.html" class="nav_link">KATALOG</a></li>
-            <li class="nav_item"><a href="#Contact" class="nav_link">CONTACT</a></li>
+            <li class="nav_item">
+              <a href="index.html" class="nav_link">HOME</a>
+            </li>
+            <li class="nav_item">
+              <a href="about.html" class="nav_link active" aria-current="page"
+                >ABOUT</a
+              >
+            </li>
+            <li class="nav_item">
+              <a href="penjualan.html" class="nav_link">KATALOG</a>
+            </li>
+            <li class="nav_item">
+              <a href="#contact" class="nav_link">CONTACT</a>
+            </li>
           </ul>
         </div>
-        <div class="nav_togle" id="nav_togle">
-          <i class="bx bx-menu-alt-right"></i>
+        <div
+          class="nav_togle"
+          id="nav_togle"
+          role="button"
+          tabindex="0"
+          aria-label="Buka menu"
+          aria-controls="nav_menu"
+          aria-expanded="false"
+        >
+          <i class="bx bx-menu-alt-right" aria-hidden="true"></i>
         </div>
       </nav>
     </header>
 
-    <main class="i_main">
+    <main id="main-content" class="i_main">
       <section class="home bd_grid" id="home">
         <div class="home_data">
           <span class="home_eyebrow anim-up d1">Tentang PREMIUM CARS</span>
@@ -73,52 +98,72 @@
           </h1>
           <p class="home_lead anim-up d3">
             Menghadirkan koleksi hypercar, sport, SUV, hingga mobil keluarga
-            pilihan — dengan layanan yang profesional, transparan, dan tepercaya.
+            pilihan — dengan layanan yang profesional, transparan, dan
+            tepercaya.
           </p>
-          <a href="#Contact" class="button anim-up d4">Hubungi Kami</a>
+          <a href="#contact" class="btn-solid anim-up d4">Hubungi Kami</a>
         </div>
         <div class="home_social">
-          <a href="#" class="home_social_icon" aria-label="Instagram"><i class="bx bxl-instagram-alt"></i></a>
-          <a href="#" class="home_social_icon" aria-label="Twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="#" class="home_social_icon" aria-label="LinkedIn"><i class="bx bxl-linkedin-square"></i></a>
-          <a href="#" class="home_social_icon" aria-label="WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-          <a href="#" class="home_social_icon" aria-label="TikTok"><i class="bx bxl-tiktok"></i></a>
+          <a href="#" class="home_social_icon" aria-label="Instagram"
+            ><i class="bx bxl-instagram-alt" aria-hidden="true"></i
+          ></a>
+          <a href="#" class="home_social_icon" aria-label="Twitter"
+            ><i class="bx bxl-twitter" aria-hidden="true"></i
+          ></a>
+          <a href="#" class="home_social_icon" aria-label="LinkedIn"
+            ><i class="bx bxl-linkedin-square" aria-hidden="true"></i
+          ></a>
+          <a href="#" class="home_social_icon" aria-label="WhatsApp"
+            ><i class="bx bxl-whatsapp" aria-hidden="true"></i
+          ></a>
+          <a href="#" class="home_social_icon" aria-label="TikTok"
+            ><i class="bx bxl-tiktok" aria-hidden="true"></i
+          ></a>
         </div>
         <div class="home_img">
           <img src="about/bak-removebg-preview.png" alt="Mobil PREMIUM CARS" />
         </div>
       </section>
 
-      <section class="about_section section" id="about">
+      <section class="about_section section reveal" id="about">
         <h2 class="section_title">Tentang Kami</h2>
         <div class="about_container bd_grid">
           <div class="about_img">
-            <img src="about/lambo-removebg-preview (2).png" alt="Mobil sport di showroom" loading="lazy" />
+            <img
+              src="about/lambo-removebg-preview (2).png"
+              alt="Mobil sport di showroom"
+              loading="lazy"
+            />
           </div>
           <div>
             <h2 class="about_subtitle">Dealer mobil premium tepercaya</h2>
             <p class="about_text">
               PREMIUM CARS adalah showroom yang menghadirkan mobil mewah, sport,
-              dan kendaraan keluarga terbaik untuk pelanggan di Indonesia. Setiap
-              unit kami kurasi dengan teliti — mulai dari kondisi mesin, kelengkapan
-              dokumen, hingga riwayat perawatan — agar Anda mendapatkan kendaraan
-              yang benar-benar layak dan bernilai.
+              dan kendaraan keluarga terbaik untuk pelanggan di Indonesia.
+              Setiap unit kami kurasi dengan teliti — mulai dari kondisi mesin,
+              kelengkapan dokumen, hingga riwayat perawatan — agar Anda
+              mendapatkan kendaraan yang benar-benar layak dan bernilai.
             </p>
             <p class="about_text">
               Kami percaya membeli mobil bukan sekadar transaksi, melainkan
               pengalaman. Karena itu kami menemani Anda di setiap langkah: dari
-              konsultasi, test drive, simulasi cicilan, hingga proses serah terima.
+              konsultasi, test drive, simulasi cicilan, hingga proses serah
+              terima.
             </p>
             <div class="about_stats">
-              <div class="stat"><strong>21+</strong><span>Unit pilihan</span></div>
+              <div class="stat">
+                <strong>21+</strong><span>Unit pilihan</span>
+              </div>
               <div class="stat"><strong>6</strong><span>Kategori</span></div>
-              <div class="stat"><strong>100%</strong><span>Dokumen lengkap</span></div>
+              <div class="stat">
+                <strong>100%</strong><span>Dokumen lengkap</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="vm section" id="visi-misi">
+      <section class="vm section reveal" id="visi-misi">
         <h2 class="section_title">Visi &amp; Misi</h2>
         <div class="vm-grid bd_grid">
           <div class="vm-card">
@@ -133,22 +178,30 @@
             <i class="bx bx-list-check"></i>
             <h3>Misi</h3>
             <ul class="vm-list">
-              <li>Menyediakan unit berkualitas dengan dokumen lengkap dan sah.</li>
-              <li>Memberi informasi harga dan kondisi secara jujur dan terbuka.</li>
-              <li>Mendampingi pelanggan dari konsultasi hingga serah terima.</li>
+              <li>
+                Menyediakan unit berkualitas dengan dokumen lengkap dan sah.
+              </li>
+              <li>
+                Memberi informasi harga dan kondisi secara jujur dan terbuka.
+              </li>
+              <li>
+                Mendampingi pelanggan dari konsultasi hingga serah terima.
+              </li>
               <li>Menghadirkan opsi pembiayaan yang mudah dipahami.</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <section class="values section" id="nilai">
+      <section class="values section reveal" id="nilai">
         <h2 class="section_title">Kenapa PREMIUM CARS</h2>
         <div class="values-grid bd_grid">
           <div class="value">
             <i class="bx bx-check-shield"></i>
             <h4>Unit Terkurasi</h4>
-            <p>Setiap mobil diperiksa kondisi dan kelengkapannya sebelum dijual.</p>
+            <p>
+              Setiap mobil diperiksa kondisi dan kelengkapannya sebelum dijual.
+            </p>
           </div>
           <div class="value">
             <i class="bx bx-file"></i>
@@ -163,7 +216,9 @@
           <div class="value">
             <i class="bx bx-support"></i>
             <h4>Pendampingan Penuh</h4>
-            <p>Tim kami siap membantu dari awal hingga serah terima kendaraan.</p>
+            <p>
+              Tim kami siap membantu dari awal hingga serah terima kendaraan.
+            </p>
           </div>
         </div>
       </section>
@@ -198,19 +253,61 @@
             </div>
           </div>
           <div>
-            <img src="about/surat-removebg-preview.png" class="skills_img" alt="Dokumen kendaraan" loading="lazy" />
+            <img
+              src="about/surat-removebg-preview.png"
+              class="skills_img"
+              alt="Dokumen kendaraan"
+              loading="lazy"
+            />
           </div>
         </div>
       </section>
 
-      <section class="contact_section section" id="Contact">
-        <h2 class="section_title">Hubungi Kami</h2>
+      <section
+        class="contact_section section"
+        id="contact"
+        aria-labelledby="contact-title"
+      >
+        <h2 id="contact-title" class="section_title">Hubungi Kami</h2>
         <div class="contact_container bd_grid">
           <form action="" class="Contact_form">
-            <input type="text" placeholder="Nama" class="Contact_input" />
-            <input type="email" placeholder="Email" class="Contact_input" />
-            <textarea cols="0" rows="10" placeholder="Pesan" class="Contact_input"></textarea>
-            <input type="button" value="Kirim" class="Contact_button" />
+            <div class="input_group">
+              <label for="contact-name">Nama</label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                autocomplete="name"
+                placeholder="Nama lengkap"
+                class="Contact_input"
+                required
+              />
+            </div>
+            <div class="input_group">
+              <label for="contact-email">Email</label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                autocomplete="email"
+                placeholder="email@contoh.com"
+                class="Contact_input"
+                required
+              />
+            </div>
+            <div class="input_group">
+              <label for="contact-message">Pesan</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="6"
+                autocomplete="off"
+                placeholder="Tulis pesan Anda di sini"
+                class="Contact_input"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="Contact_button">Kirim</button>
           </form>
         </div>
       </section>
@@ -219,16 +316,30 @@
     <footer class="footer">
       <p class="footer_title">PREMIUM CARS</p>
       <div class="footer_social">
-        <a href="#" class="home_social_icon" aria-label="Instagram"><i class="bx bxl-instagram-alt"></i></a>
-        <a href="#" class="home_social_icon" aria-label="Twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="home_social_icon" aria-label="LinkedIn"><i class="bx bxl-linkedin-square"></i></a>
-        <a href="#" class="home_social_icon" aria-label="WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-        <a href="#" class="home_social_icon" aria-label="TikTok"><i class="bx bxl-tiktok"></i></a>
+        <a href="#" class="home_social_icon" aria-label="Instagram"
+          ><i class="bx bxl-instagram-alt" aria-hidden="true"></i
+        ></a>
+        <a href="#" class="home_social_icon" aria-label="Twitter"
+          ><i class="bx bxl-twitter" aria-hidden="true"></i
+        ></a>
+        <a href="#" class="home_social_icon" aria-label="LinkedIn"
+          ><i class="bx bxl-linkedin-square" aria-hidden="true"></i
+        ></a>
+        <a href="#" class="home_social_icon" aria-label="WhatsApp"
+          ><i class="bx bxl-whatsapp" aria-hidden="true"></i
+        ></a>
+        <a href="#" class="home_social_icon" aria-label="TikTok"
+          ><i class="bx bxl-tiktok" aria-hidden="true"></i
+        ></a>
       </div>
       <p>&#169; 2024 PREMIUM CARS. All rights reserved.</p>
     </footer>
 
+    <a href="https://wa.me/622151408888" class="whatsapp-float" target="_blank" rel="noreferrer" aria-label="Hubungi via WhatsApp">
+      <i class="bx bxl-whatsapp" aria-hidden="true"></i>
+    </a>
     <script src="js/lib/ui.js"></script>
+    <script src="js/components/nav.js"></script>
     <script src="js/components/forms.js"></script>
     <script src="js/about.js"></script>
   </body>

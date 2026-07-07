@@ -1,0 +1,28 @@
+# Aplikasi Next.js (dideploy terpisah — bukan bagian situs statis ini)
+premium-cars-web/
+
+# Server Express lokal untuk dev — di produksi pakai /api (serverless functions)
+server/
+
+# Aset & dokumentasi desain (tak perlu di produksi)
+stitch-export/
+stitch_premium_cars/
+.agents/
+.claude/
+.vscode/
+.git/
+
+# Dokumentasi internal (Markdown)
+*.md
+
+# Dependencies, env & artefak Vercel
+node_modules/
+.env
+.env.*
+.vercel/
+
+# package.json hanya dipakai server Express lokal (express + better-sqlite3).
+# Situs statis & fungsi /api tidak butuh dependency apa pun — jangan diunggah
+# agar Vercel tak mencoba meng-compile better-sqlite3 (native, gagal di build).
+package.json
+package-lock.json

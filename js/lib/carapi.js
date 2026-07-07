@@ -16,7 +16,14 @@ PC.carapi = (function () {
   };
 
   function get(pathName, params) {
-    var query = Object.assign({ path: pathName }, params || {});
+    var cleanParams = {};
+    Object.keys(params || {}).forEach(function (key) {
+      var value = params[key];
+      if (value !== undefined && value !== null && value !== "") {
+        cleanParams[key] = value;
+      }
+    });
+    var query = Object.assign({ path: pathName }, cleanParams);
     var url = config.proxyUrl + "?" + new URLSearchParams(query).toString();
     return fetch(url, { headers: { Accept: "application/json" } }).then(function (r) {
       return r.json().then(function (body) {
@@ -28,6 +35,22 @@ PC.carapi = (function () {
     });
   }
 
+  function carmakes() {
+    return get("carmakes");
+  }
+
+  function carmodels(make) {
+    return get("carmodels", { make: make });
+  }
+
+  function cartrims(make, model) {
+    return get("cartrims", { make: make, model: model });
+  }
+
+  function cardetails(make, model, trim) {
+    return get("cardetails", { make: make, model: model, trim: trim });
+  }
+
   /** Promise<Array> spesifikasi untuk make+model (endpoint /v1/cars). */
   function cars(make, model) {
     return get("cars", { make: make, model: model });
@@ -37,5 +60,14 @@ PC.carapi = (function () {
     return typeof location === "undefined" || location.protocol !== "file:";
   }
 
-  return { get: get, cars: cars, available: available, config: config };
+  return {
+    get: get,
+    carmakes: carmakes,
+    carmodels: carmodels,
+    cartrims: cartrims,
+    cardetails: cardetails,
+    cars: cars,
+    available: available,
+    config: config,
+  };
 })();

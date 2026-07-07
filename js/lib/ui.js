@@ -109,5 +109,39 @@ PC.ui = (function () {
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
-  return { $: $, $$: $$, el: el, toast: toast, modal: { open: open, close: close, isOpen: isOpen } };
+  /* ---------------- Scroll progress bar ---------------- */
+  function initScrollProgress() {
+    var bar = document.getElementById("scroll-progress");
+    if (!bar) return;
+    var winHeight, docHeight;
+    function update() {
+      winHeight = window.innerHeight;
+      docHeight = document.documentElement.scrollHeight - winHeight;
+      if (docHeight <= 0) { bar.style.width = "0%"; return; }
+      bar.style.width = Math.min((window.scrollY / docHeight) * 100, 100) + "%";
+    }
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+    update();
+  }
+
+  /* ---------------- Scroll reveal observer ---------------- */
+  function initReveal(selector) {
+    selector = selector || ".reveal";
+    if (typeof IntersectionObserver === "undefined") {
+      $$(selector).forEach(function (el) { el.classList.add("visible"); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+    $$(selector).forEach(function (el) { observer.observe(el); });
+  }
+
+  return { $: $, $$: $$, el: el, toast: toast, modal: { open: open, close: close, isOpen: isOpen }, initReveal: initReveal, initScrollProgress: initScrollProgress };
 })();

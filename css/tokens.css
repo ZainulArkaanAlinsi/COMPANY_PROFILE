@@ -6,34 +6,52 @@
 
 :root {
   /* --- Palet inti (dark premium, aksen tunggal) --- */
-  --bg: #0b0b0c;          /* latar utama (hampir hitam)            */
-  --surface: #141417;     /* permukaan kartu / section             */
-  --surface-2: #1c1c21;   /* hover / elevasi via warna (bukan shadow) */
-  --line: #2a2a30;        /* garis hairline 1px (pemisah & border) */
-  --line-soft: #1f1f24;   /* hairline lebih redup (grid editorial) */
-  --text: #f2f2f0;        /* teks utama (off-white)                */
-  --text-muted: #9a9a93;  /* teks sekunder / caption               */
-  --text-dim: #6a6a64;    /* teks paling redup (index, meta)       */
-  --accent: #ff6a00;      /* AKSEN TUNGGAL (molten amber)          */
-  --accent-press: #e85d00;/* state aktif / ditekan                 */
-  --accent-rgb: 255, 106, 0; /* untuk wash amber transparan        */
+  --bg: #0b0b0c;
+  /* latar utama (hampir hitam)            */
+  --surface: #141417;
+  /* permukaan kartu / section             */
+  --surface-2: #1c1c21;
+  /* hover / elevasi via warna (bukan shadow) */
+  --line: #2a2a30;
+  /* garis hairline 1px (pemisah & border) */
+  --line-soft: #1f1f24;
+  /* hairline lebih redup (grid editorial) */
+  --text: #f2f2f0;
+  /* teks utama (off-white)                */
+  --text-muted: #9a9a93;
+  /* teks sekunder / caption               */
+  --text-dim: #6a6a64;
+  /* teks paling redup (index, meta)       */
+  --accent: #ff6a00;
+  /* AKSEN TUNGGAL (molten amber)          */
+  --accent-press: #e85d00;
+  /* state aktif / ditekan                 */
+  --accent-rgb: 255, 106, 0;
+  /* untuk wash amber transparan        */
 
   /* --- Tipografi (kontras & elegan — PRD §8.4) --- */
-  --display-font: "Oswald", sans-serif;  /* headline condensed, otomotif */
-  --body-font: "Inter", sans-serif;      /* teks netral terbaca   */
-  --header-font: var(--display-font);    /* alias legacy          */
-  --tracking-head: 0.01em;               /* tracking headline (Oswald) */
+  --display-font: "Oswald", sans-serif;
+  /* headline condensed, otomotif */
+  --body-font: "Inter", sans-serif;
+  /* teks netral terbaca   */
+  --header-font: var(--display-font);
+  /* alias legacy          */
+  --tracking-head: 0.01em;
+  /* tracking headline (Oswald) */
 
   /* --- Layout --- */
   --max-width: 1280px;
-  --gutter: clamp(1.25rem, 5vw, 4rem);  /* padding tepi halaman responsif */
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  /* padding tepi halaman responsif */
 
   /* --- Skala tipografi editorial (clamp, basis 16px) — PRD §8.4 --- */
-  --fs-display: clamp(3rem, 8vw, 7rem);       /* angka/headline raksasa  */
+  --fs-display: clamp(3rem, 8vw, 7rem);
+  /* angka/headline raksasa  */
   --fs-h1: clamp(2.5rem, 6vw, 4.75rem);
   --fs-h2: clamp(1.875rem, 4vw, 3rem);
   --fs-h3: clamp(1.2rem, 1.6vw, 1.5rem);
-  --fs-kicker: 0.75rem;                       /* overline label          */
+  --fs-kicker: 0.75rem;
+  /* overline label          */
 
   /* --- Skala spasi (basis 8px) — PRD §8.5 --- */
   --space-1: 4px;
@@ -49,16 +67,21 @@
 
   /* --- Radius (tajam & konsisten, maks 4px) --- */
   --radius: 2px;
+  --radius-sm: 1px;
   --radius-lg: 4px;
 
   /* --- Motion (PRD §16 — transisi easing halus) --- */
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);       /* deselerasi premium       */
-  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);/* dua arah                 */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* deselerasi premium       */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  /* dua arah                 */
   --t-fast: 160ms;
   --t-base: 280ms;
-  --transition: all var(--t-base) var(--ease);  /* default tombol & hover   */
-  --hover-lift: -2px;                            /* angkatan halus saat hover */
-  --tracking-wide: 0.12em;                       /* jarak huruf tombol/label */
+  --transition: background-color var(--t-base) var(--ease), border-color var(--t-base) var(--ease), color var(--t-base) var(--ease), transform var(--t-base) var(--ease);
+  --hover-lift: -2px;
+  /* angkatan halus saat hover */
+  --tracking-wide: 0.12em;
+  /* jarak huruf tombol/label */
 
   /* --- Alias legacy (agar selector lama tetap konsisten) --- */
   --primary-color: var(--accent);

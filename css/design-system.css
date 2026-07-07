@@ -1,0 +1,38 @@
+/* Design system scaffold: utility classes only.
+   Tokens (variabel) ada di css/tokens.css — jangan duplikasi di sini. */
+
+.container {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding: 0 var(--gutter);
+}
+
+.accent-word {
+    color: var(--accent);
+}
+
+.d-flex {
+    display: flex;
+}
+
+.gap-1 {
+    gap: 1rem;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    left: -9999px;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: pc-fade-up 0.7s var(--ease) forwards;
+}
+
+.scale-hover {
+    transition: transform var(--t-base) var(--ease);
+}
+
+.scale-hover:hover {
+    transform: scale(1.03);
+}

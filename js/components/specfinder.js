@@ -47,13 +47,19 @@ PC.specfinder = (function () {
       return status("Jalankan lewat server (node server/proxy.js), bukan dibuka langsung sebagai file.", "warn");
     }
     status("Memuat spesifikasi…");
-    PC.carapi.cars(make, model).then(function (list) {
+    Promise.all([
+      PC.carapi.cars(make, model),
+      PC.carapi.cartrims(make, model).catch(function () { return []; })
+    ]).then(function (results) {
+      var list = results[0];
+      var trims = results[1];
       if (!Array.isArray(list) || !list.length) {
         return status('Tidak ada data untuk "' + make + " " + model + '". Coba model lain.', "warn");
       }
       refs.results.innerHTML = "";
       refs.results.appendChild(el("div", { class: "sf-grid" }, list.slice(0, 12).map(card)));
-      refs.count.textContent = list.length + " varian ditemukan";
+      var trimCount = Array.isArray(trims) ? trims.length : 0;
+      refs.count.textContent = list.length + " varian ditemukan" + (trimCount ? " · " + trimCount + " trim tersedia" : "");
     }).catch(function (err) {
       status("Gagal memuat: " + err.message + " — pastikan API_NINJAS_KEY di-set di server.", "error");
     });

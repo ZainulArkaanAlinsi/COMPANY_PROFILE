@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -13,8 +13,14 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="PREMIUM CARS" />
     <meta property="og:title" content="PREMIUM CARS — Showroom Mobil Mewah" />
-    <meta property="og:description" content="Showroom & katalog mobil mewah, sport, dan keluarga dengan opsi cicilan." />
-    <meta property="og:image" content="image/side-view-white-modern-car-outdoors.png" />
+    <meta
+      property="og:description"
+      content="Showroom & katalog mobil mewah, sport, dan keluarga dengan opsi cicilan."
+    />
+    <meta
+      property="og:image"
+      content="image/side-view-white-modern-car-outdoors.png"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="icon/shopping-bag.png" />
 
@@ -34,7 +40,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link
@@ -45,74 +51,81 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+    <link rel="stylesheet" href="css/design-system.css" />
   </head>
   <body>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+    <a class="skip-link" href="#categories-section">Langsung ke konten</a>
     <header>
-      <nav>
+      <nav aria-label="Navigasi utama">
         <div class="nav-header">
           <div class="nav-logo">
             <a href="index.html">PREMIUM<span>CARS</span></a>
           </div>
-          <div class="nav_menu_btn" id="menu-btn" aria-label="Buka menu" role="button" tabindex="0">
-            <i class="ri-menu-line"></i>
+          <div
+            class="nav_menu_btn"
+            id="menu-btn"
+            aria-label="Buka menu"
+            aria-controls="nav-link"
+            aria-expanded="false"
+            role="button"
+            tabindex="0"
+          >
+            <i class="ri-menu-line" aria-hidden="true"></i>
           </div>
         </div>
         <ul class="nav_link" id="nav-link">
-          <li><a href="index.html" class="is-active">HOME</a></li>
+          <li>
+            <a href="index.html" class="is-active" aria-current="page">HOME</a>
+          </li>
           <li><a href="about.html">ABOUT</a></li>
           <li><a href="#ride">SERVICE</a></li>
           <li><a href="penjualan.html">SHOPPING</a></li>
           <li><a href="penjualan.html#contact">CONTACT</a></li>
         </ul>
         <div class="nav_btn">
-          <button class="btn" onclick="location.href='penjualan.html'">GET NEW</button>
+          <button class="btn" onclick="location.href = 'penjualan.html'">
+            GET NEW
+          </button>
         </div>
       </nav>
 
-      <div class="header_container" id="hero">
-        <div class="hero__grid">
-          <p class="kicker hero__kicker">
-            <span class="kicker__dot"></span> Luxury · Sport · Electric
-          </p>
-          <h1>GET YOUR<br /><span class="accent-word">NEW CAR</span></h1>
-          <p class="hero__lead">
-            Showroom mobil mewah, sport, dan keluarga. Kurasi unit terbaik —
-            spesifikasi jelas, harga transparan, cicilan terencana.
-          </p>
-          <img
-            src="image/side-view-white-modern-car-outdoors.png"
-            alt="Mobil mewah PREMIUM CARS tampak samping"
-          />
-          <form action="/" class="hero__search">
-            <div class="input_group">
-              <label for="location">Lokasi penjemputan</label>
-              <input type="text" name="location" id="location" placeholder="Bogor, INDONESIA" />
-            </div>
-            <div class="input_group">
-              <label for="start">Mulai</label>
-              <input type="text" name="start" id="start" placeholder="16 Sep, 13:32" />
-            </div>
-            <div class="input_group">
-              <label for="stop">Selesai</label>
-              <input type="text" name="stop" id="stop" placeholder="20 Sep, 22:00" />
-            </div>
-            <button class="btn hero__search-btn" aria-label="Cari mobil">
-              <i class="ri-search-2-line"></i>
-              <span>Cari</span>
-            </button>
-          </form>
+      <div class="hero-v2" id="hero">
+        <div class="hero__scene" aria-hidden="true"></div>
+        <div class="hero-v2__bg">
+          <picture>
+            <source srcset="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=2000&q=80" media="(min-width: 768px)" />
+            <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=800&q=80" alt="Luxury performance car" />
+          </picture>
         </div>
-        <div class="hero__edge">
-          <span class="hero__edge-label">EST. 2024 — JAKARTA</span>
+        <div class="hero-v2__overlay"></div>
+        <div class="hero-v2__body">
+          <p class="hero-v2__kicker reveal">Exclusivity Redefined · Est. 2024</p>
+          <h1 class="hero-v2__title reveal">
+            <span class="hero-v2__line">Engineered</span>
+            <span class="hero-v2__line">for <span class="accent-word">Excellence</span></span>
+          </h1>
+          <p class="hero-v2__desc reveal">
+            Rumah kurasi kendaraan performa tinggi dan mitra tepercaya untuk membeli, menjual, dan menukar mobil impian Anda.
+          </p>
+          <div class="hero-v2__actions reveal">
+            <button class="btn" onclick="location.href='penjualan.html'">Jelajahi Katalog</button>
+            <button class="btn btn--outline" onclick="location.href='about.html'">Hubungi Spesialis</button>
+          </div>
+        </div>
+        <div class="hero-v2__scroll" aria-hidden="true">
+          <span class="hero-v2__scroll-line"></span>
         </div>
       </div>
     </header>
 
-    <section class="section_container categories" id="categories">
+    <section class="section_container categories reveal" id="categories-section">
       <div class="section-head">
         <p class="kicker"><span class="section-head__num">01</span> Kategori</p>
         <h2 class="section-head__title">EXPLORE<br />THE RANGE</h2>
-        <a href="penjualan.html" class="section-head__link">Lihat semua unit <i class="ri-arrow-right-up-line"></i></a>
+        <a href="penjualan.html" class="section-head__link"
+          >Lihat semua unit <i class="ri-arrow-right-up-line"></i
+        ></a>
       </div>
       <div class="range_grid">
         <article class="range_card">
@@ -120,7 +133,9 @@
           <span class="range_card__index">01</span>
           <div class="range_details">
             <h4>HYPERCAR</h4>
-            <a href="penjualan.html?cat=hypercar" aria-label="Lihat hypercar"><i class="ri-arrow-right-line"></i></a>
+            <a href="penjualan.html?cat=hypercar" aria-label="Lihat hypercar"
+              ><i class="ri-arrow-right-line"></i
+            ></a>
           </div>
         </article>
         <article class="range_card">
@@ -128,7 +143,11 @@
           <span class="range_card__index">02</span>
           <div class="range_details">
             <h4>FAMILY</h4>
-            <a href="penjualan.html?cat=family" aria-label="Lihat mobil keluarga"><i class="ri-arrow-right-line"></i></a>
+            <a
+              href="penjualan.html?cat=family"
+              aria-label="Lihat mobil keluarga"
+              ><i class="ri-arrow-right-line"></i
+            ></a>
           </div>
         </article>
         <article class="range_card">
@@ -136,7 +155,9 @@
           <span class="range_card__index">03</span>
           <div class="range_details">
             <h4>SPORT</h4>
-            <a href="penjualan.html?cat=sport" aria-label="Lihat mobil sport"><i class="ri-arrow-right-line"></i></a>
+            <a href="penjualan.html?cat=sport" aria-label="Lihat mobil sport"
+              ><i class="ri-arrow-right-line"></i
+            ></a>
           </div>
         </article>
         <article class="range_card">
@@ -144,41 +165,44 @@
           <span class="range_card__index">04</span>
           <div class="range_details">
             <h4>ELECTRIC</h4>
-            <a href="penjualan.html?cat=electric" aria-label="Lihat mobil listrik"><i class="ri-arrow-right-line"></i></a>
+            <a
+              href="penjualan.html?cat=electric"
+              aria-label="Lihat mobil listrik"
+              ><i class="ri-arrow-right-line"></i
+            ></a>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section_container location_container" id="rent">
-      <div class="location_image">
-        <img src="image/petA.avif" alt="Pilihan mobil PREMIUM CARS" loading="lazy" />
+    <section class="section_container featured_container reveal" id="rent">
+      <div class="section-head">
+        <p class="kicker"><span class="section-head__num">02</span> Koleksi Pilihan</p>
+        <h2 class="section-head__title">FEATURED<br />INVENTORY</h2>
+        <a href="penjualan.html" class="section-head__link">Lihat semua <i class="ri-arrow-right-up-line"></i></a>
       </div>
-      <div class="location_content">
-        <p class="kicker"><span class="section-head__num">02</span> Temukan unitmu</p>
-        <h2 class="section_header">CARI MOBIL YANG INGIN KAMU MILIKI</h2>
-        <p>
-          Telusuri koleksi kami berdasarkan kategori — hypercar, sport, SUV,
-          hingga mobil keluarga. Setiap unit dilengkapi spesifikasi dan harga
-          yang jelas, plus simulasi cicilan agar Anda bisa merencanakan
-          pembelian dengan tenang.
-        </p>
-        <div class="location_btn">
-          <button class="btn" onclick="location.href='penjualan.html'">Cari jenis mobilmu</button>
-        </div>
+      <div class="featured_grid" id="featured-grid">
+        <!-- Populated by JS from PC.featuredCars() -->
       </div>
     </section>
 
-    <section class="select_container1" id="ride">
+    <section class="select_container1 reveal" id="ride">
       <div class="section-head section-head--center">
         <p class="kicker"><span class="section-head__num">03</span> Cicilan</p>
         <h2 class="section_header2">BELI MOBIL DENGAN CICILAN</h2>
       </div>
-      <div class="swiper">
+      <div
+        class="swiper select_swiper"
+        aria-roledescription="carousel"
+        aria-label="Unit unggulan program cicilan"
+      >
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <div class="select_card">
-              <img src="image/samping_bugatti-removebg-preview.png" alt="Bugatti" />
+              <img
+                src="image/samping_bugatti-removebg-preview.png"
+                alt="Bugatti"
+              />
               <div class="select_info">
                 <div class="select_info_card">
                   <span><i class="ri-speed-up-line"></i></span>
@@ -201,37 +225,75 @@
           </div>
         </div>
       </div>
-      <form action="/" class="select_form" onsubmit="return false">
+      <div class="select_controls">
+        <button
+          class="select_nav select_nav--prev"
+          type="button"
+          aria-label="Slide sebelumnya"
+        >
+          <i class="ri-arrow-left-line" aria-hidden="true"></i>
+        </button>
+        <div class="swiper-pagination select_pagination"></div>
+        <button
+          class="select_nav select_nav--next"
+          type="button"
+          aria-label="Slide berikutnya"
+        >
+          <i class="ri-arrow-right-line" aria-hidden="true"></i>
+        </button>
+      </div>
+      <form action="/" class="select_form" onsubmit="return false;">
         <div class="select_price">
           <span class="select_price__label">Mulai dari</span>
           <span id="select-price">—</span>
         </div>
         <div class="select_btns">
-          <button class="btn" type="button" onclick="location.href='penjualan.html'">Lihat Detail</button>
-          <button class="btn" type="button" onclick="location.href='penjualan.html'">Lihat Katalog</button>
+          <button
+            class="btn"
+            type="button"
+            onclick="location.href = 'penjualan.html'"
+          >
+            Lihat Detail
+          </button>
+          <button
+            class="btn"
+            type="button"
+            onclick="location.href = 'penjualan.html'"
+          >
+            Lihat Katalog
+          </button>
         </div>
       </form>
     </section>
 
-    <section class="section_container story_container" id="journal">
+    <section class="section_container story_container reveal" id="journal">
       <div class="section-head">
         <p class="kicker"><span class="section-head__num">04</span> Jurnal</p>
         <h2 class="section_header5">STORIES BEHIND THE WHEEL</h2>
       </div>
       <div class="story_grid">
         <article class="story_card">
-          <img src="image/mabil van.jpg" alt="Mobil van di perjalanan" loading="lazy" />
+          <img
+            src="image/mabil van.jpg"
+            alt="Mobil van di perjalanan"
+            loading="lazy"
+          />
           <div class="story_body">
             <div class="story_date">
               <span>12</span>
-              <div><p>JANUARY</p><p>2024</p></div>
+              <div>
+                <p>JANUARY</p>
+                <p>2024</p>
+              </div>
             </div>
             <h4>PETUALANGAN DI JALAN TERBUKA</h4>
             <p>
               Mobil yang tepat mengubah perjalanan biasa menjadi pengalaman tak
               terlupakan. Temukan kendaraan yang sesuai gaya berkendara Anda.
             </p>
-            <a href="#" class="story_more">Baca cerita <i class="ri-arrow-right-line"></i></a>
+            <a href="about.html" class="story_more"
+              >Baca cerita <i class="ri-arrow-right-line"></i
+            ></a>
           </div>
         </article>
 
@@ -240,30 +302,45 @@
           <div class="story_body">
             <div class="story_date">
               <span>07</span>
-              <div><p>APRIL</p><p>2024</p></div>
+              <div>
+                <p>APRIL</p>
+                <p>2024</p>
+              </div>
             </div>
             <h4>MERAWAT MOBIL KESAYANGAN</h4>
             <p>
               Perawatan rutin menjaga performa dan nilai jual mobil Anda — dari
               servis berkala hingga kelengkapan dokumen, tim kami siap membantu.
             </p>
-            <a href="#" class="story_more">Baca cerita <i class="ri-arrow-right-line"></i></a>
+            <a href="about.html" class="story_more"
+              >Baca cerita <i class="ri-arrow-right-line"></i
+            ></a>
           </div>
         </article>
 
         <article class="story_card">
-          <img src="image/bagasi alp.jpg" alt="Bagasi mobil keluarga" loading="lazy" />
+          <img
+            src="image/bagasi alp.jpg"
+            alt="Bagasi mobil keluarga"
+            loading="lazy"
+          />
           <div class="story_body">
             <div class="story_date">
               <span>20</span>
-              <div><p>MEI</p><p>2024</p></div>
+              <div>
+                <p>MEI</p>
+                <p>2024</p>
+              </div>
             </div>
             <h4>MEMILIH MOBIL KELUARGA IDEAL</h4>
             <p>
               Kenyamanan, kapasitas, dan keamanan adalah kunci. Konsultasikan
-              kebutuhan keluarga Anda dengan tim kami untuk unit yang paling pas.
+              kebutuhan keluarga Anda dengan tim kami untuk unit yang paling
+              pas.
             </p>
-            <a href="#" class="story_more">Baca cerita <i class="ri-arrow-right-line"></i></a>
+            <a href="about.html" class="story_more"
+              >Baca cerita <i class="ri-arrow-right-line"></i
+            ></a>
           </div>
         </article>
       </div>
@@ -272,20 +349,64 @@
     <section class="banner_container">
       <p class="kicker banner_kicker">Dipercaya oleh marque terbaik dunia</p>
       <div class="banner_wrapper">
-        <img src="logo/alpader-removebg-preview.png" alt="Alphard" loading="lazy" />
+        <img
+          src="logo/alpader-removebg-preview.png"
+          alt="Alphard"
+          loading="lazy"
+        />
         <img src="logo/bmw-removebg-preview.png" alt="BMW" loading="lazy" />
-        <img src="logo/bugatti_a-removebg-preview.png" alt="Bugatti" loading="lazy" />
-        <img src="logo/chevrolet-removebg-preview.png" alt="Chevrolet" loading="lazy" />
-        <img src="logo/fera-removebg-preview (1).png" alt="Ferrari" loading="lazy" />
+        <img
+          src="logo/bugatti_a-removebg-preview.png"
+          alt="Bugatti"
+          loading="lazy"
+        />
+        <img
+          src="logo/chevrolet-removebg-preview.png"
+          alt="Chevrolet"
+          loading="lazy"
+        />
+        <img
+          src="logo/fera-removebg-preview (1).png"
+          alt="Ferrari"
+          loading="lazy"
+        />
         <img src="logo/ford-removebg-preview.png" alt="Ford" loading="lazy" />
-        <img src="logo/gtr-removebg-preview.png" alt="Nissan GT-R" loading="lazy" />
+        <img
+          src="logo/gtr-removebg-preview.png"
+          alt="Nissan GT-R"
+          loading="lazy"
+        />
         <img src="logo/jeep-removebg-preview.png" alt="Jeep" loading="lazy" />
-        <img src="logo/lambo-removebg-preview (1).png" alt="Lamborghini" loading="lazy" />
-        <img src="logo/mustang_l-removebg-preview.png" alt="Mustang" loading="lazy" />
-        <img src="logo/pagani-removebg-preview.png" alt="Pagani" loading="lazy" />
-        <img src="logo/pajero_q-removebg-preview.png" alt="Pajero" loading="lazy" />
-        <img src="logo/roll_roys-removebg-preview.png" alt="Rolls-Royce" loading="lazy" />
-        <img src="logo/supra-removebg-preview.png" alt="Toyota Supra" loading="lazy" />
+        <img
+          src="logo/lambo-removebg-preview (1).png"
+          alt="Lamborghini"
+          loading="lazy"
+        />
+        <img
+          src="logo/mustang_l-removebg-preview.png"
+          alt="Mustang"
+          loading="lazy"
+        />
+        <img
+          src="logo/pagani-removebg-preview.png"
+          alt="Pagani"
+          loading="lazy"
+        />
+        <img
+          src="logo/pajero_q-removebg-preview.png"
+          alt="Pajero"
+          loading="lazy"
+        />
+        <img
+          src="logo/roll_roys-removebg-preview.png"
+          alt="Rolls-Royce"
+          loading="lazy"
+        />
+        <img
+          src="logo/supra-removebg-preview.png"
+          alt="Toyota Supra"
+          loading="lazy"
+        />
       </div>
     </section>
 
@@ -299,16 +420,30 @@
             langsung dari ponsel Anda.
           </p>
           <div class="download_link">
-            <a href="#" aria-label="Unduh di Google Play">
+            <a
+              href="https://play.google.com/store"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Unduh di Google Play"
+            >
               <img src="logo/pla-removebg-preview.png" alt="Google Play" />
             </a>
-            <a href="#" aria-label="Unduh di App Store">
+            <a
+              href="https://www.apple.com/app-store/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Unduh di App Store"
+            >
               <img src="logo/ip-removebg-preview.png" alt="App Store" />
             </a>
           </div>
         </div>
         <div class="download_image">
-          <img src="logo/adaje-removebg-preview.png" alt="Aplikasi PREMIUM CARS" loading="lazy" />
+          <img
+            src="logo/adaje-removebg-preview.png"
+            alt="Aplikasi PREMIUM CARS"
+            loading="lazy"
+          />
         </div>
       </div>
     </section>
@@ -316,9 +451,16 @@
     <section class="news" id="content">
       <div class="news_container">
         <p class="kicker">Newsletter</p>
-        <h2 class="section_header12">TETAP UPDATE DENGAN BERITA &amp; UNIT TERBARU</h2>
+        <h2 class="section_header12">
+          TETAP UPDATE DENGAN BERITA &amp; UNIT TERBARU
+        </h2>
         <form action="/">
-          <input type="email" placeholder="Alamat email Anda" aria-label="Alamat email" />
+          <input
+            type="email"
+            autocomplete="email"
+            placeholder="Alamat email Anda"
+            aria-label="Alamat email"
+          />
           <button class="btn" aria-label="Berlangganan">
             <i class="ri-send-plane-fill"></i>
             <span>Langganan</span>
@@ -329,42 +471,84 @@
 
     <footer>
       <div class="footer_brand">
-        <a href="index.html" class="footer_wordmark">PREMIUM<span>CARS</span></a>
+        <a href="index.html" class="footer_wordmark"
+          >PREMIUM<span>CARS</span></a
+        >
         <p>Showroom mobil mewah, sport &amp; electric. Jakarta, Indonesia.</p>
       </div>
       <div class="section_footer10">
         <div class="footer_10">
           <h4>RESOURCE</h4>
           <ul class="footer_link">
-            <li><a href="#">Katalog</a></li>
-            <li><a href="#">Simulasi cicilan</a></li>
-            <li><a href="#">Test drive</a></li>
+            <li><a href="penjualan.html">Katalog</a></li>
+            <li><a href="penjualan.html#cicilan">Simulasi cicilan</a></li>
+            <li><a href="penjualan.html#kontak">Test drive</a></li>
           </ul>
         </div>
         <div class="footer_10">
           <h4>COMPANY</h4>
           <ul class="footer_link">
             <li><a href="about.html">Tentang kami</a></li>
-            <li><a href="#">Karier</a></li>
-            <li><a href="#">Press</a></li>
+            <li><a href="about.html">Karier</a></li>
+            <li><a href="about.html">Press</a></li>
           </ul>
         </div>
         <div class="footer_10">
           <h4>FIND YOUR STYLE</h4>
           <ul class="footer_link">
-            <li><a href="#">Community</a></li>
-            <li><a href="#">Price chart</a></li>
-            <li><a href="#">Car legend</a></li>
+            <li><a href="about.html">Community</a></li>
+            <li><a href="penjualan.html">Price chart</a></li>
+            <li><a href="about.html">Car legend</a></li>
           </ul>
         </div>
         <div class="footer_social">
           <h4>FOLLOW US</h4>
           <ul class="footer_link">
-            <li><a href="#" aria-label="WhatsApp"><i class="ri-whatsapp-line"></i></a></li>
-            <li><a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a></li>
-            <li><a href="#" aria-label="GitHub"><i class="ri-github-fill"></i></a></li>
-            <li><a href="#" aria-label="LinkedIn"><i class="ri-linkedin-line"></i></a></li>
-            <li><a href="#" aria-label="Pinterest"><i class="ri-pinterest-line"></i></a></li>
+            <li>
+              <a
+                href="https://wa.me/622151408888"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="WhatsApp"
+                ><i class="ri-whatsapp-line" aria-hidden="true"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                ><i class="ri-instagram-line" aria-hidden="true"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                ><i class="ri-github-fill" aria-hidden="true"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                ><i class="ri-linkedin-line" aria-hidden="true"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://pinterest.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Pinterest"
+                ><i class="ri-pinterest-line" aria-hidden="true"></i
+              ></a>
+            </li>
           </ul>
         </div>
       </div>
@@ -374,12 +558,17 @@
       </div>
     </footer>
 
+    <a href="https://wa.me/622151408888" class="whatsapp-float" target="_blank" rel="noreferrer" aria-label="Hubungi via WhatsApp">
+      <i class="ri-whatsapp-line" aria-hidden="true"></i>
+    </a>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="js/data/cars.js"></script>
     <script src="js/lib/format.js"></script>
     <script src="js/lib/ui.js"></script>
+    <script src="js/components/nav.js"></script>
     <script src="js/components/forms.js"></script>
     <script src="js/home.js"></script>
+    <script src="js/three-hero.js"></script>
   </body>
 </html>

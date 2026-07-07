@@ -1,53 +1,91 @@
 const menuBtn = document.getElementById("menu-btn");
-const navLink = document.getElementById("nav-link");
-const menuBtnIcon = menuBtn.querySelector("i");
+// Prefer shared nav behavior when available; otherwise fallback to local handlers.
+if (window.PC && PC.nav) {
+    PC.nav.initMenu("#menu-btn", "#nav-link", "open");
+} else {
+    const navLink = document.getElementById("nav-link");
+    const menuBtnIcon = menuBtn ? menuBtn.querySelector("i") : null;
+    const navOpenLabel = "Buka menu";
+    const navCloseLabel = "Tutup menu";
 
-menuBtn.addEventListener("click", (e) => {
-    navLink.classList.toggle("open");
+    function updateMenuState(isOpen) {
+        if (!menuBtn) return;
+        menuBtn.setAttribute("aria-expanded", String(isOpen));
+        menuBtn.setAttribute("aria-label", isOpen ? navCloseLabel : navOpenLabel);
+        if (menuBtnIcon) {
+            menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line");
+        }
+    }
 
-    const isOpen = navLink.classList.contains("open");
-    menuBtnIcon.setAttribute("class", isOpen ? "ri-class-line" : "ri-menu-line");
-});
-navLink.addEventListener("click", (e) => {
-    navLink.classList.remove("open");
-    menuBtnIcon.setAttribute("class", "ri-menu-line");
-});
+    function toggleNav() {
+        if (!navLink) return;
+        var isOpen = navLink.classList.toggle("open");
+        updateMenuState(isOpen);
+    }
+
+    if (menuBtn && navLink) {
+        menuBtn.setAttribute("aria-expanded", "false");
+        updateMenuState(false);
+        menuBtn.addEventListener("click", toggleNav);
+        menuBtn.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                toggleNav();
+            }
+        });
+        navLink.addEventListener("click", function () {
+            navLink.classList.remove("open");
+            updateMenuState(false);
+        });
+    }
+}
+
+/* Render featured inventory grid */
+function renderFeaturedGrid() {
+    const grid = document.getElementById("featured-grid");
+    if (!grid) return;
+    const cars = (window.PC && PC.featuredCars) ? PC.featuredCars() : [];
+    if (!cars.length) {
+        grid.innerHTML = '<p class="featured_grid__empty">Tidak ada unit tersedia saat ini.</p>';
+        return;
+    }
+    grid.innerHTML = cars.slice(0, 3).map(function (car) {
+        var s = car.specs;
+        var price = (window.PC && PC.format) ? PC.format.compactRupiah(car.price) : "—";
+        return '<article class="featured_card">' +
+            '<div class="featured_card__image">' +
+            '<span class="featured_card__badge">' + car.badge + '</span>' +
+            '<img src="' + car.image + '" alt="' + car.name + '" loading="lazy" />' +
+            '</div>' +
+            '<div class="featured_card__body">' +
+            '<h3 class="featured_card__name">' + car.name + '</h3>' +
+            '<p class="featured_card__brand">' + car.brand + ' · ' + car.year + '</p>' +
+            '<div class="featured_card__specs">' +
+            '<div class="featured_card__spec"><div class="featured_card__spec-value">' + s.topSpeed + ' <span>km/h</span></div><div class="featured_card__spec-label">Kecepatan</div></div>' +
+            '<div class="featured_card__spec"><div class="featured_card__spec-value">' + s.power + ' <span>hp</span></div><div class="featured_card__spec-label">Tenaga</div></div>' +
+            '<div class="featured_card__spec"><div class="featured_card__spec-value">' + s.seats + ' <span>kursi</span></div><div class="featured_card__spec-label">Kapasitas</div></div>' +
+            '</div>' +
+            '<div class="featured_card__price">' + price + '</div>' +
+            '<div class="featured_card__actions">' +
+            '<button class="btn" onclick="location.href=\'penjualan.html?car=' + car.id + '\'">Detail</button>' +
+            '<button class="btn" onclick="location.href=\'penjualan.html\'">Lihat</button>' +
+            '</div>' +
+            '</div>' +
+            '</article>';
+    }).join("");
+}
+
+renderFeaturedGrid();
+
 const ScrollRevealOption = {
     origin: "bottom",
     distance: "50px",
     duration: 1000,
 };
 
-ScrollReveal().reveal(".header_container h1", {
-    ...ScrollRevealOption,
-});
-ScrollReveal().reveal(".header_container form", {
-    ...ScrollRevealOption,
-    delay: 500,
-});
-ScrollReveal().reveal(".header_container img", {
-    ...ScrollRevealOption,
-    delay: 1000,
-});
 ScrollReveal().reveal(".range_card", {
     duration: 1000,
     interval: 500,
-});
-ScrollReveal().reveal(".location_image img", {
-    ...ScrollRevealOption,
-    origin: "right",
-});
-ScrollReveal().reveal(".location_content .section_header", {
-    ...ScrollRevealOption,
-    delay: "500",
-});
-ScrollReveal().reveal(".location_content p", {
-    ...ScrollRevealOption,
-    delay: "1000",
-});
-ScrollReveal().reveal(".location_content .location_btn", {
-    ...ScrollRevealOption,
-    delay: "1500",
 });
 
 
@@ -95,11 +133,33 @@ function updateSwiperImage(eventName, args) {
     }
 }
 
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 const swiper = new Swiper(".swiper", {
     loop: true,
     effect: "coverflow",
     grabCursor: true,
     slidesPerView: "auto",
+    keyboard: { enabled: true },
+    pagination: {
+        el: ".select_pagination",
+        clickable: true,
+    },
+    navigation: {
+        prevEl: ".select_nav--prev",
+        nextEl: ".select_nav--next",
+    },
+    a11y: {
+        prevSlideMessage: "Slide sebelumnya",
+        nextSlideMessage: "Slide berikutnya",
+        paginationBulletMessage: "Ke unit nomor {{index}}",
+    },
+    // Autoplay dinonaktifkan bila pengguna meminta reduced-motion (PRD §8.8)
+    autoplay: prefersReducedMotion ? false : {
+        delay: 4500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+    },
     coverflowEffect: {
         rotate: 0,
         depth: 500,
@@ -111,7 +171,6 @@ const swiper = new Swiper(".swiper", {
     onAny(event, ...args) {
         updateSwiperImage(event, args);
     },
-
 });
 
 ScrollReveal().reveal(".story_card", {
@@ -145,4 +204,10 @@ ScrollReveal().reveal(".download_link", {
 /* Validasi form newsletter (butuh js/lib/ui.js + js/components/forms.js) */
 if (window.PC && PC.forms) {
     PC.forms.initNewsletter();
+}
+
+/* Scroll reveal observer dan progress bar */
+if (window.PC && PC.ui) {
+    PC.ui.initReveal();
+    PC.ui.initScrollProgress();
 }

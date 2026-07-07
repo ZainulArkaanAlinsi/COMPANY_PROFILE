@@ -69,7 +69,11 @@ PC.catalog = (function () {
       ]));
     } else {
       var frag = document.createDocumentFragment();
-      list.forEach(function (c) { frag.appendChild(card(c)); });
+      list.forEach(function (c, i) {
+        var node = card(c);
+        node.style.animationDelay = (i * 0.05) + "s";
+        frag.appendChild(node);
+      });
       grid.appendChild(frag);
     }
     if (refs.count) refs.count.textContent = "Menampilkan " + list.length + " unit";

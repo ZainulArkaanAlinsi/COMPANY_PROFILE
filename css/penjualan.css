@@ -282,6 +282,59 @@ nav ul li a.is-active {
   color: var(--text-muted);
 }
 
+/* Hero highlights — pengganti form rental lama (showroom jual-beli) */
+.hero-highlights {
+  margin-top: 2.5rem;
+  margin-bottom: 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.hero-highlight {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.15rem 1.25rem;
+  background: rgba(11, 11, 12, 0.88);
+  transition: background-color var(--t-base) var(--ease);
+}
+
+.hero-highlight:hover {
+  background: var(--surface-2);
+}
+
+.hero-highlight i {
+  font-size: 1.55rem;
+  line-height: 1;
+  color: var(--accent);
+  flex: none;
+}
+
+.hero-highlight strong {
+  display: block;
+  font-family: var(--display-font);
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.hero-highlight span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 900px) {
+  .hero-highlights {
+    grid-template-columns: 1fr;
+  }
+}
+
 .gambar {
   display: grid;
   grid-template-columns: 1fr 1fr;

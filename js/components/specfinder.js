@@ -61,7 +61,10 @@ PC.specfinder = (function () {
       var trimCount = Array.isArray(trims) ? trims.length : 0;
       refs.count.textContent = list.length + " varian ditemukan" + (trimCount ? " · " + trimCount + " trim tersedia" : "");
     }).catch(function (err) {
-      status("Gagal memuat: " + err.message + " — pastikan API_NINJAS_KEY di-set di server.", "error");
+      var cfg = /belum di-set|not set|unauthor|401|403|500/i.test(err.message || "");
+      status(cfg
+        ? "Fitur spesifikasi live sedang dikonfigurasi — segera aktif."
+        : "Gagal memuat spesifikasi. Periksa koneksi lalu coba lagi.", "warn");
     });
   }
 

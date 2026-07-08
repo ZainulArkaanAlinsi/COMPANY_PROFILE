@@ -143,5 +143,15 @@ PC.ui = (function () {
     $$(selector).forEach(function (el) { observer.observe(el); });
   }
 
-  return { $: $, $$: $$, el: el, toast: toast, modal: { open: open, close: close, isOpen: isOpen }, initReveal: initReveal, initScrollProgress: initScrollProgress };
+  /* ---------------- Auto tahun copyright ---------------- */
+  // Setiap elemen [data-year] otomatis diisi tahun berjalan (semua halaman
+  // memuat ui.js → tak perlu wiring per-halaman). Footer cukup tulis
+  // <span data-year>2026</span>.
+  function initYear() {
+    var y = String(new Date().getFullYear());
+    $$("[data-year]").forEach(function (n) { n.textContent = y; });
+  }
+  document.addEventListener("DOMContentLoaded", initYear);
+
+  return { $: $, $$: $$, el: el, toast: toast, modal: { open: open, close: close, isOpen: isOpen }, initReveal: initReveal, initScrollProgress: initScrollProgress, initYear: initYear };
 })();

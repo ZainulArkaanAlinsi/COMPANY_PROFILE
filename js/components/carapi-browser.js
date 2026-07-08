@@ -265,7 +265,10 @@ PC.carapiBrowser = (function () {
             setStatus("Pilih merek untuk memuat model.");
             return items;
         }).catch(function (err) {
-            setStatus("Gagal memuat merek: " + err.message, "error");
+            var cfg = /belum di-set|not set|unauthor|401|403|500/i.test(err.message || "");
+            setStatus(cfg
+                ? "CarAPI Lookup sedang dikonfigurasi — fitur aktif setelah kredensial CarAPI dipasang."
+                : "Gagal memuat data CarAPI. Coba lagi nanti.", "warn");
             disableFields(true);
         });
     }

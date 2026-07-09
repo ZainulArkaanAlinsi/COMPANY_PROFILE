@@ -34,6 +34,8 @@
   /* headline condensed, otomotif */
   --body-font: "Inter", sans-serif;
   /* teks netral terbaca   */
+  --mono-font: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  /* aksen numerik/teknis (harga, angka index, spesifikasi) */
   --header-font: var(--display-font);
   /* alias legacy          */
   --tracking-head: 0.01em;

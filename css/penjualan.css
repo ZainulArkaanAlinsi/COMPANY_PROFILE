@@ -595,11 +595,12 @@ nav ul li a.is-active {
   margin-bottom: 0.85rem;
   padding: 3px 9px;
   font-size: 0.65rem;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--bg);
+  color: var(--accent);
   background: rgba(var(--accent-rgb), 0.12);
-  border: 1px solid rgba(var(--accent-rgb), 0.16);
+  border: 1px solid rgba(var(--accent-rgb), 0.28);
   border-radius: var(--radius);
 }
 
@@ -616,6 +617,11 @@ nav ul li a.is-active {
   width: auto;
   max-width: 100%;
   object-fit: contain;
+  transition: transform 0.5s var(--ease);
+}
+
+.product:hover .product-media img {
+  transform: scale(1.06);
 }
 
 .product h3 {
@@ -637,7 +643,10 @@ nav ul li a.is-active {
 .product-price {
   margin-top: auto;
   margin-bottom: 1rem;
-  font-weight: 700;
+  font-family: var(--mono-font);
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--accent);
 }
 

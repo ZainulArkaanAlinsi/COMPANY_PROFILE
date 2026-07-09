@@ -141,6 +141,56 @@ PC.cars = [
     image: "image/chevrolet-traverse.png", badge: "SUV", featured: false,
     specs: { topSpeed: 200, power: 310, seats: 7, transmission: "Automatic" },
   },
+
+  /* --- Koleksi tambahan (gambar transparan tersedia) --- */
+  {
+    id: "bugatti-chiron-super-sport", name: "Bugatti Chiron Super Sport",
+    brand: "Bugatti", category: "hypercar", price: 62000000000, year: 2022,
+    image: "image/bugaer2-removebg-preview.png", badge: "Hypercar", featured: false,
+    specs: { topSpeed: 440, power: 1600, seats: 2, transmission: "Automatic" },
+  },
+  {
+    id: "bugatti-chiron", name: "Bugatti Chiron",
+    brand: "Bugatti", category: "hypercar", price: 58000000000, year: 2021,
+    image: "image/bugati_4-removebg-preview.png", badge: "Hypercar", featured: false,
+    specs: { topSpeed: 420, power: 1500, seats: 2, transmission: "Automatic" },
+  },
+  {
+    id: "ferrari-458-speciale", name: "Ferrari 458 Speciale",
+    brand: "Ferrari", category: "sport", price: 6800000000, year: 2015,
+    image: "image/ferarriq-removebg-preview.png", badge: "Speciale", featured: false,
+    specs: { topSpeed: 325, power: 605, seats: 2, transmission: "Automatic" },
+  },
+  {
+    id: "lamborghini-aventador-svj-63", name: "Lamborghini Aventador SVJ 63",
+    brand: "Lamborghini", category: "hypercar", price: 15000000000, year: 2020,
+    image: "image/lambo-removebg-preview.png", badge: "SVJ 63", featured: false,
+    specs: { topSpeed: 350, power: 770, seats: 2, transmission: "Automatic" },
+  },
+  {
+    id: "ford-mustang-gt", name: "Ford Mustang GT",
+    brand: "Ford", category: "sport", price: 1500000000, year: 2021,
+    image: "image/mus-removebg-preview.png", badge: "Muscle", featured: false,
+    specs: { topSpeed: 250, power: 460, seats: 4, transmission: "Manual" },
+  },
+  {
+    id: "bmw-m8-gran-coupe", name: "BMW M8 Competition Gran Coupé",
+    brand: "BMW", category: "sport", price: 3200000000, year: 2023,
+    image: "image/bm_a-removebg-preview.png", badge: "Gran Coupé", featured: false,
+    specs: { topSpeed: 305, power: 625, seats: 4, transmission: "Automatic" },
+  },
+  {
+    id: "bmw-220i-coupe", name: "BMW 220i Coupé",
+    brand: "BMW", category: "sport", price: 900000000, year: 2023,
+    image: "image/bmwe-removebg-preview.png", badge: "Coupe", featured: false,
+    specs: { topSpeed: 235, power: 184, seats: 4, transmission: "Automatic" },
+  },
+  {
+    id: "mitsubishi-pajero-dakar", name: "Mitsubishi Pajero Sport Dakar",
+    brand: "Mitsubishi", category: "suv", price: 720000000, year: 2024,
+    image: "image/paje-removebg-preview.png", badge: "SUV", featured: false,
+    specs: { topSpeed: 180, power: 181, seats: 7, transmission: "Automatic" },
+  },
 ];
 
 /* Helper akses cepat */

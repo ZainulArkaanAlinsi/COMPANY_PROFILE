@@ -150,13 +150,16 @@
               konsultasi, test drive, simulasi cicilan, hingga proses serah
               terima.
             </p>
+            <!-- Angka unit & kategori disetel dari PC.cars saat runtime (js/about.js) -->
             <div class="about_stats">
               <div class="stat">
-                <strong>21+</strong><span>Unit pilihan</span>
+                <strong data-count-cars data-count="29" data-suffix="+">29+</strong><span>Unit pilihan</span>
               </div>
-              <div class="stat"><strong>6</strong><span>Kategori</span></div>
               <div class="stat">
-                <strong>100%</strong><span>Dokumen lengkap</span>
+                <strong data-count-categories data-count="5">5</strong><span>Kategori</span>
+              </div>
+              <div class="stat">
+                <strong data-count="100" data-suffix="%">100%</strong><span>Dokumen lengkap</span>
               </div>
             </div>
           </div>
@@ -338,6 +341,9 @@
     <a href="https://wa.me/622151408888" class="whatsapp-float" target="_blank" rel="noreferrer" aria-label="Hubungi via WhatsApp">
       <i class="bx bxl-whatsapp" aria-hidden="true"></i>
     </a>
+    <!-- Data → Lib → Components → Entry (urutan penting, lihat SDD §3.1) -->
+    <script src="js/data/cars.js"></script>
+    <script src="js/lib/format.js"></script>
     <script src="js/lib/ui.js"></script>
     <script src="js/components/nav.js"></script>
     <script src="js/components/forms.js"></script>

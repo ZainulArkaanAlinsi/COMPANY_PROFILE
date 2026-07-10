@@ -52,6 +52,7 @@ function renderFeaturedGrid() {
     grid.innerHTML = cars.slice(0, 3).map(function (car) {
         var s = car.specs;
         var price = (window.PC && PC.format) ? PC.format.compactRupiah(car.price) : "—";
+        var url = PC.carUrl(car);
         return '<article class="featured_card">' +
             '<div class="featured_card__image">' +
             '<span class="featured_card__badge">' + car.badge + '</span>' +
@@ -67,8 +68,8 @@ function renderFeaturedGrid() {
             '</div>' +
             '<div class="featured_card__price">' + price + '</div>' +
             '<div class="featured_card__actions">' +
-            '<button class="btn" onclick="location.href=\'penjualan.html?car=' + car.id + '\'">Detail</button>' +
-            '<button class="btn" onclick="location.href=\'penjualan.html\'">Lihat</button>' +
+            '<a class="btn" href="' + url + '">Detail unit</a>' +
+            '<a class="btn btn--ghost" href="penjualan.html">Katalog</a>' +
             '</div>' +
             '</div>' +
             '</article>';
@@ -91,7 +92,9 @@ ScrollReveal().reveal(".range_card", {
 
 /* Slider unit unggulan — dirender dari PC.featuredCars() (lihat SDD §4) */
 const priceEL = document.getElementById("select-price");
+const detailEL = document.getElementById("select-detail");
 let price = ["225", "455", "275", "625", "395"]; // fallback bila PC tak termuat
+let slideCars = [];
 
 function infoCard(icon, value, unit) {
     return '<div class="select_info_card"><span><i class="' + icon + '"></i></span>' +
@@ -117,17 +120,27 @@ if (window.PC && PC.featuredCars) {
                 "</div></div></div>";
         }).join("");
         price = featured.map((c) => c.price);
+        slideCars = featured;
     }
+}
+
+/* "Lihat Detail" menuju halaman unit yang sedang tampil, bukan katalog umum. */
+function syncDetailLink(index) {
+    if (!detailEL || !slideCars[index]) return;
+    detailEL.href = PC.carUrl(slideCars[index]);
+    detailEL.setAttribute("aria-label", "Lihat detail " + slideCars[index].name);
 }
 
 const selectCards = document.querySelectorAll(".select_card");
 if (selectCards[0]) selectCards[0].classList.add("show_info");
 if (priceEL) priceEL.innerText = formatPrice(price[0]);
+syncDetailLink(0);
 
 function updateSwiperImage(eventName, args) {
     if (eventName === "slideChangeTransitionStart") {
         const index = args && args[0].realIndex;
         if (priceEL) priceEL.innerText = formatPrice(price[index]);
+        syncDetailLink(index);
         selectCards.forEach((item) => item.classList.remove("show_info"));
         if (selectCards[index]) selectCards[index].classList.add("show_info");
     }
@@ -206,8 +219,15 @@ if (window.PC && PC.forms) {
     PC.forms.initNewsletter();
 }
 
-/* Scroll reveal observer dan progress bar */
+/* Scroll reveal, progress bar, dan count-up statistik */
 if (window.PC && PC.ui) {
+    /* Angka band statistik diambil dari data agar tak pernah basi saat
+       koleksi bertambah. Kategori dikurangi satu: "Semua" bukan kategori. */
+    PC.ui.setCount(PC.ui.$("[data-count-cars]"), PC.cars.length);
+    PC.ui.setCount(PC.ui.$("[data-count-brands]"), PC.brands().length);
+    PC.ui.setCount(PC.ui.$("[data-count-categories]"), PC.categories.length - 1);
+
     PC.ui.initReveal();
     PC.ui.initScrollProgress();
+    PC.ui.initCounters();
 }

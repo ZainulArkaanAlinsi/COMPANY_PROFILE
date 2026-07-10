@@ -247,153 +247,6 @@
   color: #ff5a5a;
 }
 
-/* ---------------- Modal ---------------- */
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 1100;
-  display: none;
-}
-
-.modal.is-open {
-  display: block;
-}
-
-.modal__overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(2px);
-}
-
-.modal__dialog {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(920px, 92vw);
-  max-height: 90vh;
-  overflow: auto;
-  background-color: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  outline: none;
-}
-
-.modal__close {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  z-index: 2;
-  display: inline-grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  font-size: 1.3rem;
-  color: var(--text);
-  background-color: rgba(11, 11, 12, 0.6);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.modal__close:hover {
-  color: var(--bg);
-  background-color: var(--accent);
-  border-color: var(--accent);
-}
-
-/* ---------------- Detail mobil (isi modal) ---------------- */
-.detail {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
-.detail__media {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2.5rem 1.5rem;
-  background:
-    radial-gradient(120% 80% at 50% 20%, rgba(255, 106, 0, 0.12), transparent 60%),
-    var(--surface-2);
-}
-
-.detail__media img {
-  width: 100%;
-  max-width: 460px;
-  filter: drop-shadow(0 24px 30px rgba(0, 0, 0, 0.6));
-}
-
-.detail__info {
-  padding: 2rem;
-}
-
-.detail__brand {
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.detail__title {
-  margin: 0.4rem 0 0.6rem;
-  font-family: var(--display-font);
-  font-weight: 800;
-  font-size: 1.9rem;
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-head);
-  color: var(--text);
-}
-
-.detail__price {
-  font-family: var(--mono-font);
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: var(--accent);
-  margin-bottom: 1.5rem;
-}
-
-.detail__specs {
-  display: grid;
-  gap: 0.6rem;
-  padding: 1rem 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 1.5rem;
-}
-
-.spec-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.95rem;
-}
-
-.spec-row__k {
-  color: var(--text-muted);
-}
-
-.spec-row__v {
-  color: var(--text);
-  font-family: var(--mono-font);
-  font-size: 0.88rem;
-  font-weight: 500;
-}
-
-.detail__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-@media (min-width: 720px) {
-  .detail {
-    grid-template-columns: 1.1fr 1fr;
-  }
-}
-
 /* ---------------- WhatsApp Float ---------------- */
 .whatsapp-float {
   position: fixed;
@@ -450,16 +303,58 @@
   }
 }
 
-/* ---------------- Image reveal on scroll ---------------- */
+/* ---------------- Reveal saat scroll ----------------
+   Default naik dari bawah. Varian arah dipakai untuk memberi ritme
+   berbeda antar section; [data-stagger] pada wadah membuat anak-anaknya
+   masuk beruntun (delay disetel oleh PC.ui.initReveal). */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  will-change: opacity, transform;
+}
+
+.reveal--left {
+  transform: translateX(-36px);
+}
+
+.reveal--right {
+  transform: translateX(36px);
+}
+
+.reveal--scale {
+  transform: scale(0.94);
+}
+
+.reveal--blur {
+  filter: blur(6px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease), filter 0.7s var(--ease);
+}
+
+/* Garis pemisah yang "digambar" dari kiri ke kanan saat section masuk. */
+.reveal--rule {
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent 72%);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: opacity 0.4s var(--ease), transform 1s var(--ease);
 }
 
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  filter: none;
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+    transition-delay: 0ms !important;
+  }
 }
 
 /* ---------------- Shimmer loading ---------------- */
@@ -487,12 +382,7 @@
   transition: width 80ms linear;
 }
 
-/* ---------------- Counter stat animation ---------------- */
-@keyframes countUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.stat-anim {
-  animation: countUp 0.5s var(--ease) forwards;
+/* ---------------- Angka statistik (count-up via PC.ui.initCounters) ---------------- */
+[data-count] {
+  font-variant-numeric: tabular-nums;
 }

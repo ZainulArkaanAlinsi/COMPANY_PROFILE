@@ -32,12 +32,13 @@
     />
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/chrome.css" />
     <link rel="stylesheet" href="css/penjualan.css" />
   </head>
   <body>
     <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
     <a class="skip-link" href="#main-content">Langsung ke konten</a>
-    <header>
+    <header class="site-header">
       <div class="logo">
         <a href="index.html" class="wordmark">PREMIUM<span>CARS</span></a>
       </div>
@@ -95,7 +96,8 @@
           <div class="hero-highlight">
             <i class="ri-medal-line" aria-hidden="true"></i>
             <div>
-              <strong>29 Unit Kurasi</strong>
+              <!-- data-count-cars: jumlahnya disetel dari PC.cars saat runtime -->
+              <strong data-count-cars data-count="29" data-suffix=" Unit Kurasi">29 Unit Kurasi</strong>
               <span>Hypercar, sport, SUV &amp; klasik</span>
             </div>
           </div>

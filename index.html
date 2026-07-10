@@ -119,6 +119,31 @@
       </div>
     </header>
 
+    <section class="stats_band" aria-label="Angka PREMIUM CARS">
+      <div class="stats_band__inner">
+        <div class="reveal reveal--rule" aria-hidden="true"></div>
+        <!-- Angka unit/merek/kategori disetel dari PC.cars saat runtime (js/home.js) -->
+        <div class="stats_band__grid" data-stagger="90">
+          <div class="stats_band__item">
+            <strong data-count-cars data-count="29" data-suffix="+">29+</strong>
+            <span>Unit kurasi</span>
+          </div>
+          <div class="stats_band__item">
+            <strong data-count-brands data-count="14">14</strong>
+            <span>Merek dunia</span>
+          </div>
+          <div class="stats_band__item">
+            <strong data-count-categories data-count="5">5</strong>
+            <span>Kategori</span>
+          </div>
+          <div class="stats_band__item">
+            <strong data-count="100" data-suffix="%">100%</strong>
+            <span>Dokumen lengkap</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section_container categories reveal" id="categories-section">
       <div class="section-head">
         <p class="kicker"><span class="section-head__num">01</span> Kategori</p>
@@ -181,7 +206,7 @@
         <h2 class="section-head__title">FEATURED<br />INVENTORY</h2>
         <a href="penjualan.html" class="section-head__link">Lihat semua <i class="ri-arrow-right-up-line"></i></a>
       </div>
-      <div class="featured_grid" id="featured-grid">
+      <div class="featured_grid" id="featured-grid" data-stagger="110">
         <!-- Populated by JS from PC.featuredCars() -->
       </div>
     </section>
@@ -248,20 +273,9 @@
           <span id="select-price">—</span>
         </div>
         <div class="select_btns">
-          <button
-            class="btn"
-            type="button"
-            onclick="location.href = 'penjualan.html'"
-          >
-            Lihat Detail
-          </button>
-          <button
-            class="btn"
-            type="button"
-            onclick="location.href = 'penjualan.html'"
-          >
-            Lihat Katalog
-          </button>
+          <!-- href diperbarui js/home.js mengikuti slide aktif -->
+          <a class="btn" id="select-detail" href="penjualan.html">Lihat Detail</a>
+          <a class="btn btn--ghost" href="penjualan.html">Lihat Katalog</a>
         </div>
       </form>
     </section>

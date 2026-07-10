@@ -9,7 +9,13 @@
       content="PREMIUM CARS — showroom & katalog mobil mewah, sport, dan keluarga. Temukan unit impian Anda dengan opsi cicilan."
     />
 
-    <!-- SEO / Open Graph -->
+    <!-- SEO / Open Graph — og:image & og:url wajib URL absolut; crawler tidak
+         menyelesaikan path relatif. Domain sama dengan SITE di
+         scripts/build-cars.mjs. -->
+    <link
+      rel="canonical"
+      href="https://company-profile-phi-ten.vercel.app/"
+    />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="PREMIUM CARS" />
     <meta property="og:title" content="PREMIUM CARS — Showroom Mobil Mewah" />
@@ -18,8 +24,12 @@
       content="Showroom & katalog mobil mewah, sport, dan keluarga dengan opsi cicilan."
     />
     <meta
+      property="og:url"
+      content="https://company-profile-phi-ten.vercel.app/"
+    />
+    <meta
       property="og:image"
-      content="image/side-view-white-modern-car-outdoors.png"
+      content="https://company-profile-phi-ten.vercel.app/image/side-view-white-modern-car-outdoors.png"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="icon/shopping-bag.png" />

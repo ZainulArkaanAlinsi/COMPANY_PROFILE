@@ -17,8 +17,9 @@ import vm from "node:vm";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT_DIR = resolve(ROOT, "mobil");
 
-/* Domain produksi — samakan dengan robots.txt. */
-const SITE = "https://premiumcars.example.com";
+/* Domain produksi — dipakai canonical, OG image & sitemap. Samakan dengan
+   robots.txt. Ganti bila situs dipindah ke domain kustom. */
+const SITE = "https://company-profile-phi-ten.vercel.app";
 const WHATSAPP = "622151408888";
 
 /* ---------------- Muat data ---------------- */
@@ -389,16 +390,18 @@ function sitemap(PC) {
   const entry = (loc, changefreq, priority) =>
     `  <url>\n    <loc>${loc}</loc>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
 
+  /* vercel.json menyetel cleanUrls: true — "/penjualan.html" dialihkan ke
+     "/penjualan". Sitemap harus menunjuk URL final, bukan yang me-redirect. */
   const urls = [
-    entry(`${SITE}/index.html`, "weekly", "1.0"),
-    entry(`${SITE}/penjualan.html`, "weekly", "0.9"),
-    entry(`${SITE}/about.html`, "monthly", "0.7"),
+    entry(`${SITE}/`, "weekly", "1.0"),
+    entry(`${SITE}/penjualan`, "weekly", "0.9"),
+    entry(`${SITE}/about`, "monthly", "0.7"),
     ...PC.cars.map((c) => entry(`${SITE}/mobil/${c.id}`, "weekly", "0.8")),
   ];
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <!-- DIGENERATE OTOMATIS oleh scripts/build-cars.mjs (npm run build:cars).
-     Ganti konstanta SITE di skrip tersebut dengan domain produksi Anda. -->
+     Domain diambil dari konstanta SITE di skrip tersebut. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.join("\n")}
 </urlset>

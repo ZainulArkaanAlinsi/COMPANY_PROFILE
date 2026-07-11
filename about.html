@@ -48,13 +48,14 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/tokens.css" />
-    <link rel="stylesheet" href="css/components.css" />
-    <link rel="stylesheet" href="css/about.css" />
     <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/contact.css" />
+    <link rel="stylesheet" href="css/about.css" />
   </head>
   <body>
     <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
@@ -91,7 +92,7 @@
           aria-controls="nav_menu"
           aria-expanded="false"
         >
-          <i class="bx bx-menu-alt-right" aria-hidden="true"></i>
+          <i class="ri-menu-line" aria-hidden="true"></i>
         </div>
       </nav>
     </header>
@@ -113,19 +114,19 @@
         </div>
         <div class="home_social">
           <a href="#" class="home_social_icon" aria-label="Instagram"
-            ><i class="bx bxl-instagram-alt" aria-hidden="true"></i
+            ><i class="ri-instagram-line" aria-hidden="true"></i
           ></a>
           <a href="#" class="home_social_icon" aria-label="Twitter"
-            ><i class="bx bxl-twitter" aria-hidden="true"></i
+            ><i class="ri-twitter-x-line" aria-hidden="true"></i
           ></a>
           <a href="#" class="home_social_icon" aria-label="LinkedIn"
-            ><i class="bx bxl-linkedin-square" aria-hidden="true"></i
+            ><i class="ri-linkedin-box-line" aria-hidden="true"></i
           ></a>
           <a href="https://wa.me/622151408888" target="_blank" rel="noreferrer" class="home_social_icon" aria-label="WhatsApp"
-            ><i class="bx bxl-whatsapp" aria-hidden="true"></i
+            ><i class="ri-whatsapp-line" aria-hidden="true"></i
           ></a>
           <a href="#" class="home_social_icon" aria-label="TikTok"
-            ><i class="bx bxl-tiktok" aria-hidden="true"></i
+            ><i class="ri-tiktok-line" aria-hidden="true"></i
           ></a>
         </div>
         <div class="home_img">
@@ -178,7 +179,7 @@
         <h2 class="section_title">Visi &amp; Misi</h2>
         <div class="vm-grid bd_grid">
           <div class="vm-card">
-            <i class="bx bx-target-lock"></i>
+            <i class="ri-focus-3-line"></i>
             <h3>Visi</h3>
             <p>
               Menjadi showroom mobil premium paling tepercaya di Indonesia yang
@@ -186,7 +187,7 @@
             </p>
           </div>
           <div class="vm-card">
-            <i class="bx bx-list-check"></i>
+            <i class="ri-list-check-2"></i>
             <h3>Misi</h3>
             <ul class="vm-list">
               <li>
@@ -208,24 +209,24 @@
         <h2 class="section_title">Kenapa PREMIUM CARS</h2>
         <div class="values-grid bd_grid">
           <div class="value">
-            <i class="bx bx-check-shield"></i>
+            <i class="ri-shield-check-line"></i>
             <h4>Unit Terkurasi</h4>
             <p>
               Setiap mobil diperiksa kondisi dan kelengkapannya sebelum dijual.
             </p>
           </div>
           <div class="value">
-            <i class="bx bx-file"></i>
+            <i class="ri-file-list-3-line"></i>
             <h4>Dokumen Aman</h4>
             <p>BPKB, STNK, dan faktur lengkap serta dapat diverifikasi.</p>
           </div>
           <div class="value">
-            <i class="bx bx-calculator"></i>
+            <i class="ri-calculator-line"></i>
             <h4>Cicilan Transparan</h4>
             <p>Simulasi angsuran jelas tanpa biaya tersembunyi.</p>
           </div>
           <div class="value">
-            <i class="bx bx-support"></i>
+            <i class="ri-customer-service-2-line"></i>
             <h4>Pendampingan Penuh</h4>
             <p>
               Tim kami siap membantu dari awal hingga serah terima kendaraan.
@@ -246,19 +247,19 @@
             </p>
             <div class="skills_data">
               <div class="skills_names">
-                <i class="bx bxs-id-card"></i>
+                <i class="ri-book-2-line"></i>
                 <span class="skills_name">BPKB</span>
               </div>
             </div>
             <div class="skills_data">
               <div class="skills_names">
-                <i class="bx bx-credit-card"></i>
+                <i class="ri-bank-card-line"></i>
                 <span class="skills_name">STNK</span>
               </div>
             </div>
             <div class="skills_data">
               <div class="skills_names">
-                <i class="bx bx-detail"></i>
+                <i class="ri-file-list-3-line"></i>
                 <span class="skills_name">Faktur &amp; Riwayat Servis</span>
               </div>
             </div>
@@ -274,15 +275,107 @@
         </div>
       </section>
 
-      <section
-        class="contact_section section"
-        id="contact"
-        aria-labelledby="contact-title"
-      >
-        <h2 id="contact-title" class="section_title">Hubungi Kami</h2>
-        <div class="contact_container bd_grid">
-          <form action="" class="Contact_form">
-            <div class="input_group">
+      <!-- ====================================================================
+           TODO SEBELUM PUBLIKASI: ganti setiap <span class="needs-copy">
+           di bawah dengan alamat showroom, email, dan jam operasional asli.
+           Placeholder sengaja dibuat mencolok agar tidak lolos ke produksi.
+           ==================================================================== -->
+      <section class="contact-v2 reveal" id="contact" aria-labelledby="contact-title">
+        <div class="contact-v2__inner">
+          <div class="contact-v2__intro">
+            <p class="kicker contact-v2__kicker">
+              <span class="kicker__num">05</span> Kontak
+            </p>
+            <h2 id="contact-title" class="contact-v2__title">
+              Mari bicara soal<br /><span class="accent-word">unit impian</span> Anda
+            </h2>
+            <p class="contact-v2__lead">
+              Ceritakan unit yang Anda cari — atau kirim tautan unit dari katalog kami.
+              Tim kami membalas pada jam kerja dan siap mengatur inspeksi maupun test
+              drive sesuai jadwal Anda.
+            </p>
+
+            <ul class="contact-channels">
+              <li>
+                <a
+                  class="contact-channel"
+                  href="https://wa.me/622151408888"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span class="contact-channel__icon" aria-hidden="true">
+                    <i class="ri-whatsapp-line"></i>
+                  </span>
+                  <span>
+                    <span class="contact-channel__label">WhatsApp — respons tercepat</span>
+                    <span class="contact-channel__value">+62 21 5140 8888</span>
+                  </span>
+                  <i class="ri-arrow-right-up-line contact-channel__go" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a class="contact-channel" href="tel:+622151408888">
+                  <span class="contact-channel__icon" aria-hidden="true">
+                    <i class="ri-phone-line"></i>
+                  </span>
+                  <span>
+                    <span class="contact-channel__label">Telepon</span>
+                    <span class="contact-channel__value">+62 21 5140 8888</span>
+                  </span>
+                  <i class="ri-arrow-right-up-line contact-channel__go" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <div class="contact-channel">
+                  <span class="contact-channel__icon" aria-hidden="true">
+                    <i class="ri-mail-line"></i>
+                  </span>
+                  <span>
+                    <span class="contact-channel__label">Email</span>
+                    <span class="contact-channel__value">
+                      <span class="needs-copy">[ISI ALAMAT EMAIL]</span>
+                    </span>
+                  </span>
+                  <span aria-hidden="true"></span>
+                </div>
+              </li>
+              <li>
+                <div class="contact-channel">
+                  <span class="contact-channel__icon" aria-hidden="true">
+                    <i class="ri-map-pin-2-line"></i>
+                  </span>
+                  <span>
+                    <span class="contact-channel__label">Showroom</span>
+                    <span class="contact-channel__value">
+                      <span class="needs-copy">[ISI ALAMAT SHOWROOM]</span>, Jakarta
+                    </span>
+                  </span>
+                  <span aria-hidden="true"></span>
+                </div>
+              </li>
+              <li>
+                <div class="contact-channel">
+                  <span class="contact-channel__icon" aria-hidden="true">
+                    <i class="ri-time-line"></i>
+                  </span>
+                  <span>
+                    <span class="contact-channel__label">Jam operasional</span>
+                    <span class="contact-channel__value">
+                      <span class="needs-copy">[ISI JAM OPERASIONAL]</span>
+                    </span>
+                  </span>
+                  <span aria-hidden="true"></span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <form class="contact-form" novalidate>
+            <h3 class="contact-form__title">Kirim pesan</h3>
+            <p class="contact-form__note">
+              Kami balas ke email yang Anda tulis di bawah.
+            </p>
+            <div class="field">
               <label for="contact-name">Nama</label>
               <input
                 type="text"
@@ -290,11 +383,11 @@
                 name="name"
                 autocomplete="name"
                 placeholder="Nama lengkap"
-                class="Contact_input"
+                class="contact-input"
                 required
               />
             </div>
-            <div class="input_group">
+            <div class="field">
               <label for="contact-email">Email</label>
               <input
                 type="email"
@@ -302,23 +395,27 @@
                 name="email"
                 autocomplete="email"
                 placeholder="email@contoh.com"
-                class="Contact_input"
+                class="contact-input"
                 required
               />
             </div>
-            <div class="input_group">
+            <div class="field">
               <label for="contact-message">Pesan</label>
               <textarea
                 id="contact-message"
                 name="message"
                 rows="6"
                 autocomplete="off"
-                placeholder="Tulis pesan Anda di sini"
-                class="Contact_input"
+                placeholder="Unit yang Anda cari, anggaran, dan waktu test drive yang cocok"
+                class="contact-input"
                 required
               ></textarea>
             </div>
-            <button type="submit" class="Contact_button">Kirim</button>
+            <button type="submit" class="btn-solid">Kirim Pesan</button>
+            <p class="contact-form__alt">
+              Butuh jawaban cepat?
+              <a href="https://wa.me/622151408888" target="_blank" rel="noreferrer">Chat WhatsApp</a>
+            </p>
           </form>
         </div>
       </section>
@@ -328,26 +425,26 @@
       <p class="footer_title">PREMIUM CARS</p>
       <div class="footer_social">
         <a href="#" class="home_social_icon" aria-label="Instagram"
-          ><i class="bx bxl-instagram-alt" aria-hidden="true"></i
+          ><i class="ri-instagram-line" aria-hidden="true"></i
         ></a>
         <a href="#" class="home_social_icon" aria-label="Twitter"
-          ><i class="bx bxl-twitter" aria-hidden="true"></i
+          ><i class="ri-twitter-x-line" aria-hidden="true"></i
         ></a>
         <a href="#" class="home_social_icon" aria-label="LinkedIn"
-          ><i class="bx bxl-linkedin-square" aria-hidden="true"></i
+          ><i class="ri-linkedin-box-line" aria-hidden="true"></i
         ></a>
         <a href="https://wa.me/622151408888" target="_blank" rel="noreferrer" class="home_social_icon" aria-label="WhatsApp"
-          ><i class="bx bxl-whatsapp" aria-hidden="true"></i
+          ><i class="ri-whatsapp-line" aria-hidden="true"></i
         ></a>
         <a href="#" class="home_social_icon" aria-label="TikTok"
-          ><i class="bx bxl-tiktok" aria-hidden="true"></i
+          ><i class="ri-tiktok-line" aria-hidden="true"></i
         ></a>
       </div>
       <p>&#169; <span data-year>2026</span> PREMIUM CARS. All rights reserved.</p>
     </footer>
 
     <a href="https://wa.me/622151408888" class="whatsapp-float" target="_blank" rel="noreferrer" aria-label="Hubungi via WhatsApp">
-      <i class="bx bxl-whatsapp" aria-hidden="true"></i>
+      <i class="ri-whatsapp-line" aria-hidden="true"></i>
     </a>
     <!-- Data → Lib → Components → Entry (urutan penting, lihat SDD §3.1) -->
     <script src="js/data/cars.js"></script>

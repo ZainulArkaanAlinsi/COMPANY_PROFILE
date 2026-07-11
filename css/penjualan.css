@@ -20,7 +20,7 @@
 
 .header_container h1 {
   font-size: var(--fs-h1);
-  font-weight: 900;
+  font-weight: 700;
   font-family: var(--display-font);
   text-transform: uppercase;
   color: var(--text);
@@ -53,7 +53,7 @@
   gap: 0.7rem;
   padding: 1.1rem 1.25rem;
   border-right: 1px solid var(--line);
-  background: rgba(11, 11, 12, 0.88);
+  background: rgba(15, 18, 22, 0.88);
 }
 
 .header_container .input_group:last-of-type {
@@ -124,7 +124,7 @@
   align-items: center;
   gap: 0.9rem;
   padding: 1.15rem 1.25rem;
-  background: rgba(11, 11, 12, 0.88);
+  background: rgba(15, 18, 22, 0.88);
   transition: background-color var(--t-base) var(--ease);
 }
 
@@ -198,7 +198,7 @@
 .hero h2 {
   margin-bottom: 1rem;
   font-family: var(--display-font);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 2.25rem;
   text-transform: uppercase;
   letter-spacing: var(--tracking-head);
@@ -424,7 +424,7 @@
   place-items: center;
   width: 38px;
   height: 38px;
-  background: rgba(11, 11, 12, 0.5);
+  background: rgba(15, 18, 22, 0.5);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   color: var(--text-muted);
@@ -678,233 +678,10 @@
 }
 
 .sim-error {
-  color: #ff7a7a;
+  color: var(--danger-soft);
   display: flex;
   align-items: center;
   gap: 0.4rem;
-}
-
-/* ---------------- Kontak ---------------- */
-.bdy {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5rem 1.5rem;
-}
-
-.ctr {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.item {
-  width: 100%;
-  max-width: 900px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-}
-
-.contact {
-  background: var(--surface-2);
-  padding-bottom: 2rem;
-}
-
-.submit-form {
-  position: relative;
-  overflow: hidden;
-  background-image:
-    linear-gradient(rgba(11, 11, 12, 0.85), rgba(11, 11, 12, 0.85)),
-    url("../image/garasi.avif");
-  background-size: cover;
-  background-position: center;
-  border-radius: var(--radius-lg);
-  padding: 2rem 0 2.5rem;
-}
-
-.submit-form::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.55));
-  pointer-events: none;
-}
-
-.submit-form form {
-  position: relative;
-  z-index: 1;
-  margin: 0 auto;
-  max-width: 560px;
-  padding: 1.5rem 1.25rem;
-  background: rgba(11, 11, 12, 0.82);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: var(--radius);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
-}
-
-.first-text {
-  padding: 1.5rem 1.5rem 0;
-  font-size: 1.25rem;
-  font-family: var(--display-font);
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--text);
-}
-
-.gambar2 {
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  margin: 1rem auto;
-}
-
-.social-link {
-  padding-inline: 1.5rem;
-}
-
-.dua-text {
-  display: inline-block;
-  margin-bottom: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.social-media {
-  display: flex;
-  list-style: none;
-  gap: 0.5rem;
-}
-
-.social-media li {
-  font-size: 1.1rem;
-}
-
-.social-media i {
-  display: inline-grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  color: var(--text-muted);
-  transition: var(--transition);
-}
-
-.social-media a:hover i,
-.social-media i:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--bg);
-}
-
-.tiga-text {
-  padding: 1.5rem 0 0 1.5rem;
-  font-family: var(--display-font);
-  font-size: 1.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: var(--text);
-}
-
-.submit-form form {
-  padding: 0 1.5rem;
-  width: 100%;
-}
-
-.input-box {
-  position: relative;
-  height: 44px;
-  width: 100%;
-  margin: 1.75rem 0;
-}
-
-.input {
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--line);
-  outline: none;
-  padding-left: 2px;
-  color: var(--text);
-  font-size: 1rem;
-  font-family: var(--body-font);
-}
-
-.input-box label {
-  position: absolute;
-  top: 50%;
-  left: 2px;
-  transform: translateY(-50%);
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  pointer-events: none;
-  transition: 0.3s;
-}
-
-.input-box .input:focus,
-.input-box .input:valid {
-  border-bottom-color: var(--accent);
-}
-
-.input-box .input:focus~label,
-.input-box .input:valid~label {
-  top: -2px;
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-textarea.input {
-  resize: none;
-  height: 120px;
-  padding-top: 10px;
-}
-
-.input-box:has(textarea) {
-  height: auto;
-}
-
-.bdy .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
-  min-width: 160px;
-  padding: 1.1rem 2.4rem;
-  background: var(--accent);
-  border: none;
-  border-radius: var(--radius);
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--bg);
-  cursor: pointer;
-  transition: var(--transition);
-  box-shadow: none;
-}
-
-.bdy .btn:hover {
-  background-color: var(--accent-press);
-  transform: translateY(var(--hover-lift));
-}
-
-.bdy .btn:active {
-  transform: translateY(0);
-  transition-duration: var(--t-fast);
 }
 
 /* ---------------- Cek Spesifikasi (API Ninjas) ---------------- */
@@ -1011,7 +788,7 @@ textarea.input {
 }
 
 .sf-status--error {
-  color: #ff7a7a;
+  color: var(--danger-soft);
 }
 
 .sf-grid {
@@ -1161,7 +938,7 @@ textarea.input {
 }
 
 .cab-status--error {
-  color: #ff7a7a;
+  color: var(--danger-soft);
 }
 
 .cab-results {

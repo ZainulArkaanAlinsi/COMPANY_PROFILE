@@ -1,6 +1,6 @@
 /* ============================================================
    PREMIUM CARS — Halaman detail unit (mobil/<id>.html)
-   Tema "Dark Editorial Garage". Token di css/tokens.css,
+   Tema "Ink & Cognac". Token di css/tokens.css,
    chrome (header/keranjang/footer) di css/chrome.css.
    ============================================================ */
 
@@ -51,26 +51,11 @@
   justify-content: center;
   padding: clamp(1.5rem, 4vw, 3rem);
   background:
-    radial-gradient(120% 85% at 50% 25%, rgba(var(--accent-rgb), 0.14), transparent 62%),
+    radial-gradient(120% 85% at 50% 25%, rgba(var(--accent-rgb), 0.1), transparent 62%),
     var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   overflow: hidden;
-}
-
-/* Sapuan amber tipis yang bergeser saat hover — memberi kesan lampu studio. */
-.unit-hero__media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.05) 50%, transparent 65%);
-  transform: translateX(-100%);
-  transition: transform 1.1s var(--ease);
-  pointer-events: none;
-}
-
-.unit-hero__media:hover::after {
-  transform: translateX(100%);
 }
 
 .unit-hero__media img {
@@ -104,7 +89,7 @@
   margin: 1rem 0 0.75rem;
   font-family: var(--display-font);
   font-size: var(--fs-h1);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 0.95;
   letter-spacing: var(--tracking-head);
   text-transform: uppercase;
@@ -198,7 +183,7 @@
 .unit-section__head h2 {
   font-family: var(--display-font);
   font-size: var(--fs-h2);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
   letter-spacing: var(--tracking-head);
   text-transform: uppercase;

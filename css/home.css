@@ -1,7 +1,7 @@
 /* ============================================================
    PREMIUM CARS — Home (index.html)
-   "Dark Editorial Garage" — disiplin grid, hairline, tipografi
-   raksasa, aksen amber tunggal. Token di tokens.css.
+   Tema "Ink & Cognac" — disiplin grid, hairline, tipografi
+   editorial, aksen cognac tunggal. Token di tokens.css.
    ============================================================ */
 
 /* ---------------- Reset & base ---------------- */
@@ -66,7 +66,7 @@ h2,
 h3,
 h4 {
   font-family: var(--display-font);
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
   line-height: 0.98;
   letter-spacing: var(--tracking-head);
@@ -112,7 +112,7 @@ h4 {
   display: block;
   font-family: var(--display-font);
   font-size: clamp(2.25rem, 5vw, 3.75rem);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 0.9;
   color: var(--accent);
 }
@@ -217,7 +217,7 @@ h4 {
   font-weight: 600;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--bg);
+  color: var(--on-accent);
   background-color: var(--accent);
   border: 1px solid var(--accent);
   border-radius: var(--radius);
@@ -266,7 +266,7 @@ nav {
   gap: 1.5rem;
   height: 72px;
   padding-inline: max(var(--gutter), calc((100% - var(--max-width)) / 2));
-  background-color: rgba(11, 11, 12, 0.78);
+  background-color: rgba(15, 18, 22, 0.78);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line-soft);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
@@ -281,7 +281,7 @@ nav {
 
 .nav-logo a {
   font-family: var(--display-font);
-  font-weight: 900;
+  font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -382,8 +382,8 @@ nav {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(135deg, rgba(11, 11, 12, 0.82) 0%, rgba(11, 11, 12, 0.45) 50%, transparent 100%),
-    linear-gradient(to top, rgba(11, 11, 12, 0.6) 0%, transparent 40%);
+  background: linear-gradient(135deg, rgba(15, 18, 22, 0.82) 0%, rgba(15, 18, 22, 0.45) 50%, transparent 100%),
+    linear-gradient(to top, rgba(15, 18, 22, 0.6) 0%, transparent 40%);
   pointer-events: none;
 }
 
@@ -493,7 +493,7 @@ nav {
   }
 
   .hero-v2__overlay {
-    background: linear-gradient(to top, rgba(11, 11, 12, 0.88) 0%, rgba(11, 11, 12, 0.3) 60%, transparent 100%);
+    background: linear-gradient(to top, rgba(15, 18, 22, 0.88) 0%, rgba(15, 18, 22, 0.3) 60%, transparent 100%);
   }
 
   .hero-v2__body {
@@ -561,7 +561,7 @@ nav {
   align-items: flex-end;
   justify-content: space-between;
   padding: 1.25rem;
-  background-image: linear-gradient(to top, rgba(11, 11, 12, 0.92), transparent);
+  background-image: linear-gradient(to top, rgba(15, 18, 22, 0.92), transparent);
 }
 
 .range_details h4 {
@@ -576,7 +576,7 @@ nav {
   height: 42px;
   font-size: 1.2rem;
   color: var(--text);
-  background-color: rgba(11, 11, 12, 0.5);
+  background-color: rgba(15, 18, 22, 0.5);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   transition: var(--transition);
@@ -618,22 +618,6 @@ nav {
   aspect-ratio: 4 / 3;
   overflow: hidden;
   background-color: var(--bg);
-}
-
-/* Sorotan amber yang menyapu dari kiri saat hover — kesan lampu studio. */
-.featured_card__image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(115deg, transparent 38%, rgba(var(--accent-rgb), 0.14) 50%, transparent 62%);
-  transform: translateX(-100%);
-  transition: transform 0.9s var(--ease);
-  pointer-events: none;
-}
-
-.featured_card:hover .featured_card__image::after {
-  transform: translateX(100%);
 }
 
 .featured_card__image img {
@@ -1006,7 +990,7 @@ nav {
 .story_date span {
   font-family: var(--display-font);
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--accent);
   line-height: 1;
 }
@@ -1217,7 +1201,7 @@ footer {
 
 .footer_wordmark {
   font-family: var(--display-font);
-  font-weight: 900;
+  font-weight: 700;
   font-size: clamp(2.5rem, 8vw, 5rem);
   letter-spacing: var(--tracking-head);
   text-transform: uppercase;

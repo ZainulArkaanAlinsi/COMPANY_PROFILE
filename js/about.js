@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Validasi form kontak (butuh js/lib/ui.js + js/components/forms.js) */
   if (window.PC && PC.forms) {
-    PC.forms.initContactAbout();
+    PC.forms.initContact();
   }
 
   /* Scroll reveal, progress bar, dan count-up statistik */

@@ -110,12 +110,12 @@
 }
 
 .btn-solid {
-  color: var(--bg);
-  background: linear-gradient(135deg, var(--accent) 0%, #ff8a2b 100%);
+  color: var(--on-accent);
+  background: var(--accent);
 }
 
 .btn-solid:hover {
-  background: linear-gradient(135deg, var(--accent-press) 0%, #ff7b1e 100%);
+  background: var(--accent-press);
   transform: translateY(var(--hover-lift));
 }
 
@@ -128,8 +128,8 @@
 
 .btn-ghost:hover {
   border-color: var(--accent);
-  color: var(--accent);
-  background-color: rgba(255, 106, 0, 0.06);
+  color: var(--accent-soft);
+  background-color: rgba(var(--accent-rgb), 0.08);
   transform: translateY(var(--hover-lift));
 }
 
@@ -180,14 +180,14 @@
 
 /* ---------------- Validasi form ---------------- */
 .is-invalid {
-  border-color: #ff5a5a !important;
+  border-color: var(--danger) !important;
 }
 
 .field-error {
   display: block;
   margin-top: 4px;
   font-size: 0.75rem;
-  color: #ff7a7a;
+  color: var(--danger-soft);
   letter-spacing: 0.02em;
 }
 
@@ -232,19 +232,19 @@
 }
 
 .toast--success {
-  border-left-color: #3ecf8e;
+  border-left-color: var(--success);
 }
 
 .toast--success i {
-  color: #3ecf8e;
+  color: var(--success);
 }
 
 .toast--error {
-  border-left-color: #ff5a5a;
+  border-left-color: var(--danger);
 }
 
 .toast--error i {
-  color: #ff5a5a;
+  color: var(--danger);
 }
 
 /* ---------------- WhatsApp Float ---------------- */
@@ -378,7 +378,7 @@
   z-index: 9999;
   width: 0%;
   height: 2px;
-  background: linear-gradient(90deg, var(--accent), #ff8a2b);
+  background: var(--accent);
   transition: width 80ms linear;
 }
 

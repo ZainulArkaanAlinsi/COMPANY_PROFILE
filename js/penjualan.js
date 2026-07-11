@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
    PC.cart.init();
    PC.catalog.init();
    PC.simulator.init();
-   PC.forms.initContactPenjualan();
+   PC.forms.initContact();
    PC.nav.initCart();
    PC.nav.initMenu("#hamburger", "#nav-links", "active");
 

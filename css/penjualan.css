@@ -332,10 +332,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 1.5rem;
   color: var(--text-muted);
   font-size: 0.85rem;
+}
+
+.catalog__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
 }
 
 .catalog__bar select {
@@ -351,6 +358,21 @@
 .catalog__bar select:focus {
   outline: none;
   border-color: var(--accent);
+}
+
+/* Tombol "muat lebih banyak" — dipusatkan di bawah grid. */
+.catalog__more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+#catalog-more {
+  min-width: 260px;
+}
+
+#catalog-more[hidden] {
+  display: none;
 }
 
 /* ---------------- Kartu produk ---------------- */

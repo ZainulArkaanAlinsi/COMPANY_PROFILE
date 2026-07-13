@@ -147,6 +147,7 @@ function header() {
         </ul>
       </nav>
       <div class="header-actions">
+        <a class="header-cta header-cta--ghost" href="../penjualan.html#contact">Hubungi</a>
         <button class="cart-btn" id="cart-btn" type="button" aria-label="Buka daftar minat">
           <i class="ri-bookmark-line" aria-hidden="true"></i>
           <span class="cart-badge is-empty" id="cart-count">0</span>
@@ -396,7 +397,9 @@ function sitemap(PC) {
     entry(`${SITE}/`, "weekly", "1.0"),
     entry(`${SITE}/penjualan`, "weekly", "0.9"),
     entry(`${SITE}/about`, "monthly", "0.7"),
-    ...PC.cars.map((c) => entry(`${SITE}/mobil/${c.id}`, "weekly", "0.8")),
+    // Hanya unit kurasi yang punya halaman statis (SEO). Varian dilayani
+    // mobil/unit.html?id= (dirender klien) dan tidak dimasukkan sitemap.
+    ...PC.curated.map((c) => entry(`${SITE}/mobil/${c.id}`, "weekly", "0.8")),
   ];
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -413,20 +416,23 @@ async function main() {
   const PC = await loadData();
   await mkdir(OUT_DIR, { recursive: true });
 
-  /* Buang halaman unit yang mobilnya sudah dihapus dari data. */
-  const keep = new Set(PC.cars.map((c) => `${c.id}.html`));
+  /* Buang halaman unit kurasi yang mobilnya sudah dihapus dari data.
+     unit.html (template detail dinamis) di-whitelist agar tidak terhapus. */
+  const keep = new Set(PC.curated.map((c) => `${c.id}.html`));
+  keep.add("unit.html");
   const existing = await readdir(OUT_DIR).catch(() => []);
   const stale = existing.filter((f) => f.endsWith(".html") && !keep.has(f));
   await Promise.all(stale.map((f) => rm(resolve(OUT_DIR, f))));
 
   await Promise.all(
-    PC.cars.map((car) => writeFile(resolve(OUT_DIR, `${car.id}.html`), page(PC, car), "utf8"))
+    PC.curated.map((car) => writeFile(resolve(OUT_DIR, `${car.id}.html`), page(PC, car), "utf8"))
   );
   await writeFile(resolve(ROOT, "sitemap.xml"), sitemap(PC), "utf8");
 
-  console.log(`✓ ${PC.cars.length} halaman unit ditulis ke mobil/`);
+  console.log(`✓ ${PC.curated.length} halaman unit kurasi ditulis ke mobil/`);
+  console.log(`  (+ ${PC.variants.length} varian dilayani mobil/unit.html secara dinamis)`);
   if (stale.length) console.log(`✓ ${stale.length} halaman usang dihapus: ${stale.join(", ")}`);
-  console.log(`✓ sitemap.xml diperbarui (${PC.cars.length + 3} URL)`);
+  console.log(`✓ sitemap.xml diperbarui (${PC.curated.length + 3} URL)`);
 }
 
 main().catch((err) => {

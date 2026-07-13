@@ -158,7 +158,7 @@ img {
 
 .nav_list {
     display: flex;
-    gap: 1.5rem;
+    gap: 0.25rem;
     align-items: center;
 }
 
@@ -169,7 +169,7 @@ img {
         right: -100%;
         width: 70%;
         height: 100%;
-        padding: 2rem;
+        padding: 2rem 1.25rem;
         background-color: var(--surface);
         border-left: 1px solid var(--line);
         flex-direction: column;
@@ -181,47 +181,42 @@ img {
 
     .nav_list {
         flex-direction: column;
+        align-items: stretch;
         width: 100%;
+        gap: 0.25rem;
+    }
+
+    .nav_link {
+        display: block;
+        padding: 0.85rem 1rem;
     }
 }
 
 .nav_item {
-    margin-bottom: var(--mb-4);
+    margin-bottom: 0;
 }
 
+/* Link nav bergaya "pill" — konsisten dengan css/chrome.css (.site-header). */
 .nav_link {
-    position: relative;
-    font-size: 0.8rem;
-    letter-spacing: 0.16em;
+    display: inline-block;
+    padding: 0.5rem 0.95rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--text-muted);
-    transition: color var(--t-base) var(--ease);
+    border-radius: 100px;
+    transition: color var(--t-base) var(--ease), background-color var(--t-base) var(--ease);
 }
 
 .nav_link:hover {
     color: var(--text);
-}
-
-.nav_link::after {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 1.5px;
-    left: 0;
-    bottom: -6px;
-    background-color: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--t-base) var(--ease);
-}
-
-.nav_link:hover::after,
-.nav_link.active::after {
-    transform: scaleX(1);
+    background-color: rgba(255, 255, 255, 0.06);
 }
 
 .nav_link.active {
-    color: var(--text);
+    color: var(--accent-soft);
+    background-color: rgba(var(--accent-rgb), 0.14);
 }
 
 .nav_logo {
@@ -544,7 +539,7 @@ img {
 
     .nav_list {
         display: flex;
-        gap: 2rem;
+        gap: 0.25rem;
     }
 
     .nav_item {

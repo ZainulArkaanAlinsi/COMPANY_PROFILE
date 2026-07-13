@@ -311,42 +311,27 @@ nav {
   /* di desktop nav_link diposisikan ulang (lihat aturan desktop) */
 }
 
+/* Link nav bergaya "pill" — konsisten dengan css/chrome.css (.site-header). */
 .nav_link a {
-  position: relative;
   display: inline-block;
-  padding: 0.5rem 0.9rem;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
+  padding: 0.5rem 0.95rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-muted);
-  transition: color var(--t-base) var(--ease);
-}
-
-.nav_link a::after {
-  content: "";
-  position: absolute;
-  left: 0.9rem;
-  right: 0.9rem;
-  bottom: 0.1rem;
-  height: 1.5px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--t-base) var(--ease);
+  border-radius: 100px;
+  transition: color var(--t-base) var(--ease), background-color var(--t-base) var(--ease);
 }
 
 .nav_link a:hover {
   color: var(--text);
-}
-
-.nav_link a:hover::after,
-.nav_link a.is-active::after {
-  transform: scaleX(1);
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 .nav_link a.is-active {
-  color: var(--text);
+  color: var(--accent-soft);
+  background-color: rgba(var(--accent-rgb), 0.14);
 }
 
 .nav_btn .btn {

@@ -68,6 +68,7 @@
         </ul>
       </nav>
       <div class="header-actions">
+        <a class="header-cta header-cta--ghost" href="#contact">Hubungi</a>
         <button
           class="cart-btn"
           id="cart-btn"
@@ -109,7 +110,7 @@
             <i class="ri-medal-line" aria-hidden="true"></i>
             <div>
               <!-- data-count-cars: jumlahnya disetel dari PC.cars saat runtime -->
-              <strong data-count-cars data-count="29" data-suffix=" Unit Kurasi">29 Unit Kurasi</strong>
+              <strong data-count-cars data-count="29" data-suffix=" Unit Tersedia">29 Unit Tersedia</strong>
               <span>Hypercar, sport, SUV &amp; klasik</span>
             </div>
           </div>
@@ -158,7 +159,19 @@
       <div class="catalog__chips" id="catalog-chips"></div>
       <div class="catalog__bar">
         <span id="catalog-count" aria-live="polite">Memuat unit…</span>
-        <div>
+        <div class="catalog__filters">
+          <label class="visually-hidden" for="catalog-brand">Merek</label>
+          <select id="catalog-brand" aria-label="Filter merek">
+            <!-- opsi merek diisi js/components/catalog.js -->
+          </select>
+          <label class="visually-hidden" for="catalog-price">Rentang harga</label>
+          <select id="catalog-price" aria-label="Filter rentang harga">
+            <option value="all">Semua harga</option>
+            <option value="lt1">&lt; Rp 1 M</option>
+            <option value="1-5">Rp 1 – 5 M</option>
+            <option value="5-15">Rp 5 – 15 M</option>
+            <option value="gt15">&gt; Rp 15 M</option>
+          </select>
           <label class="visually-hidden" for="catalog-sort">Urutkan</label>
           <select id="catalog-sort">
             <option value="featured">Urutkan: Unggulan</option>
@@ -169,6 +182,11 @@
         </div>
       </div>
       <div class="product-grid" id="product-grid"></div>
+      <div class="catalog__more-wrap">
+        <button class="btn-ghost" id="catalog-more" type="button" hidden>
+          Muat lebih banyak
+        </button>
+      </div>
     </section>
     <!-- Simulasi cicilan (js/components/simulator.js) -->
     <section class="simulator" id="simulasi">

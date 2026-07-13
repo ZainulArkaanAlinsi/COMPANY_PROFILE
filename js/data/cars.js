@@ -27,7 +27,12 @@ PC.categoryIntro = {
   classic: "Unit klasik dinilai dari orisinalitas, riwayat, dan kondisi. Dirawat dengan benar, mobil di kelas ini cenderung mempertahankan bahkan menaikkan nilainya.",
 };
 
-PC.cars = [
+/* ------------------------------------------------------------------
+   PC.curated — unit kurasi asli. Masing-masing punya foto transparan
+   sendiri, halaman detail STATIS (mobil/<id>.html), dan bisa "featured".
+   Perluasan katalog (PC.variants di bawah) dibangun dari daftar ini.
+   ------------------------------------------------------------------ */
+PC.curated = [
   {
     id: "bugatti-chiron-pur-sport", name: "Bugatti Chiron Pur Sport",
     brand: "Bugatti", category: "hypercar", price: 56000000000, year: 2023,
@@ -235,12 +240,90 @@ PC.cars = [
   },
 ];
 
+/* ------------------------------------------------------------------
+   PC.variants — perluasan katalog. Dari tiap model kurasi dibuat sejumlah
+   varian tahun & trim yang masuk akal (harga & tenaga divariasikan),
+   memakai ulang foto model tsb — persis seperti dealer memajang beberapa
+   trim/tahun dengan satu foto pers. Varian TIDAK punya halaman statis;
+   mereka dilayani halaman detail dinamis mobil/unit.html?id=<id>.
+
+   Catatan urutan: cars.js dimuat SEBELUM js/lib/format.js, jadi jangan
+   pakai PC.format di sini — slug dibuat lokal.
+   ------------------------------------------------------------------ */
+function pcSlug(s) {
+  return String(s || "").toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+PC.variants = (function () {
+  // Trim per kategori — label yang wajar untuk kelasnya.
+  var TRIMS = {
+    hypercar: ["", "Edizione", "Track Pack", "Carbon Series"],
+    sport: ["", "Competition", "S Line", "Black Edition"],
+    suv: ["", "AWD", "Signature", "Off-Road"],
+    family: ["", "Executive", "Luxury Line"],
+    classic: ["Restored", "Original", "Matching Numbers"],
+  };
+  var YEARS_BACK = 4; // jumlah tahun ke belakang per model
+  var out = [];
+
+  PC.curated.forEach(function (base) {
+    var trims = TRIMS[base.category] || [""];
+    var baseName = base.name.replace(/\s+\d{4}$/, ""); // buang tahun di akhir nama (mis. "... 2024")
+
+    for (var dy = 1; dy <= YEARS_BACK; dy++) {
+      var year = base.year - dy;
+      if (year < 1960) break;
+
+      trims.forEach(function (trim, ti) {
+        // Hindari nama konyol bila base sudah memuat trim tsb.
+        if (trim && baseName.indexOf(trim) !== -1) return;
+
+        var name = baseName + (trim ? " " + trim : "");
+        var id = base.id + "-" + year + (trim ? "-" + pcSlug(trim) : "");
+
+        // Harga: turun ~7%/tahun, naik sesuai tingkat trim. Bulatkan ke 10 juta.
+        var price = Math.round(base.price * Math.pow(0.93, dy) * (1 + ti * 0.06) / 1e7) * 1e7;
+        if (price < 1e8) price = 1e8; // lantai Rp 100 jt agar tetap wajar
+
+        var power = Math.max(80, base.specs.power + ti * 15 - dy * 5);
+
+        out.push({
+          id: id,
+          name: name,
+          brand: base.brand,
+          category: base.category,
+          price: price,
+          year: year,
+          image: base.image,
+          badge: trim || base.badge,
+          featured: false,
+          variant: true,
+          baseId: base.id,
+          tagline: base.tagline,
+          specs: {
+            topSpeed: base.specs.topSpeed,
+            power: power,
+            seats: base.specs.seats,
+            transmission: base.specs.transmission,
+          },
+        });
+      });
+    }
+  });
+
+  return out;
+})();
+
+/* Katalog penuh = kurasi + varian. Dipakai grid katalog, keranjang, getCar.
+   Halaman statis & "featured" tetap hanya dari PC.curated. */
+PC.cars = PC.curated.concat(PC.variants);
+
 /* Helper akses cepat */
 PC.getCar = function (id) {
   return PC.cars.find(function (c) { return c.id === id; }) || null;
 };
 PC.featuredCars = function () {
-  return PC.cars.filter(function (c) { return c.featured; });
+  return PC.curated.filter(function (c) { return c.featured; });
 };
 
 /** Label kategori manusiawi ("hypercar" -> "Hypercar"). */
@@ -255,7 +338,7 @@ PC.categoryNoun = function (id) {
   return cat ? cat.noun : id;
 };
 
-/** Daftar merek unik, urut abjad. */
+/** Daftar merek unik, urut abjad (atas seluruh katalog). */
 PC.brands = function () {
   return PC.cars
     .map(function (c) { return c.brand; })
@@ -263,16 +346,22 @@ PC.brands = function () {
     .sort();
 };
 
-/** Unit serupa: sekategori dulu, lalu isi sisa slot dari kategori lain. */
+/** Unit serupa — diambil dari unit KURASI saja agar selalu punya halaman
+    detail asli (statis) yang bisa ditautkan. */
 PC.relatedCars = function (car, limit) {
   limit = limit || 3;
-  var others = PC.cars.filter(function (c) { return c.id !== car.id; });
+  var baseId = car.baseId || car.id;
+  var others = PC.curated.filter(function (c) { return c.id !== car.id && c.id !== baseId; });
   var same = others.filter(function (c) { return c.category === car.category; });
   var rest = others.filter(function (c) { return c.category !== car.category; });
   return same.concat(rest).slice(0, limit);
 };
 
-/** URL halaman detail unit, relatif terhadap root situs. */
+/** URL halaman detail unit, relatif terhadap root situs.
+    Unit kurasi → halaman statis (SEO); varian → detail dinamis. */
 PC.carUrl = function (car) {
-  return "mobil/" + (typeof car === "string" ? car : car.id) + ".html";
+  var obj = typeof car === "string" ? PC.getCar(car) : car;
+  if (obj && obj.variant) return "mobil/unit.html?id=" + encodeURIComponent(obj.id);
+  var id = obj ? obj.id : car;
+  return "mobil/" + id + ".html";
 };

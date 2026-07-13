@@ -10,6 +10,32 @@
   padding: 0 var(--gutter) clamp(3rem, 6vw, 6rem);
 }
 
+/* ---------------- Unit tidak ditemukan (detail dinamis) ---------------- */
+.unit-notfound {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+  padding: clamp(3rem, 8vw, 6rem) 0;
+}
+
+.unit-notfound h1 {
+  font-family: var(--display-font);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-head);
+  color: var(--text);
+}
+
+.unit-notfound p {
+  max-width: 48ch;
+  color: var(--text-muted);
+}
+
+.unit-notfound .btn-solid {
+  text-decoration: none;
+}
+
 /* ---------------- Breadcrumb ---------------- */
 .crumbs {
   display: flex;

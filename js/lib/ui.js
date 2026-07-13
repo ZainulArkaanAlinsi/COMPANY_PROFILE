@@ -1,6 +1,7 @@
 /* ============================================================
-   PC.ui — helper DOM, toast, modal. Lihat SDD.md §5.4
+   PC.ui — helper DOM, toast, reveal & counter. Lihat SDD.md §5.4
    Render aman (textContent / node) untuk cegah XSS.
+   Butuh PC.format (dimuat lebih dulu) untuk memformat angka counter.
    ============================================================ */
 window.PC = window.PC || {};
 
@@ -61,54 +62,6 @@ PC.ui = (function () {
     }
   }
 
-  /* ---------------- Modal ---------------- */
-  var modalRoot = null, lastFocus = null;
-  function buildModalRoot() {
-    modalRoot = el("div", { class: "modal", "aria-hidden": "true" }, [
-      el("div", { class: "modal__overlay", "data-close": "true" }),
-      el("div", { class: "modal__dialog", role: "dialog", "aria-modal": "true", tabindex: "-1" }),
-    ]);
-    document.body.appendChild(modalRoot);
-    modalRoot.addEventListener("click", function (e) {
-      if (e.target.getAttribute("data-close") != null) close();
-    });
-    document.addEventListener("keydown", function (e) {
-      if (!isOpen()) return;
-      if (e.key === "Escape") close();
-      if (e.key === "Tab") trap(e);
-    });
-  }
-  function isOpen() { return modalRoot && modalRoot.classList.contains("is-open"); }
-  function dialog() { return $(".modal__dialog", modalRoot); }
-  function trap(e) {
-    var f = $$('a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog());
-    if (!f.length) return;
-    var first = f[0], last = f[f.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  }
-  function open(node) {
-    if (!modalRoot) buildModalRoot();
-    lastFocus = document.activeElement;
-    var d = dialog();
-    d.innerHTML = "";
-    var closeBtn = el("button", { class: "modal__close", "aria-label": "Tutup", "data-close": "true" },
-      [el("i", { class: "ri-close-line", "aria-hidden": "true" })]);
-    d.appendChild(closeBtn);
-    d.appendChild(node);
-    modalRoot.classList.add("is-open");
-    modalRoot.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-    requestAnimationFrame(function () { d.focus(); });
-  }
-  function close() {
-    if (!isOpen()) return;
-    modalRoot.classList.remove("is-open");
-    modalRoot.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-
   /* ---------------- Scroll progress bar ---------------- */
   function initScrollProgress() {
     var bar = document.getElementById("scroll-progress");
@@ -126,10 +79,28 @@ PC.ui = (function () {
   }
 
   /* ---------------- Scroll reveal observer ---------------- */
+  function prefersReducedMotion() {
+    return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }
+
+  /* [data-stagger="90"] menjadikan setiap anak langsung sebuah .reveal dengan
+     transition-delay bertingkat, sehingga daftar/grid masuk beruntun. */
+  function applyStagger() {
+    $$("[data-stagger]").forEach(function (group) {
+      var step = parseInt(group.getAttribute("data-stagger"), 10) || 80;
+      Array.prototype.slice.call(group.children).forEach(function (child, i) {
+        child.classList.add("reveal");
+        child.style.transitionDelay = i * step + "ms";
+      });
+    });
+  }
+
   function initReveal(selector) {
     selector = selector || ".reveal";
+    applyStagger();
+    var nodes = $$(selector);
     if (typeof IntersectionObserver === "undefined") {
-      $$(selector).forEach(function (el) { el.classList.add("visible"); });
+      nodes.forEach(function (el) { el.classList.add("visible"); });
       return;
     }
     var observer = new IntersectionObserver(function (entries) {
@@ -140,7 +111,64 @@ PC.ui = (function () {
         }
       });
     }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
-    $$(selector).forEach(function (el) { observer.observe(el); });
+    nodes.forEach(function (el) {
+      var delay = el.getAttribute("data-reveal-delay");
+      if (delay) el.style.transitionDelay = delay + "ms";
+      observer.observe(el);
+    });
+  }
+
+  /* ---------------- Count-up statistik ---------------- */
+  /* <strong data-count="29" data-suffix="+">29+</strong>
+     Teks final tetap ditulis di HTML (aman untuk crawler & tanpa JS);
+     JS hanya menghitungnya naik dari nol saat elemen terlihat. */
+  function paintCount(node, value) {
+    var decimals = parseInt(node.getAttribute("data-decimals"), 10) || 0;
+    var shown = decimals
+      ? value.toFixed(decimals).replace(".", ",")
+      : PC.format.number(value);
+    node.textContent = (node.getAttribute("data-prefix") || "") + shown + (node.getAttribute("data-suffix") || "");
+  }
+
+  function runCount(node) {
+    var target = parseFloat(node.getAttribute("data-count"));
+    if (isNaN(target)) return;
+    if (prefersReducedMotion()) { paintCount(node, target); return; }
+    var duration = parseInt(node.getAttribute("data-duration"), 10) || 1400;
+    var start = performance.now();
+    (function frame(now) {
+      var p = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+      paintCount(node, eased * target);
+      if (p < 1) requestAnimationFrame(frame);
+    })(start);
+  }
+
+  function initCounters(selector) {
+    var nodes = $$(selector || "[data-count]");
+    if (!nodes.length) return;
+    if (typeof IntersectionObserver === "undefined") {
+      nodes.forEach(function (n) { paintCount(n, parseFloat(n.getAttribute("data-count")) || 0); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(entry.target);
+        runCount(entry.target);
+      });
+    }, { threshold: 0.6 });
+    nodes.forEach(function (n) {
+      paintCount(n, 0);
+      observer.observe(n);
+    });
+  }
+
+  /** Setel target hitung sekaligus teks fallback-nya (mis. jumlah unit live). */
+  function setCount(node, value) {
+    if (!node) return;
+    node.setAttribute("data-count", String(value));
+    paintCount(node, value);
   }
 
   /* ---------------- Auto tahun copyright ---------------- */
@@ -153,5 +181,13 @@ PC.ui = (function () {
   }
   document.addEventListener("DOMContentLoaded", initYear);
 
-  return { $: $, $$: $$, el: el, toast: toast, modal: { open: open, close: close, isOpen: isOpen }, initReveal: initReveal, initScrollProgress: initScrollProgress, initYear: initYear };
+  return {
+    $: $, $$: $$, el: el, toast: toast,
+    initReveal: initReveal,
+    initScrollProgress: initScrollProgress,
+    initCounters: initCounters,
+    setCount: setCount,
+    initYear: initYear,
+    prefersReducedMotion: prefersReducedMotion,
+  };
 })();

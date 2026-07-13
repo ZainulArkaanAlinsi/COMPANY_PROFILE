@@ -1,0 +1,216 @@
+/* ============================================================
+   PREMIUM CARS — Section Kontak (dipakai bersama)
+   Satu markup & satu gaya untuk about.html dan penjualan.html.
+   Token di css/tokens.css. Tombol/kicker di css/components.css.
+   ============================================================ */
+
+.contact-v2 {
+  border-top: 1px solid var(--line-soft);
+  background:
+    radial-gradient(80% 60% at 0% 0%, rgba(var(--accent-rgb), 0.07), transparent 60%),
+    var(--bg);
+}
+
+.contact-v2__inner {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: start;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: clamp(4rem, 8vw, 7rem) var(--gutter);
+}
+
+@media (min-width: 900px) {
+  .contact-v2__inner {
+    grid-template-columns: 1.05fr 1fr;
+  }
+}
+
+/* ---------------- Kolom kiri: ajakan + kanal ---------------- */
+.contact-v2__kicker {
+  margin-bottom: 1.25rem;
+}
+
+.contact-v2__title {
+  font-family: var(--display-font);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: var(--tracking-head);
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.contact-v2__lead {
+  max-width: 46ch;
+  margin-top: 1.25rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+.contact-channels {
+  display: grid;
+  gap: 1px;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  list-style: none;
+  padding: 0;
+  background-color: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.contact-channel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background-color: var(--surface);
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a.contact-channel:hover {
+  background-color: var(--surface-2);
+}
+
+.contact-channel__icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  font-size: 1.25rem;
+  color: var(--accent);
+  background-color: rgba(var(--accent-rgb), 0.1);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
+  border-radius: var(--radius);
+}
+
+.contact-channel__label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.contact-channel__value {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--mono-font);
+  font-size: 0.95rem;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.contact-channel__go {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  transition: transform var(--t-base) var(--ease), color var(--t-base) var(--ease);
+}
+
+a.contact-channel:hover .contact-channel__go {
+  color: var(--accent);
+  transform: translate(3px, -3px);
+}
+
+a.contact-channel:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* Placeholder yang WAJIB diganti sebelum publikasi — sengaja mencolok agar
+   tidak lolos ke produksi tanpa disadari. */
+.needs-copy {
+  color: var(--accent-soft);
+  background-color: rgba(var(--accent-rgb), 0.1);
+  border: 1px dashed rgba(var(--accent-rgb), 0.55);
+  border-radius: var(--radius-sm);
+  padding: 0 0.35rem;
+}
+
+/* ---------------- Kolom kanan: form ---------------- */
+.contact-form {
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.contact-form__title {
+  font-family: var(--display-font);
+  font-size: 1.15rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.contact-form__note {
+  margin-top: -0.35rem;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+.field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.field > label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.contact-input {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  font-family: var(--body-font);
+  font-size: 0.95rem;
+  color: var(--text);
+  background-color: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  outline: none;
+  transition: border-color var(--t-base) var(--ease), background-color var(--t-base) var(--ease);
+}
+
+.contact-input::placeholder {
+  color: var(--text-dim);
+}
+
+.contact-input:focus {
+  border-color: var(--accent);
+  background-color: var(--surface-2);
+}
+
+textarea.contact-input {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.contact-form .btn-solid {
+  width: 100%;
+}
+
+.contact-form__alt {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+.contact-form__alt a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.contact-form__alt a:hover {
+  text-decoration: underline;
+}

@@ -1,7 +1,7 @@
 /* ============================================================
    PREMIUM CARS — Home (index.html)
-   "Dark Editorial Garage" — disiplin grid, hairline, tipografi
-   raksasa, aksen amber tunggal. Token di tokens.css.
+   Tema "Ink & Cognac" — disiplin grid, hairline, tipografi
+   editorial, aksen cognac tunggal. Token di tokens.css.
    ============================================================ */
 
 /* ---------------- Reset & base ---------------- */
@@ -66,7 +66,7 @@ h2,
 h3,
 h4 {
   font-family: var(--display-font);
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
   line-height: 0.98;
   letter-spacing: var(--tracking-head);
@@ -87,6 +87,51 @@ h4 {
 .download,
 .news {
   border-top: 1px solid var(--line-soft);
+}
+
+/* ---------------- Band statistik ---------------- */
+.stats_band {
+  background-color: var(--surface);
+  border-top: 1px solid var(--line-soft);
+}
+
+.stats_band__inner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: clamp(2.5rem, 4vw, 4rem) var(--gutter);
+}
+
+.stats_band__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.stats_band__item strong {
+  display: block;
+  font-family: var(--display-font);
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 700;
+  line-height: 0.9;
+  color: var(--accent);
+}
+
+.stats_band__item span {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@media (max-width: 720px) {
+  .stats_band__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1.5rem;
+  }
 }
 
 .section-head {
@@ -172,7 +217,7 @@ h4 {
   font-weight: 600;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--bg);
+  color: var(--on-accent);
   background-color: var(--accent);
   border: 1px solid var(--accent);
   border-radius: var(--radius);
@@ -185,6 +230,19 @@ h4 {
   background-color: var(--accent-press);
   border-color: var(--accent-press);
   transform: translateY(var(--hover-lift));
+}
+
+/* Varian sekunder — dipakai kartu featured & kontrol swiper cicilan. */
+.btn--ghost {
+  color: var(--text);
+  background-color: transparent;
+  border-color: var(--line);
+}
+
+.btn--ghost:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background-color: transparent;
 }
 
 .btn:active {
@@ -208,7 +266,7 @@ nav {
   gap: 1.5rem;
   height: 72px;
   padding-inline: max(var(--gutter), calc((100% - var(--max-width)) / 2));
-  background-color: rgba(11, 11, 12, 0.78);
+  background-color: rgba(15, 18, 22, 0.78);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line-soft);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
@@ -223,7 +281,7 @@ nav {
 
 .nav-logo a {
   font-family: var(--display-font);
-  font-weight: 900;
+  font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -253,6 +311,8 @@ nav {
   /* di desktop nav_link diposisikan ulang (lihat aturan desktop) */
 }
 
+/* Link nav: garis-bawah cognac tumbuh dari tengah — konsisten dengan
+   css/chrome.css (.site-header). */
 .nav_link a {
   position: relative;
   display: inline-block;
@@ -270,11 +330,12 @@ nav {
   position: absolute;
   left: 0.9rem;
   right: 0.9rem;
-  bottom: 0.1rem;
-  height: 1.5px;
+  bottom: 0.05rem;
+  height: 2px;
+  border-radius: 2px;
   background: var(--accent);
   transform: scaleX(0);
-  transform-origin: left;
+  transform-origin: center;
   transition: transform var(--t-base) var(--ease);
 }
 
@@ -324,8 +385,8 @@ nav {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(135deg, rgba(11, 11, 12, 0.82) 0%, rgba(11, 11, 12, 0.45) 50%, transparent 100%),
-    linear-gradient(to top, rgba(11, 11, 12, 0.6) 0%, transparent 40%);
+  background: linear-gradient(135deg, rgba(15, 18, 22, 0.82) 0%, rgba(15, 18, 22, 0.45) 50%, transparent 100%),
+    linear-gradient(to top, rgba(15, 18, 22, 0.6) 0%, transparent 40%);
   pointer-events: none;
 }
 
@@ -435,7 +496,7 @@ nav {
   }
 
   .hero-v2__overlay {
-    background: linear-gradient(to top, rgba(11, 11, 12, 0.88) 0%, rgba(11, 11, 12, 0.3) 60%, transparent 100%);
+    background: linear-gradient(to top, rgba(15, 18, 22, 0.88) 0%, rgba(15, 18, 22, 0.3) 60%, transparent 100%);
   }
 
   .hero-v2__body {
@@ -503,7 +564,7 @@ nav {
   align-items: flex-end;
   justify-content: space-between;
   padding: 1.25rem;
-  background-image: linear-gradient(to top, rgba(11, 11, 12, 0.92), transparent);
+  background-image: linear-gradient(to top, rgba(15, 18, 22, 0.92), transparent);
 }
 
 .range_details h4 {
@@ -518,7 +579,7 @@ nav {
   height: 42px;
   font-size: 1.2rem;
   color: var(--text);
-  background-color: rgba(11, 11, 12, 0.5);
+  background-color: rgba(15, 18, 22, 0.5);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   transition: var(--transition);
@@ -552,6 +613,7 @@ nav {
 .featured_card:hover {
   border-color: rgba(var(--accent-rgb), 0.2);
   background-color: var(--surface-2);
+  transform: translateY(var(--hover-lift));
 }
 
 .featured_card__image {
@@ -674,16 +736,8 @@ nav {
   font-size: 0.7rem;
 }
 
-.featured_card__actions .btn:first-child {
-  color: var(--text);
-  background-color: transparent;
-  border-color: var(--line);
-}
-
-.featured_card__actions .btn:first-child:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  background-color: transparent;
+.featured_card__actions .btn {
+  text-decoration: none;
 }
 
 @media (max-width: 991px) {
@@ -882,16 +936,8 @@ nav {
   background: var(--accent);
 }
 
-.select_btns .btn:first-child {
-  color: var(--text);
-  background-color: transparent;
-  border-color: var(--line);
-}
-
-.select_btns .btn:first-child:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  background-color: transparent;
+.select_btns .btn {
+  text-decoration: none;
 }
 
 /* ---------------- Stories / jurnal ---------------- */
@@ -947,7 +993,7 @@ nav {
 .story_date span {
   font-family: var(--display-font);
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--accent);
   line-height: 1;
 }
@@ -1122,6 +1168,9 @@ nav {
 
 .news_container input {
   flex: 1;
+  /* min-width:0 — tanpa ini input menolak menyusut di bawah lebar bawaannya,
+     dan tombol "Langganan" terpotong keluar form di layar ponsel. */
+  min-width: 0;
   padding: 1rem 1.25rem;
   background: transparent;
   border: none;
@@ -1137,6 +1186,8 @@ nav {
 
 .news_container .btn {
   border-radius: 0;
+  flex-shrink: 0;
+  padding-inline: clamp(1rem, 5vw, 36px);
 }
 
 /* ---------------- Footer ---------------- */
@@ -1153,7 +1204,7 @@ footer {
 
 .footer_wordmark {
   font-family: var(--display-font);
-  font-weight: 900;
+  font-weight: 700;
   font-size: clamp(2.5rem, 8vw, 5rem);
   letter-spacing: var(--tracking-head);
   text-transform: uppercase;

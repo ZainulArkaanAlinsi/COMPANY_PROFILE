@@ -1,13 +1,25 @@
 /* ============================================================
-   PC.catalog — render grid, pencarian, filter kategori, sort,
-   modal detail. Lihat SDD.md §5.5 & §6.2
+   PC.catalog — grid katalog: pencarian, filter (kategori, merek,
+   rentang harga), sort, dan pagination "muat lebih banyak".
+   Katalog kini ratusan unit (kurasi + varian), jadi grid dirender
+   bertahap 24 unit/halaman agar tetap ringan. Lihat SDD §5.5 & §6.2
    ============================================================ */
 window.PC = window.PC || {};
 
 PC.catalog = (function () {
   var $ = PC.ui.$, el = PC.ui.el, fmt = PC.format;
-  var view = { q: "", category: "all", sort: "featured" };
+  var PAGE_SIZE = 24;
+  var view = { q: "", category: "all", brand: "all", price: "all", sort: "featured", page: 1 };
   var refs = {};
+
+  // Rentang harga (miliar Rupiah) untuk dropdown filter.
+  var PRICE_BUCKETS = {
+    all: null,
+    "lt1": [0, 1e9],
+    "1-5": [1e9, 5e9],
+    "5-15": [5e9, 15e9],
+    "gt15": [15e9, Infinity],
+  };
 
   function specChips(car) {
     var s = car.specs;
@@ -17,26 +29,24 @@ PC.catalog = (function () {
   function card(car) {
     var media = el("div", { class: "product-media" }, [
       el("img", {
-        src: car.image, alt: car.name, loading: "lazy",
+        src: PC.asset(car.image), alt: car.name, loading: "lazy",
         onerror: function () { this.style.visibility = "hidden"; },
       }),
     ]);
-    var node = el("article", { class: "product", "data-id": car.id, tabindex: "0" }, [
+    /* Judul adalah tautan asli (bisa dirayapi & dibuka di tab baru); pseudo-
+       element-nya melebar ke seluruh kartu agar area kliknya tetap penuh. */
+    var link = el("a", { class: "product-link", href: PC.asset(PC.carUrl(car)) }, [car.name]);
+    return el("article", { class: "product", "data-id": car.id }, [
       el("span", { class: "product-badge" }, [car.badge || car.brand]),
       media,
-      el("h3", {}, [car.name]),
+      el("h3", {}, [link]),
       el("p", { class: "product-specs" }, [specChips(car)]),
       el("p", { class: "product-price" }, [fmt.rupiah(car.price)]),
       el("div", { class: "product-actions" }, [
-        el("button", { class: "btn-ghost", type: "button", onclick: function (e) { e.stopPropagation(); openDetail(car); } }, ["Detail"]),
-        el("button", { class: "btn-solid", type: "button", onclick: function (e) { e.stopPropagation(); buy(car); } }, ["Minati"]),
+        el("a", { class: "btn-ghost", href: PC.asset(PC.carUrl(car)) }, ["Detail"]),
+        el("button", { class: "btn-solid", type: "button", onclick: function () { buy(car); } }, ["Minati"]),
       ]),
     ]);
-    node.addEventListener("click", function () { openDetail(car); });
-    node.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") openDetail(car);
-    });
-    return node;
   }
 
   function buy(car) {
@@ -46,38 +56,62 @@ PC.catalog = (function () {
 
   function filtered() {
     var q = view.q.trim().toLowerCase();
+    var bucket = PRICE_BUCKETS[view.price];
     var list = PC.cars.filter(function (c) {
       var okCat = view.category === "all" || c.category === view.category;
+      var okBrand = view.brand === "all" || c.brand === view.brand;
+      var okPrice = !bucket || (c.price >= bucket[0] && c.price < bucket[1]);
       var okQ = !q || (c.name + " " + c.brand + " " + c.badge).toLowerCase().indexOf(q) >= 0;
-      return okCat && okQ;
+      return okCat && okBrand && okPrice && okQ;
     });
     if (view.sort === "price-asc") list.sort(function (a, b) { return a.price - b.price; });
     else if (view.sort === "price-desc") list.sort(function (a, b) { return b.price - a.price; });
     else if (view.sort === "year-desc") list.sort(function (a, b) { return b.year - a.year; });
-    else list.sort(function (a, b) { return (b.featured ? 1 : 0) - (a.featured ? 1 : 0); });
+    // Default: unit kurasi & unggulan dulu, lalu sisanya.
+    else list.sort(function (a, b) {
+      return (b.featured ? 2 : b.variant ? 0 : 1) - (a.featured ? 2 : a.variant ? 0 : 1);
+    });
     return list;
   }
 
-  function renderGrid() {
-    var list = filtered();
+  /* Render bertahap. reset=true → bersihkan grid & mulai dari halaman 1;
+     reset=false → tambahkan (append) kartu halaman berikutnya. */
+  function render(reset) {
     var grid = refs.grid;
-    grid.innerHTML = "";
+    if (reset) { grid.innerHTML = ""; view.page = 1; }
+
+    var list = filtered();
+
     if (!list.length) {
+      grid.innerHTML = "";
       grid.appendChild(el("div", { class: "catalog-empty" }, [
         el("i", { class: "ri-search-eye-line", "aria-hidden": "true" }),
-        el("p", {}, ["Tidak ada unit yang cocok dengan pencarian Anda."]),
+        el("p", {}, ["Tidak ada unit yang cocok dengan filter Anda."]),
       ]));
-    } else {
-      var frag = document.createDocumentFragment();
-      list.forEach(function (c, i) {
-        var node = card(c);
-        node.style.animationDelay = (i * 0.05) + "s";
-        frag.appendChild(node);
-      });
-      grid.appendChild(frag);
+      if (refs.count) refs.count.textContent = "0 unit";
+      if (refs.more) refs.more.hidden = true;
+      return;
     }
-    if (refs.count) refs.count.textContent = "Menampilkan " + list.length + " unit";
+
+    var already = grid.querySelectorAll(".product").length;
+    var end = Math.min(view.page * PAGE_SIZE, list.length);
+    var frag = document.createDocumentFragment();
+    for (var i = already; i < end; i++) {
+      var node = card(list[i]);
+      node.style.animationDelay = ((i - already) * 0.03) + "s";
+      frag.appendChild(node);
+    }
+    grid.appendChild(frag);
+
+    if (refs.count) refs.count.textContent = "Menampilkan " + end + " dari " + list.length + " unit";
+    if (refs.more) {
+      refs.more.hidden = end >= list.length;
+      refs.more.textContent = "Muat lebih banyak (" + (list.length - end) + " lagi)";
+    }
   }
+
+  /* Perubahan filter apa pun → kembali ke halaman 1 & render ulang. */
+  function applyFilters() { render(true); }
 
   function renderChips() {
     refs.chips.innerHTML = "";
@@ -90,41 +124,17 @@ PC.catalog = (function () {
       btn.addEventListener("click", function () {
         view.category = cat.id;
         renderChips();
-        renderGrid();
+        applyFilters();
       });
       refs.chips.appendChild(btn);
     });
   }
 
-  /* ---------------- Detail modal ---------------- */
-  function specRow(label, value) {
-    return el("div", { class: "spec-row" }, [
-      el("span", { class: "spec-row__k" }, [label]),
-      el("span", { class: "spec-row__v" }, [value]),
-    ]);
-  }
-  function openDetail(car) {
-    var s = car.specs;
-    var content = el("div", { class: "detail" }, [
-      el("div", { class: "detail__media" }, [el("img", { src: car.image, alt: car.name })]),
-      el("div", { class: "detail__info" }, [
-        el("span", { class: "detail__brand" }, [car.brand + " · " + car.year]),
-        el("h2", { class: "detail__title" }, [car.name]),
-        el("p", { class: "detail__price" }, [fmt.rupiah(car.price)]),
-        el("div", { class: "detail__specs" }, [
-          specRow("Kecepatan maks", s.topSpeed + " km/h"),
-          specRow("Tenaga", s.power + " hp"),
-          specRow("Kapasitas", s.seats + " kursi"),
-          specRow("Transmisi", s.transmission),
-          specRow("Kategori", (PC.categories.find(function (c) { return c.id === car.category; }) || {}).label || car.category),
-        ]),
-        el("div", { class: "detail__actions" }, [
-          el("button", { class: "btn-solid", type: "button", onclick: function () { buy(car); PC.ui.modal.close(); } }, ["Tambah ke daftar minat"]),
-          el("button", { class: "btn-link", type: "button", onclick: function () { PC.ui.modal.close(); PC.simulator && PC.simulator.prefill(car); } }, ["Simulasi cicilan »"]),
-        ]),
-      ]),
-    ]);
-    PC.ui.modal.open(content);
+  function populateBrands() {
+    if (!refs.brand) return;
+    var opts = [el("option", { value: "all" }, ["Semua merek"])];
+    PC.brands().forEach(function (b) { opts.push(el("option", { value: b }, [b])); });
+    opts.forEach(function (o) { refs.brand.appendChild(o); });
   }
 
   function init() {
@@ -133,38 +143,46 @@ PC.catalog = (function () {
     refs.count = $("#catalog-count");
     refs.search = $("#catalog-search");
     refs.sort = $("#catalog-sort");
+    refs.brand = $("#catalog-brand");
+    refs.price = $("#catalog-price");
+    refs.more = $("#catalog-more");
     if (!refs.grid) return;
 
-    // filter awal dari query param (?cat=sport&q=bmw)
+    // filter awal dari query param (?cat=sport&q=bmw&brand=BMW)
     try {
       var params = new URLSearchParams(location.search);
       var cat = params.get("cat");
       if (cat && PC.categories.some(function (c) { return c.id === cat; })) view.category = cat;
       var q = params.get("q");
       if (q) { view.q = q; if (refs.search) refs.search.value = q; }
+      var brand = params.get("brand");
+      if (brand) view.brand = brand;
     } catch (e) { /* URLSearchParams tak didukung — abaikan */ }
 
     renderChips();
-    renderGrid();
+    populateBrands();
+    if (refs.brand) refs.brand.value = view.brand;
+    render(true);
 
     if (refs.search) {
       var t;
       refs.search.addEventListener("input", function () {
         clearTimeout(t);
-        t = setTimeout(function () { view.q = refs.search.value; renderGrid(); }, 200);
+        t = setTimeout(function () { view.q = refs.search.value; applyFilters(); }, 200);
       });
     }
-    if (refs.sort) {
-      refs.sort.addEventListener("change", function () { view.sort = refs.sort.value; renderGrid(); });
-    }
+    if (refs.sort) refs.sort.addEventListener("change", function () { view.sort = refs.sort.value; applyFilters(); });
+    if (refs.brand) refs.brand.addEventListener("change", function () { view.brand = refs.brand.value; applyFilters(); });
+    if (refs.price) refs.price.addEventListener("change", function () { view.price = refs.price.value; applyFilters(); });
+    if (refs.more) refs.more.addEventListener("click", function () { view.page++; render(false); });
   }
 
-  /** Render ulang chips + grid dari PC.cars terkini (mis. setelah data API). */
+  /** Render ulang dari PC.cars terkini (mis. setelah data API). */
   function refresh() {
     if (!refs.grid) return;
     renderChips();
-    renderGrid();
+    applyFilters();
   }
 
-  return { init: init, openDetail: openDetail, refresh: refresh };
+  return { init: init, refresh: refresh };
 })();

@@ -34,44 +34,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Validasi form kontak (butuh js/lib/ui.js + js/components/forms.js) */
   if (window.PC && PC.forms) {
-    PC.forms.initContactAbout();
+    PC.forms.initContact();
   }
 
-  /* Scroll reveal observer dan progress bar */
+  /* Scroll reveal, progress bar, dan count-up statistik */
   if (window.PC && PC.ui) {
+    /* Jumlah unit & kategori diambil dari data agar tak basi saat koleksi
+       bertambah. Kategori dikurangi satu: "Semua" bukan kategori. */
+    PC.ui.setCount(PC.ui.$("[data-count-cars]"), PC.cars.length);
+    PC.ui.setCount(PC.ui.$("[data-count-categories]"), PC.categories.length - 1);
+
     PC.ui.initReveal();
     PC.ui.initScrollProgress();
-  }
-
-  /* Count-up animation untuk statistik */
-  var stats = document.querySelectorAll('.stat strong');
-  if (stats.length && typeof IntersectionObserver !== 'undefined') {
-    var counted = false;
-    var obs = new IntersectionObserver(function (entries) {
-      if (counted) return;
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          counted = true;
-          stats.forEach(function (el) {
-            var raw = el.textContent.trim();
-            var suffix = raw.replace(/[\d.,]+/g, '');
-            var num = parseFloat(raw.replace(/[^\d.,]/g, '').replace(',', '.'));
-            if (isNaN(num)) return;
-            var duration = 1200;
-            var start = performance.now();
-            function frame(now) {
-              var p = Math.min((now - start) / duration, 1);
-              var eased = 1 - Math.pow(1 - p, 3);
-              var current = eased * num;
-              el.textContent = (num % 1 === 0 ? Math.round(current) : current.toFixed(1)) + suffix;
-              if (p < 1) requestAnimationFrame(frame);
-            }
-            requestAnimationFrame(frame);
-          });
-          obs.disconnect();
-        }
-      });
-    }, { threshold: 0.5 });
-    obs.observe(document.querySelector('.about_stats') || document.body);
+    PC.ui.initCounters();
   }
 });

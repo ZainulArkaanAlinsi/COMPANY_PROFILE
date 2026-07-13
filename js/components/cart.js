@@ -42,7 +42,7 @@ PC.cart = (function () {
     var car = item.car;
     var qtyVal = el("span", { class: "qty__val", "aria-live": "polite" }, [String(item.qty)]);
     return el("li", { class: "cart-item" }, [
-      el("div", { class: "cart-item__media" }, [el("img", { src: car.image, alt: car.name })]),
+      el("div", { class: "cart-item__media" }, [el("img", { src: PC.asset(car.image), alt: car.name })]),
       el("div", { class: "cart-item__body" }, [
         el("p", { class: "cart-item__name" }, [car.name]),
         el("p", { class: "cart-item__price" }, [fmt.rupiah(car.price)]),

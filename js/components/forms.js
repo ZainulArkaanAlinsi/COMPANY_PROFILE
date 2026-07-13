@@ -4,7 +4,7 @@
 window.PC = window.PC || {};
 
 PC.forms = (function () {
-  var $ = PC.ui.$, $$ = PC.ui.$$, el = PC.ui.el;
+  var $ = PC.ui.$, el = PC.ui.el;
   var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   function container(input) {
@@ -61,53 +61,35 @@ PC.forms = (function () {
     });
   }
 
-  /* ---------------- Kontak: Katalog (.submit-form) ---------------- */
-  function initContactPenjualan() {
-    var form = $(".submit-form form");
+  /* ---------------- Kontak (.contact-form) ----------------
+     Satu handler untuk about.html & penjualan.html: markup section kontak
+     kini identik (lihat css/contact.css). Field telepon opsional — hanya
+     divalidasi bila halamannya memang memuatnya. */
+  function initContact() {
+    var form = $(".contact-form");
     if (!form) return;
     var name = form.querySelector('input[type="text"]');
     var email = form.querySelector('input[type="email"]');
     var phone = form.querySelector('input[type="tel"]');
     var msg = form.querySelector("textarea");
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var ok = run([
+      var fields = [
         { input: name, type: "text", msg: "Nama wajib diisi." },
         { input: email, type: "email", msg: "Email tidak valid." },
-        { input: phone, type: "tel", msg: "Nomor telepon minimal 8 digit." },
-        { input: msg, type: "text", msg: "Pesan wajib diisi." },
-      ]);
-      if (!ok) return;
+      ];
+      if (phone) fields.push({ input: phone, type: "tel", msg: "Nomor telepon minimal 8 digit." });
+      fields.push({ input: msg, type: "text", msg: "Pesan wajib diisi." });
+
+      if (!run(fields)) return;
       PC.ui.toast("Pesan terkirim. Tim kami akan menghubungi Anda.", "success");
       form.reset();
     });
   }
 
-  /* ---------------- Kontak: About (.Contact_form) ---------------- */
-  function initContactAbout() {
-    var form = $(".Contact_form");
-    if (!form) return;
-    var inputs = $$(".Contact_input", form);
-    var name = inputs[0], email = inputs[1], msg = inputs[2];
-    var btn = form.querySelector(".Contact_button");
-    function submit(e) {
-      if (e) e.preventDefault();
-      var ok = run([
-        { input: name, type: "text", msg: "Nama wajib diisi." },
-        { input: email, type: "email", msg: "Email tidak valid." },
-        { input: msg, type: "text", msg: "Pesan wajib diisi." },
-      ]);
-      if (!ok) return;
-      PC.ui.toast("Pesan terkirim. Terima kasih!", "success");
-      form.reset();
-    }
-    form.addEventListener("submit", submit);
-    if (btn) btn.addEventListener("click", submit);
-  }
-
   return {
     initNewsletter: initNewsletter,
-    initContactPenjualan: initContactPenjualan,
-    initContactAbout: initContactAbout,
+    initContact: initContact,
   };
 })();

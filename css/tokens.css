@@ -1,35 +1,46 @@
 /* ============================================================
    PREMIUM CARS — Design Tokens (single source of truth)
-   Tema: "Dark Editorial Garage" (PRD.md §8.2–8.6)
-   Dipakai bersama oleh seluruh halaman: home, penjualan, about.
+   Tema: "Ink & Cognac" — ink biru-hitam hangat dengan aksen
+   cognac/tan (nuansa kulit jok mobil), bukan oranye neon.
+   Dipakai bersama oleh seluruh halaman: home, penjualan,
+   about, dan halaman detail unit.
    ============================================================ */
 
 :root {
-  /* --- Palet inti (dark premium, aksen tunggal) --- */
-  --bg: #0b0b0c;
-  /* latar utama (hampir hitam)            */
-  --surface: #141417;
+  /* --- Palet inti (ink hangat, aksen cognac tunggal) --- */
+  --bg: #0f1216;
+  /* latar utama (biru-hitam ink)          */
+  --surface: #171b20;
   /* permukaan kartu / section             */
-  --surface-2: #1c1c21;
+  --surface-2: #202630;
   /* hover / elevasi via warna (bukan shadow) */
-  --line: #2a2a30;
+  --line: #2b323b;
   /* garis hairline 1px (pemisah & border) */
-  --line-soft: #1f1f24;
+  --line-soft: #1d232b;
   /* hairline lebih redup (grid editorial) */
-  --text: #f2f2f0;
-  /* teks utama (off-white)                */
-  --text-muted: #9a9a93;
+  --text: #e8e6e1;
+  /* teks utama (putih hangat)             */
+  --text-muted: #9aa1aa;
   /* teks sekunder / caption               */
-  --text-dim: #6a6a64;
+  --text-dim: #667079;
   /* teks paling redup (index, meta)       */
-  --accent: #ff6a00;
-  /* AKSEN TUNGGAL (molten amber)          */
-  --accent-press: #e85d00;
+  --accent: #b0724a;
+  /* AKSEN TUNGGAL (cognac / tan kulit)    */
+  --accent-press: #9a6340;
   /* state aktif / ditekan                 */
-  --accent-rgb: 255, 106, 0;
-  /* untuk wash amber transparan        */
+  --accent-soft: #c48a60;
+  /* varian lebih terang untuk teks kecil di atas ink */
+  --accent-rgb: 176, 114, 74;
+  /* untuk wash cognac transparan          */
+  --on-accent: #17120c;
+  /* teks di atas bidang aksen (espresso)  */
 
-  /* --- Tipografi (kontras & elegan — PRD §8.4) --- */
+  /* --- Warna status (dipakai hemat) --- */
+  --danger: #d9534f;
+  --danger-soft: #e08a86;
+  --success: #4c9e78;
+
+  /* --- Tipografi (kontras & elegan, lebih kalem) --- */
   --display-font: "Oswald", sans-serif;
   /* headline condensed, otomotif */
   --body-font: "Inter", sans-serif;
@@ -46,16 +57,17 @@
   --gutter: clamp(1.25rem, 5vw, 4rem);
   /* padding tepi halaman responsif */
 
-  /* --- Skala tipografi editorial (clamp, basis 16px) — PRD §8.4 --- */
-  --fs-display: clamp(3rem, 8vw, 7rem);
-  /* angka/headline raksasa  */
-  --fs-h1: clamp(2.5rem, 6vw, 4.75rem);
-  --fs-h2: clamp(1.875rem, 4vw, 3rem);
+  /* --- Skala tipografi editorial (clamp, basis 16px) —
+         diturunkan dari versi sebelumnya agar tidak "berteriak". --- */
+  --fs-display: clamp(2.75rem, 6.5vw, 5.25rem);
+  /* angka/headline besar    */
+  --fs-h1: clamp(2.25rem, 5vw, 3.75rem);
+  --fs-h2: clamp(1.75rem, 3.4vw, 2.6rem);
   --fs-h3: clamp(1.2rem, 1.6vw, 1.5rem);
   --fs-kicker: 0.75rem;
   /* overline label          */
 
-  /* --- Skala spasi (basis 8px) — PRD §8.5 --- */
+  /* --- Skala spasi (basis 8px) --- */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -67,12 +79,12 @@
   --space-9: 96px;
   --space-10: 128px;
 
-  /* --- Radius (tajam & konsisten, maks 4px) --- */
-  --radius: 2px;
-  --radius-sm: 1px;
-  --radius-lg: 4px;
+  /* --- Radius (sedikit lebih lembut agar enak dilihat) --- */
+  --radius: 4px;
+  --radius-sm: 2px;
+  --radius-lg: 8px;
 
-  /* --- Motion (PRD §16 — transisi easing halus) --- */
+  /* --- Motion (transisi easing halus) --- */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   /* deselerasi premium       */
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
@@ -94,7 +106,7 @@
 
 /* Hormati prefers-reduced-motion di SATU tempat: dengan menetralkan token
    motion, seluruh transition & hover-lift di semua halaman ikut nonaktif
-   tanpa perlu guard per-selector (PRD §8.8 & §16 — aksesibilitas). */
+   tanpa perlu guard per-selector (aksesibilitas). */
 @media (prefers-reduced-motion: reduce) {
   :root {
     --ease: linear;

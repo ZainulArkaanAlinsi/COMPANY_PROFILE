@@ -26,20 +26,21 @@ const sources = [
 export default function HargaPasarPage() {
   return (
     <div className="frame py-14 md:py-20">
-      <Reveal as="header" className="flex flex-wrap items-end justify-between gap-6">
-        <div>
-          <p className="tech mb-4 text-amber">
-            Market Intelligence · Nasional & Internasional
+      <Reveal as="header">
+        <div className="flex items-center justify-between gap-6 border-b border-line pb-4">
+          <p className="tech text-amber">
+            <span className="text-meta">N° 06 — </span>Market Intelligence
           </p>
-          <h1 className="display text-5xl md:text-7xl">
-            Harga <span className="text-muted">Pasar</span>
-          </h1>
-          <p className="mt-6 max-w-xl text-muted md:text-lg">
-            Pilih merek, model, dan tahun — dari unit klasik hingga keluaran
-            terbaru — lalu lihat jumlah listing aktif, median harga
-            internasional, dan estimasi harga pasar nasional secara instan.
-          </p>
+          <p className="tech hidden text-meta sm:block">Nasional & Internasional</p>
         </div>
+        <h1 className="display mt-6 text-6xl leading-[0.9] md:text-8xl">
+          Harga <span className="text-muted">Pasar</span>
+        </h1>
+        <p className="mt-6 max-w-xl text-muted md:text-lg">
+          Pilih merek, model, dan tahun — dari unit klasik hingga keluaran
+          terbaru — lalu lihat jumlah listing aktif, median harga
+          internasional, dan estimasi harga pasar nasional secara instan.
+        </p>
       </Reveal>
 
       <Reveal delay={120} className="mt-10">

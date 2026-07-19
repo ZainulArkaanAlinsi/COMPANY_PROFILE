@@ -62,10 +62,16 @@ export default function KatalogClient({ cars, source = "local" }) {
 
   return (
     <>
-      {/* Header */}
-      <header className="max-w-2xl">
-        <h1 className="display accent-rule text-6xl md:text-7xl">Katalog</h1>
-        <p className="mt-8 text-muted md:text-lg">
+      {/* Header editorial */}
+      <header>
+        <div className="flex items-center justify-between gap-6 border-b border-line pb-4">
+          <p className="tech text-amber">
+            <span className="text-meta">N° 01 — </span>Marketplace
+          </p>
+          <p className="tech text-meta">{cars.length} Unit</p>
+        </div>
+        <h1 className="display mt-6 text-6xl leading-[0.9] md:text-8xl">Katalog</h1>
+        <p className="mt-6 max-w-2xl text-muted md:text-lg">
           Sempurnakan pencarian Anda. Koleksi kurasi kendaraan performa tinggi
           kami merepresentasikan puncak keunggulan otomotif dan seni industri.
         </p>

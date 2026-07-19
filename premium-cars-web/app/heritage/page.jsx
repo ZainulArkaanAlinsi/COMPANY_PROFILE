@@ -28,11 +28,17 @@ export default function HeritagePage() {
     <div className="py-14 md:py-20">
       {/* Hero */}
       <section className="frame">
-        <p className="tech mb-4 animate-fade-up text-amber" style={{ animationDelay: "80ms" }}>
-          Sejak 1998
-        </p>
+        <div
+          className="flex animate-fade-up items-center justify-between gap-6 border-b border-line pb-4"
+          style={{ animationDelay: "80ms" }}
+        >
+          <p className="tech text-amber">
+            <span className="text-meta">N° 00 — </span>Heritage
+          </p>
+          <p className="tech hidden text-meta sm:block">Est. 1998 · Jakarta</p>
+        </div>
         <h1
-          className="display max-w-4xl animate-fade-up text-5xl md:text-7xl"
+          className="display mt-8 max-w-4xl animate-fade-up text-5xl leading-[0.92] md:text-8xl"
           style={{ animationDelay: "180ms" }}
         >
           Warisan Rekayasa, Dibangun untuk yang Luar Biasa

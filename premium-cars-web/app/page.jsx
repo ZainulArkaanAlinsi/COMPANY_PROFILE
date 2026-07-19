@@ -193,6 +193,7 @@ export default function HomePage() {
       <section className="frame mt-section">
         <Reveal>
           <SectionHeader
+            index={2}
             kicker="Koleksi"
             title="Curated Collections"
             action={{ label: "Semua Kategori", href: "/katalog" }}
@@ -226,6 +227,7 @@ export default function HomePage() {
       <section className="frame mt-section">
         <Reveal>
           <SectionHeader
+            index={3}
             kicker="Inventory"
             title="Limited Availability"
             action={{ label: "Katalog Lengkap", href: "/katalog" }}
@@ -242,6 +244,7 @@ export default function HomePage() {
       <section className="frame mt-section">
         <Reveal>
           <SectionHeader
+            index={4}
             kicker="Database"
             title="Di Luar Showroom"
             action={{ label: "Analisis Harga", href: "/harga-pasar" }}
@@ -261,6 +264,7 @@ export default function HomePage() {
       <section className="frame mt-section">
         <Reveal>
           <SectionHeader
+            index={5}
             kicker="Editorial"
             title="Premium Journal"
             action={{ label: "Semua Cerita", href: "/journal" }}

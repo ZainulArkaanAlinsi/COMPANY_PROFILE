@@ -56,10 +56,13 @@ export default function JualPage() {
     <div className="py-14 md:py-20">
       {/* Hero — convert your masterpiece */}
       <section className="frame">
-        <div className="max-w-2xl">
-          <p className="tech mb-4 animate-fade-up text-amber">
-            Concierge · Sell & Trade
+        <div className="flex animate-fade-up items-center justify-between gap-6 border-b border-line pb-4">
+          <p className="tech text-amber">
+            <span className="text-meta">N° 07 — </span>Concierge
           </p>
+          <p className="tech hidden text-meta sm:block">Sell &amp; Trade</p>
+        </div>
+        <div className="mt-8 max-w-2xl">
           <h1 className="display text-6xl md:text-8xl">
             <span className="hero-line">
               <span style={{ "--line-delay": "150ms" }}>Convert Your</span>

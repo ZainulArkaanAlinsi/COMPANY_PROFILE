@@ -131,7 +131,7 @@ export default function CatalogExplorer() {
               style={{ "--brand-rgb": brandRgb(m) }}
               className={`group relative flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-2xl border p-4 text-left transition-all duration-300 ${
                 active
-                  ? "brand-tile-active force-dark border-amber bg-ink"
+                  ? "brand-tile-active -translate-y-0.5 border-amber bg-surface-2"
                   : "border-line bg-floor hover:-translate-y-1 hover:border-amber"
               }`}
             >
@@ -141,11 +141,7 @@ export default function CatalogExplorer() {
               >
                 {m[0]}
               </span>
-              <span
-                className={`relative flex items-center gap-1.5 font-display text-sm font-semibold uppercase leading-tight tracking-tech ${
-                  active ? "text-floor" : "text-ink"
-                }`}
-              >
+              <span className="relative flex items-center gap-1.5 font-display text-sm font-semibold uppercase leading-tight tracking-tech text-ink">
                 <span
                   aria-hidden="true"
                   className="h-1.5 w-1.5 shrink-0 rounded-full"

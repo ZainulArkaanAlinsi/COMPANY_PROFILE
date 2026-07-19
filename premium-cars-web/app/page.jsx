@@ -143,7 +143,8 @@ export default function HomePage() {
         <Reveal>
           <Link
             href="/harga-pasar"
-            className="group flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-line bg-ink px-8 py-7 md:px-11"
+            data-spotlight
+            className="group flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-line bg-surface-2 px-8 py-7 md:px-11"
           >
             <div className="flex items-center gap-4">
               <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-amber" />
@@ -284,7 +285,7 @@ export default function HomePage() {
 
       {/* JOIN THE CIRCLE */}
       <section className="frame mt-section">
-        <Reveal className="force-dark overflow-hidden rounded-[2rem] bg-ink px-6 py-16 text-center md:px-16 md:py-24">
+        <Reveal className="overflow-hidden rounded-[2rem] border border-line bg-surface-2 px-6 py-16 text-center md:px-16 md:py-24">
           <p className="tech text-amber">Membership</p>
           <h2 className="display mx-auto mt-4 max-w-2xl text-4xl text-ink md:text-5xl">
             Join the Exclusive Circle of Automotive Connoisseurs

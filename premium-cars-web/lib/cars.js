@@ -6,7 +6,7 @@
 const img = (id, w = 1200) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
 
-export const cars = [
+const base = [
   {
     slug: "aventador-svj",
     brand: "Lamborghini",
@@ -354,6 +354,58 @@ export const cars = [
     summary:
       "Sisi gelap Goodwood. V12 6.6L dengan karakter paling berani yang pernah dipasang Rolls-Royce pada fastback dua pintu.",
   },
+];
+
+// ————— Varian tahun/trim ————————————————————————————————————————
+// Marketplace mobil bekas: dari tiap model dasar digenerate banyak unit
+// (tahun, kilometer, trim, harga berbeda) sehingga katalog jauh lebih kaya.
+const VARIANT_YEARS = [2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016];
+const TRIMS = ["", "Edition", "Carbon Pack", "Launch Edition", "Anniversary"];
+const V_STATUS = ["In Stock", "In Stock", "Reserved", "New Arrival"];
+
+// hash deterministik → angka konsisten di server & klien (hindari mismatch).
+function seed(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+function makeVariants(list) {
+  const out = [];
+  for (const b of list) {
+    VARIANT_YEARS.forEach((year, i) => {
+      const age = 2024 - year;
+      const s = seed(b.slug + year);
+      const km = age * 6500 + (s % 9000);
+      const depr = Math.pow(0.9, age) * (0.93 + (s % 14) / 100);
+      const price = Math.max(Math.round((b.price * depr) / 1e7) * 1e7, 4e8);
+      const trim = TRIMS[(s + i) % TRIMS.length];
+      out.push({
+        ...b,
+        slug: `${b.slug}-${year}`,
+        eyebrow: trim ? `${trim} · ${year}` : `${b.eyebrow} · ${year}`,
+        year,
+        km,
+        status: V_STATUS[(s + i) % V_STATUS.length],
+        price,
+        specs: [
+          { k: "Tahun", v: String(year) },
+          { k: "Kilometer", v: `${km.toLocaleString("id-ID")} KM` },
+          ...b.specs.slice(2),
+        ],
+      });
+    });
+  }
+  return out;
+}
+
+// Model dasar (baru, 0 KM) + ratusan varian bekas.
+export const cars = [
+  ...base.map((b) => ({ ...b, km: 0 })),
+  ...makeVariants(base),
 ];
 
 export const brands = [

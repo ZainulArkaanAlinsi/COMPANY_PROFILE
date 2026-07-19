@@ -40,6 +40,16 @@ export default function CarCard({ car, cta = "Detail" }) {
             {car.name}
           </h3>
         </Link>
+        {(car.year || typeof car.km === "number") && (
+          <p className="tech mt-1.5 text-meta">
+            {car.year || "—"}
+            {typeof car.km === "number"
+              ? car.km
+                ? ` · ${car.km.toLocaleString("id-ID")} KM`
+                : " · Baru"
+              : ""}
+          </p>
+        )}
 
         <div className="mt-5 grid grid-cols-2 gap-y-4 border-t border-line-soft pt-5">
           {car.specs.slice(0, 4).map((s) => (

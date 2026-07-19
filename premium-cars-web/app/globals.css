@@ -8,20 +8,23 @@
    Token semantik dipakai seluruh app; ubah nilai di sini → seluruh app ikut.
    Catatan: token Tailwind `amber` dipertahankan namanya demi kompat,
    tapi NILAI-nya cognac. */
+/* ============ Tema GELAP sinematik — "Ink & Cognac" ============
+   Latar ink near-black hangat, teks bone, aksen cognac tunggal.
+   Dramatis & premium (nuansa showroom hypercar), bukan terang/generik. */
 :root {
-  --pc-floor: 249 247 243;    /* #F9F7F3 bone hangat — latar utama */
-  --pc-surface: 255 255 255;  /* kartu / panel putih */
-  --pc-surface-2: 243 240 234;/* #F3F0EA — well / hover lembut */
-  --pc-ink: 26 22 17;         /* #1A1611 near-black hangat — teks & tombol utama */
-  --pc-muted: 106 99 89;      /* #6A6359 — teks sekunder */
-  --pc-meta: 150 143 132;     /* #968F84 — meta / caption redup */
-  --pc-line: 228 223 214;     /* #E4DFD6 — hairline 1px */
-  --pc-line-soft: 238 234 227;/* #EEEAE3 — hairline lebih redup */
-  /* Aksen cognac — #9A5F38 lolos AA di atas putih & sebagai fill teks-putih */
-  --pc-amber: 154 95 56;
-  --pc-amber-600: 122 74 43;  /* #7A4A2B — press / hover gelap */
-  --pc-amber-400: 176 114 74; /* #B0724A — cognac lebih terang (underline/detail) */
-  --pc-glass: rgba(249, 247, 243, 0.72);
+  --pc-floor: 14 13 12;       /* #0E0D0C ink near-black hangat — latar utama */
+  --pc-surface: 23 21 19;     /* #171513 — kartu / panel */
+  --pc-surface-2: 34 30 27;   /* #221E1B — well / hover / elevated */
+  --pc-ink: 243 239 233;      /* #F3EFE9 bone — teks & fill utama */
+  --pc-muted: 172 164 153;    /* #ACA499 — teks sekunder */
+  --pc-meta: 128 120 110;     /* #80786E — meta / caption redup */
+  --pc-line: 54 49 43;        /* #36312B — hairline 1px */
+  --pc-line-soft: 41 37 33;   /* #292521 — hairline lebih redup */
+  /* Aksen cognac — dicerahkan agar menonjol di atas ink & lolos kontras */
+  --pc-amber: 197 133 87;     /* #C58557 */
+  --pc-amber-600: 165 108 66; /* #A56C42 — press / hover gelap */
+  --pc-amber-400: 216 158 114;/* #D89E72 — cognac lebih terang (underline/detail) */
+  --pc-glass: rgba(14, 13, 12, 0.72);
 }
 
 @layer base {

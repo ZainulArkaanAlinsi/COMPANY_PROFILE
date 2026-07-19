@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CarCard from "@/components/CarCard";
 import FinanceCalculator from "@/components/FinanceCalculator";
 import { categories } from "@/lib/cars";
@@ -30,6 +30,7 @@ export default function KatalogClient({ cars, source = "local" }) {
   const [drivetrain, setDrivetrain] = useState(null);
   const [bodies, setBodies] = useState([]);
   const [minHp, setMinHp] = useState(300);
+  const [visible, setVisible] = useState(24);
 
   const brandList = useMemo(
     () => ["All", ...[...new Set(cars.map((c) => c.brand))].sort()],
@@ -54,6 +55,10 @@ export default function KatalogClient({ cars, source = "local" }) {
       return true;
     });
   }, [cars, cat, brand, query, drivetrain, bodies, minHp, hasHp]);
+
+  useEffect(() => {
+    setVisible(24);
+  }, [cat, brand, query, drivetrain, bodies, minHp]);
 
   return (
     <>
@@ -202,11 +207,24 @@ export default function KatalogClient({ cars, source = "local" }) {
           </div>
 
           {filtered.length ? (
-            <div className="grid gap-6 sm:grid-cols-2">
-              {filtered.map((car) => (
-                <CarCard key={car.slug} car={car} />
-              ))}
-            </div>
+            <>
+              <div className="grid gap-6 sm:grid-cols-2">
+                {filtered.slice(0, visible).map((car) => (
+                  <CarCard key={car.slug} car={car} />
+                ))}
+              </div>
+              {visible < filtered.length && (
+                <div className="mt-10 flex justify-center">
+                  <button
+                    onClick={() => setVisible((v) => v + 24)}
+                    data-magnetic
+                    className="btn-sheen rounded-full border border-line px-8 py-3.5 text-[12.5px] font-semibold uppercase tracking-tech text-ink transition-colors hover:border-amber hover:text-amber"
+                  >
+                    Muat lebih banyak · {filtered.length - visible} unit tersisa
+                  </button>
+                </div>
+              )}
+            </>
           ) : (
             <div className="border border-dashed border-line bg-surface p-16 text-center">
               <p className="display text-2xl text-muted">Tidak ada unit cocok</p>

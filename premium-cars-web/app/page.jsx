@@ -13,7 +13,8 @@ import { brandMarquee, journal } from "@/lib/content";
 
 const stats = [
   { n: "1.200+", l: "Unit Terkurasi" },
-  { n: "25 Thn", l: "Warisan Sejak 1998" },
+  { n: "25 Thn", l: "Sejak 1998" },
+  { n: "18", l: "Negara Sourcing" },
   { n: "98%", l: "Kepuasan Klien" },
 ];
 
@@ -24,72 +25,97 @@ export default function HomePage() {
 
   return (
     <>
-      {/* HERO — light split */}
-      <section className="frame pb-8 pt-8 md:pt-14">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-          <div>
-            <p className="tech animate-fade-up text-amber" style={{ animationDelay: "100ms" }}>
-              Exclusivity Redefined · Est. 1998
-            </p>
-            <h1 className="display mt-5 text-[3.25rem] leading-[0.95] md:text-7xl">
+      {/* HERO — editorial */}
+      <section className="frame pt-6 md:pt-10">
+        {/* Index row */}
+        <div className="flex animate-fade-up items-center justify-between border-b border-line pb-5">
+          <p className="tech text-amber">N° 01 — Kurator Otomotif</p>
+          <p className="tech hidden text-meta sm:block">Est. 1998 · Jakarta</p>
+        </div>
+
+        <div className="grid gap-10 pt-8 lg:grid-cols-12 lg:gap-8 lg:pt-14">
+          {/* Headline dominan, asimetris */}
+          <div className="lg:col-span-7">
+            <h1 className="display text-[3.6rem] leading-[0.86] sm:text-[5.25rem] md:text-[6.75rem] lg:text-[7.75rem]">
               <span className="hero-line">
-                <span style={{ "--line-delay": "200ms" }}>Engineered</span>
+                <span style={{ "--line-delay": "120ms" }}>Engineered</span>
               </span>
               <span className="hero-line">
-                <span style={{ "--line-delay": "330ms" }}>
-                  for <span className="text-amber">Excellence</span>
+                <span
+                  style={{ "--line-delay": "260ms" }}
+                  className="flex items-baseline gap-4"
+                >
+                  <span className="font-body text-[0.24em] font-medium uppercase tracking-[0.4em] text-muted">
+                    for
+                  </span>
+                  <span className="text-amber">Excellence</span>
                 </span>
               </span>
             </h1>
-            <p
-              className="mt-6 max-w-md animate-fade-up text-lg leading-relaxed text-muted"
-              style={{ animationDelay: "560ms" }}
-            >
-              Rumah kurasi kendaraan performa tinggi dan mitra tepercaya untuk
-              membeli, menjual, dan menukar mobil impian Anda.
-            </p>
-            <div
-              className="mt-8 flex animate-fade-up flex-wrap gap-3"
-              style={{ animationDelay: "700ms" }}
-            >
-              <Button href="/katalog" variant="solid">
-                Jelajahi Katalog
-              </Button>
-              <Button href="/kontak" variant="ghost">
-                Hubungi Spesialis
-              </Button>
-            </div>
 
-            <div className="mt-11 grid max-w-lg grid-cols-3 gap-4 border-t border-line pt-7">
-              {stats.map((s) => (
-                <div key={s.l}>
-                  <p className="font-display text-2xl font-semibold md:text-3xl">
-                    <CountUp text={s.n} />
-                  </p>
-                  <p className="mt-1 text-[11px] uppercase tracking-tech text-meta">{s.l}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Hero image */}
-          <div className="relative" data-parallax="0.05">
-            <div className="showroom card-lift kenburns overflow-hidden rounded-[1.75rem] border border-line" data-spotlight>
-              <SmartImage
-                src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1400&q=80"
-                alt="Kurasi hypercar premium"
-                label="Premium Cars"
-                className="aspect-[4/5] w-full md:aspect-[3/4]"
-              />
-            </div>
-            <div className="absolute -bottom-5 -left-3 hidden rounded-2xl border border-line bg-surface px-6 py-4 shadow-[0_24px_50px_-24px_rgba(26,22,17,0.3)] sm:block">
-              <p className="text-[11px] uppercase tracking-tech text-meta">Live Market</p>
-              <p className="mt-1 flex items-center gap-2 font-display text-lg font-semibold">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-amber" />
-                Data harga real-time
+            <div className="mt-9 grid max-w-2xl gap-8 sm:grid-cols-[1fr_auto] sm:items-end">
+              <p
+                className="animate-fade-up text-base leading-relaxed text-muted md:text-lg"
+                style={{ animationDelay: "520ms" }}
+              >
+                Rumah kurasi kendaraan performa tinggi — mitra tepercaya untuk
+                membeli, menjual, dan menukar mobil impian Anda.
               </p>
+              <div
+                className="flex animate-fade-up items-center gap-6"
+                style={{ animationDelay: "640ms" }}
+              >
+                <Button href="/katalog" variant="solid">
+                  Katalog
+                </Button>
+                <Link
+                  href="/kontak"
+                  className="tech group inline-flex items-center gap-2 whitespace-nowrap text-ink transition-colors hover:text-amber"
+                >
+                  Spesialis
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+              </div>
             </div>
           </div>
+
+          {/* Foto berbingkai + kapsi editorial */}
+          <div className="lg:col-span-5">
+            <div className="relative" data-parallax="0.06">
+              <div className="kenburns overflow-hidden border border-line" data-spotlight>
+                <SmartImage
+                  src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1400&q=80"
+                  alt="Kurasi hypercar premium"
+                  label="Premium Cars"
+                  className="aspect-[4/5] w-full"
+                />
+              </div>
+              <div className="mt-3 flex items-center justify-between">
+                <p className="tech text-meta">↳ Fig. 01 — Showroom Jakarta</p>
+                <p className="tech flex items-center gap-2 text-amber">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber" />
+                  Live
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Index angka editorial */}
+        <div className="mt-12 grid grid-cols-2 gap-y-8 border-t border-line pt-8 md:mt-16 md:grid-cols-4">
+          {stats.map((s, i) => (
+            <div
+              key={s.l}
+              className={`pl-5 md:border-l md:border-line md:pl-8 ${
+                i % 2 === 0 ? "" : "border-l border-line"
+              } ${i === 0 ? "md:border-l-0 md:pl-0" : ""}`}
+            >
+              <p className="font-display text-4xl font-semibold leading-none md:text-6xl">
+                <CountUp text={s.n} />
+              </p>
+              <p className="mt-3 text-[11px] uppercase tracking-tech text-meta">{s.l}</p>
+            </div>
+          ))}
         </div>
       </section>
 

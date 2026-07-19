@@ -43,9 +43,10 @@ export default function MotionLayer() {
     window.addEventListener("resize", onScroll);
     onScroll();
 
-    // ---- Spotlight + magnetik ----
+    // ---- Spotlight + tilt + magnetik ----
     let moveScheduled = false;
     let lastEvent = null;
+    let tiltEl = null;
     const onMove = (e) => {
       // Spotlight langsung (murah): update kartu di bawah kursor
       const card = e.target.closest && e.target.closest("[data-spotlight]");
@@ -55,6 +56,24 @@ export default function MotionLayer() {
         card.style.setProperty("--my", `${e.clientY - r.top}px`);
       }
       if (reduce) return;
+
+      // 3D tilt kartu mengikuti kursor
+      const tilt = e.target.closest && e.target.closest("[data-tilt]");
+      if (tilt !== tiltEl) {
+        if (tiltEl) {
+          tiltEl.style.transition = "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)";
+          tiltEl.style.transform = "";
+        }
+        tiltEl = tilt;
+      }
+      if (tilt) {
+        const tr = tilt.getBoundingClientRect();
+        const px = (e.clientX - tr.left) / tr.width - 0.5;
+        const py = (e.clientY - tr.top) / tr.height - 0.5;
+        tilt.style.transition = "transform 0.1s ease-out";
+        tilt.style.transform = `perspective(950px) rotateX(${(-py * 5.5).toFixed(2)}deg) rotateY(${(px * 5.5).toFixed(2)}deg)`;
+      }
+
       lastEvent = e;
       if (moveScheduled) return;
       moveScheduled = true;
@@ -79,18 +98,26 @@ export default function MotionLayer() {
         });
       });
     };
-    const resetMagnets = () =>
+    const resetAll = () => {
       document.querySelectorAll("[data-magnetic]").forEach((m) => {
         m.style.transform = "";
       });
+      if (tiltEl) {
+        tiltEl.style.transition = "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)";
+        tiltEl.style.transform = "";
+        tiltEl = null;
+      }
+    };
     window.addEventListener("pointermove", onMove, { passive: true });
-    window.addEventListener("pointerdown", resetMagnets, { passive: true });
+    window.addEventListener("pointerdown", resetAll, { passive: true });
+    document.addEventListener("mouseleave", resetAll);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerdown", resetMagnets);
+      window.removeEventListener("pointerdown", resetAll);
+      document.removeEventListener("mouseleave", resetAll);
       bar.remove();
     };
   }, []);

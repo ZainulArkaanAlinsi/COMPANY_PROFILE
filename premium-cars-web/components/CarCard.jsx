@@ -16,7 +16,7 @@ export default function CarCard({ car, cta = "Detail" }) {
   const href = car.live ? "/kontak" : `/katalog/${car.slug}`;
   const label = car.live ? "Inquire" : cta;
   return (
-    <article data-spotlight className="card-lift group flex flex-col overflow-hidden rounded-3xl border border-line bg-surface">
+    <article data-spotlight data-tilt className="card-lift group flex flex-col overflow-hidden rounded-3xl border border-line bg-surface">
       <Link href={href} className="showroom relative block">
         <SmartImage
           src={car.image}

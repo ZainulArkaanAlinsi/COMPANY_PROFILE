@@ -14,10 +14,15 @@ export default function JournalPage() {
 
   return (
     <div className="frame py-14 md:py-20">
-      <Reveal as="header" className="max-w-2xl">
-        <p className="tech mb-4 text-amber">Editorial</p>
-        <h1 className="display accent-rule text-6xl md:text-7xl">Journal</h1>
-        <p className="mt-8 text-muted md:text-lg">
+      <Reveal as="header">
+        <div className="flex items-center justify-between gap-6 border-b border-line pb-4">
+          <p className="tech text-amber">
+            <span className="text-meta">N° 11 — </span>Editorial
+          </p>
+          <p className="tech hidden text-meta sm:block">Premium Cars Journal</p>
+        </div>
+        <h1 className="display mt-6 text-6xl leading-[0.9] md:text-8xl">Journal</h1>
+        <p className="mt-6 max-w-2xl text-muted md:text-lg">
           Jurnalisme otomotif premium — menyelami rekayasa, warisan, dan budaya
           di balik mesin-mesin paling didambakan di dunia.
         </p>

@@ -19,10 +19,12 @@ function Check() {
 export default function MembershipPage() {
   return (
     <div className="frame py-14 md:py-20">
-      <Reveal as="header" className="mx-auto max-w-2xl text-center">
-        <p className="tech mb-4 text-amber">The Circle</p>
-        <h1 className="display text-5xl md:text-7xl">Membership</h1>
-        <p className="mt-6 text-muted md:text-lg">
+      <Reveal as="header" className="mx-auto max-w-3xl text-center">
+        <p className="tech mb-4 text-amber">
+          <span className="text-meta">N° 10 — </span>The Circle
+        </p>
+        <h1 className="display text-6xl leading-[0.9] md:text-8xl">Membership</h1>
+        <p className="mx-auto mt-6 max-w-xl text-muted md:text-lg">
           Bergabunglah dengan lingkaran eksklusif para penikmat otomotif.
           Nikmati akses istimewa, layanan concierge, dan undangan acara privat.
         </p>

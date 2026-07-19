@@ -11,12 +11,17 @@ export const metadata = {
 export default function BandingkanPage() {
   return (
     <div className="frame py-14 md:py-20">
-      <Reveal as="header" className="max-w-2xl">
-        <p className="tech mb-4 text-amber">Head to Head · Comparison Lab</p>
-        <h1 className="display text-5xl md:text-7xl">
+      <Reveal as="header">
+        <div className="flex items-center justify-between gap-6 border-b border-line pb-4">
+          <p className="tech text-amber">
+            <span className="text-meta">N° 08 — </span>Comparison Lab
+          </p>
+          <p className="tech hidden text-meta sm:block">Head to Head</p>
+        </div>
+        <h1 className="display mt-6 text-6xl leading-[0.9] md:text-8xl">
           Bandingkan <span className="text-muted">Mobil</span>
         </h1>
-        <p className="mt-6 text-muted md:text-lg">
+        <p className="mt-6 max-w-2xl text-muted md:text-lg">
           Pilih dua unit dan lihat siapa unggul di tiap metrik — tenaga, top
           speed, akselerasi, hingga harga — lengkap dengan ringkasan
           kelebihannya.

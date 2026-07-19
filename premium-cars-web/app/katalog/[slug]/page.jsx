@@ -4,6 +4,8 @@ import Button from "@/components/Button";
 import SmartImage from "@/components/SmartImage";
 import FinanceCalculator from "@/components/FinanceCalculator";
 import CarCard from "@/components/CarCard";
+import SectionHeader from "@/components/SectionHeader";
+import Reveal from "@/components/Reveal";
 import { cars, getCar, formatIDR } from "@/lib/cars";
 
 export function generateStaticParams() {
@@ -34,7 +36,7 @@ export default function DetailPage({ params }) {
   return (
     <div className="frame py-10 md:py-14">
       {/* Breadcrumb */}
-      <nav className="tech mb-8 flex gap-2 text-meta">
+      <nav className="tech mb-6 flex flex-wrap gap-2 text-meta">
         <Link href="/" className="hover:text-amber">Home</Link>
         <span>/</span>
         <Link href="/katalog" className="hover:text-amber">Katalog</Link>
@@ -42,10 +44,28 @@ export default function DetailPage({ params }) {
         <span className="text-ink">{car.name}</span>
       </nav>
 
-      <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
+      {/* Header editorial */}
+      <header>
+        <div className="flex items-center justify-between gap-6 border-b border-line pb-4">
+          <p className="tech text-amber">
+            <span className="text-meta">N° {car.year} — </span>
+            {car.brand}
+          </p>
+          <span className="tech text-meta">{car.category}</span>
+        </div>
+        <div className="mt-6 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+          <h1 className="display text-5xl leading-[0.9] md:text-8xl">{car.name}</h1>
+          <span className="rounded-sm bg-amber px-3 py-1.5 text-[11px] font-semibold uppercase tracking-tech text-floor">
+            {car.status}
+          </span>
+        </div>
+        <p className="tech mt-3 text-meta">{car.eyebrow}</p>
+      </header>
+
+      <div className="mt-10 grid gap-10 lg:grid-cols-[1.4fr_1fr]">
         {/* Gallery */}
         <div>
-          <div className="border border-line">
+          <div className="img-reveal overflow-hidden border border-line" data-spotlight>
             <SmartImage
               src={car.gallery[0]}
               alt={`${car.brand} ${car.name}`}
@@ -55,7 +75,7 @@ export default function DetailPage({ params }) {
           </div>
           <div className="mt-4 grid grid-cols-3 gap-4">
             {car.gallery.map((g, i) => (
-              <div key={i} className="border border-line">
+              <div key={i} className="overflow-hidden border border-line" data-spotlight>
                 <SmartImage
                   src={g}
                   alt={`${car.name} view ${i + 1}`}
@@ -69,37 +89,22 @@ export default function DetailPage({ params }) {
 
         {/* Info */}
         <div>
-          <div className="flex items-center gap-3">
-            <span className="tech text-amber">{car.eyebrow}</span>
-            <span className="h-3 w-px bg-line" />
-            <span className="tech text-meta">{car.year} · {car.brand}</span>
-          </div>
-          <h1 className="display mt-3 text-5xl md:text-6xl">{car.name}</h1>
-
-          <span className="mt-5 inline-block rounded-sm bg-amber px-3 py-1.5 text-[11px] font-semibold uppercase tracking-tech text-floor">
-            {car.status}
-          </span>
-
-          <p className="mt-6 leading-relaxed text-muted">{car.summary}</p>
+          <p className="leading-relaxed text-muted">{car.summary}</p>
 
           {/* Spec table */}
-          <dl className="mt-8 grid grid-cols-2 border-t border-line-soft">
-            {car.specs.map((s) => (
-              <div key={s.k} className="border-b border-line-soft py-4 pr-4">
+          <dl className="mt-8 grid grid-cols-2 border-t border-line">
+            {[
+              ...car.specs,
+              { k: "Drivetrain", v: car.drivetrain },
+              { k: "Fuel", v: car.fuel },
+            ].map((s, i) => (
+              <div key={i} className="border-b border-line py-4 pr-4">
                 <dt className="tech text-[10px] text-meta">{s.k}</dt>
                 <dd className="mt-1 font-display text-2xl font-semibold uppercase">
                   {s.v}
                 </dd>
               </div>
             ))}
-            <div className="border-b border-line-soft py-4 pr-4">
-              <dt className="tech text-[10px] text-meta">Drivetrain</dt>
-              <dd className="mt-1 font-display text-2xl font-semibold uppercase">{car.drivetrain}</dd>
-            </div>
-            <div className="border-b border-line-soft py-4 pr-4">
-              <dt className="tech text-[10px] text-meta">Fuel</dt>
-              <dd className="mt-1 font-display text-2xl font-semibold uppercase">{car.fuel}</dd>
-            </div>
           </dl>
 
           {/* Price + CTA */}
@@ -164,18 +169,23 @@ export default function DetailPage({ params }) {
 
       {/* Finance */}
       <section className="mt-section-sm">
-        <h2 className="display accent-rule mb-8 text-3xl">Simulasi Cicilan</h2>
+        <SectionHeader kicker="Finansial" title="Simulasi Cicilan" className="mb-8" />
         <FinanceCalculator price={car.price} variant="full" />
       </section>
 
       {/* Related */}
       <section className="mt-section-sm">
-        <h2 className="display accent-rule mb-8 text-3xl">Unit Serupa</h2>
-        <div className="grid gap-6 md:grid-cols-3">
+        <SectionHeader
+          kicker="Rekomendasi"
+          title="Unit Serupa"
+          action={{ label: "Semua Unit", href: "/katalog" }}
+          className="mb-8"
+        />
+        <Reveal stagger className="grid gap-6 md:grid-cols-3">
           {related.map((c) => (
             <CarCard key={c.slug} car={c} />
           ))}
-        </div>
+        </Reveal>
       </section>
     </div>
   );

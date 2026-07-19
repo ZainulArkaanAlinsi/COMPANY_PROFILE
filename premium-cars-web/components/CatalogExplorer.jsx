@@ -11,6 +11,32 @@ const INITIAL_MAKES = [
   "Tesla", "Toyota",
 ];
 
+// Warna heritage tiap merek (triplet "r g b"), dipakai halus sbg tint
+// monogram + titik signature. Default cognac utk merek tak dikenal.
+const BRAND_COLORS = {
+  "Aston Martin": "0 89 79",
+  Audi: "187 10 48",
+  Bentley: "0 63 45",
+  BMW: "1 102 177",
+  Bugatti: "0 51 160",
+  Ferrari: "212 0 0",
+  Ford: "0 52 120",
+  Honda: "204 0 0",
+  Lamborghini: "221 179 33",
+  "Land Rover": "0 90 43",
+  Lexus: "120 128 138",
+  Maserati: "0 59 92",
+  McLaren: "255 128 0",
+  "Mercedes-Benz": "88 96 102",
+  Mitsubishi: "230 0 18",
+  Nissan: "195 0 47",
+  Porsche: "200 16 46",
+  "Rolls-Royce": "104 0 33",
+  Tesla: "227 25 55",
+  Toyota: "235 10 30",
+};
+const brandRgb = (m) => BRAND_COLORS[m] || "154 95 56";
+
 /**
  * Jelajahi seluruh database kendaraan (NHTSA vPIC, gratis tanpa key) via
  * /api/catalog. Grid tile per merek (monogram) -> klik menarik ribuan model
@@ -102,25 +128,29 @@ export default function CatalogExplorer() {
               data-spotlight
               onClick={() => pickMake(m)}
               aria-pressed={active}
+              style={{ "--brand-rgb": brandRgb(m) }}
               className={`group relative flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-2xl border p-4 text-left transition-all duration-300 ${
                 active
-                  ? "force-dark border-amber bg-ink"
+                  ? "brand-tile-active force-dark border-amber bg-ink"
                   : "border-line bg-floor hover:-translate-y-1 hover:border-amber"
               }`}
             >
               <span
                 aria-hidden="true"
-                className={`pointer-events-none absolute -right-1 -top-4 select-none font-display text-[76px] font-bold leading-none transition-all duration-500 group-hover:scale-110 ${
-                  active ? "text-amber/25" : "text-surface-2 group-hover:text-amber/20"
-                }`}
+                className="brand-mono pointer-events-none absolute -right-1 -top-4 select-none font-display text-[76px] font-bold leading-none group-hover:scale-110"
               >
                 {m[0]}
               </span>
               <span
-                className={`relative font-display text-sm font-semibold uppercase leading-tight tracking-tech ${
+                className={`relative flex items-center gap-1.5 font-display text-sm font-semibold uppercase leading-tight tracking-tech ${
                   active ? "text-floor" : "text-ink"
                 }`}
               >
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 shrink-0 rounded-full"
+                  style={{ backgroundColor: "rgb(var(--brand-rgb))" }}
+                />
                 {m}
               </span>
               <span

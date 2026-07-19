@@ -268,6 +268,18 @@
   opacity: 1;
 }
 
+/* Signature warna merek (CatalogExplorer) — tint monogram, halus */
+.brand-mono {
+  color: rgb(var(--brand-rgb, 154 95 56) / 0.16);
+  transition: color 0.45s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover > .brand-mono {
+  color: rgb(var(--brand-rgb, 154 95 56) / 0.32);
+}
+.brand-tile-active .brand-mono {
+  color: rgb(var(--brand-rgb, 154 95 56) / 0.5);
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-parallax] {
     transform: none !important;

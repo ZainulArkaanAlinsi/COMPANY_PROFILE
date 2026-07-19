@@ -82,10 +82,14 @@ export default function HomePage() {
           {/* Foto berbingkai + kapsi editorial */}
           <div className="lg:col-span-5">
             <div className="relative" data-parallax="0.06">
-              <div className="kenburns overflow-hidden border border-line" data-spotlight>
+              <div
+                className="img-reveal kenburns overflow-hidden border border-line"
+                data-spotlight
+                style={{ "--reveal-delay": "350ms" }}
+              >
                 <SmartImage
-                  src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1400&q=80"
-                  alt="Kurasi hypercar premium"
+                  src="https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&w=1400&q=80"
+                  alt="Lamborghini Aventador — kurasi premium"
                   label="Premium Cars"
                   className="aspect-[4/5] w-full"
                 />
@@ -102,7 +106,7 @@ export default function HomePage() {
         </div>
 
         {/* Index angka editorial */}
-        <div className="mt-12 grid grid-cols-2 gap-y-8 border-t border-line pt-8 md:mt-16 md:grid-cols-4">
+        <Reveal stagger className="mt-12 grid grid-cols-2 gap-y-8 border-t border-line pt-8 md:mt-16 md:grid-cols-4">
           {stats.map((s, i) => (
             <div
               key={s.l}
@@ -116,7 +120,7 @@ export default function HomePage() {
               <p className="mt-3 text-[11px] uppercase tracking-tech text-meta">{s.l}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       {/* BRAND MARQUEE */}

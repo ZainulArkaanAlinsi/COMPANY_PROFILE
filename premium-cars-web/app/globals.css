@@ -283,6 +283,17 @@
   color: rgb(var(--brand-rgb, 154 95 56) / 0.5);
 }
 
+/* Reveal gambar sinematik — tirai clip-path naik dari bawah (tak ganggu
+   transform parallax/kenburns karena hanya menganimasikan clip-path). */
+.img-reveal {
+  animation: img-wipe 1.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--reveal-delay, 240ms);
+}
+@keyframes img-wipe {
+  from { clip-path: inset(100% 0 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-parallax] {
     transform: none !important;
@@ -298,6 +309,7 @@
   .hero-line > span,
   .accent-rule::after,
   .animate-fade-up,
+  .img-reveal,
   .marquee-track {
     animation: none !important;
   }

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import CarCard from "@/components/CarCard";
 import FinanceCalculator from "@/components/FinanceCalculator";
+import Reveal from "@/components/Reveal";
 import { categories } from "@/lib/cars";
 
 const drivetrains = ["RWD", "AWD", "FWD"];
@@ -214,11 +215,11 @@ export default function KatalogClient({ cars, source = "local" }) {
 
           {filtered.length ? (
             <>
-              <div className="grid gap-6 sm:grid-cols-2">
+              <Reveal stagger key={`${cat}-${brand}-${drivetrain}-${bodies.join()}`} className="grid gap-6 sm:grid-cols-2">
                 {filtered.slice(0, visible).map((car) => (
                   <CarCard key={car.slug} car={car} />
                 ))}
-              </div>
+              </Reveal>
               {visible < filtered.length && (
                 <div className="mt-10 flex justify-center">
                   <button

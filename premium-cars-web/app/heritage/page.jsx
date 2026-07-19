@@ -28,11 +28,20 @@ export default function HeritagePage() {
     <div className="py-14 md:py-20">
       {/* Hero */}
       <section className="frame">
-        <p className="tech mb-4 text-amber">Sejak 1998</p>
-        <h1 className="display max-w-4xl text-5xl md:text-7xl">
+        <p className="tech mb-4 animate-fade-up text-amber" style={{ animationDelay: "80ms" }}>
+          Sejak 1998
+        </p>
+        <h1
+          className="display max-w-4xl animate-fade-up text-5xl md:text-7xl"
+          style={{ animationDelay: "180ms" }}
+        >
           Warisan Rekayasa, Dibangun untuk yang Luar Biasa
         </h1>
-        <div className="kenburns mt-10 overflow-hidden border border-line">
+        <div
+          data-parallax="0.04"
+          data-spotlight
+          className="kenburns mt-10 overflow-hidden rounded-2xl border border-line"
+        >
           <SmartImage
             src="https://images.unsplash.com/photo-1519245659620-e859806a8d3b?auto=format&fit=crop&w=2000&q=80"
             alt="Premium Cars showroom"
@@ -66,7 +75,7 @@ export default function HeritagePage() {
       <section className="frame mt-section-sm">
         <Reveal stagger className="grid grid-cols-2 gap-px overflow-hidden border border-line bg-line md:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.k} className="bg-surface p-8 text-center md:p-10">
+            <div key={s.k} data-spotlight className="bg-surface p-8 text-center md:p-10">
               <p className="display text-4xl text-amber md:text-5xl">
                 <CountUp text={s.v} />
               </p>
@@ -86,9 +95,12 @@ export default function HeritagePage() {
             <Reveal
               key={m.year}
               delay={i * 60}
+              data-spotlight
               className="group grid gap-4 bg-surface p-8 transition-colors hover:bg-surface-2 md:grid-cols-[160px_1fr] md:p-10"
             >
-              <p className="display text-4xl text-amber">{m.year}</p>
+              <p className="display text-4xl text-amber transition-transform duration-500 group-hover:translate-x-1">
+                {m.year}
+              </p>
               <div>
                 <h3 className="font-display text-2xl font-semibold uppercase">{m.title}</h3>
                 <p className="mt-2 max-w-2xl text-muted">{m.body}</p>
@@ -107,7 +119,8 @@ export default function HeritagePage() {
           {values.map((v) => (
             <div
               key={v.t}
-              className="border border-line bg-surface p-8 transition-all duration-300 hover:-translate-y-1 hover:border-amber/50"
+              data-spotlight
+              className="rounded-2xl border border-line bg-surface p-8 transition-all duration-300 hover:-translate-y-1 hover:border-amber/50"
             >
               <h3 className="display text-2xl text-amber">{v.t}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted">{v.b}</p>

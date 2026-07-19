@@ -6,6 +6,7 @@ import CarCard from "@/components/CarCard";
 import SmartImage from "@/components/SmartImage";
 import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
+import CatalogExplorer from "@/components/CatalogExplorer";
 import NewsletterForm from "@/components/NewsletterForm";
 import { cars, collections } from "@/lib/cars";
 import { brandMarquee, journal } from "@/lib/content";
@@ -207,6 +208,25 @@ export default function HomePage() {
           {featured.map((car) => (
             <CarCard key={car.slug} car={car} />
           ))}
+        </Reveal>
+      </section>
+
+      {/* EXPLORE THE WHOLE DATABASE */}
+      <section className="frame mt-section">
+        <Reveal>
+          <SectionHeader
+            kicker="Database"
+            title="Di Luar Showroom"
+            action={{ label: "Analisis Harga", href: "/harga-pasar" }}
+          />
+          <p className="mt-4 max-w-2xl text-muted">
+            Unit di atas adalah yang kami pegang. Di bawah: akses ke seluruh
+            database kendaraan dunia — ribuan model, semua merek &amp; tahun —
+            lengkap dengan analisis harga pasarnya.
+          </p>
+        </Reveal>
+        <Reveal delay={80} className="mt-10">
+          <CatalogExplorer />
         </Reveal>
       </section>
 

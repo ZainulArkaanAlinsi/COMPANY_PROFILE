@@ -39,6 +39,7 @@ export default function RootLayout({ children }) {
     <html lang="id" className={`${oswald.variable} ${inter.variable}`}>
       <body className="min-h-screen">
         <MotionLayer />
+        <div className="grain" aria-hidden="true" />
         <Navbar />
         <main>{children}</main>
         <Footer />

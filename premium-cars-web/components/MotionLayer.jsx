@@ -19,6 +19,27 @@ export default function MotionLayer() {
     bar.className = "scroll-progress";
     document.body.appendChild(bar);
 
+    // ---- Kursor kustom (hanya perangkat pointer presisi / desktop) ----
+    const fine = window.matchMedia("(pointer: fine)").matches;
+    let dot = null;
+    let cursorRaf = 0;
+    let cx = -100,
+      cy = -100,
+      tx = -100,
+      ty = -100;
+    if (fine) {
+      dot = document.createElement("div");
+      dot.className = "cursor-dot";
+      document.body.appendChild(dot);
+      const loop = () => {
+        cx += (tx - cx) * 0.22;
+        cy += (ty - cy) * 0.22;
+        dot.style.transform = `translate(${cx.toFixed(1)}px, ${cy.toFixed(1)}px)`;
+        cursorRaf = requestAnimationFrame(loop);
+      };
+      cursorRaf = requestAnimationFrame(loop);
+    }
+
     let scrollScheduled = false;
     const onScroll = () => {
       if (scrollScheduled) return;
@@ -48,6 +69,19 @@ export default function MotionLayer() {
     let lastEvent = null;
     let tiltEl = null;
     const onMove = (e) => {
+      // Kursor kustom: target posisi + membesar di elemen interaktif
+      if (dot) {
+        tx = e.clientX;
+        ty = e.clientY;
+        if (!dot.classList.contains("on")) dot.classList.add("on");
+        const hit =
+          e.target.closest &&
+          e.target.closest(
+            "a, button, select, input, textarea, [data-magnetic], [data-tilt], [role='button']"
+          );
+        dot.classList.toggle("lg", !!hit);
+      }
+
       // Spotlight langsung (murah): update kartu di bawah kursor
       const card = e.target.closest && e.target.closest("[data-spotlight]");
       if (card) {
@@ -107,6 +141,7 @@ export default function MotionLayer() {
         tiltEl.style.transform = "";
         tiltEl = null;
       }
+      if (dot) dot.classList.remove("on");
     };
     window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("pointerdown", resetAll, { passive: true });
@@ -118,6 +153,8 @@ export default function MotionLayer() {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", resetAll);
       document.removeEventListener("mouseleave", resetAll);
+      cancelAnimationFrame(cursorRaf);
+      if (dot) dot.remove();
       bar.remove();
     };
   }, []);

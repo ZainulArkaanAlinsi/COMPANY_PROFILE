@@ -327,6 +327,44 @@
   will-change: transform;
 }
 
+/* Film grain premium — tekstur sinematik halus di seluruh situs */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Kursor kustom — cincin cognac mengikuti kursor (posisi via JS), desktop */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 120;
+  height: 26px;
+  width: 26px;
+  margin: -13px 0 0 -13px;
+  border: 1.5px solid rgb(var(--pc-amber));
+  border-radius: 99px;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+  transition: width 0.25s, height 0.25s, margin 0.25s,
+    background-color 0.25s, opacity 0.3s;
+}
+.cursor-dot.on {
+  opacity: 0.9;
+}
+.cursor-dot.lg {
+  height: 46px;
+  width: 46px;
+  margin: -23px 0 0 -23px;
+  background: rgb(var(--pc-amber) / 0.12);
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-parallax],
   [data-tilt] {

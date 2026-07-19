@@ -1,0 +1,289 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ Design system — "Luxury Retail" (terang & lega) ============
+   Latar bone hangat, teks ink, aksen cognac tunggal (kulit jok).
+   Airy, whitespace lega, hairline halus, motion tenang.
+   Token semantik dipakai seluruh app; ubah nilai di sini → seluruh app ikut.
+   Catatan: token Tailwind `amber` dipertahankan namanya demi kompat,
+   tapi NILAI-nya cognac. */
+:root {
+  --pc-floor: 249 247 243;    /* #F9F7F3 bone hangat — latar utama */
+  --pc-surface: 255 255 255;  /* kartu / panel putih */
+  --pc-surface-2: 243 240 234;/* #F3F0EA — well / hover lembut */
+  --pc-ink: 26 22 17;         /* #1A1611 near-black hangat — teks & tombol utama */
+  --pc-muted: 106 99 89;      /* #6A6359 — teks sekunder */
+  --pc-meta: 150 143 132;     /* #968F84 — meta / caption redup */
+  --pc-line: 228 223 214;     /* #E4DFD6 — hairline 1px */
+  --pc-line-soft: 238 234 227;/* #EEEAE3 — hairline lebih redup */
+  /* Aksen cognac — #9A5F38 lolos AA di atas putih & sebagai fill teks-putih */
+  --pc-amber: 154 95 56;
+  --pc-amber-600: 122 74 43;  /* #7A4A2B — press / hover gelap */
+  --pc-amber-400: 176 114 74; /* #B0724A — cognac lebih terang (underline/detail) */
+  --pc-glass: rgba(249, 247, 243, 0.72);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-floor text-ink font-body antialiased;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: rgb(var(--pc-amber) / 0.22);
+    color: rgb(var(--pc-ink));
+  }
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-surface-2;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--pc-line));
+    border-radius: 99px;
+    border: 3px solid rgb(var(--pc-surface-2));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--pc-meta));
+  }
+}
+
+@layer components {
+  /* Kanvas editorial — max-width + margin desktop lega */
+  .frame {
+    @apply mx-auto w-full max-w-frame px-5 md:px-10 lg:px-16;
+  }
+  /* Oswald display — condensed, tegas tapi tidak berteriak */
+  .display {
+    @apply font-display font-semibold uppercase leading-[0.98] tracking-[-0.005em];
+  }
+  /* Label teknis — eyebrow / spec */
+  .tech {
+    @apply font-body text-[11px] font-semibold uppercase tracking-tech text-muted;
+  }
+  .hairline {
+    @apply border-line;
+  }
+  /* Navbar kaca terang */
+  .glass {
+    background-color: var(--pc-glass);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+  }
+  /* Kartu terangkat — elevasi via bayangan sangat halus (retail premium) */
+  .card-lift {
+    box-shadow: 0 1px 2px rgba(26, 22, 17, 0.04);
+    transition: box-shadow 0.4s var(--pc-ease, cubic-bezier(0.16, 1, 0.3, 1)),
+      transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card-lift:hover {
+    box-shadow: 0 24px 48px -24px rgba(26, 22, 17, 0.18);
+    transform: translateY(-4px);
+  }
+  /* Spotlight showroom di belakang mobil — konsisten tiap kartu */
+  .showroom,
+  .garage-gradient {
+    background: radial-gradient(
+      120% 130% at 50% 8%,
+      rgb(var(--pc-surface)) 0%,
+      rgb(var(--pc-surface-2)) 100%
+    );
+  }
+  /* Section foto sinematik yang tetap gelap (teks di atas gambar) */
+  .force-dark {
+    --pc-floor: 15 13 11;
+    --pc-ink: 245 243 239;
+    --pc-muted: 178 172 163;
+    --pc-meta: 138 132 123;
+    --pc-line: 62 57 50;
+    --pc-line-soft: 48 44 38;
+    --pc-surface: 24 22 19;
+    --pc-surface-2: 34 31 27;
+    color: rgb(var(--pc-ink));
+  }
+  /* Aksen underline cognac di bawah judul */
+  .accent-rule::after {
+    content: "";
+    @apply mt-5 block h-[2px] w-14 bg-amber;
+    transform-origin: left;
+    animation: rule-grow 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+/* ============ Motion — GPU-only (opacity/transform) ============ */
+.will-reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 22px));
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.will-reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-stagger.revealed > * {
+  opacity: 1;
+  transform: none;
+}
+.reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger.revealed > *:nth-child(2) { transition-delay: 90ms; }
+.reveal-stagger.revealed > *:nth-child(3) { transition-delay: 180ms; }
+.reveal-stagger.revealed > *:nth-child(4) { transition-delay: 270ms; }
+.reveal-stagger.revealed > *:nth-child(5) { transition-delay: 360ms; }
+.reveal-stagger.revealed > *:nth-child(6) { transition-delay: 450ms; }
+.reveal-stagger.revealed > *:nth-child(n + 7) { transition-delay: 540ms; }
+
+.route-enter {
+  animation: route-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes route-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+.kenburns img {
+  animation: kenburns 24s ease-in-out infinite alternate;
+}
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.08) translate(1.2%, -1.2%); }
+}
+
+@keyframes rule-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.hero-line {
+  display: block;
+  overflow: hidden;
+}
+.hero-line > span {
+  display: block;
+  animation: hero-rise 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--line-delay, 0ms);
+}
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(105%); }
+  to { opacity: 1; transform: none; }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Sapuan cahaya halus pada tombol solid */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%) skewX(-18deg);
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 70%
+  );
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-sheen:hover::after {
+  transform: translateX(120%) skewX(-18deg);
+}
+
+.marquee-track {
+  animation: marquee 34s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============ Lapisan interaksi (MotionLayer.jsx) ============ */
+/* Progress baca — bar cognac tipis di paling atas viewport */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 100;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(
+    90deg,
+    rgb(var(--pc-amber-400)),
+    rgb(var(--pc-amber))
+  );
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Parallax lembut yang digerakkan scroll (JS mengeset --py) */
+[data-parallax] {
+  transform: translate3d(0, var(--py, 0px), 0);
+  will-change: transform;
+}
+
+/* Sorotan cognac mengikuti kursor di dalam kartu */
+[data-spotlight] {
+  position: relative;
+}
+[data-spotlight]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(176, 114, 74, 0.16),
+    transparent 62%
+  );
+}
+[data-spotlight]:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-parallax] {
+    transform: none !important;
+  }
+  .will-reveal,
+  .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .route-enter,
+  .kenburns img,
+  .hero-line > span,
+  .accent-rule::after,
+  .animate-fade-up,
+  .marquee-track {
+    animation: none !important;
+  }
+}

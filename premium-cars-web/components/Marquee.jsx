@@ -11,7 +11,7 @@ export default function Marquee({ items }) {
           <span
             key={i}
             className="display select-none text-4xl text-transparent md:text-6xl"
-            style={{ WebkitTextStroke: "1px rgb(var(--pc-line))" }}
+            style={{ WebkitTextStroke: "1px rgb(var(--pc-meta) / 0.6)" }}
           >
             {name}
           </span>

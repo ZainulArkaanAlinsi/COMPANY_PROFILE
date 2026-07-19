@@ -359,9 +359,11 @@ const base = [
 // ————— Varian tahun/trim ————————————————————————————————————————
 // Marketplace mobil bekas: dari tiap model dasar digenerate banyak unit
 // (tahun, kilometer, trim, harga berbeda) sehingga katalog jauh lebih kaya.
-const VARIANT_YEARS = [2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016];
-const TRIMS = ["", "Edition", "Carbon Pack", "Launch Edition", "Anniversary"];
-const V_STATUS = ["In Stock", "In Stock", "Reserved", "New Arrival"];
+const VARIANT_YEARS = [
+  2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012,
+];
+const TRIMS = ["", "Edition", "Carbon", "Launch Edition", "Anniversary", "Performante"];
+const V_STATUS = ["In Stock", "In Stock", "In Stock", "Reserved", "New Arrival"];
 
 // hash deterministik → angka konsisten di server & klien (hindari mismatch).
 function seed(str) {
@@ -376,28 +378,33 @@ function seed(str) {
 function makeVariants(list) {
   const out = [];
   for (const b of list) {
-    VARIANT_YEARS.forEach((year, i) => {
-      const age = 2024 - year;
-      const s = seed(b.slug + year);
-      const km = age * 6500 + (s % 9000);
-      const depr = Math.pow(0.9, age) * (0.93 + (s % 14) / 100);
-      const price = Math.max(Math.round((b.price * depr) / 1e7) * 1e7, 4e8);
-      const trim = TRIMS[(s + i) % TRIMS.length];
-      out.push({
-        ...b,
-        slug: `${b.slug}-${year}`,
-        eyebrow: trim ? `${trim} · ${year}` : `${b.eyebrow} · ${year}`,
-        year,
-        km,
-        status: V_STATUS[(s + i) % V_STATUS.length],
-        price,
-        specs: [
-          { k: "Tahun", v: String(year) },
-          { k: "Kilometer", v: `${km.toLocaleString("id-ID")} KM` },
-          ...b.specs.slice(2),
-        ],
-      });
-    });
+    for (const year of VARIANT_YEARS) {
+      // 1–3 varian trim per tahun (deterministik) → katalog jauh lebih kaya.
+      const seedY = seed(b.slug + year);
+      const nTrims = seedY % 5 === 0 ? 3 : seedY % 2 === 0 ? 2 : 1;
+      for (let t = 0; t < nTrims; t++) {
+        const s = seed(b.slug + year + "x" + t);
+        const age = 2024 - year;
+        const km = age * 6200 + (s % 11000);
+        const depr = Math.pow(0.9, age) * (0.9 + (s % 16) / 100);
+        const price = Math.max(Math.round((b.price * depr) / 1e7) * 1e7, 4e8);
+        const trim = TRIMS[s % TRIMS.length];
+        out.push({
+          ...b,
+          slug: t === 0 ? `${b.slug}-${year}` : `${b.slug}-${year}-t${t}`,
+          eyebrow: trim ? `${trim} · ${year}` : `${b.eyebrow} · ${year}`,
+          year,
+          km,
+          status: V_STATUS[s % V_STATUS.length],
+          price,
+          specs: [
+            { k: "Tahun", v: String(year) },
+            { k: "Kilometer", v: `${km.toLocaleString("id-ID")} KM` },
+            ...b.specs.slice(2),
+          ],
+        });
+      }
+    }
   }
   return out;
 }

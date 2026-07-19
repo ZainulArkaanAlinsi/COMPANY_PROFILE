@@ -32,6 +32,7 @@ export default function KatalogClient({ cars, source = "local" }) {
   const [bodies, setBodies] = useState([]);
   const [minHp, setMinHp] = useState(300);
   const [visible, setVisible] = useState(24);
+  const [sort, setSort] = useState("relevan");
 
   const brandList = useMemo(
     () => ["All", ...[...new Set(cars.map((c) => c.brand))].sort()],
@@ -60,6 +61,19 @@ export default function KatalogClient({ cars, source = "local" }) {
   useEffect(() => {
     setVisible(24);
   }, [cat, brand, query, drivetrain, bodies, minHp]);
+
+  const sorted = useMemo(() => {
+    const arr = [...filtered];
+    switch (sort) {
+      case "termurah": arr.sort((a, b) => a.price - b.price); break;
+      case "termahal": arr.sort((a, b) => b.price - a.price); break;
+      case "terbaru": arr.sort((a, b) => (b.year || 0) - (a.year || 0)); break;
+      case "terlama": arr.sort((a, b) => (a.year || 0) - (b.year || 0)); break;
+      case "tenaga": arr.sort((a, b) => (b.hp || 0) - (a.hp || 0)); break;
+      default: break;
+    }
+    return arr;
+  }, [filtered, sort]);
 
   return (
     <>
@@ -198,25 +212,42 @@ export default function KatalogClient({ cars, source = "local" }) {
 
         {/* Grid */}
         <div>
-          <div className="mb-6 flex items-center justify-between">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
             <p className="tech text-meta">{filtered.length} unit tersedia</p>
-            {(brand !== "All" || cat !== "All Inventory" || bodies.length || drivetrain || query) && (
-              <button
-                onClick={() => {
-                  setCat("All Inventory"); setBrand("All"); setQuery("");
-                  setDrivetrain(null); setBodies([]); setMinHp(300);
-                }}
-                className="tech text-amber hover:text-amber-400"
-              >
-                Reset Filter
-              </button>
-            )}
+            <div className="flex items-center gap-4">
+              <label className="flex items-center gap-2">
+                <span className="tech text-meta">Urutkan</span>
+                <select
+                  value={sort}
+                  onChange={(e) => setSort(e.target.value)}
+                  className="rounded-sm border border-line bg-floor px-3 py-1.5 text-[12px] font-semibold uppercase tracking-tech text-ink focus:border-amber focus:outline-none"
+                >
+                  <option value="relevan">Relevan</option>
+                  <option value="termurah">Harga Termurah</option>
+                  <option value="termahal">Harga Termahal</option>
+                  <option value="terbaru">Tahun Terbaru</option>
+                  <option value="terlama">Tahun Terlama</option>
+                  <option value="tenaga">Tenaga (HP)</option>
+                </select>
+              </label>
+              {(brand !== "All" || cat !== "All Inventory" || bodies.length || drivetrain || query) && (
+                <button
+                  onClick={() => {
+                    setCat("All Inventory"); setBrand("All"); setQuery("");
+                    setDrivetrain(null); setBodies([]); setMinHp(300);
+                  }}
+                  className="tech text-amber hover:text-amber-400"
+                >
+                  Reset
+                </button>
+              )}
+            </div>
           </div>
 
           {filtered.length ? (
             <>
-              <Reveal stagger key={`${cat}-${brand}-${drivetrain}-${bodies.join()}`} className="grid gap-6 sm:grid-cols-2">
-                {filtered.slice(0, visible).map((car) => (
+              <Reveal stagger key={`${cat}-${brand}-${drivetrain}-${bodies.join()}-${sort}`} className="grid gap-6 sm:grid-cols-2">
+                {sorted.slice(0, visible).map((car) => (
                   <CarCard key={car.slug} car={car} />
                 ))}
               </Reveal>

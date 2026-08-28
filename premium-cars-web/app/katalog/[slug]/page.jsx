@@ -93,11 +93,7 @@ export default function DetailPage({ params }) {
 
           {/* Spec table */}
           <dl className="mt-8 grid grid-cols-2 border-t border-line">
-            {[
-              ...car.specs,
-              { k: "Drivetrain", v: car.drivetrain },
-              { k: "Fuel", v: car.fuel },
-            ].map((s, i) => (
+            {car.specs.map((s, i) => (
               <div key={i} className="border-b border-line py-4 pr-4">
                 <dt className="tech text-[10px] text-meta">{s.k}</dt>
                 <dd className="mt-1 font-display text-2xl font-semibold uppercase">

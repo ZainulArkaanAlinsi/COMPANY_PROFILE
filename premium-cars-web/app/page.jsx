@@ -7,15 +7,20 @@ import SmartImage from "@/components/SmartImage";
 import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
 import CatalogExplorer from "@/components/CatalogExplorer";
+import HeroScene from "@/components/HeroScene";
 import NewsletterForm from "@/components/NewsletterForm";
 import { cars, collections } from "@/lib/cars";
 import { brandMarquee, journal } from "@/lib/content";
 
+// Angka diturunkan dari katalog supaya tidak pernah menyimpang dari isinya.
+const negara = new Set(cars.map((c) => c.origin)).size;
+const tertua = Math.min(...cars.map((c) => c.year));
+
 const stats = [
-  { n: "1.200+", l: "Unit Terkurasi" },
+  { n: `${cars.length}`, l: "Model Terkurasi" },
+  { n: `${negara}`, l: "Negara Asal" },
+  { n: `${tertua}`, l: "Unit Tertua" },
   { n: "25 Thn", l: "Sejak 1998" },
-  { n: "18", l: "Negara Sourcing" },
-  { n: "98%", l: "Kepuasan Klien" },
 ];
 
 export default function HomePage() {
@@ -33,75 +38,82 @@ export default function HomePage() {
           <p className="tech hidden text-meta sm:block">Est. 1998 · Jakarta</p>
         </div>
 
-        <div className="grid gap-10 pt-8 lg:grid-cols-12 lg:gap-8 lg:pt-14">
-          {/* Headline dominan, asimetris */}
-          <div className="lg:col-span-7">
-            <h1 className="display text-[3.6rem] leading-[0.86] sm:text-[5.25rem] md:text-[6.75rem] lg:text-[7.75rem]">
-              <span className="hero-line">
-                <span style={{ "--line-delay": "120ms" }}>Engineered</span>
-              </span>
-              <span className="hero-line">
-                <span
-                  style={{ "--line-delay": "260ms" }}
-                  className="flex items-baseline gap-4"
-                >
-                  <span className="font-body text-[0.24em] font-medium uppercase tracking-[0.4em] text-muted">
-                    for
-                  </span>
-                  <span className="text-amber">Excellence</span>
+        {/* Headline — satu kolom, lebar penuh */}
+        <div className="pt-8 lg:pt-12">
+          <h1 className="display text-[3.6rem] leading-[0.86] sm:text-[5.25rem] md:text-[6.75rem] lg:text-[8.5rem]">
+            <span className="hero-line">
+              <span style={{ "--line-delay": "120ms" }}>Engineered</span>
+            </span>
+            <span className="hero-line">
+              <span
+                style={{ "--line-delay": "260ms" }}
+                className="flex items-baseline gap-4"
+              >
+                <span className="font-body text-[0.22em] font-medium uppercase tracking-[0.4em] text-muted">
+                  for
                 </span>
+                <span className="text-amber">Excellence</span>
               </span>
-            </h1>
+            </span>
+          </h1>
 
-            <div className="mt-9 grid max-w-2xl gap-8 sm:grid-cols-[1fr_auto] sm:items-end">
-              <p
-                className="animate-fade-up text-base leading-relaxed text-muted md:text-lg"
-                style={{ animationDelay: "520ms" }}
+          <div className="mt-9 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+            <p
+              className="animate-fade-up max-w-xl text-base leading-relaxed text-muted md:text-lg"
+              style={{ animationDelay: "520ms" }}
+            >
+              Rumah kurasi kendaraan performa tinggi — {cars.length} model dari{" "}
+              {negara} negara, {tertua} hingga hari ini. Mitra tepercaya untuk
+              membeli, menjual, dan menukar mobil impian Anda.
+            </p>
+            <div
+              className="flex animate-fade-up items-center gap-6"
+              style={{ animationDelay: "640ms" }}
+            >
+              <Button href="/katalog" variant="solid">
+                Katalog
+              </Button>
+              <Link
+                href="/kontak"
+                className="tech group inline-flex items-center gap-2 whitespace-nowrap text-ink transition-colors hover:text-amber"
               >
-                Rumah kurasi kendaraan performa tinggi — mitra tepercaya untuk
-                membeli, menjual, dan menukar mobil impian Anda.
-              </p>
-              <div
-                className="flex animate-fade-up items-center gap-6"
-                style={{ animationDelay: "640ms" }}
-              >
-                <Button href="/katalog" variant="solid">
-                  Katalog
-                </Button>
-                <Link
-                  href="/kontak"
-                  className="tech group inline-flex items-center gap-2 whitespace-nowrap text-ink transition-colors hover:text-amber"
-                >
-                  Spesialis
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </Link>
-              </div>
+                Spesialis
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
             </div>
           </div>
+        </div>
 
-          {/* Foto berbingkai + kapsi editorial */}
-          <div className="lg:col-span-5">
-            <div className="relative" data-parallax="0.06">
-              <div
-                className="img-reveal kenburns overflow-hidden border border-line"
-                data-spotlight
-                style={{ "--reveal-delay": "350ms" }}
-              >
-                <SmartImage
-                  src="https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&w=1400&q=80"
-                  alt="Lamborghini Aventador — kurasi premium"
-                  label="Premium Cars"
-                  className="aspect-[4/5] w-full"
-                />
-              </div>
-              <div className="mt-3 flex items-center justify-between">
-                <p className="tech text-meta">↳ Fig. 01 — Showroom Jakarta</p>
-                <p className="tech flex items-center gap-2 text-amber">
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber" />
-                  Live
-                </p>
-              </div>
-            </div>
+        {/* Panggung 3D — siluet mobil di dalam aliran terowongan angin.
+            Tinggi dikunci lewat aspect-ratio supaya kanvas tidak pernah
+            menggeser tata letak saat three.js selesai dimuat (CLS = 0). */}
+        <div
+          className="animate-fade-up relative mt-12 overflow-hidden border border-line bg-surface md:mt-16"
+          style={{ animationDelay: "760ms" }}
+        >
+          <HeroScene className="aspect-[16/10] w-full sm:aspect-[2/1] lg:aspect-[21/8]" />
+
+          {/* Kisi halus + gradien tepi supaya panggung menyatu dengan halaman */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(125,114,102,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(125,114,102,0.07) 1px, transparent 1px)",
+              backgroundSize: "72px 72px",
+              maskImage:
+                "radial-gradient(ellipse 78% 68% at 50% 50%, #000 35%, transparent 100%)",
+              WebkitMaskImage:
+                "radial-gradient(ellipse 78% 68% at 50% 50%, #000 35%, transparent 100%)",
+            }}
+          />
+
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 md:p-7">
+            <p className="tech text-meta">↳ Fig. 01 — Studi Aerodinamika</p>
+            <p className="tech flex items-center gap-2 text-amber">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber" />
+              WebGL
+            </p>
           </div>
         </div>
 
@@ -203,11 +215,11 @@ export default function HomePage() {
             action={{ label: "Semua Kategori", href: "/katalog" }}
           />
         </Reveal>
-        <Reveal stagger className="mt-10 grid gap-5 md:grid-cols-3">
-          {collections.slice(0, 3).map((c) => (
+        <Reveal stagger className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {collections.map((c) => (
             <Link
               key={c.label}
-              href="/katalog"
+              href={c.href || "/katalog"}
               data-spotlight
               className="force-dark card-lift group relative block overflow-hidden rounded-3xl"
             >

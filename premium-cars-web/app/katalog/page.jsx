@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import KatalogClient from "@/components/KatalogClient";
 import SpecFinderLive from "@/components/SpecFinderLive";
 import CatalogExplorer from "@/components/CatalogExplorer";
@@ -15,7 +16,11 @@ export default async function KatalogPage() {
 
   return (
     <div className="frame py-14 md:py-20">
-      <KatalogClient cars={cars} source={source} />
+      {/* KatalogClient membaca query string (?era=, ?asal=, …) lewat
+          useSearchParams, yang di App Router wajib berada di dalam Suspense. */}
+      <Suspense fallback={<div className="h-[70vh]" />}>
+        <KatalogClient cars={cars} source={source} />
+      </Suspense>
 
       {/* Database besar — semua merek & tahun (NHTSA) */}
       <section className="mt-section-sm">

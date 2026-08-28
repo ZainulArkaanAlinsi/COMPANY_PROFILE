@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
+import SectionHeader from "@/components/SectionHeader";
+import { jalurKontak, alurSetelahKontak } from "@/lib/company";
 
 export const metadata = {
   title: "Kontak | Premium Cars",
@@ -18,11 +20,12 @@ export default function KontakPage() {
   return (
     <div className="frame py-14 md:py-20">
       <Reveal as="header" className="max-w-2xl">
-        <p className="tech mb-4 text-amber">Get in Touch</p>
+        <p className="tech mb-4 text-amber">Hubungi Kami</p>
         <h1 className="display accent-rule text-6xl md:text-7xl">Kontak</h1>
         <p className="mt-8 text-muted md:text-lg">
-          Tim concierge kami siap membantu akuisisi, penjualan, maupun
-          konsultasi pembiayaan kendaraan mewah Anda.
+          Empat jalur, empat orang yang berbeda. Pilih yang sesuai dengan
+          urusan Anda di bawah — beserta apa yang perlu disiapkan supaya
+          balasan pertama kami sudah berisi jawaban, bukan pertanyaan balik.
         </p>
       </Reveal>
 
@@ -77,6 +80,61 @@ export default function KontakPage() {
           </div>
         </Reveal>
       </div>
+
+      {/* ── Jalur kontak ─────────────────────────────────────────────── */}
+      <section className="mt-section">
+        <Reveal>
+          <SectionHeader
+            index={1}
+            kicker="Jalur"
+            title="Empat urusan, empat jalur"
+          />
+        </Reveal>
+        <div className="mt-12 border-t border-line">
+          {jalurKontak.map((j, i) => (
+            <Reveal key={j.untuk} delay={i * 60}>
+              <article className="grid gap-5 border-b border-line py-8 md:grid-cols-[1.1fr_1fr_auto] md:gap-10">
+                <div>
+                  <h3 className="display text-xl md:text-2xl">{j.untuk}</h3>
+                  <p className="mt-3 leading-relaxed text-muted">{j.isi}</p>
+                </div>
+                <div>
+                  <p className="tech text-amber">Siapkan</p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{j.siapkan}</p>
+                </div>
+                <div className="md:text-right">
+                  <p className="tech text-meta">Balasan</p>
+                  <p className="mt-2 whitespace-nowrap font-display text-lg font-semibold">
+                    {j.balasan}
+                  </p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Alur setelah menghubungi ─────────────────────────────────── */}
+      <section className="mt-section">
+        <Reveal>
+          <SectionHeader
+            index={2}
+            kicker="Alur"
+            title="Yang terjadi setelah Anda menghubungi"
+          />
+        </Reveal>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {alurSetelahKontak.map((a, i) => (
+            <Reveal key={a.no} delay={i * 70}>
+              <div className="h-full border-t-2 border-amber/50 pt-5">
+                <p className="font-display text-3xl leading-none text-amber">{a.no}</p>
+                <h3 className="display mt-4 text-lg">{a.judul}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{a.isi}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

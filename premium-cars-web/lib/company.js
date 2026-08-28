@@ -216,3 +216,42 @@ export const angka = [
   { n: "31%", l: "Unit yang kami terima", k: "Dari seluruh unit yang ditawarkan kepada kami. Sisanya kami tolak." },
   { n: "7", l: "Tahap inspeksi", k: "Rata-rata 19 jam kerja teknisi sebelum sebuah unit boleh ditawarkan." },
 ];
+
+// ── Rute kontak. Orang menghubungi showroom untuk empat urusan yang sangat
+//    berbeda, dan diarahkan ke orang yang salah adalah sumber frustrasi
+//    terbesar dalam proses ini.
+export const jalurKontak = [
+  {
+    untuk: "Membeli unit di katalog",
+    siapkan: "Nomor unit atau tautan halamannya, dan rentang waktu Anda ingin serah terima.",
+    balasan: "Di bawah 4 jam kerja",
+    isi: "Kami kirimkan berkas kondisi lengkap unit tersebut sebelum Anda datang — termasuk seluruh temuan yang merugikan posisi kami sebagai penjual.",
+  },
+  {
+    untuk: "Menjual atau konsinyasi",
+    siapkan: "Foto keempat sudut, foto odometer, STNK dan BPKB, serta catatan servis bila ada.",
+    balasan: "Di bawah 1 hari kerja",
+    isi: "Penilaian awal kami berikan berdasarkan berkas Anda, lalu diverifikasi lewat inspeksi fisik. Angka awal dan angka akhir jarang berbeda lebih dari 8 persen bila berkas Anda lengkap.",
+  },
+  {
+    untuk: "Mencari unit tertentu",
+    siapkan: "Model, tahun, spesifikasi yang wajib ada, dan batas anggaran.",
+    balasan: "Di bawah 2 hari kerja",
+    isi: "Kami telusuri jaringan domestik dan lelang internasional. Bila unit yang cocok tidak ada, kami katakan demikian — bukan menawarkan unit yang mendekati.",
+  },
+  {
+    untuk: "Pembiayaan & tukar tambah",
+    siapkan: "Unit yang diincar, unit yang akan ditukar, dan perkiraan uang muka.",
+    balasan: "Di bawah 1 hari kerja",
+    isi: "Kami hitung ekuitas unit lama Anda dan simulasi cicilannya lebih dulu, sebelum ada pembicaraan soal pengajuan ke lembaga pembiayaan.",
+  },
+];
+
+// ── Apa yang terjadi setelah menghubungi. Ketidakpastian di titik ini adalah
+//    alasan paling umum orang berhenti di tengah proses.
+export const alurSetelahKontak = [
+  { no: "01", judul: "Balasan pertama", isi: "Seorang spesialis — bukan pesan otomatis — membalas dengan pertanyaan spesifik tentang kebutuhan Anda." },
+  { no: "02", judul: "Berkas dikirim", isi: "Untuk pembelian: berkas kondisi unit. Untuk penjualan: rentang penilaian awal beserta dasar perhitungannya." },
+  { no: "03", judul: "Pertemuan", isi: "Di showroom atau di lokasi Anda. Tidak ada biaya, dan tidak ada kewajiban lanjut." },
+  { no: "04", judul: "Keputusan", isi: "Bila Anda melanjutkan, seluruh tahapan dan biayanya kami tuliskan sebelum ada pembayaran apa pun — termasuk tanda jadi." },
+];

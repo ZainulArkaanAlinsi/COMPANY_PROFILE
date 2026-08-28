@@ -15,13 +15,13 @@ const cols = [
     title: "Layanan",
     links: [
       { label: "Jual Mobil", href: "/jual" },
-      { label: "Vehicle Appraisal", href: "/jual/appraisal" },
-      { label: "Trade-In", href: "/jual/trade-in" },
-      { label: "Consignment", href: "/jual/consignment" },
+      { label: "Penilaian Kendaraan", href: "/jual/appraisal" },
+      { label: "Tukar Tambah", href: "/jual/trade-in" },
+      { label: "Konsinyasi", href: "/jual/consignment" },
     ],
   },
   {
-    title: "Support",
+    title: "Bantuan",
     links: [
       { label: "Kontak", href: "/kontak" },
       { label: "Membership", href: "/membership" },

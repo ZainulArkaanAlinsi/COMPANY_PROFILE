@@ -284,7 +284,7 @@ export default function EquityAnalyzer() {
           <h3 className="display mt-3 text-2xl">Precision Financing</h3>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">
             Jembatani selisih {formatIDR(Math.max(calc.deficit, 0))} dengan
-            program Equity Leased khusus untuk upgrade bernilai tinggi.
+            program pembiayaan selisih untuk peningkatan unit bernilai tinggi.
           </p>
           <Link
             href="/cicilan"

@@ -11,7 +11,7 @@ export function generateMetadata({ params }) {
   const a = getArtikel(params.slug);
   if (!a) return { title: "Artikel tidak ditemukan | Premium Cars" };
   return {
-    title: `${a.judul} | Journal Premium Cars`,
+    title: `${a.judul} | Jurnal Premium Cars`,
     description: a.ringkas,
     openGraph: { title: a.judul, description: a.ringkas, type: "article" },
   };
@@ -30,7 +30,7 @@ export default function ArtikelPage({ params }) {
         className="tech group inline-flex items-center gap-2 text-meta transition-colors hover:text-amber"
       >
         <span className="transition-transform group-hover:-translate-x-1">←</span>
-        Journal
+        Jurnal
       </Link>
 
       <header className="mt-8 border-b border-line pb-10">

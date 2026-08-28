@@ -3,7 +3,7 @@ import Reveal from "@/components/Reveal";
 import { journal } from "@/lib/journal";
 
 export const metadata = {
-  title: "Journal | Premium Cars",
+  title: "Jurnal | Premium Cars",
   description:
     "Panduan pembeli, analisis pasar, dan catatan teknis dari tim inspeksi Premium Cars — ditulis untuk keputusan pembelian, bukan untuk gaya hidup.",
 };
@@ -15,12 +15,12 @@ export default function JournalPage() {
     <div className="frame py-14 md:py-20">
       <div className="flex animate-fade-up items-center justify-between gap-6 border-b border-line pb-4">
         <p className="tech text-amber">
-          <span className="text-meta">N° 05 — </span>Journal
+          <span className="text-meta">N° 05 — </span>Jurnal
         </p>
         <p className="tech text-meta">{journal.length} tulisan</p>
       </div>
 
-      <h1 className="display mt-6 text-6xl leading-[0.9] md:text-8xl">Journal</h1>
+      <h1 className="display mt-6 text-6xl leading-[0.9] md:text-8xl">Jurnal</h1>
       <p className="mt-6 max-w-2xl text-muted md:text-lg">
         Catatan dari meja inspeksi. Ditulis untuk menjawab pertanyaan yang
         menentukan keputusan pembelian — bukan untuk mengisi kolom gaya hidup.

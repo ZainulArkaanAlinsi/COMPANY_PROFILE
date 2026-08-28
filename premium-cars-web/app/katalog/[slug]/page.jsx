@@ -38,7 +38,7 @@ export default function DetailPage({ params }) {
     <div className="frame py-10 md:py-14">
       {/* Breadcrumb */}
       <nav className="tech mb-6 flex flex-wrap gap-2 text-meta">
-        <Link href="/" className="hover:text-amber">Home</Link>
+        <Link href="/" className="hover:text-amber">Beranda</Link>
         <span>/</span>
         <Link href="/katalog" className="hover:text-amber">Katalog</Link>
         <span>/</span>

@@ -47,7 +47,20 @@ PC.cart = (function () {
         el("p", { class: "cart-item__name" }, [car.name]),
         el("p", { class: "cart-item__price" }, [fmt.rupiah(car.price)]),
         el("div", { class: "qty" }, [
-          el("button", { class: "qty__btn", type: "button", "aria-label": "Kurangi", onclick: function () { PC.store.cart.setQty(car.id, item.qty - 1); } }, ["−"]),
+          el("button", {
+            class: "qty__btn", type: "button",
+            "aria-label": item.qty <= 1 ? "Hapus unit" : "Kurangi",
+            // setQty di-clamp minimal 1, jadi pada qty 1 tombol ini dulu mati
+            // total. Sekarang qty 1 + "−" = hapus baris (perilaku lazim).
+            onclick: function () {
+              if (item.qty <= 1) {
+                PC.store.cart.remove(car.id);
+                PC.ui.toast("Unit dihapus", "info");
+              } else {
+                PC.store.cart.setQty(car.id, item.qty - 1);
+              }
+            },
+          }, ["−"]),
           qtyVal,
           el("button", { class: "qty__btn", type: "button", "aria-label": "Tambah", onclick: function () { PC.store.cart.setQty(car.id, item.qty + 1); } }, ["+"]),
         ]),

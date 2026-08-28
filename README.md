@@ -63,6 +63,26 @@ python -m http.server 5500
 - Nomor WhatsApp tujuan lead: ubah `PC.config.whatsapp` di `js/components/cart.js`.
 - Palet & font: `css/tokens.css`. Data unit: `js/data/cars.js`.
 
+### Environment variable (hanya untuk `server/app.js` & `server/proxy.js`)
+
+Semuanya opsional — tanpa ini situs tetap jalan memakai data lokal.
+
+| Variabel | Kegunaan |
+| --- | --- |
+| `MARKETCHECK_API_KEY` | Proxy MarketCheck di `/api/cars` |
+| `API_NINJAS_KEY` | Proxy API Ninjas di `/api/ninjas` (fitur "Cek Spesifikasi") |
+| `CARAPI_TOKEN` + `CARAPI_SECRET` | Proxy CarAPI di `/api/carapi` |
+| `LEADS_ADMIN_TOKEN` | **Wajib** agar `GET /api/leads` bisa diakses |
+
+`GET /api/leads` mengembalikan data pribadi calon pembeli (nama, email,
+telepon). Endpoint itu tertutup kecuali `LEADS_ADMIN_TOKEN` di-set, dan
+permintaan harus membawa header `Authorization: Bearer <token>`:
+
+```bash
+LEADS_ADMIN_TOKEN="rahasia-panjang" npm start
+curl -H "Authorization: Bearer rahasia-panjang" http://localhost:3000/api/leads
+```
+
 ## Checklist Produksi (sebelum go-live)
 
 Project sudah lengkap & berfungsi. Tiga hal berikut butuh **data asli Anda**:

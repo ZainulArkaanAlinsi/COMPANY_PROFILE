@@ -27,7 +27,11 @@ PC.ui = (function () {
     });
     (children == null ? [] : [].concat(children)).forEach(function (c) {
       if (c == null || c === false) return;
-      node.appendChild(typeof c === "string" ? document.createTextNode(c) : c);
+      // Hanya Node yang boleh masuk ke appendChild. Nilai lain (angka dari
+      // respons API, boolean, dsb) dirender sebagai teks — sebelumnya
+      // appendChild(angka) melempar TypeError dan mematikan render.
+      if (typeof c === "object" && c.nodeType) node.appendChild(c);
+      else node.appendChild(document.createTextNode(String(c)));
     });
     return node;
   }

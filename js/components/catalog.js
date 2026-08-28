@@ -8,6 +8,7 @@ PC.catalog = (function () {
   var $ = PC.ui.$, el = PC.ui.el, fmt = PC.format;
   var view = { q: "", category: "all", sort: "featured" };
   var refs = {};
+  var deepLinkCar = null;
 
   function specChips(car) {
     var s = car.specs;
@@ -44,17 +45,30 @@ PC.catalog = (function () {
     PC.ui.toast(car.name + " ditambahkan ke daftar minat", "success");
   }
 
+  /* Gabungan teks yang bisa dicari. Field kosong dilewati — sebelumnya
+     badge/brand undefined ikut jadi teks "undefined" sehingga mengetik
+     "undefined" mencocokkan unit yang datanya justru tidak lengkap. */
+  function haystack(c) {
+    return [c.name, c.brand, c.badge, c.category, c.year]
+      .filter(function (v) { return v != null && v !== ""; })
+      .join(" ")
+      .toLowerCase();
+  }
+
   function filtered() {
     var q = view.q.trim().toLowerCase();
     var list = PC.cars.filter(function (c) {
       var okCat = view.category === "all" || c.category === view.category;
-      var okQ = !q || (c.name + " " + c.brand + " " + c.badge).toLowerCase().indexOf(q) >= 0;
+      var okQ = !q || haystack(c).indexOf(q) >= 0;
       return okCat && okQ;
     });
-    if (view.sort === "price-asc") list.sort(function (a, b) { return a.price - b.price; });
-    else if (view.sort === "price-desc") list.sort(function (a, b) { return b.price - a.price; });
-    else if (view.sort === "year-desc") list.sort(function (a, b) { return b.year - a.year; });
-    else list.sort(function (a, b) { return (b.featured ? 1 : 0) - (a.featured ? 1 : 0); });
+    /* Nama dipakai sebagai pemecah seri agar urutan stabil: tanpa ini dua
+       unit berharga/berumur sama bisa bertukar posisi tiap render. */
+    function byName(a, b) { return a.name.localeCompare(b.name, "id"); }
+    if (view.sort === "price-asc") list.sort(function (a, b) { return (a.price - b.price) || byName(a, b); });
+    else if (view.sort === "price-desc") list.sort(function (a, b) { return (b.price - a.price) || byName(a, b); });
+    else if (view.sort === "year-desc") list.sort(function (a, b) { return ((b.year || 0) - (a.year || 0)) || byName(a, b); });
+    else list.sort(function (a, b) { return ((b.featured ? 1 : 0) - (a.featured ? 1 : 0)) || byName(a, b); });
     return list;
   }
 
@@ -142,10 +156,14 @@ PC.catalog = (function () {
       if (cat && PC.categories.some(function (c) { return c.id === cat; })) view.category = cat;
       var q = params.get("q");
       if (q) { view.q = q; if (refs.search) refs.search.value = q; }
+      // Home menautkan "Detail" ke penjualan.html?car=<id>; tanpa penanganan
+      // ini parameternya diabaikan diam-diam dan modal tak pernah terbuka.
+      deepLinkCar = params.get("car");
     } catch (e) { /* URLSearchParams tak didukung — abaikan */ }
 
     renderChips();
     renderGrid();
+    openDeepLinkCar();
 
     if (refs.search) {
       var t;
@@ -157,6 +175,15 @@ PC.catalog = (function () {
     if (refs.sort) {
       refs.sort.addEventListener("change", function () { view.sort = refs.sort.value; renderGrid(); });
     }
+  }
+
+  /** Buka modal detail bila halaman dibuka dengan ?car=<id> yang valid. */
+  function openDeepLinkCar() {
+    if (!deepLinkCar) return;
+    var car = PC.getCar(deepLinkCar);
+    deepLinkCar = null; // sekali pakai, jangan terbuka lagi saat refresh()
+    if (car) openDetail(car);
+    else PC.ui.toast("Unit yang Anda cari tidak tersedia lagi.", "info");
   }
 
   /** Render ulang chips + grid dari PC.cars terkini (mis. setelah data API). */

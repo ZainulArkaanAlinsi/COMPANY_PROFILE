@@ -40,12 +40,19 @@ function jwtExpirationMs(token) {
 
 function canonicalPath(raw) {
     if (!raw) return "";
-    return raw.replace(/^\/+|\/+$/g, "");
+    return String(raw).replace(/^\/+|\/+$/g, "");
 }
 
+/* Pencocokan awalan saja bisa ditembus: "trims/../account/requests" lolos
+   karena berawalan "trims/", lalu fetch menormalkan ".." sehingga endpoint
+   di luar daftar tetap terpanggil. */
 function isAllowed(path) {
     if (!path) return false;
     const normalized = canonicalPath(path);
+    if (!/^[A-Za-z0-9][A-Za-z0-9._~/-]*$/.test(normalized)) return false;
+    if (normalized.split("/").some(function (seg) {
+        return seg === "" || seg === "." || seg === "..";
+    })) return false;
     return ALLOWED_PREFIXES.some(function (prefix) {
         return normalized === prefix || normalized.indexOf(prefix + "/") === 0;
     });
@@ -108,6 +115,8 @@ module.exports = async function handler(req, res) {
             upstream = await fetch(url, { headers: { Accept: "application/json", Authorization: "Bearer " + retryJwt } });
         }
         const data = await upstream.text();
+        // Tanpa header ini Vercel mengirim body JSON sebagai text/html.
+        res.setHeader("Content-Type", "application/json; charset=utf-8");
         res.status(upstream.status).send(data);
     } catch (e) {
         res.status(502).json({ error: "Proxy gagal: " + e.message });

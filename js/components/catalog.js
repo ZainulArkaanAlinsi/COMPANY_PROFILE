@@ -54,6 +54,16 @@ PC.catalog = (function () {
     PC.ui.toast(car.name + " ditambahkan ke daftar minat", "success");
   }
 
+  /* Gabungan teks yang bisa dicari. Field kosong dilewati — sebelumnya
+     badge/brand undefined ikut jadi teks "undefined" sehingga mengetik
+     "undefined" mencocokkan unit yang datanya justru tidak lengkap. */
+  function haystack(c) {
+    return [c.name, c.brand, c.badge, c.category, c.year]
+      .filter(function (v) { return v != null && v !== ""; })
+      .join(" ")
+      .toLowerCase();
+  }
+
   function filtered() {
     var q = view.q.trim().toLowerCase();
     var bucket = PRICE_BUCKETS[view.price];
@@ -61,16 +71,19 @@ PC.catalog = (function () {
       var okCat = view.category === "all" || c.category === view.category;
       var okBrand = view.brand === "all" || c.brand === view.brand;
       var okPrice = !bucket || (c.price >= bucket[0] && c.price < bucket[1]);
-      var okQ = !q || (c.name + " " + c.brand + " " + c.badge).toLowerCase().indexOf(q) >= 0;
+      var okQ = !q || haystack(c).indexOf(q) >= 0;
       return okCat && okBrand && okPrice && okQ;
     });
-    if (view.sort === "price-asc") list.sort(function (a, b) { return a.price - b.price; });
-    else if (view.sort === "price-desc") list.sort(function (a, b) { return b.price - a.price; });
-    else if (view.sort === "year-desc") list.sort(function (a, b) { return b.year - a.year; });
-    // Default: unit kurasi & unggulan dulu, lalu sisanya.
-    else list.sort(function (a, b) {
-      return (b.featured ? 2 : b.variant ? 0 : 1) - (a.featured ? 2 : a.variant ? 0 : 1);
-    });
+    /* Nama dipakai sebagai pemecah seri agar urutan stabil: tanpa ini dua
+       unit berharga/berumur sama bisa bertukar posisi tiap render — makin
+       terasa sejak katalog berisi ratusan varian. */
+    function byName(a, b) { return a.name.localeCompare(b.name, "id"); }
+    // Default: unit unggulan dulu, lalu kurasi, lalu varian.
+    function rank(c) { return c.featured ? 2 : c.variant ? 0 : 1; }
+    if (view.sort === "price-asc") list.sort(function (a, b) { return (a.price - b.price) || byName(a, b); });
+    else if (view.sort === "price-desc") list.sort(function (a, b) { return (b.price - a.price) || byName(a, b); });
+    else if (view.sort === "year-desc") list.sort(function (a, b) { return ((b.year || 0) - (a.year || 0)) || byName(a, b); });
+    else list.sort(function (a, b) { return (rank(b) - rank(a)) || byName(a, b); });
     return list;
   }
 

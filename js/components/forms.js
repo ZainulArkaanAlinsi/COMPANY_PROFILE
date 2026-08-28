@@ -30,18 +30,27 @@ PC.forms = (function () {
   }
   function notEmpty(v) { return v && v.trim().length > 0; }
 
+  /* Pesan error dibersihkan begitu pengguna mengetik lagi. Listener dipasang
+     SEKALI per input — versi sebelumnya menambah listener baru pada tiap
+     percobaan submit sehingga menumpuk selama pengguna belum mengetik. */
+  function bindClearOnInput(input) {
+    if (input.dataset.pcClearBound) return;
+    input.dataset.pcClearBound = "1";
+    input.addEventListener("input", function () { clearError(input); });
+  }
+
   /** validasi sekumpulan field; fokus error pertama; return bool */
   function run(fields) {
     var ok = true, firstBad = null;
     fields.forEach(function (f) {
       if (!f.input) return;
-      var v = f.input.value;
+      var v = f.input.value == null ? "" : String(f.input.value);
       var pass = true;
       if (f.type === "email") pass = EMAIL.test(v.trim());
       else if (f.type === "tel") pass = /\d{8,}/.test(v.replace(/\D/g, ""));
       else pass = notEmpty(v);
       if (!check(f.input, pass, f.msg)) { ok = false; firstBad = firstBad || f.input; }
-      f.input.addEventListener("input", function once() { clearError(f.input); f.input.removeEventListener("input", once); });
+      bindClearOnInput(f.input);
     });
     if (firstBad) firstBad.focus();
     return ok;

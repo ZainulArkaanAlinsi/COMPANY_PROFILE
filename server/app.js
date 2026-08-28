@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 const Database = require('better-sqlite3');
 
 const ROOT = path.join(__dirname, '..');
@@ -45,6 +46,7 @@ const MARKETCHECK_API_KEY = process.env.MARKETCHECK_API_KEY || "";
 const API_NINJAS_KEY = process.env.API_NINJAS_KEY || "";
 const CARAPI_TOKEN = process.env.CARAPI_TOKEN || "";
 const CARAPI_SECRET = process.env.CARAPI_SECRET || "";
+const LEADS_ADMIN_TOKEN = process.env.LEADS_ADMIN_TOKEN || "";
 const MARKETCHECK_URL = "https://api.marketcheck.com/v2/search/car/active";
 const NINJAS_BASE = "https://api.api-ninjas.com/v1";
 const CARAPI_BASE = "https://carapi.app/api";
@@ -111,8 +113,13 @@ function canonicalPath(raw) {
     return raw.replace(/^\/+/g, "").replace(/\/+$/g, "");
 }
 
+/* Pencocokan awalan saja bisa ditembus: "trims/../account/requests" lolos
+   karena berawalan "trims/", lalu fetch menormalkan ".." sehingga endpoint
+   di luar daftar tetap terpanggil. */
 function isAllowedCarapiPath(path) {
     if (!path) return false;
+    if (!/^[A-Za-z0-9][A-Za-z0-9._~/-]*$/.test(path)) return false;
+    if (path.split('/').some((seg) => seg === '' || seg === '.' || seg === '..')) return false;
     return CARAPI_PREFIXES.some(function (prefix) {
         return path === prefix || path.indexOf(prefix + "/") === 0;
     });
@@ -123,7 +130,7 @@ app.use(express.json());
 app.use('/api', function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     if (req.method === 'OPTIONS') {
         return res.sendStatus(204);
     }
@@ -198,7 +205,7 @@ app.get('/api/carapi', async (req, res) => {
             r = await fetch(upstreamUrl, { headers: { Accept: 'application/json', Authorization: 'Bearer ' + token } });
         }
         const body = await r.text();
-        res.status(r.status).send(body);
+        res.type('application/json').status(r.status).send(body);
     } catch (e) {
         console.error(e && e.stack || e);
         res.status(502).json({ error: 'CarAPI proxy gagal: ' + e.message });
@@ -226,10 +233,30 @@ app.post('/api/leads', (req, res) => {
     }
 });
 
-// admin: list leads (most recent first, limit optional)
+/* admin: list leads (terbaru dulu, limit opsional).
+   Endpoint ini mengembalikan data pribadi calon pembeli (nama, email,
+   telepon) sehingga TIDAK boleh terbuka. Aktifkan dengan menyetel
+   LEADS_ADMIN_TOKEN lalu kirim header  Authorization: Bearer <token>. */
+function leadsAuthorized(req) {
+    if (!LEADS_ADMIN_TOKEN) return false;
+    const header = String(req.get('authorization') || '');
+    const supplied = header.replace(/^Bearer\s+/i, '');
+    const a = Buffer.from(supplied);
+    const b = Buffer.from(LEADS_ADMIN_TOKEN);
+    return a.length === b.length && crypto.timingSafeEqual(a, b);
+}
+
 app.get('/api/leads', (req, res) => {
+    if (!LEADS_ADMIN_TOKEN) {
+        return res.status(503).json({ error: 'LEADS_ADMIN_TOKEN belum di-set — endpoint admin dinonaktifkan.' });
+    }
+    if (!leadsAuthorized(req)) {
+        return res.status(401).json({ error: 'unauthorized' });
+    }
     try {
-        const limit = Math.min(Math.max(parseInt(req.query.limit || '100', 10), 1), 1000);
+        // parseInt("abc") = NaN, dan LIMIT NaN membuat query gagal (500).
+        const parsed = parseInt(req.query.limit, 10);
+        const limit = Number.isFinite(parsed) ? Math.min(Math.max(parsed, 1), 1000) : 100;
         const rows = db.prepare('SELECT * FROM leads ORDER BY createdAt DESC LIMIT ?').all(limit);
         const out = rows.map(r => ({ ...r, items: JSON.parse(r.items || '[]') }));
         res.json({ ok: true, count: out.length, leads: out });

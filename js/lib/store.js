@@ -8,9 +8,31 @@ PC.store = (function () {
   var KEY_CART = "pc.cart";
   var KEY_WISH = "pc.wishlist";
 
+  /* State dari localStorage tidak pernah dipercaya apa adanya: isinya bisa
+     hasil versi lama, hasil edit manual, atau tipe yang salah. Tanpa
+     sanitasi ini, count() bisa menghasilkan "02" (penggabungan string). */
+  function sanitizeCart(raw) {
+    if (!Array.isArray(raw)) return [];
+    var seen = {};
+    return raw.reduce(function (out, l) {
+      if (!l || typeof l.id !== "string" || !l.id) return out;
+      var qty = Math.max(1, parseInt(l.qty, 10) || 1);
+      if (seen[l.id]) { seen[l.id].qty += qty; return out; }   // gabung duplikat
+      seen[l.id] = { id: l.id, qty: qty };
+      out.push(seen[l.id]);
+      return out;
+    }, []);
+  }
+  function sanitizeWishlist(raw) {
+    if (!Array.isArray(raw)) return [];
+    return raw.filter(function (id, i) {
+      return typeof id === "string" && id && raw.indexOf(id) === i;
+    });
+  }
+
   var state = {
-    cart: PC.storage.get(KEY_CART, []),     // [{ id, qty }]
-    wishlist: PC.storage.get(KEY_WISH, []), // [id]
+    cart: sanitizeCart(PC.storage.get(KEY_CART, [])),         // [{ id, qty }]
+    wishlist: sanitizeWishlist(PC.storage.get(KEY_WISH, [])), // [id]
   };
 
   var handlers = {}; // event -> [fn]
@@ -36,7 +58,9 @@ PC.store = (function () {
   /* ---------------- Cart ---------------- */
   var cart = {
     add: function (id, qty) {
-      qty = qty || 1;
+      // Tanpa parseInt, add(id, "2") membuat qty jadi string lalu
+      // line.qty += qty menyambung teks ("1" + "2" = "12").
+      qty = Math.max(1, parseInt(qty, 10) || 1);
       if (!PC.getCar(id)) return;
       var line = state.cart.find(function (l) { return l.id === id; });
       if (line) line.qty += qty;
@@ -59,6 +83,8 @@ PC.store = (function () {
       var out = state.cart.map(function (l) {
         var car = PC.getCar(l.id);
         if (!car) return null;
+        // Normalkan qty: data lama di localStorage bisa saja string/NaN.
+        l.qty = Math.max(1, parseInt(l.qty, 10) || 1);
         clean.push(l);
         return { car: car, qty: l.qty, subtotal: car.price * l.qty };
       }).filter(Boolean);

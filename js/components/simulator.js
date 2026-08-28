@@ -21,14 +21,22 @@ PC.simulator = (function () {
     };
   }
 
+  /** Label persen diturunkan dari RATE supaya tak pernah berbeda dari hitungan. */
+  function rateLabel() {
+    return String(Math.round(RATE * 1000) / 10).replace(".", ",") + "%";
+  }
+
   function compute() {
     var price = parseFloat(refs.price.value) || 0;
     var dp = parseFloat(refs.dp.value) || 0;
     var months = parseInt(refs.tenor.value, 10) || 12;
 
     if (price <= 0) { return show(null, "Masukkan harga unit."); }
+    // Cek negatif lebih dulu: pesan "harus lebih kecil dari harga" menyesatkan
+    // untuk DP negatif, yang justru lolos perbandingan dp >= price.
+    if (dp < 0) { return show(null, "Uang muka tidak boleh negatif."); }
     if (dp >= price) { return show(null, "Uang muka harus lebih kecil dari harga."); }
-    if (dp < 0) { return show(null, "Uang muka tidak valid."); }
+    if (months <= 0) { return show(null, "Tenor tidak valid."); }
 
     show(estimate(price, dp, months));
   }
@@ -46,7 +54,9 @@ PC.simulator = (function () {
       PC.ui.el("div", { class: "sim-result__main" }, [
         PC.ui.el("span", { class: "sim-result__label" }, ["Angsuran / bulan"]),
         PC.ui.el("strong", { class: "sim-result__value" }, [fmt.rupiah(res.monthly)]),
-        PC.ui.el("span", { class: "sim-result__sub" }, ["selama " + res.months + " bulan · bunga flat 5%/th"]),
+        PC.ui.el("span", { class: "sim-result__sub" }, [
+          "selama " + res.months + " bulan · bunga flat " + rateLabel() + "/th",
+        ]),
       ]),
       PC.ui.el("div", { class: "sim-result__rows" }, [
         rowKV("Pokok pinjaman", fmt.rupiah(res.principal)),
@@ -63,7 +73,7 @@ PC.simulator = (function () {
 
   /** dipanggil dari modal detail: isi harga & gulir ke simulator */
   function prefill(car) {
-    if (!refs.price) return;
+    if (!refs.price || !refs.out) return;
     refs.price.value = car.price;
     refs.dp.value = Math.round(car.price * 0.2);
     if (refs.label) refs.label.textContent = "Simulasi untuk: " + car.name;
@@ -79,7 +89,9 @@ PC.simulator = (function () {
     refs.out = $("#sim-output");
     refs.label = $("#sim-label");
     refs.form = $("#sim-form");
-    if (!refs.form) return;
+    // Semua ref wajib ada: kalau salah satu id berubah di HTML, forEach di
+    // bawah dulu melempar TypeError dan mematikan sisa inisialisasi halaman.
+    if (!refs.form || !refs.price || !refs.dp || !refs.tenor || !refs.out) return;
 
     refs.form.addEventListener("submit", function (e) { e.preventDefault(); compute(); });
     [refs.price, refs.dp, refs.tenor].forEach(function (inp) {

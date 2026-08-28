@@ -12,18 +12,18 @@ export const metadata = {
 const commitments = [
   {
     icon: ShieldIcon,
-    title: "Certified Experts",
-    body: "Setiap valuasi ditinjau manual oleh master mechanic dan analis pasar kami.",
+    title: "Penilai Bersertifikat",
+    body: "Setiap valuasi ditinjau manual oleh mekanik senior dan analis pasar kami.",
   },
   {
     icon: GaugeIcon,
-    title: "Fast Valuation",
+    title: "Valuasi Cepat",
     body: "Terima estimasi awal kelas premium dalam 24 jam sejak pengajuan.",
   },
   {
     icon: CardIcon,
-    title: "Direct Payment",
-    body: "Dana ditransfer via secure wire dalam 2 jam setelah serah terima fisik.",
+    title: "Pembayaran Langsung",
+    body: "Dana ditransfer via transfer terjamin dalam 2 jam setelah serah terima fisik.",
   },
 ];
 
@@ -34,7 +34,7 @@ export default function AppraisalPage() {
         <div className="grid gap-12 lg:grid-cols-[280px,1fr]">
           {/* Sidebar — our commitment */}
           <Reveal as="aside" delay={150} className="lg:border-r lg:border-line-soft lg:pr-10">
-            <h2 className="display accent-rule text-xl">Our Commitment</h2>
+            <h2 className="display accent-rule text-xl">Komitmen Kami</h2>
             <ul className="mt-10 space-y-8">
               {commitments.map((c) => (
                 <li key={c.title} className="flex gap-4">
@@ -64,7 +64,7 @@ export default function AppraisalPage() {
           {/* Form */}
           <div>
             <header className="mb-8">
-              <h1 className="display text-5xl md:text-6xl">Vehicle Appraisal</h1>
+              <h1 className="display text-5xl md:text-6xl">Penilaian Kendaraan</h1>
               <p className="mt-4 max-w-xl text-muted">
                 Mulai transisi masterpiece otomotif Anda. Lengkapi kolom di
                 bawah dengan presisi mekanis.
@@ -81,7 +81,7 @@ export default function AppraisalPage() {
           <SmartImage
             src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1400&q=80"
             alt="Detail mesin performa tinggi"
-            label="Precision"
+            label="Presisi"
             className="aspect-[4/3] w-full grayscale"
           />
           <div>
@@ -98,13 +98,13 @@ export default function AppraisalPage() {
                 <dd className="font-display text-3xl font-bold text-amber">
                   <CountUp text="0-24H" />
                 </dd>
-                <dt className="tech mt-1 text-meta">Response Time</dt>
+                <dt className="tech mt-1 text-meta">Waktu Respons</dt>
               </div>
               <div>
                 <dd className="font-display text-3xl font-bold text-amber">
                   <CountUp text="98,4%" />
                 </dd>
-                <dt className="tech mt-1 text-meta">Offer Acceptance</dt>
+                <dt className="tech mt-1 text-meta">Penerimaan Penawaran</dt>
               </div>
             </dl>
           </div>

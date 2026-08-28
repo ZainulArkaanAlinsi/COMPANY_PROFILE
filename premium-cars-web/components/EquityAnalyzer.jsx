@@ -31,7 +31,7 @@ export default function EquityAnalyzer() {
     model: "2021 Porsche Taycan 4S",
     value: 2450000000,
     mileage: 14200,
-    condition: "Excellent",
+    condition: "Sangat Baik",
   });
   const [targetSlug, setTargetSlug] = useState(
     cars.some((c) => c.slug === requested) ? requested : cars[1].slug
@@ -86,11 +86,11 @@ export default function EquityAnalyzer() {
         <div>
           <p className="tech text-amber">Trade-In Terminal V2.4</p>
           <h1 className="display mt-3 text-5xl md:text-7xl">
-            Equity <span className="text-muted">Analyzer</span>
+            Analisis <span className="text-muted">Ekuitas</span>
           </h1>
         </div>
         <div className="border-l-2 border-amber pl-4 text-right md:text-left">
-          <p className="tech text-meta">Market Date</p>
+          <p className="tech text-meta">Tanggal Pasar</p>
           <p className="font-display text-xl font-semibold uppercase" suppressHydrationWarning>
             {marketDate || "—"}
           </p>
@@ -103,13 +103,13 @@ export default function EquityAnalyzer() {
         <div className="space-y-8">
           <div className="border border-line bg-surface p-6 md:p-8">
             <div className="flex items-center justify-between">
-              <p className="tech text-amber">Current Asset / Baseline</p>
+              <p className="tech text-amber">Aset Saat Ini / Dasar</p>
               <CarIcon />
             </div>
             <SmartImage
               src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80"
               alt="Kendaraan Anda saat ini"
-              label="Your Asset"
+              label="Aset Anda"
               className="mt-5 aspect-[16/9] w-full grayscale"
             />
             <div className="mt-6 flex flex-wrap items-start justify-between gap-4">
@@ -158,11 +158,11 @@ export default function EquityAnalyzer() {
 
           {/* Valuation matrix */}
           <div className="border border-line bg-surface p-6 md:p-8">
-            <p className="tech text-meta">Valuation Matrix</p>
+            <p className="tech text-meta">Matriks Penilaian</p>
             <dl className="mt-4 divide-y divide-line-soft">
-              <Row k="Market Demand Index" v={`${calc.demand.toFixed(1)} / 10`} />
-              <Row k="Auction Realized Avg" v={formatIDR(calc.auctionAvg)} />
-              <Row k="Estimated Recon Cost" v={`-${formatIDR(calc.recon)}`} accent />
+              <Row k="Indeks Permintaan Pasar" v={`${calc.demand.toFixed(1)} / 10`} />
+              <Row k="Rata-rata Hasil Lelang" v={formatIDR(calc.auctionAvg)} />
+              <Row k="Estimasi Biaya Rekondisi" v={`-${formatIDR(calc.recon)}`} accent />
             </dl>
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function EquityAnalyzer() {
         <div className="space-y-8">
           <div className="border border-amber/40 bg-surface p-6 md:p-8">
             <div className="flex items-center justify-between">
-              <p className="tech text-amber">Target Asset / Upgrade</p>
+              <p className="tech text-amber">Aset Tujuan / Peningkatan</p>
               <StarIcon />
             </div>
             <SmartImage
@@ -231,7 +231,7 @@ export default function EquityAnalyzer() {
           <div className="bg-amber p-6 text-floor md:p-8">
             <div className="flex items-center justify-between">
               <p className="text-[11px] font-semibold uppercase tracking-tech">
-                {calc.deficit > 0 ? "Equity Deficit" : "Equity Surplus"}
+                {calc.deficit > 0 ? "Defisit Ekuitas" : "Surplus Ekuitas"}
               </p>
               <ReceiptIcon />
             </div>
@@ -280,8 +280,8 @@ export default function EquityAnalyzer() {
       {/* Recommendation band */}
       <div className="mt-12 grid gap-px overflow-hidden border border-line bg-line lg:grid-cols-3">
         <div className="bg-surface-2 p-8">
-          <p className="tech text-amber">Recommendation Engine</p>
-          <h3 className="display mt-3 text-2xl">Precision Financing</h3>
+          <p className="tech text-amber">Mesin Rekomendasi</p>
+          <h3 className="display mt-3 text-2xl">Pembiayaan Presisi</h3>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">
             Jembatani selisih {formatIDR(Math.max(calc.deficit, 0))} dengan
             program pembiayaan selisih untuk peningkatan unit bernilai tinggi.
@@ -294,25 +294,25 @@ export default function EquityAnalyzer() {
           </Link>
         </div>
         <div className="flex flex-col justify-center bg-surface p-8">
-          <p className="tech text-meta">Estimated Payment</p>
+          <p className="tech text-meta">Estimasi Angsuran</p>
           <p className="mt-3 font-display text-4xl font-bold md:text-5xl">
             {calc.deficit > 0 ? formatIDR(calc.monthly) : "—"}
             <span className="ml-1 text-base font-semibold text-muted">/BLN</span>
           </p>
           <p className="tech mt-3 text-meta">
-            Based on {MONTHS} months @ {(RATE * 100).toFixed(1)}% flat
+            Berdasarkan tenor {MONTHS} bulan, bunga {(RATE * 100).toFixed(1)}% flat
           </p>
         </div>
         <Link href="/katalog" className="force-dark group relative min-h-[220px] overflow-hidden">
           <SmartImage
             src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=80"
             alt="Akses inventaris"
-            label="Inventory"
+            label="Inventaris"
             className="absolute inset-0 h-full w-full"
           />
           <span className="absolute inset-0 bg-gradient-to-t from-[rgba(15,13,11,0.85)] via-[rgba(15,13,11,0.15)] to-transparent" />
           <span className="absolute bottom-0 left-0 p-8">
-            <span className="display block text-2xl">Inventory Access</span>
+            <span className="display block text-2xl">Akses Inventaris</span>
             <span className="tech mt-2 block text-muted transition-colors group-hover:text-amber">
               View {similar} Similar Configurations →
             </span>

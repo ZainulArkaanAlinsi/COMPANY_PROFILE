@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { formatIDR } from "@/lib/cars";
+import { statusLabel } from "@/lib/labels";
 
 export default function InventoryTable({ cars }) {
   const router = useRouter();
@@ -58,7 +59,7 @@ export default function InventoryTable({ cars }) {
               <p className="font-display font-semibold">{formatIDR(car.price)}</p>
             </div>
             <span className="hidden w-24 text-center text-[10.5px] font-semibold uppercase tracking-tech text-muted md:block">
-              {car.status}
+              {statusLabel(car.status)}
             </span>
             <div className="flex shrink-0 items-center gap-2">
               <Link

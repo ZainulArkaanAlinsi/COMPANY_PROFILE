@@ -10,7 +10,7 @@ export default function NotFound() {
         dipindahkan ke garasi lain.
       </p>
       <div className="mt-8 flex gap-3">
-        <Button href="/" variant="solid">Kembali ke Home</Button>
+        <Button href="/" variant="solid">Kembali ke Beranda</Button>
         <Button href="/katalog" variant="ghost">Lihat Katalog</Button>
       </div>
     </div>

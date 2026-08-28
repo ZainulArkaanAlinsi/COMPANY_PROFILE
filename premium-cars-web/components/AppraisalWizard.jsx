@@ -11,23 +11,23 @@ import { submitLead } from "@/lib/leads-client";
  */
 
 const photoSlots = [
-  { id: "front", label: "Front 3/4" },
-  { id: "cockpit", label: "Cockpit" },
+  { id: "front", label: "Depan 3/4" },
+  { id: "cockpit", label: "Kabin" },
   { id: "odometer", label: "Odometer" },
-  { id: "engine", label: "Engine Bay" },
+  { id: "engine", label: "Ruang Mesin" },
 ];
 
 const tireOptions = [
-  "90% - 100% (Near New)",
-  "70% - 89% (Good)",
-  "50% - 69% (Worn)",
-  "< 50% (Replace Soon)",
+  "90% – 100% (nyaris baru)",
+  "70% – 89% (baik)",
+  "50% – 69% (aus)",
+  "< 50% (segera ganti)",
 ];
 
 const steps = [
-  { n: 1, label: "Identity", href: "#identity" },
-  { n: 2, label: "Visuals", href: "#visuals" },
-  { n: 3, label: "Engine", href: "#engine" },
+  { n: 1, label: "Identitas", href: "#identity" },
+  { n: 2, label: "Visual", href: "#visuals" },
+  { n: 3, label: "Mesin", href: "#engine" },
 ];
 
 export default function AppraisalWizard() {
@@ -68,10 +68,10 @@ export default function AppraisalWizard() {
   if (ref) {
     return (
       <div className="border border-line bg-surface p-10 text-center md:p-16">
-        <p className="tech text-amber">Submission Received</p>
+        <p className="tech text-amber">Pengajuan Diterima</p>
         <h2 className="display mt-4 text-4xl md:text-5xl">Dalam Antrean Review</h2>
         <p className="mx-auto mt-5 max-w-md text-muted">
-          Dokumen Anda telah dienkripsi dan diteruskan ke master technician
+          Dokumen Anda telah dienkripsi dan diteruskan ke teknisi utama
           kami. Estimasi awal dikirim dalam <span className="text-ink">24 jam</span>.
         </p>
         <div className="mx-auto mt-8 inline-block border border-line bg-floor px-8 py-4">
@@ -85,7 +85,7 @@ export default function AppraisalWizard() {
             href="/jual/trade-in"
             className="rounded-sm bg-amber px-8 py-3 text-[13px] font-semibold uppercase tracking-tech text-floor hover:bg-amber-600"
           >
-            Lanjut ke Equity Analyzer
+            Lanjut ke Analisis Ekuitas
           </Link>
           <Link
             href="/katalog"
@@ -127,27 +127,27 @@ export default function AppraisalWizard() {
         {/* 01 — Identity */}
         <section id="identity" className="scroll-mt-32">
           <h2 className="display text-2xl">
-            <span className="text-amber">01 /</span> Vehicle Identity
+            <span className="text-amber">01 /</span> Identitas Kendaraan
           </h2>
           <div className="mt-6 grid gap-5 sm:grid-cols-2">
-            <Field label="VIN (Vehicle Identification Number)">
+            <Field label="VIN (Nomor Identifikasi Kendaraan)">
               <input
                 required
                 minLength={11}
                 maxLength={17}
                 value={form.vin}
                 onChange={set("vin")}
-                placeholder="17-Digit Alpha-numeric Code"
+                placeholder="Kode alfanumerik 17 digit"
                 className={lightInput + " uppercase"}
               />
             </Field>
-            <Field label="Make / Manufacturer">
-              <input required value={form.make} onChange={set("make")} placeholder="e.g. Porsche, Ferrari" className={lightInput} />
+            <Field label="Merek / Pabrikan">
+              <input required value={form.make} onChange={set("make")} placeholder="mis. Porsche, Ferrari" className={lightInput} />
             </Field>
-            <Field label="Model & Year">
-              <input required value={form.model} onChange={set("model")} placeholder="e.g. 2022 911 GT3 RS" className={lightInput} />
+            <Field label="Model & Tahun">
+              <input required value={form.model} onChange={set("model")} placeholder="mis. 2022 911 GT3 RS" className={lightInput} />
             </Field>
-            <Field label="Current Odometer (KM)">
+            <Field label="Odometer Saat Ini (KM)">
               <input required type="number" min={0} value={form.odometer} onChange={set("odometer")} placeholder="0" className={lightInput} />
             </Field>
           </div>
@@ -194,10 +194,10 @@ export default function AppraisalWizard() {
         {/* 03 — Engine / mechanical */}
         <section id="engine" className="scroll-mt-32 mt-12">
           <h2 className="display text-2xl">
-            <span className="text-amber">03 /</span> Mechanical Specs
+            <span className="text-amber">03 /</span> Spesifikasi Mekanis
           </h2>
           <div className="mt-6 space-y-5">
-            <Field label="Modifications & Aftermarket Enhancements">
+            <Field label="Modifikasi & Perangkat Aftermarket">
               <textarea
                 rows={4}
                 value={form.mods}
@@ -207,10 +207,10 @@ export default function AppraisalWizard() {
               />
             </Field>
             <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Last Service Date">
+              <Field label="Tanggal Servis Terakhir">
                 <input type="date" value={form.serviceDate} onChange={set("serviceDate")} className={lightInput} />
               </Field>
-              <Field label="Tire Condition (%)">
+              <Field label="Kondisi Ban (%)">
                 <select value={form.tire} onChange={set("tire")} className={darkInput}>
                   {tireOptions.map((t) => (
                     <option key={t}>{t}</option>

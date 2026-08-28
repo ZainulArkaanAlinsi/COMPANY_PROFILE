@@ -224,7 +224,7 @@ export default function HomePage() {
           <SectionHeader
             index={2}
             kicker="Koleksi"
-            title="Curated Collections"
+            title="Koleksi Terkurasi"
             action={{ label: "Semua Kategori", href: "/katalog" }}
           />
         </Reveal>
@@ -257,8 +257,8 @@ export default function HomePage() {
         <Reveal>
           <SectionHeader
             index={3}
-            kicker="Inventory"
-            title="Limited Availability"
+            kicker="Inventaris"
+            title="Ketersediaan Terbatas"
             action={{ label: "Katalog Lengkap", href: "/katalog" }}
           />
         </Reveal>
@@ -295,7 +295,7 @@ export default function HomePage() {
           <SectionHeader
             index={5}
             kicker="Editorial"
-            title="Premium Journal"
+            title="Jurnal Premium"
             action={{ label: "Semua Cerita", href: "/journal" }}
           />
         </Reveal>

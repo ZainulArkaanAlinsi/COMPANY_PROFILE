@@ -75,12 +75,14 @@ export const fuels = uniq("fuel");
 export const drivetrains = uniq("drivetrain");
 export const eras = ["70-an", "80-an", "90-an", "2000-an", "2010-an", "2020-an"];
 
+// `id` tetap bahasa Inggris karena dipakai sebagai nilai ?kategori= di URL dan
+// sebagai kunci pencocokan; hanya `label` yang tampil ke pengunjung.
 export const categories = [
-  "All Inventory",
-  "New Arrivals",
-  "Electric",
-  "Track",
-  "Limited Edition",
+  { id: "All Inventory", label: "Semua Unit" },
+  { id: "New Arrivals", label: "Baru Masuk" },
+  { id: "Electric", label: "Mobil Listrik" },
+  { id: "Track", label: "Sirkuit" },
+  { id: "Limited Edition", label: "Edisi Terbatas" },
 ];
 
 export function getCar(slug) {

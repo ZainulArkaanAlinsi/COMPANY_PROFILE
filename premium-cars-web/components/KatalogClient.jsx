@@ -24,7 +24,10 @@ function matchCategory(car, cat) {
     case "Limited Edition":
       return car.category === "Hypercar" || car.category === "Limited Edition";
     default:
-      return true;
+      // Nilai apa pun di luar tab bawaan (mis. ?kategori=Hypercar dari kartu
+      // koleksi beranda) dicocokkan langsung ke kategori unit. Tanpa ini
+      // filternya diam-diam lolos dan menampilkan seluruh katalog.
+      return cat === "All Inventory" || car.category === cat;
   }
 }
 
@@ -175,15 +178,15 @@ export default function KatalogClient({ cars, source = "local" }) {
         <div className="flex flex-wrap gap-2">
           {categories.map((c) => (
             <button
-              key={c}
-              onClick={() => setCat(c)}
+              key={c.id}
+              onClick={() => setCat(c.id)}
               className={`rounded-sm px-4 py-2.5 text-[12px] font-semibold uppercase tracking-tech transition-colors ${
-                cat === c
+                cat === c.id
                   ? "bg-amber text-floor"
                   : "border border-line text-muted hover:border-amber hover:text-ink"
               }`}
             >
-              {c}
+              {c.label}
             </button>
           ))}
         </div>
@@ -192,7 +195,7 @@ export default function KatalogClient({ cars, source = "local" }) {
       <div className="mt-12 grid gap-8 lg:grid-cols-[300px_1fr]">
         <aside className="space-y-8">
           <div className="border border-line bg-surface p-6">
-            <h3 className="display mb-6 text-xl">Spec Finder</h3>
+            <h3 className="display mb-6 text-xl">Penyaring Spesifikasi</h3>
 
             <Field label="Merek">
               <Select value={brand} onChange={setBrand} options={brandList} allLabel="Semua Merek" />

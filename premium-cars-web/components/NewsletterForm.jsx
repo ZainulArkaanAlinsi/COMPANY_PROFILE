@@ -41,7 +41,7 @@ export default function NewsletterForm() {
         disabled={state.status === "loading"}
         className="btn-sheen rounded-sm bg-amber px-8 py-3 text-[13px] font-semibold uppercase tracking-tech text-floor transition-all hover:-translate-y-px hover:bg-amber-600 disabled:opacity-60"
       >
-        {state.status === "loading" ? "…" : "Subscribe"}
+        {state.status === "loading" ? "…" : "Berlangganan"}
       </button>
       {state.status === "error" && (
         <p className="text-sm text-amber sm:hidden">{state.error}</p>

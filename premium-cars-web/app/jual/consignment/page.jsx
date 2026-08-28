@@ -48,14 +48,14 @@ export default function ConsignmentPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(15,13,11,0.85)] via-[rgba(15,13,11,0.12)] to-transparent" />
           <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-6 p-6 md:p-10">
             <div>
-              <p className="tech text-amber">Available via Private Treaty</p>
+              <p className="tech text-amber">Tersedia lewat Kesepakatan Privat</p>
               <h2 className="display mt-2 text-4xl md:text-5xl">
                 Ferrari LaFerrari
               </h2>
               <dl className="mt-4 flex gap-8">
-                <Spec k="Year" v="2014" />
-                <Spec k="Mileage" v="660 KM" />
-                <Spec k="Location" v="Jakarta, ID" />
+                <Spec k="Tahun" v="2014" />
+                <Spec k="Jarak Tempuh" v="660 KM" />
+                <Spec k="Lokasi" v="Jakarta, ID" />
               </dl>
             </div>
             <Button
@@ -75,7 +75,7 @@ export default function ConsignmentPage() {
           <div className="flex flex-col justify-between border border-line bg-surface p-8 md:col-span-4">
             <div>
               <GlobeIcon />
-              <h3 className="display mt-5 text-2xl">Global Reach</h3>
+              <h3 className="display mt-5 text-2xl">Jangkauan Global</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 Akses langsung ke kolektor UHNW di 42 negara. Aset Anda tidak
                 sekadar dilisting — ia ditempatkan.
@@ -96,7 +96,7 @@ export default function ConsignmentPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-[rgba(15,13,11,0.85)] via-[rgba(15,13,11,0.15)] to-transparent" />
             <div className="absolute bottom-0 left-0 p-8">
               <h3 className="display text-3xl md:text-4xl">Bugatti Chiron</h3>
-              <p className="tech mt-2 text-amber">Recently Secured</p>
+              <p className="tech mt-2 text-amber">Baru Diamankan</p>
             </div>
           </div>
 
@@ -104,12 +104,12 @@ export default function ConsignmentPage() {
             <SmartImage
               src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80"
               alt="Interior kokpit — shadow catalog"
-              label="Discretion"
+              label="Kerahasiaan"
               className="absolute inset-0 h-full w-full"
             />
             <div className="absolute inset-0 bg-floor/75" />
             <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-              <h3 className="display text-2xl md:text-3xl">Absolute Discretion</h3>
+              <h3 className="display text-2xl md:text-3xl">Kerahasiaan Mutlak</h3>
               <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
                 Untuk listing yang tak pernah menyentuh publik — Shadow Catalog
                 kami menghubungkan pemilik dengan pembeli terverifikasi dalam
@@ -126,7 +126,7 @@ export default function ConsignmentPage() {
 
           <div className="flex flex-col border border-line bg-surface p-8 md:col-span-5">
             <BadgeIcon />
-            <h3 className="display mt-5 text-2xl">Forensic Provenance</h3>
+            <h3 className="display mt-5 text-2xl">Provenans Forensik</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted">
               Setiap consignment menjalani verifikasi 140 titik dan penelusuran
               riwayat mendalam oleh master technician kami — sertifikasi yang
@@ -152,7 +152,7 @@ export default function ConsignmentPage() {
               <li className="flex gap-4">
                 <span className="mt-0.5 shrink-0 text-amber"><LockIcon /></span>
                 <div>
-                  <h3 className="tech text-ink">Encrypted Communication</h3>
+                  <h3 className="tech text-ink">Komunikasi Terenkripsi</h3>
                   <p className="mt-1 text-[13px] text-muted">
                     Kanal sinyal dan email aman untuk seluruh dokumentasi sensitif.
                   </p>
@@ -161,7 +161,7 @@ export default function ConsignmentPage() {
               <li className="flex gap-4">
                 <span className="mt-0.5 shrink-0 text-amber"><PlaneIcon /></span>
                 <div>
-                  <h3 className="tech text-ink">Global Logistics</h3>
+                  <h3 className="tech text-ink">Logistik Global</h3>
                   <p className="mt-1 text-[13px] text-muted">
                     Transportasi white-glove berasuransi ke destinasi mana pun.
                   </p>

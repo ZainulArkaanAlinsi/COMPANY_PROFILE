@@ -1,0 +1,389 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ Design system — "Luxury Retail" (terang & lega) ============
+   Latar bone hangat, teks ink, aksen cognac tunggal (kulit jok).
+   Airy, whitespace lega, hairline halus, motion tenang.
+   Token semantik dipakai seluruh app; ubah nilai di sini → seluruh app ikut.
+   Catatan: token Tailwind `amber` dipertahankan namanya demi kompat,
+   tapi NILAI-nya cognac. */
+/* ============ Tema GELAP sinematik — "Ink & Cognac" ============
+   Latar ink near-black hangat, teks bone, aksen cognac tunggal.
+   Dramatis & premium (nuansa showroom hypercar), bukan terang/generik. */
+:root {
+  --pc-floor: 14 13 12;       /* #0E0D0C ink near-black hangat — latar utama */
+  --pc-surface: 23 21 19;     /* #171513 — kartu / panel */
+  --pc-surface-2: 34 30 27;   /* #221E1B — well / hover / elevated */
+  --pc-ink: 243 239 233;      /* #F3EFE9 bone — teks & fill utama */
+  --pc-muted: 172 164 153;    /* #ACA499 — teks sekunder */
+  --pc-meta: 128 120 110;     /* #80786E — meta / caption redup */
+  --pc-line: 54 49 43;        /* #36312B — hairline 1px */
+  --pc-line-soft: 41 37 33;   /* #292521 — hairline lebih redup */
+  /* Aksen cognac — dicerahkan agar menonjol di atas ink & lolos kontras */
+  --pc-amber: 197 133 87;     /* #C58557 */
+  --pc-amber-600: 165 108 66; /* #A56C42 — press / hover gelap */
+  --pc-amber-400: 216 158 114;/* #D89E72 — cognac lebih terang (underline/detail) */
+  --pc-glass: rgba(14, 13, 12, 0.72);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-floor text-ink font-body antialiased;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: rgb(var(--pc-amber) / 0.22);
+    color: rgb(var(--pc-ink));
+  }
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-surface-2;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--pc-line));
+    border-radius: 99px;
+    border: 3px solid rgb(var(--pc-surface-2));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--pc-meta));
+  }
+}
+
+@layer components {
+  /* Kanvas editorial — max-width + margin desktop lega */
+  .frame {
+    @apply mx-auto w-full max-w-frame px-5 md:px-10 lg:px-16;
+  }
+  /* Oswald display — condensed, tegas tapi tidak berteriak */
+  .display {
+    @apply font-display font-semibold uppercase leading-[0.98] tracking-[-0.005em];
+  }
+  /* Label teknis — eyebrow / spec */
+  .tech {
+    @apply font-body text-[11px] font-semibold uppercase tracking-tech text-muted;
+  }
+  .hairline {
+    @apply border-line;
+  }
+  /* Navbar kaca terang */
+  .glass {
+    background-color: var(--pc-glass);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+  }
+  /* Kartu terangkat — elevasi via bayangan sangat halus (retail premium) */
+  .card-lift {
+    box-shadow: 0 1px 2px rgba(26, 22, 17, 0.04);
+    transition: box-shadow 0.4s var(--pc-ease, cubic-bezier(0.16, 1, 0.3, 1)),
+      transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card-lift:hover {
+    box-shadow: 0 24px 48px -24px rgba(26, 22, 17, 0.18);
+    transform: translateY(-4px);
+  }
+  /* Spotlight showroom di belakang mobil — konsisten tiap kartu */
+  .showroom,
+  .garage-gradient {
+    background: radial-gradient(
+      120% 130% at 50% 8%,
+      rgb(var(--pc-surface)) 0%,
+      rgb(var(--pc-surface-2)) 100%
+    );
+  }
+  /* Section foto sinematik yang tetap gelap (teks di atas gambar) */
+  .force-dark {
+    --pc-floor: 15 13 11;
+    --pc-ink: 245 243 239;
+    --pc-muted: 178 172 163;
+    --pc-meta: 138 132 123;
+    --pc-line: 62 57 50;
+    --pc-line-soft: 48 44 38;
+    --pc-surface: 24 22 19;
+    --pc-surface-2: 34 31 27;
+    color: rgb(var(--pc-ink));
+  }
+  /* Aksen underline cognac di bawah judul */
+  .accent-rule::after {
+    content: "";
+    @apply mt-5 block h-[2px] w-14 bg-amber;
+    transform-origin: left;
+    animation: rule-grow 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+/* ============ Motion — GPU-only (opacity/transform) ============ */
+.will-reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 22px));
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.will-reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-stagger.revealed > * {
+  opacity: 1;
+  transform: none;
+}
+.reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger.revealed > *:nth-child(2) { transition-delay: 90ms; }
+.reveal-stagger.revealed > *:nth-child(3) { transition-delay: 180ms; }
+.reveal-stagger.revealed > *:nth-child(4) { transition-delay: 270ms; }
+.reveal-stagger.revealed > *:nth-child(5) { transition-delay: 360ms; }
+.reveal-stagger.revealed > *:nth-child(6) { transition-delay: 450ms; }
+.reveal-stagger.revealed > *:nth-child(n + 7) { transition-delay: 540ms; }
+
+.route-enter {
+  animation: route-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes route-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.99);
+    clip-path: inset(0 0 5% 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Sapuan garis cognac di puncak viewport tiap pindah halaman */
+.route-sweep {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 101;
+  pointer-events: none;
+  transform-origin: left;
+  background: rgb(var(--pc-amber));
+  animation: route-line 0.8s cubic-bezier(0.7, 0, 0.2, 1) both;
+}
+@keyframes route-line {
+  0% { transform: scaleX(0); opacity: 1; }
+  55% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+
+.kenburns img {
+  animation: kenburns 24s ease-in-out infinite alternate;
+}
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.08) translate(1.2%, -1.2%); }
+}
+
+@keyframes rule-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.hero-line {
+  display: block;
+  overflow: hidden;
+}
+.hero-line > span {
+  display: block;
+  animation: hero-rise 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--line-delay, 0ms);
+}
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(105%); }
+  to { opacity: 1; transform: none; }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Sapuan cahaya halus pada tombol solid */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%) skewX(-18deg);
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 70%
+  );
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-sheen:hover::after {
+  transform: translateX(120%) skewX(-18deg);
+}
+
+.marquee-track {
+  animation: marquee 34s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============ Lapisan interaksi (MotionLayer.jsx) ============ */
+/* Progress baca — bar cognac tipis di paling atas viewport */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 100;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(
+    90deg,
+    rgb(var(--pc-amber-400)),
+    rgb(var(--pc-amber))
+  );
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Parallax lembut yang digerakkan scroll (JS mengeset --py) */
+[data-parallax] {
+  transform: translate3d(0, var(--py, 0px), 0);
+  will-change: transform;
+}
+
+/* Sorotan cognac mengikuti kursor di dalam kartu */
+[data-spotlight] {
+  position: relative;
+}
+[data-spotlight]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(176, 114, 74, 0.16),
+    transparent 62%
+  );
+}
+[data-spotlight]:hover::before {
+  opacity: 1;
+}
+
+/* Signature warna merek (CatalogExplorer) — tint monogram, halus */
+.brand-mono {
+  color: rgb(var(--brand-rgb, 154 95 56) / 0.16);
+  transition: color 0.45s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover > .brand-mono {
+  color: rgb(var(--brand-rgb, 154 95 56) / 0.32);
+}
+.brand-tile-active .brand-mono {
+  color: rgb(var(--brand-rgb, 154 95 56) / 0.5);
+}
+
+/* Reveal gambar sinematik — tirai clip-path naik dari bawah (tak ganggu
+   transform parallax/kenburns karena hanya menganimasikan clip-path). */
+.img-reveal {
+  animation: img-wipe 1.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--reveal-delay, 240ms);
+}
+@keyframes img-wipe {
+  from { clip-path: inset(100% 0 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* Kartu 3D-tilt — transform di-set MotionLayer.jsx mengikuti kursor */
+[data-tilt] {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Film grain premium — tekstur sinematik halus di seluruh situs */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Kursor kustom — cincin cognac mengikuti kursor (posisi via JS), desktop */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 120;
+  height: 26px;
+  width: 26px;
+  margin: -13px 0 0 -13px;
+  border: 1.5px solid rgb(var(--pc-amber));
+  border-radius: 99px;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+  transition: width 0.25s, height 0.25s, margin 0.25s,
+    background-color 0.25s, opacity 0.3s;
+}
+.cursor-dot.on {
+  opacity: 0.9;
+}
+.cursor-dot.lg {
+  height: 46px;
+  width: 46px;
+  margin: -23px 0 0 -23px;
+  background: rgb(var(--pc-amber) / 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-parallax],
+  [data-tilt] {
+    transform: none !important;
+  }
+  .will-reveal,
+  .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .route-enter,
+  .route-sweep,
+  .kenburns img,
+  .hero-line > span,
+  .accent-rule::after,
+  .animate-fade-up,
+  .img-reveal,
+  .marquee-track {
+    animation: none !important;
+  }
+}

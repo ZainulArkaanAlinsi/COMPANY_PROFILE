@@ -1,6 +1,4 @@
-const base = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://premium-cars.example"
-).replace(/\/$/, "");
+import { SITE_URL as base } from "@/lib/site-url";
 
 export default function robots() {
   return {

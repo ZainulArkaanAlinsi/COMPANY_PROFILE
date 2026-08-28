@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import MotionLayer from "@/components/MotionLayer";
+import { SITE_URL } from "@/lib/site-url";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -23,9 +24,7 @@ export const metadata = {
   title: "PREMIUM CARS | Engineered for Excellence",
   description:
     "Premium Cars — kurator kendaraan performa tinggi & rumah bagi kolektor. Company profile dan marketplace jual-beli mobil mewah dalam satu tempat.",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://premium-cars.example"
-  ),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     title: "PREMIUM CARS | Engineered for Excellence",
     description:

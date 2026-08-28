@@ -20,7 +20,7 @@ const primary = [
 ];
 
 const more = [
-  { label: "Heritage", href: "/heritage" },
+  { label: "Tentang Kami", href: "/heritage" },
   { label: "Journal", href: "/journal" },
   { label: "Membership", href: "/membership" },
   { label: "Kontak", href: "/kontak" },

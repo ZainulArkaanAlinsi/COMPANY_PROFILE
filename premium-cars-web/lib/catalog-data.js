@@ -240,6 +240,68 @@ Tata|Nexon EV Max|2023|SUV|SUV|FWD|Listrik|India|143|250|9.0|140|Motor listrik t
 Mahindra|Thar 4x4|2023|Off-Road|SUV|AWD|Diesel|India|130|300|10.0|155|2.2L mHawk turbo diesel I4|6AT|480|Turunan langsung Jeep Willys lisensi 1947 yang terus diproduksi dan dimodernkan.
 Proton|Satria GTi|2001|Klasik|Hatchback|FWD|Bensin|Malaysia|138|168|8.4|205|1.8L 4G93P I4|5MT|165|Sasis disetel oleh Lotus saat Proton memilikinya. Hot hatch Asia Tenggara yang serius.
 Holden|Commodore HSV GTS|2016|Sedan|Sedan|RWD|Bensin|Australia|585|740|4.4|300|6.2L LSA supercharged V8|6MT|1150|Sedan Australia terakhir sebelum seluruh industri otomotif negara itu berhenti berproduksi.
+# ─── TAMBAHAN: PASAR INDONESIA & ASIA TENGGARA ──────────────────────────────
+Toyota|Avanza Veloz|2023|MPV|MPV|FWD|Bensin|Jepang|106|138|13.0|170|1.5L 2NR-VE I4|CVT|260|MPV terlaris Indonesia selama lebih dari satu dekade. Generasi ini beralih ke penggerak roda depan.
+Toyota|Kijang Innova Zenix|2023|MPV|MPV|FWD|Hybrid|Jepang|186|206|9.5|180|2.0L I4 + motor listrik|e-CVT|520|Innova pertama dengan penggerak hybrid dan monokok, meninggalkan sasis tangga yang dipakai sejak 1977.
+Toyota|Fortuner GR Sport|2023|SUV|SUV|AWD|Diesel|Jepang|204|500|10.0|180|2.8L 1GD-FTV turbo diesel I4|6AT|750|SUV sasis tangga dengan penyetelan suspensi khusus dari divisi Gazoo Racing.
+Toyota|Raize GR Sport|2023|SUV|SUV|FWD|Bensin|Jepang|98|140|11.5|170|1.0L 1KR-VET turbo I3|CVT|300|Crossover kompak bermesin tiga silinder turbo, hasil kembar dengan Daihatsu Rocky.
+Toyota|Corolla Cross Hybrid|2023|SUV|SUV|FWD|Hybrid|Jepang|122|142|11.0|180|1.8L I4 + motor listrik|e-CVT|560|Crossover hybrid dengan konsumsi bahan bakar mendekati mobil kota.
+Toyota|Camry V6|2005|Sedan|Sedan|FWD|Bensin|Jepang|190|220|8.9|210|3.0L 1MZ-FE V6|5AT|180|Sedan menengah yang membangun reputasi Toyota soal keawetan mesin di pasar Asia.
+Honda|Brio RS|2023|Hatchback|Hatchback|FWD|Bensin|Jepang|90|110|12.5|170|1.2L L12B I4|CVT|200|Hatchback kota terlaris di kelasnya, dirakit di Indonesia untuk pasar domestik dan ekspor.
+Honda|HR-V RS Turbo|2023|SUV|SUV|FWD|Bensin|Jepang|177|240|8.5|200|1.5L L15B turbo I4|CVT|560|Crossover dengan mesin turbo yang sebelumnya hanya ada di Civic.
+Honda|CR-V Turbo|2023|SUV|SUV|FWD|Bensin|Jepang|190|240|9.2|200|1.5L VTEC turbo I4|CVT|760|Salah satu SUV pertama yang memindahkan kelas ini dari sasis tangga ke monokok.
+Honda|Accord VTi-L|2008|Sedan|Sedan|FWD|Bensin|Jepang|180|222|9.0|210|2.4L K24 I4|5AT|150|Sedan eksekutif dengan mesin K24 yang terkenal tahan pemakaian jarak jauh.
+Honda|City Type Z|2001|Klasik|Sedan|FWD|Bensin|Jepang|105|140|10.5|180|1.5L D15B VTEC I4|5MT|95|Sedan kompak era 2000-an yang jadi favorit modifikasi karena bobot ringan dan mesin VTEC.
+Suzuki|Ertiga Hybrid|2023|MPV|MPV|FWD|Hybrid|Jepang|102|138|13.5|170|1.5L K15B I4 + ISG|4AT|265|MPV tujuh kursi dengan sistem hybrid ringan untuk menekan konsumsi di lalu lintas padat.
+Suzuki|Katana|1995|Klasik|SUV|AWD|Bensin|Jepang|63|100|20.0|120|1.0L F10A I4|5MT|95|Jip mungil bersasis tangga yang jadi ikon petualangan murah di Indonesia.
+Daihatsu|Terios R|2023|SUV|SUV|RWD|Bensin|Jepang|104|136|12.5|170|1.5L 2NR-VE I4|4AT|265|SUV tujuh kursi bersasis tangga dengan jarak bebas tanah tinggi untuk jalan rusak.
+Mitsubishi|Pajero Sport Dakar|2023|SUV|SUV|AWD|Diesel|Jepang|181|430|10.5|180|2.4L 4N15 turbo diesel I4|8AT|720|Penerus juara Dakar dengan sistem penggerak Super Select 4WD-II.
+Nissan|Livina VL|2023|MPV|MPV|FWD|Bensin|Jepang|104|142|13.0|170|1.5L HR15DE I4|CVT|280|MPV hasil kerja sama aliansi dengan Mitsubishi, berbagi basis dengan Xpander.
+Wuling|Almaz RS|2023|SUV|SUV|FWD|Bensin|Cina|140|250|10.5|180|1.5L turbo I4|CVT|400|SUV dengan asisten berkendara semi-otonom di kelas harga yang sebelumnya tidak menawarkannya.
+Chery|Omoda 5|2024|SUV|SUV|FWD|Bensin|Cina|145|230|9.5|180|1.5L turbo I4|CVT|420|Crossover Cina yang masuk Indonesia dengan garansi mesin sepuluh tahun.
+Hyundai|Creta Prime|2023|SUV|SUV|FWD|Bensin|Korea Selatan|115|144|11.5|180|1.5L Smartstream I4|CVT|420|Dirakit di Cikarang. Crossover pertama Hyundai yang diproduksi di Indonesia.
+Hyundai|Stargazer|2023|MPV|MPV|FWD|Bensin|Korea Selatan|115|144|12.5|180|1.5L Smartstream I4|CVT|320|MPV tujuh kursi yang menantang dominasi Jepang di segmen keluarga Indonesia.
+# ─── TAMBAHAN: KLASIK & IKON YANG BELUM MASUK ───────────────────────────────
+BMW|E28 M5|1988|Klasik|Sedan|RWD|Bensin|Jerman|286|340|6.2|245|3.5L S38 I6|5MT|1250|Sedan produksi tercepat di dunia saat diluncurkan, dirakit tangan di Garching.
+BMW|850CSi|1995|Klasik|Coupe|RWD|Bensin|Jerman|380|550|6.0|250|5.6L S70 V12|6MT|1450|Coupe V12 tanpa pilar tengah dengan lampu pop-up — puncak ambisi BMW di era 90-an.
+BMW|Z8|2002|Klasik|Convertible|RWD|Bensin|Jerman|400|500|4.7|250|4.9L S62 V8|6MT|9500|Roadster rancangan Henrik Fisker dengan mesin M5 E39. Bodi aluminium penuh.
+Mercedes-Benz|W126 560SEL|1990|Klasik|Sedan|RWD|Bensin|Jerman|300|455|6.9|250|5.6L M117 V8|4AT|420|Sedan mewah yang memperkenalkan kantong udara dan ABS ke pasar massal.
+Mercedes-Benz|SL 500 R129|1998|Klasik|Convertible|RWD|Bensin|Jerman|320|470|6.5|250|5.0L M119 V8|5AT|780|Atap keras lipat otomatis dan rollbar yang keluar sendiri dalam 0,3 detik saat terdeteksi terguling.
+Porsche|944 Turbo|1989|Klasik|Coupe|RWD|Bensin|Jerman|250|350|5.9|260|2.5L turbo I4|5MT|850|Transaxle dengan distribusi bobot nyaris sempurna. Porsche paling seimbang di era itu.
+Porsche|Boxster 986|2001|Klasik|Convertible|RWD|Bensin|Jerman|252|305|5.9|260|3.2L flat-6|6MT|620|Roadster mesin tengah yang menyelamatkan Porsche dari krisis keuangan pertengahan 90-an.
+Porsche|Cayman GT4 RS|2023|Track|Coupe|RWD|Bensin|Jerman|500|450|3.4|315|4.0L flat-6|7DCT|6800|Mesin GT3 dipasang di bodi Cayman. Saluran udara di belakang kepala pengemudi membuat kabinnya sangat bising — disengaja.
+Audi|TT Mk1 Quattro|2002|Klasik|Coupe|AWD|Bensin|Jerman|225|280|6.4|243|1.8L turbo I4|6MT|280|Desain Bauhaus yang nyaris tidak berubah dari mobil konsepnya. Interior aluminium terekspos.
+Ferrari|360 Modena|2003|Klasik|Coupe|RWD|Bensin|Italia|400|373|4.5|295|3.6L V8|6MT|4200|Ferrari pertama dengan sasis aluminium penuh. Mesin terlihat lewat kaca belakang.
+Ferrari|F12 Berlinetta|2015|Supercar|Coupe|RWD|Bensin|Italia|740|690|3.1|340|6.3L V12|7DCT|8500|V12 depan dengan Aero Bridge — udara dialirkan menembus kap mesin untuk menambah downforce.
+Lamborghini|Miura P400 S|1970|Klasik|Coupe|RWD|Bensin|Italia|370|388|6.7|280|3.9L V12 melintang|5MT|280000|Supercar mesin tengah pertama di dunia untuk jalan raya. Mesin dipasang melintang di belakang kabin.
+Lamborghini|Espada|1972|Klasik|Coupe|RWD|Bensin|Italia|350|400|7.8|245|3.9L V12|5MT|58000|Coupe empat kursi bermesin V12 dengan panjang lebih dari 4,7 meter — bentuk yang tidak pernah diulang siapa pun.
+Alfa Romeo|GTV 916|2000|Klasik|Coupe|FWD|Bensin|Italia|220|289|6.7|250|3.0L Busso V6|6MT|240|Rancangan Pininfarina dengan garis pinggang yang naik tajam. Mesin V6 Busso di bodi coupe kompak.
+Lotus|Exige S2|2008|Track|Coupe|RWD|Bensin|Inggris|220|215|4.9|238|1.8L supercharged Toyota I4|6MT|920|Elise beratap dengan downforce nyata. Bobot 930 kg membuat rasio tenaga-bobotnya menyaingi mobil jauh lebih kuat.
+Jaguar|E-Type Series 3|1973|Klasik|Convertible|RWD|Bensin|Inggris|272|409|6.4|241|5.3L V12|4MT|3200|Enzo Ferrari menyebutnya mobil terindah yang pernah dibuat. Seri 3 memakai V12 pertama Jaguar.
+Mini|Cooper S Classic|1996|Klasik|Hatchback|FWD|Bensin|Inggris|90|123|10.9|150|1.3L I4|4MT|280|Mini asli rancangan Alec Issigonis — mesin melintang dengan transmisi di bak oli, cetak biru semua mobil kota modern.
+Ford|Sierra RS Cosworth|1990|Klasik|Sedan|RWD|Bensin|Inggris|224|280|6.2|240|2.0L Cosworth turbo I4|5MT|1650|Sayap belakang raksasa yang dibutuhkan untuk homologasi balap turing. Ikon era Grup A.
+Ford|Escort RS Cosworth|1994|Rally|Hatchback|AWD|Bensin|Inggris|227|304|5.7|232|2.0L Cosworth turbo I4|5MT|1850|Bodi Escort di atas sasis Sierra Cosworth yang dipendekkan. Dibuat khusus untuk reli.
+Volvo|P1800 ES|1973|Klasik|Wagon|RWD|Bensin|Swedia|125|157|10.5|185|2.0L B20 I4|4MT|680|Shooting brake dengan pintu bagasi kaca penuh tanpa bingkai — solusi desain yang berani untuk masanya.
+Chevrolet|Corvette C3 Stingray|1975|Klasik|Coupe|RWD|Bensin|Amerika Serikat|205|365|7.8|200|5.7L V8|4MT|980|Bodi fiberglass dengan panel atap T-top yang bisa dilepas. Salah satu siluet Amerika paling dikenal.
+Dodge|Challenger R/T|1971|Klasik|Coupe|RWD|Bensin|Amerika Serikat|375|583|5.6|210|7.2L V8|4MT|2400|Era muscle car sebelum regulasi emisi memangkas tenaga. Mesin 440 kubik inci enam karburator.
+Pontiac|GTO Judge|1970|Klasik|Coupe|RWD|Bensin|Amerika Serikat|370|596|6.0|205|6.6L Ram Air V8|4MT|2200|Sering disebut muscle car pertama: mesin besar dijejalkan ke bodi menengah yang ringan.
+Toyota|2000GT|1970|Klasik|Coupe|RWD|Bensin|Jepang|150|175|8.6|220|2.0L 3M I6|5MT|180000|Hanya 351 unit. Mobil yang membuktikan Jepang sanggup membuat GT kelas dunia.
+Nissan|Fairlady 240Z|1973|Klasik|Coupe|RWD|Bensin|Jepang|151|198|8.0|201|2.4L L24 I6|4MT|1450|Coupe terjangkau yang menghancurkan dominasi harga sport Eropa di pasar Amerika.
+Mazda|Cosmo Sport 110S|1970|Klasik|Coupe|RWD|Bensin|Jepang|128|140|8.6|193|1.0L 10A rotary|4MT|3800|Mobil rotary dua rotor produksi pertama di dunia. Hanya 1.176 unit yang pernah dibuat.
+Honda|Civic SiR EG6|1995|Klasik|Hatchback|FWD|Bensin|Jepang|170|160|7.2|215|1.6L B16A VTEC I4|5MT|420|Hatchback 170 HP dari mesin 1,6 liter tanpa turbo — angka tenaga spesifik yang mengejutkan pada 1992.
+Subaru|Legacy RS|1993|Klasik|Sedan|AWD|Bensin|Jepang|217|290|6.0|235|2.0L EJ20 turbo flat-4|5MT|280|Pendahulu Impreza WRX. Mobil yang membawa Subaru masuk ke reli dunia.
+Toyota|Chaser Tourer V|1998|Klasik|Sedan|RWD|Bensin|Jepang|280|363|5.5|250|2.5L 1JZ-GTE turbo I6|5MT|680|Sedan empat pintu bermesin 1JZ turbo — favorit drift karena bodi konservatif menyembunyikan tenaganya.
+# ─── TAMBAHAN: LISTRIK & MASA KINI ──────────────────────────────────────────
+Porsche|Macan Electric 4S|2025|SUV|SUV|AWD|Listrik|Jerman|516|820|4.1|240|Dua motor listrik|1-speed|2300|SUV listrik pertama Porsche di atas platform PPE 800 volt.
+Mercedes-Benz|AMG EQE 53|2024|Sedan|Sedan|AWD|Listrik|Jerman|677|1000|3.5|240|Dua motor listrik|1-speed|2600|Sedan listrik AMG dengan suspensi udara dan kemudi poros belakang sepuluh derajat.
+Audi|Q8 e-tron|2024|SUV|SUV|AWD|Listrik|Jerman|408|664|5.6|200|Dua motor listrik|1-speed|1950|Pembaruan besar e-tron dengan baterai lebih rapat dan aerodinamika yang diperbaiki.
+Volvo|EX30 Twin|2024|SUV|SUV|AWD|Listrik|Swedia|428|543|3.6|180|Dua motor listrik|1-speed|880|SUV listrik kompak dengan jejak karbon produksi terendah yang pernah dicatat Volvo.
+BYD|Sealion 7|2025|SUV|SUV|AWD|Listrik|Cina|530|690|4.5|215|Dua motor listrik|1-speed|780|SUV listrik dengan platform e-Platform 3.0 dan sistem pengelolaan suhu baterai terintegrasi.
+Xiaomi|SU7 Max|2024|Sedan|Sedan|AWD|Listrik|Cina|673|838|2.8|265|Dua motor listrik|1-speed|1250|Mobil pertama Xiaomi. Terjual lebih dari 75 ribu unit dalam enam bulan pertama.
+Hyundai|Kona Electric|2024|SUV|SUV|FWD|Listrik|Korea Selatan|218|255|7.8|172|Motor listrik tunggal|1-speed|650|Salah satu EV terjangkau pertama dengan jangkauan tembus 450 km.
+Ford|Mustang Mach-E GT|2023|SUV|SUV|AWD|Listrik|Amerika Serikat|487|860|3.7|200|Dua motor listrik|1-speed|1350|Keputusan memakai nama Mustang untuk SUV listrik sempat memicu perdebatan panjang di kalangan penggemar.
+Porsche|Taycan Cross Turismo 4S|2023|Wagon|Wagon|AWD|Listrik|Jerman|482|650|4.1|240|Dua motor listrik|2-speed|2900|Taycan berbodi shooting brake dengan jarak bebas tanah yang ditinggikan.
+Lotus|Emeya R|2025|Luxury|Sedan|AWD|Listrik|Inggris|918|985|2.8|256|Dua motor listrik|2-speed|4200|Sedan listrik Lotus dengan aerodinamika aktif dan pengisian 10 ke 80 persen dalam 14 menit.
 `;
 
 // ── Parser ──────────────────────────────────────────────────────────────────
@@ -262,6 +324,7 @@ function slugify(s) {
 }
 
 function era(year) {
+  if (year < 1980) return "70-an";
   if (year < 1990) return "80-an";
   if (year < 2000) return "90-an";
   if (year < 2010) return "2000-an";

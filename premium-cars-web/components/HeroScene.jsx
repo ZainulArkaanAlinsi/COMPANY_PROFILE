@@ -1,37 +1,20 @@
 "use client";
 
-// Lapisan 3D hero — siluet mobil low-poly berputar pelan di dalam aliran udara
-// bergaya terowongan angin. Dirender penuh dengan WebGL (three.js).
+// Lapisan atmosfer 3D di belakang hero — permukaan logam cair yang mengalir
+// pelan, dengan pantulan lingkungan nyata.
 //
-// Keputusan yang menentukan bentuk komponen ini:
-//   - Dimuat lewat dynamic import di sisi pemanggil, jadi three.js tidak ikut
-//     bundle awal dan tidak menahan render pertama.
-//   - Berhenti total saat tab tidak terlihat, saat elemen keluar viewport, dan
-//     saat pengguna memilih "reduce motion". Hero yang memutar GPU di latar
-//     belakang adalah cara tercepat menghabiskan baterai ponsel.
-//   - Kalau WebGL tidak tersedia, komponen mengembalikan null dan hero tetap
-//     tampil utuh tanpa lapisan ini.
+// Versi sebelumnya mencoba memodelkan MOBIL secara prosedural. Itu keputusan
+// yang salah dan sudah dibuang: geometri yang dibangun tangan selalu diadu
+// dengan mobil sungguhan yang pembaca hafal bentuknya, dan selalu kalah —
+// hasilnya terbaca sebagai mainan, bukan desain.
+//
+// Bentuk abstrak tidak punya pembanding itu. Yang dinilai mata hanyalah mutu
+// permukaan dan cahayanya, dan di situ WebGL memang unggul: metalness penuh,
+// roughness rendah, environment map studio. Mobilnya sendiri hadir sebagai
+// FOTO NYATA di atas lapisan ini — cara yang dipakai hampir semua situs
+// pabrikan premium.
 
 import { useEffect, useRef } from "react";
-
-const PROFILE = [
-  // Profil samping mobil, satuan sembarang, digambar searah jarum jam dari
-  // hidung: kap, kaca depan, atap, kaca belakang, buritan, lalu sill dengan
-  // dua lengkung spakbor. Lengkungnya sengaja dalam (naik sampai y≈0,06) —
-  // versi dangkal membuat roda menggantung di luar bodi seperti jangkungan.
-  [-2.45, -0.30], [-2.52, 0.02], [-2.28, 0.22], [-1.72, 0.32],
-  [-1.10, 0.36], [-0.58, 0.74], [0.14, 0.88], [0.80, 0.82],
-  [1.30, 0.44], [1.96, 0.34], [2.44, 0.22], [2.52, -0.06],
-  [2.44, -0.32],
-  // spakbor belakang
-  [1.74, -0.32], [1.66, -0.06], [1.44, 0.06], [1.06, 0.06],
-  [0.84, -0.06], [0.76, -0.32],
-  // sill tengah
-  [-0.78, -0.32],
-  // spakbor depan
-  [-0.86, -0.06], [-1.08, 0.06], [-1.46, 0.06], [-1.68, -0.06],
-  [-1.76, -0.32],
-];
 
 export default function HeroScene({ className = "" }) {
   const hostRef = useRef(null);
@@ -44,20 +27,18 @@ export default function HeroScene({ className = "" }) {
     let disposed = false;
     let cleanup = () => {};
 
-    // three.js hanya diambil kalau lapisan ini benar-benar akan dipakai.
-    import("three")
-      .then((THREE) => {
+    Promise.all([
+      import("three"),
+      import("three/examples/jsm/environments/RoomEnvironment.js"),
+    ])
+      .then(([THREE, { RoomEnvironment }]) => {
         if (disposed) return;
 
         let renderer;
         try {
-          renderer = new THREE.WebGLRenderer({
-            alpha: true,
-            antialias: true,
-            powerPreference: "low-power",
-          });
+          renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         } catch {
-          return; // Tanpa WebGL: hero tetap utuh, hanya tanpa lapisan 3D.
+          return; // Tanpa WebGL, hero tetap utuh tanpa lapisan ini.
         }
 
         const w = () => host.clientWidth || 1;
@@ -66,143 +47,90 @@ export default function HeroScene({ className = "" }) {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setSize(w(), h());
         renderer.setClearColor(0x000000, 0);
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.15;
         host.appendChild(renderer.domElement);
 
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(38, w() / h(), 0.1, 100);
-        camera.position.set(0, 0.7, 9.4);
-        camera.lookAt(0, 0.05, 0);
+        const pmrem = new THREE.PMREMGenerator(renderer);
+        scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.03).texture;
 
-        const AMBER = new THREE.Color(0xc8873f);
-        const LINE = new THREE.Color(0x7d7266);
+        const camera = new THREE.PerspectiveCamera(42, w() / h(), 0.1, 100);
+        camera.position.set(0, 1.15, 4.4);
+        camera.lookAt(0, 0.1, 0);
 
-        // ── Bodi: profil 2D di-ekstrusi jadi bentuk 3D, lalu digambar sebagai
-        //    rangka tepi. Wireframe penuh terlihat kacau; edges hanya
-        //    menggambar batas geometri sehingga siluetnya tetap terbaca.
-        const shape = new THREE.Shape();
-        PROFILE.forEach(([x, y], i) =>
-          i ? shape.lineTo(x, y) : shape.moveTo(x, y)
-        );
-        shape.closePath();
+        // ── Permukaan logam cair.
+        //    Displacement dijalankan di GPU lewat onBeforeCompile, bukan di CPU:
+        //    ini menjaga seluruh perhitungan PBR bawaan MeshStandardMaterial
+        //    (termasuk pantulan environment) sambil tetap 60 fps pada 240×140
+        //    segmen — menghitung ulang 34 ribu titik per frame di JavaScript
+        //    akan membekukan thread utama.
+        const geo = new THREE.PlaneGeometry(26, 15, 240, 140);
+        geo.rotateX(-Math.PI / 2);
 
-        const body = new THREE.ExtrudeGeometry(shape, {
-          depth: 1.85,
-          bevelEnabled: true,
-          bevelThickness: 0.16,
-          bevelSize: 0.16,
-          bevelSegments: 3,
-          curveSegments: 8,
+        const mat = new THREE.MeshStandardMaterial({
+          color: 0x14110f,
+          metalness: 1.0,
+          roughness: 0.14,
         });
-        body.translate(0, 0, -0.925);
 
-        const car = new THREE.Group();
-        car.add(
-          new THREE.LineSegments(
-            new THREE.EdgesGeometry(body, 18),
-            new THREE.LineBasicMaterial({
-              color: AMBER,
-              transparent: true,
-              opacity: 0.55,
-            })
-          )
-        );
-        // Permukaan gelap semi-transparan supaya rangka belakang tidak tembus
-        // dan bentuknya terbaca sebagai benda padat.
-        car.add(
-          new THREE.Mesh(
-            body,
-            new THREE.MeshBasicMaterial({
-              color: 0x14100c,
-              transparent: true,
-              opacity: 0.88,
-            })
-          )
-        );
-
-        // ── Roda. TorusGeometry sudah tegak di bidang XY dengan normal ke
-        //    sumbu Z — arah yang tepat untuk roda mobil dilihat dari samping.
-        //    Memutarnya lagi justru membuatnya menyamping dan terbaca sebagai
-        //    oval melayang, bukan roda.
-        const TYRE_R = 0.42;
-        const rim = new THREE.TorusGeometry(TYRE_R, 0.05, 8, 30);
-        const rimMat = new THREE.LineBasicMaterial({
-          color: LINE,
-          transparent: true,
-          opacity: 0.62,
-        });
-        const rimWire = new THREE.EdgesGeometry(rim, 24);
-
-        // Jari-jari: garis lurus dari pusat ke pelek.
-        const spokePts = [];
-        for (let i = 0; i < 5; i++) {
-          const a = (i / 5) * Math.PI * 2;
-          spokePts.push(0, 0, 0, Math.cos(a) * TYRE_R, Math.sin(a) * TYRE_R, 0);
-        }
-        const spokeGeo = new THREE.BufferGeometry();
-        spokeGeo.setAttribute(
-          "position",
-          new THREE.BufferAttribute(new Float32Array(spokePts), 3)
-        );
-
-        const wheels = [];
-        for (const [x, z] of [
-          [-1.27, 0.95], [-1.27, -0.95], [1.25, 0.95], [1.25, -0.95],
-        ]) {
-          const wheel = new THREE.Group();
-          wheel.add(new THREE.LineSegments(rimWire, rimMat));
-          wheel.add(new THREE.LineSegments(spokeGeo, rimMat));
-          wheel.position.set(x, -0.16, z);
-          car.add(wheel);
-          wheels.push(wheel);
-        }
-
-        car.rotation.y = -0.5;
-        car.scale.setScalar(1.15);
-        car.position.y = 0.14;
-        scene.add(car);
-
-        // ── Aliran udara: garis-garis pendek yang meluncur melewati bodi.
-        //    Sumbu X dipakai sebagai arah aliran; posisi Y/Z acak tapi
-        //    dijauhkan dari sumbu tengah agar tidak menembus mobil.
-        const N = 190;
-        const pos = new Float32Array(N * 6);
-        const speed = new Float32Array(N);
-        const rand = (a, b) => a + Math.random() * (b - a);
-
-        for (let i = 0; i < N; i++) {
-          const y = rand(-1.6, 2.2);
-          const z = rand(-4.2, 3.2);
-          const x = rand(-11, 11);
-          const len = rand(0.5, 1.9);
-          pos.set([x, y, z, x + len, y, z], i * 6);
-          speed[i] = rand(0.035, 0.115);
-        }
-
-        const flowGeo = new THREE.BufferGeometry();
-        flowGeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-        const flow = new THREE.LineSegments(
-          flowGeo,
-          new THREE.LineBasicMaterial({
-            color: LINE,
-            transparent: true,
-            opacity: 0.3,
-          })
-        );
-        scene.add(flow);
-
-        // ── Interaksi & siklus hidup
-        let px = 0, py = 0, tx = 0, ty = 0;
-        const onPointer = (e) => {
-          tx = (e.clientX / window.innerWidth - 0.5) * 2;
-          ty = (e.clientY / window.innerHeight - 0.5) * 2;
+        const uTime = { value: 0 };
+        mat.onBeforeCompile = (shader) => {
+          shader.uniforms.uTime = uTime;
+          shader.vertexShader = shader.vertexShader
+            .replace(
+              "#include <common>",
+              `#include <common>
+               uniform float uTime;
+               // Tiga gelombang dengan periode tidak kelipatan satu sama lain,
+               // supaya polanya tidak pernah terlihat berulang.
+               float wave(vec3 p) {
+                 return sin(p.x * 0.42 + uTime * 0.55) * 0.42
+                      + sin(p.z * 0.63 - uTime * 0.38) * 0.30
+                      + sin((p.x + p.z) * 0.27 + uTime * 0.24) * 0.34;
+               }`
+            )
+            .replace(
+              "#include <beginnormal_vertex>",
+              `#include <beginnormal_vertex>
+               // Normal dihitung dari beda maju pada fungsi gelombang yang
+               // sama. Tanpa ini permukaan bergelombang tapi cahayanya rata,
+               // dan logamnya tampak seperti kain.
+               float e = 0.12;
+               float hC = wave(position);
+               float hX = wave(position + vec3(e, 0.0, 0.0));
+               float hZ = wave(position + vec3(0.0, 0.0, e));
+               objectNormal = normalize(vec3(-(hX - hC) / e, 1.0, -(hZ - hC) / e));`
+            )
+            .replace(
+              "#include <begin_vertex>",
+              `#include <begin_vertex>
+               transformed.y += wave(position);`
+            );
         };
-        if (!reduced) window.addEventListener("pointermove", onPointer, { passive: true });
 
+        const surface = new THREE.Mesh(geo, mat);
+        surface.position.y = -0.95;
+        scene.add(surface);
+
+        // ── Cahaya. Key hangat dari kanan-atas, rim cognac dari kiri-belakang.
+        scene.add(new THREE.HemisphereLight(0xf3efe9, 0x0e0d0c, 0.35));
+        const key = new THREE.DirectionalLight(0xfff1df, 2.1);
+        key.position.set(5, 5, 3);
+        scene.add(key);
+        const rim = new THREE.DirectionalLight(0xd89e72, 3.4);
+        rim.position.set(-6, 2, -3);
+        scene.add(rim);
+
+        // Dua sumber titik yang mengambang pelan — memberi kilau bergerak di
+        // permukaan sehingga logamnya terbaca cair, bukan diam.
+        const glowA = new THREE.PointLight(0xc58557, 26, 16, 2);
+        const glowB = new THREE.PointLight(0x8fb4d8, 14, 14, 2);
+        scene.add(glowA, glowB);
+
+        // ── Siklus hidup
         let onScreen = true;
-        const io = new IntersectionObserver(
-          ([e]) => { onScreen = e.isIntersecting; },
-          { threshold: 0 }
-        );
+        const io = new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; }, { threshold: 0 });
         io.observe(host);
 
         const ro = new ResizeObserver(() => {
@@ -212,36 +140,29 @@ export default function HeroScene({ className = "" }) {
         });
         ro.observe(host);
 
-        let raf = 0;
-        let t = 0;
+        let px = 0, py = 0, tx = 0, ty = 0;
+        const onPointer = (e) => {
+          tx = (e.clientX / window.innerWidth - 0.5) * 2;
+          ty = (e.clientY / window.innerHeight - 0.5) * 2;
+        };
+        if (!reduced) window.addEventListener("pointermove", onPointer, { passive: true });
 
+        let raf = 0;
         const frame = () => {
           raf = requestAnimationFrame(frame);
           if (document.hidden || !onScreen) return;
 
           if (!reduced) {
-            t += 0.006;
-            const a = flowGeo.attributes.position.array;
-            for (let i = 0; i < N; i++) {
-              const o = i * 6;
-              a[o] += speed[i];
-              a[o + 3] += speed[i];
-              if (a[o] > 11) {
-                const shift = a[o + 3] - a[o];
-                a[o] = -11;
-                a[o + 3] = -11 + shift;
-              }
-            }
-            flowGeo.attributes.position.needsUpdate = true;
-
-            px += (tx - px) * 0.045;
-            py += (ty - py) * 0.045;
-            car.rotation.y = -0.5 + Math.sin(t) * 0.28 + px * 0.22;
-            car.rotation.x = -0.04 + py * 0.06;
-            car.position.y = 0.14 + Math.sin(t * 1.7) * 0.045;
-            for (const wheel of wheels) wheel.rotation.z -= 0.06;
+            uTime.value += 0.0075;
+            px += (tx - px) * 0.03;
+            py += (ty - py) * 0.03;
+            const t = uTime.value;
+            glowA.position.set(Math.sin(t * 0.4) * 5, 1.5 + Math.sin(t * 0.7) * 0.5, Math.cos(t * 0.32) * 3);
+            glowB.position.set(Math.cos(t * 0.27) * 6, 1.1, Math.sin(t * 0.45) * 4 - 2);
+            camera.position.x = px * 0.5;
+            camera.position.y = 1.15 - py * 0.22;
+            camera.lookAt(0, 0.1, 0);
           }
-
           renderer.render(scene, camera);
         };
         frame();
@@ -251,10 +172,9 @@ export default function HeroScene({ className = "" }) {
           io.disconnect();
           ro.disconnect();
           window.removeEventListener("pointermove", onPointer);
-          scene.traverse((o) => {
-            o.geometry?.dispose?.();
-            o.material?.dispose?.();
-          });
+          geo.dispose();
+          mat.dispose();
+          pmrem.dispose();
           renderer.dispose();
           renderer.domElement.remove();
         };

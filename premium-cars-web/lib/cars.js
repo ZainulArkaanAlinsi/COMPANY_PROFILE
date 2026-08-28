@@ -73,7 +73,7 @@ export const origins = uniq("origin");
 export const bodyStyles = uniq("bodyStyle");
 export const fuels = uniq("fuel");
 export const drivetrains = uniq("drivetrain");
-export const eras = ["80-an", "90-an", "2000-an", "2010-an", "2020-an"];
+export const eras = ["70-an", "80-an", "90-an", "2000-an", "2010-an", "2020-an"];
 
 export const categories = [
   "All Inventory",

@@ -30,17 +30,35 @@ export default function HomePage() {
 
   return (
     <>
-      {/* HERO — editorial */}
-      <section className="frame pt-6 md:pt-10">
-        {/* Index row */}
-        <div className="flex animate-fade-up items-center justify-between border-b border-line pb-5">
-          <p className="tech text-amber">N° 01 — Kurator Otomotif</p>
-          <p className="tech hidden text-meta sm:block">Est. 1998 · Jakarta</p>
-        </div>
+      {/* HERO — foto mobil nyata di atas panggung logam cair WebGL */}
+      <section className="relative isolate overflow-hidden">
+        {/* Lapisan atmosfer 3D. Ditaruh absolut di belakang seluruh isi hero,
+            bukan sebagai blok tersendiri, supaya tidak menambah tinggi
+            halaman dan tidak pernah menggeser tata letak. */}
+        {/* Lapisan 3D ditaruh di PARUH BAWAH saja, bukan seluruh hero.
+            Sebagai lantai memantul di bawah panel foto ia punya peran yang
+            jelas; membentang penuh di belakang judul, ia hanya jadi tekstur
+            yang mengganggu keterbacaan. */}
+        <HeroScene className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[62%] w-full" />
 
-        {/* Headline — satu kolom, lebar penuh */}
-        <div className="pt-8 lg:pt-12">
-          <h1 className="display text-[3.6rem] leading-[0.86] sm:text-[5.25rem] md:text-[6.75rem] lg:text-[8.5rem]">
+        {/* Peredam kontras: teks harus tetap terbaca di atas permukaan
+            memantul yang kecerahannya berubah terus. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{
+            background:
+              "linear-gradient(180deg, rgb(14 13 12) 0%, rgb(14 13 12) 30%, rgb(14 13 12 / 0.55) 46%, rgb(14 13 12 / 0.20) 62%, rgb(14 13 12 / 0.55) 86%, rgb(14 13 12) 100%)",
+          }}
+        />
+
+        <div className="frame pb-16 pt-6 md:pb-24 md:pt-10">
+          <div className="flex animate-fade-up items-center justify-between border-b border-line/70 pb-5">
+            <p className="tech text-amber">N° 01 — Kurator Otomotif</p>
+            <p className="tech hidden text-meta sm:block">Est. 1998 · Jakarta</p>
+          </div>
+
+          <h1 className="display mt-10 text-[3.4rem] leading-[0.86] sm:text-[5rem] md:text-[6.5rem] lg:text-[8rem]">
             <span className="hero-line">
               <span style={{ "--line-delay": "120ms" }}>Engineered</span>
             </span>
@@ -49,7 +67,7 @@ export default function HomePage() {
                 style={{ "--line-delay": "260ms" }}
                 className="flex items-baseline gap-4"
               >
-                <span className="font-body text-[0.22em] font-medium uppercase tracking-[0.4em] text-muted">
+                <span className="font-body text-[0.2em] font-medium uppercase tracking-[0.42em] text-muted">
                   for
                 </span>
                 <span className="text-amber">Excellence</span>
@@ -57,7 +75,7 @@ export default function HomePage() {
             </span>
           </h1>
 
-          <div className="mt-9 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
             <p
               className="animate-fade-up max-w-xl text-base leading-relaxed text-muted md:text-lg"
               style={{ animationDelay: "520ms" }}
@@ -82,57 +100,51 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-        </div>
 
-        {/* Panggung 3D — siluet mobil di dalam aliran terowongan angin.
-            Tinggi dikunci lewat aspect-ratio supaya kanvas tidak pernah
-            menggeser tata letak saat three.js selesai dimuat (CLS = 0). */}
-        <div
-          className="animate-fade-up relative mt-12 overflow-hidden border border-line bg-surface md:mt-16"
-          style={{ animationDelay: "760ms" }}
-        >
-          <HeroScene className="aspect-[16/10] w-full sm:aspect-[2/1] lg:aspect-[21/8]" />
-
-          {/* Kisi halus + gradien tepi supaya panggung menyatu dengan halaman */}
+          {/* Subjeknya foto mobil sungguhan. Lapisan 3D di belakang memberi
+              kedalaman dan cahaya bergerak; ia tidak berpura-pura jadi mobil. */}
           <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0"
-            style={{
-              backgroundImage:
-                "linear-gradient(to right, rgba(125,114,102,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(125,114,102,0.07) 1px, transparent 1px)",
-              backgroundSize: "72px 72px",
-              maskImage:
-                "radial-gradient(ellipse 78% 68% at 50% 50%, #000 35%, transparent 100%)",
-              WebkitMaskImage:
-                "radial-gradient(ellipse 78% 68% at 50% 50%, #000 35%, transparent 100%)",
-            }}
-          />
-
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 md:p-7">
-            <p className="tech text-meta">↳ Fig. 01 — Studi Aerodinamika</p>
-            <p className="tech flex items-center gap-2 text-amber">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber" />
-              WebGL
-            </p>
-          </div>
-        </div>
-
-        {/* Index angka editorial */}
-        <Reveal stagger className="mt-12 grid grid-cols-2 gap-y-8 border-t border-line pt-8 md:mt-16 md:grid-cols-4">
-          {stats.map((s, i) => (
+            className="animate-fade-up relative mt-14 md:mt-20"
+            style={{ animationDelay: "780ms" }}
+            data-parallax="0.05"
+          >
             <div
-              key={s.l}
-              className={`pl-5 md:border-l md:border-line md:pl-8 ${
-                i % 2 === 0 ? "" : "border-l border-line"
-              } ${i === 0 ? "md:border-l-0 md:pl-0" : ""}`}
+              className="img-reveal overflow-hidden border border-line/80 shadow-[0_60px_120px_-40px_rgb(0_0_0/0.9)]"
+              style={{ "--reveal-delay": "820ms" }}
+              data-spotlight
             >
-              <p className="font-display text-4xl font-semibold leading-none md:text-6xl">
-                <CountUp text={s.n} />
-              </p>
-              <p className="mt-3 text-[11px] uppercase tracking-tech text-meta">{s.l}</p>
+              <SmartImage
+                src="https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&w=2000&q=82"
+                alt="Lamborghini Aventador SVJ di showroom Premium Cars"
+                label="Premium Cars"
+                className="aspect-[16/10] w-full sm:aspect-[2/1] lg:aspect-[21/9]"
+              />
             </div>
-          ))}
-        </Reveal>
+            <div className="mt-3 flex items-center justify-between">
+              <p className="tech text-meta">↳ Fig. 01 — Aventador SVJ · Showroom Jakarta</p>
+              <p className="tech flex items-center gap-2 text-amber">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber" />
+                Live
+              </p>
+            </div>
+          </div>
+
+          <Reveal stagger className="mt-14 grid grid-cols-2 gap-y-8 border-t border-line pt-8 md:mt-20 md:grid-cols-4">
+            {stats.map((st, i) => (
+              <div
+                key={st.l}
+                className={`pl-5 md:border-l md:border-line md:pl-8 ${
+                  i % 2 === 0 ? "" : "border-l border-line"
+                } ${i === 0 ? "md:border-l-0 md:pl-0" : ""}`}
+              >
+                <p className="font-display text-4xl font-semibold leading-none md:text-6xl">
+                  <CountUp text={st.n} />
+                </p>
+                <p className="mt-3 text-[11px] uppercase tracking-tech text-meta">{st.l}</p>
+              </div>
+            ))}
+          </Reveal>
+        </div>
       </section>
 
       {/* BRAND MARQUEE */}

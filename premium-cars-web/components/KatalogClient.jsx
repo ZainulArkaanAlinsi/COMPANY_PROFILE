@@ -33,7 +33,7 @@ function matchCategory(car, cat) {
 const optionsOf = (cars, key) =>
   [...new Set(cars.map((c) => c[key]).filter(Boolean))].sort();
 
-const ERA_ORDER = ["80-an", "90-an", "2000-an", "2010-an", "2020-an"];
+const ERA_ORDER = ["70-an", "80-an", "90-an", "2000-an", "2010-an", "2020-an"];
 
 export default function KatalogClient({ cars, source = "local" }) {
   const params = useSearchParams();
@@ -144,8 +144,9 @@ export default function KatalogClient({ cars, source = "local" }) {
         <h1 className="display mt-6 text-6xl leading-[0.9] md:text-8xl">Katalog</h1>
         <p className="mt-6 max-w-2xl text-muted md:text-lg">
           {cars.length} model nyata dari {optionsOf(cars, "origin").length} negara,
-          rentang 1985 hingga hari ini — bensin, diesel, hybrid, dan listrik.
-          Saring menurut era, asal, bodi, atau tenaga.
+          rentang {Math.min(...cars.map((c) => c.year || 9999))} hingga hari ini —
+          bensin, diesel, hybrid, dan listrik. Saring menurut era, asal, bodi,
+          atau tenaga.
         </p>
         <div className="mt-6 inline-flex items-center gap-2 border border-line px-3 py-1.5">
           <span

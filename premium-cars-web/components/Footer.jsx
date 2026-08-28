@@ -2,9 +2,9 @@ import Link from "next/link";
 
 const cols = [
   {
-    title: "Explore",
+    title: "Jelajahi",
     links: [
-      { label: "Home", href: "/" },
+      { label: "Beranda", href: "/" },
       { label: "Katalog", href: "/katalog" },
       { label: "Harga Pasar", href: "/harga-pasar" },
       { label: "Bandingkan", href: "/bandingkan" },
@@ -25,8 +25,8 @@ const cols = [
     links: [
       { label: "Kontak", href: "/kontak" },
       { label: "Membership", href: "/membership" },
-      { label: "Privacy Policy", href: "/kontak" },
-      { label: "Terms of Service", href: "/kontak" },
+      { label: "Kebijakan Privasi", href: "/kontak" },
+      { label: "Syarat & Ketentuan", href: "/kontak" },
     ],
   },
 ];
@@ -40,8 +40,8 @@ export default function Footer() {
             Premium<span className="text-amber">.</span>Cars
           </p>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
-            Meredefinisi standar akuisisi otomotif mewah sejak 1998. Engineered
-            for the extraordinary.
+            Meredefinisi standar akuisisi otomotif mewah sejak 1998. Dirancang
+            untuk yang luar biasa.
           </p>
           <div className="mt-6 flex gap-3">
             {["IG", "YT", "X"].map((s) => (
@@ -76,8 +76,8 @@ export default function Footer() {
 
       <div className="border-t border-line-soft">
         <div className="frame flex flex-col gap-2 py-6 text-[11px] uppercase tracking-tech text-meta md:flex-row md:items-center md:justify-between">
-          <span>© 2024 Premium Cars. Engineered for Excellence.</span>
-          <span>SCBD District 8, Level 42 — Jakarta Selatan · ISO 9001 Certified</span>
+          <span>© {new Date().getFullYear()} Premium Cars. Engineered for Excellence.</span>
+          <span>SCBD District 8, Level 42 — Jakarta Selatan · Bersertifikat ISO 9001</span>
         </div>
       </div>
     </footer>

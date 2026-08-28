@@ -10,7 +10,7 @@ import { submitLead } from "@/lib/leads-client";
 export default function ConsignmentForm() {
   const [form, setForm] = useState({
     name: "",
-    contact: "Encrypted Email",
+    contact: "Email Terenkripsi",
     details: "",
     company: "", // honeypot
   });
@@ -53,13 +53,13 @@ export default function ConsignmentForm() {
     <form onSubmit={submit} className="border border-line bg-surface p-6 md:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
-          <span className="tech mb-2 block text-[10px]">Name</span>
+          <span className="tech mb-2 block text-[10px]">Nama</span>
           <input required value={form.name} onChange={set("name")} placeholder="Nama Anda" className={input} />
         </label>
         <label className="block">
-          <span className="tech mb-2 block text-[10px]">Preferred Contact</span>
+          <span className="tech mb-2 block text-[10px]">Kontak Pilihan</span>
           <select value={form.contact} onChange={set("contact")} className={input}>
-            <option>Encrypted Email</option>
+            <option>Email Terenkripsi</option>
             <option>Telepon</option>
             <option>WhatsApp</option>
             <option>Signal</option>
@@ -67,7 +67,7 @@ export default function ConsignmentForm() {
         </label>
       </div>
       <label className="mt-5 block">
-        <span className="tech mb-2 block text-[10px]">Asset Details</span>
+        <span className="tech mb-2 block text-[10px]">Detail Aset</span>
         <textarea
           required
           rows={5}

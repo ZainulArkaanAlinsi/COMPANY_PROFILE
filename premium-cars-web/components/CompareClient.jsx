@@ -7,13 +7,18 @@ import SmartImage from "@/components/SmartImage";
 import { cars, formatIDR } from "@/lib/cars";
 
 /**
- * Bandingkan dua unit inventaris head-to-head: diagram bar per metrik,
+ * Bandingkan dua unit inventaris berdampingan: diagram bar per metrik,
  * pemenang tiap ronde di-highlight, dan ringkasan kelebihan tiap mobil.
  * Deep link: /bandingkan?a=<slug>&b=<slug>
  */
 
+// Kunci spesifikasi ditulis dalam bahasa Indonesia dan memakai en dash
+// ("0–100 km/j"), jadi pencocokan harus menyamakan tanda hubung dulu. Tanpa ini
+// dua metrik di bawah tidak pernah ketemu dan barisnya selalu tampil "—".
+const norm = (s) => String(s).toLowerCase().replace(/[\u2013\u2014]/g, "-");
+
 const num = (car, key) => {
-  const spec = car.specs.find((s) => s.k.toLowerCase().includes(key));
+  const spec = car.specs.find((s) => norm(s.k).includes(norm(key)));
   if (!spec) return null;
   const n = Number(String(spec.v).replace(/[^\d.]/g, ""));
   return Number.isFinite(n) && n > 0 ? n : null;
@@ -21,8 +26,8 @@ const num = (car, key) => {
 
 const METRICS = [
   { id: "hp", label: "Tenaga", unit: "HP", better: "high", get: (c) => c.hp },
-  { id: "speed", label: "Top Speed", unit: "KM/H", better: "high", get: (c) => num(c, "top speed") },
-  { id: "accel", label: "0-100 KM/H", unit: "S", better: "low", get: (c) => num(c, "0-100") },
+  { id: "speed", label: "Kecepatan Puncak", unit: "KM/J", better: "high", get: (c) => num(c, "kecepatan puncak") },
+  { id: "accel", label: "0–100 KM/J", unit: "DETIK", better: "low", get: (c) => num(c, "0-100") },
   { id: "price", label: "Harga", unit: "", better: "low", get: (c) => c.price,
     format: (v) => formatIDR(v), note: "lebih terjangkau" },
 ];
@@ -85,7 +90,7 @@ export default function CompareClient() {
       <div className="mt-10 border border-line bg-surface">
         <div className="grid grid-cols-[1fr,auto,1fr] items-center gap-4 border-b border-line px-6 py-4">
           <p className="display truncate text-lg text-amber md:text-xl">{A.name}</p>
-          <p className="tech text-meta">Head to Head</p>
+          <p className="tech text-meta">Adu Spesifikasi</p>
           <p className="display truncate text-right text-lg md:text-xl">{B.name}</p>
         </div>
         <div className="divide-y divide-line-soft">

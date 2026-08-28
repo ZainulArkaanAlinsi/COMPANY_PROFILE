@@ -21,7 +21,7 @@ const primary = [
 
 const more = [
   { label: "Tentang Kami", href: "/heritage" },
-  { label: "Journal", href: "/journal" },
+  { label: "Jurnal", href: "/journal" },
   { label: "Membership", href: "/membership" },
   { label: "Kontak", href: "/kontak" },
 ];

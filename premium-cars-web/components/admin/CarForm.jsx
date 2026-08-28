@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { statusLabel } from "@/lib/labels";
 
 const FIELDS = [
   { k: "brand", label: "Merek", required: true },
@@ -9,8 +10,8 @@ const FIELDS = [
   { k: "eyebrow", label: "Tagline / Eyebrow" },
   { k: "year", label: "Tahun", type: "number" },
   { k: "category", label: "Kategori" },
-  { k: "bodyStyle", label: "Body Style" },
-  { k: "drivetrain", label: "Drivetrain" },
+  { k: "bodyStyle", label: "Bentuk Bodi" },
+  { k: "drivetrain", label: "Penggerak" },
   { k: "fuel", label: "Bahan Bakar" },
   { k: "price", label: "Harga (IDR)", type: "number" },
   { k: "hp", label: "Tenaga (HP)", type: "number" },
@@ -105,7 +106,7 @@ export default function CarForm({ car }) {
             className="mt-2 w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm outline-none focus:border-ink"
           >
             {STATUSES.map((s) => (
-              <option key={s} value={s}>{s}</option>
+              <option key={s} value={s}>{statusLabel(s)}</option>
             ))}
           </select>
         </label>
@@ -142,7 +143,7 @@ export default function CarForm({ car }) {
             rows={4}
             value={form.specsText}
             onChange={set("specsText")}
-            placeholder={"Top Speed: 350 KM/H\n0–100: 2.8 s"}
+            placeholder={"Kecepatan Puncak: 350 km/j\n0–100: 2,8 detik"}
             className="mt-2 w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm outline-none focus:border-ink"
           />
         </label>

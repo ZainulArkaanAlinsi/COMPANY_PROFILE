@@ -11,9 +11,9 @@ export const dynamic = "force-dynamic";
 
 const LABELS = {
   contact: "Pesan Kontak",
-  appraisal: "Vehicle Appraisal",
-  consignment: "Consignment",
-  newsletter: "Newsletter",
+  appraisal: "Penilaian Kendaraan",
+  consignment: "Konsinyasi",
+  newsletter: "Buletin",
 };
 
 export default async function AkunPage() {

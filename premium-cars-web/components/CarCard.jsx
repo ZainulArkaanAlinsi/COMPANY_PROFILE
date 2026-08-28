@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SmartImage from "./SmartImage";
 import { formatIDR } from "@/lib/cars";
+import { statusLabel } from "@/lib/labels";
 
 const statusStyle = {
   "In Stock": "bg-amber text-floor",
@@ -14,7 +15,7 @@ const statusStyle = {
  */
 export default function CarCard({ car, cta = "Detail" }) {
   const href = car.live ? "/kontak" : `/katalog/${car.slug}`;
-  const label = car.live ? "Inquire" : cta;
+  const label = car.live ? "Tanya Unit" : cta;
   return (
     <article data-spotlight data-tilt className="card-lift group flex flex-col overflow-hidden rounded-3xl border border-line bg-surface">
       <Link href={href} className="showroom relative block">
@@ -29,7 +30,7 @@ export default function CarCard({ car, cta = "Detail" }) {
             statusStyle[car.status] || "bg-surface-2 text-muted"
           }`}
         >
-          {car.status}
+          {statusLabel(car.status)}
         </span>
       </Link>
 

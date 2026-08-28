@@ -5,7 +5,7 @@ import Reveal from "@/components/Reveal";
 export const metadata = {
   title: "Bandingkan Mobil | Premium Cars",
   description:
-    "Adu dua unit head-to-head: tenaga, top speed, akselerasi, dan harga. Diagram kelebihan tiap mobil dalam satu layar.",
+    "Adu dua unit berdampingan: tenaga, kecepatan puncak, akselerasi, dan harga. Diagram kelebihan tiap mobil dalam satu layar.",
 };
 
 export default function BandingkanPage() {
@@ -16,14 +16,14 @@ export default function BandingkanPage() {
           <p className="tech text-amber">
             <span className="text-meta">N° 08 — </span>Comparison Lab
           </p>
-          <p className="tech hidden text-meta sm:block">Head to Head</p>
+          <p className="tech hidden text-meta sm:block">Adu Spesifikasi</p>
         </div>
         <h1 className="display mt-6 text-6xl leading-[0.9] md:text-8xl">
           Bandingkan <span className="text-muted">Mobil</span>
         </h1>
         <p className="mt-6 max-w-2xl text-muted md:text-lg">
-          Pilih dua unit dan lihat siapa unggul di tiap metrik — tenaga, top
-          speed, akselerasi, hingga harga — lengkap dengan ringkasan
+          Pilih dua unit dan lihat siapa unggul di tiap metrik — tenaga,
+          kecepatan puncak, akselerasi, hingga harga — lengkap dengan ringkasan
           kelebihannya.
         </p>
       </Reveal>

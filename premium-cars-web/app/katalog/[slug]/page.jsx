@@ -7,6 +7,7 @@ import CarCard from "@/components/CarCard";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
 import { cars, getCar, formatIDR } from "@/lib/cars";
+import { statusLabel } from "@/lib/labels";
 
 export function generateStaticParams() {
   return cars.map((c) => ({ slug: c.slug }));
@@ -56,7 +57,7 @@ export default function DetailPage({ params }) {
         <div className="mt-6 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
           <h1 className="display text-5xl leading-[0.9] md:text-8xl">{car.name}</h1>
           <span className="rounded-sm bg-amber px-3 py-1.5 text-[11px] font-semibold uppercase tracking-tech text-floor">
-            {car.status}
+            {statusLabel(car.status)}
           </span>
         </div>
         <p className="tech mt-3 text-meta">{car.eyebrow}</p>

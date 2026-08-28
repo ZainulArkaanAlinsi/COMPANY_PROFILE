@@ -37,10 +37,10 @@ function normalize(listing) {
     image: photos[0] || "",
     gallery: photos.slice(0, 3),
     specs: [
-      { k: "Year", v: String(b.year || "—") },
+      { k: "Tahun", v: String(b.year || "—") },
       { k: "Engine", v: b.engine || "—" },
-      { k: "Drivetrain", v: (b.drivetrain || "—").toUpperCase() },
-      { k: "Miles", v: listing.miles ? `${listing.miles.toLocaleString()} MI` : "—" },
+      { k: "Penggerak", v: (b.drivetrain || "—").toUpperCase() },
+      { k: "Jarak Tempuh", v: listing.miles ? `${listing.miles.toLocaleString()} mil` : "—" },
     ],
     summary: listing.heading || `${b.year || ""} ${name}`.trim(),
     live: true,

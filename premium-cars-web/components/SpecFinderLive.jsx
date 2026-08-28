@@ -84,12 +84,12 @@ export default function SpecFinderLive() {
               </p>
               <dl className="mt-4 grid grid-cols-2 gap-y-3">
                 {[
-                  ["Cylinders", car.cylinders],
-                  ["Displacement", car.displacement ? `${car.displacement} L` : null],
-                  ["Drive", car.drive],
+                  ["Silinder", car.cylinders],
+                  ["Kapasitas Mesin", car.displacement ? `${car.displacement} L` : null],
+                  ["Penggerak", car.drive],
                   ["Fuel", car.fuel_type],
-                  ["Transmission", car.transmission],
-                  ["City MPG", car.city_mpg],
+                  ["Transmisi", car.transmission],
+                  ["Konsumsi Dalam Kota (MPG)", car.city_mpg],
                 ]
                   .filter(([, v]) => v !== undefined && v !== null && v !== "")
                   .map(([k, v]) => (

@@ -6,7 +6,7 @@ export const metadata = { title: "Admin · Premium Cars", robots: { index: false
 export const dynamic = "force-dynamic";
 
 const nav = [
-  { href: "/admin", label: "Dashboard" },
+  { href: "/admin", label: "Ringkasan" },
   { href: "/admin/inventory", label: "Inventaris" },
 ];
 

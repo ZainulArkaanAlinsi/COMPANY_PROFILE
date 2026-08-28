@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { inventoryStats, listCars } from "@/lib/repo/cars";
 import { formatIDR } from "@/lib/cars";
+import { statusLabel } from "@/lib/labels";
 
 export const dynamic = "force-dynamic";
 
@@ -10,8 +11,8 @@ export default function AdminDashboard() {
 
   const cards = [
     { label: "Total Unit", value: s.total },
-    { label: "In Stock", value: s.inStock },
-    { label: "Reserved", value: s.reserved },
+    { label: "Tersedia", value: s.inStock },
+    { label: "Dipesan", value: s.reserved },
     { label: "Kategori", value: s.categories },
   ];
 
@@ -63,7 +64,7 @@ export default function AdminDashboard() {
             </div>
             <div className="shrink-0 text-right">
               <p className="font-display font-semibold">{formatIDR(car.price)}</p>
-              <p className="text-[11px] uppercase tracking-tech text-meta">{car.status}</p>
+              <p className="text-[11px] uppercase tracking-tech text-meta">{statusLabel(car.status)}</p>
             </div>
           </Link>
         ))}

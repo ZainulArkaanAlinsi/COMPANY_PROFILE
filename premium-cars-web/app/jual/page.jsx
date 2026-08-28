@@ -5,6 +5,7 @@ import SmartImage from "@/components/SmartImage";
 import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
 import { recentTransactions } from "@/lib/content";
+import { statusLabel } from "@/lib/labels";
 
 export const metadata = {
   title: "Jual & Tukar Mobil | Premium Cars",
@@ -13,40 +14,40 @@ export const metadata = {
 };
 
 const stats = [
-  { k: "Market Reach", v: "Global" },
-  { k: "Appraisal Time", v: "24H" },
-  { k: "Trust Score", v: "99,8%" },
+  { k: "Jangkauan Pasar", v: "Global" },
+  { k: "Waktu Penilaian", v: "24 jam" },
+  { k: "Skor Kepercayaan", v: "99,8%" },
 ];
 
 const appraisalSteps = [
-  { n: "01", t: "Vehicle Specs", b: "VIN dan detail performa." },
-  { n: "02", t: "Physical State", b: "Riwayat servis & estetika." },
-  { n: "03", t: "Contact", b: "Penawaran final diantar." },
+  { n: "01", t: "Spesifikasi Unit", b: "VIN dan detail performa." },
+  { n: "02", t: "Kondisi Fisik", b: "Riwayat servis & estetika." },
+  { n: "03", t: "Kontak", b: "Penawaran final diantar." },
 ];
 
 const paths = [
   {
-    tag: "Upgrade Path",
-    title: "Trade-In Program",
+    tag: "Jalur Peningkatan",
+    title: "Program Tukar Tambah",
     body: "Jembatani kendaraan Anda saat ini dengan evolusi berikutnya. Ekuitas Anda langsung diperhitungkan ke unit mana pun di inventaris kurasi kami.",
     href: "/jual/trade-in",
     image:
       "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1600&q=80",
     stats: [
-      { k: "Direct Credit", v: "Instant" },
-      { k: "Equity Report", v: "Real-Time" },
+      { k: "Kredit Langsung", v: "Seketika" },
+      { k: "Laporan Ekuitas", v: "Waktu Nyata" },
     ],
   },
   {
-    tag: "Discreet Sale",
-    title: "Private Consignment",
+    tag: "Penjualan Tertutup",
+    title: "Konsinyasi Privat",
     body: "Untuk aset langka yang membutuhkan pembeli terkurasi. Kami memanfaatkan jaringan kolektor global untuk transaksi off-market dengan kerahasiaan absolut.",
     href: "/jual/consignment",
     image:
       "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80",
     stats: [
-      { k: "Network Access", v: "VIP Only" },
-      { k: "Avg. Premium", v: "+12%" },
+      { k: "Akses Jaringan", v: "Khusus VIP" },
+      { k: "Rata-rata Premi", v: "+12%" },
     ],
   },
 ];
@@ -209,7 +210,7 @@ export default function JualPage() {
           </h2>
           <p className="tech flex items-center gap-2 text-meta">
             <span className="h-2 w-2 animate-pulse rounded-full bg-amber" />
-            Live Data Feed
+            Data Transaksi Terkini
           </p>
         </Reveal>
         <Reveal stagger className="mt-10 grid gap-6 md:grid-cols-3">
@@ -223,7 +224,7 @@ export default function JualPage() {
                   className="aspect-[16/10] w-full grayscale transition-all duration-500 group-hover:grayscale-0"
                 />
                 <span className="absolute bottom-4 left-4 bg-amber px-3 py-1 text-[10px] font-bold uppercase tracking-tech text-floor">
-                  {t.status}
+                  {statusLabel(t.status)}
                 </span>
               </div>
               <div className="p-6">

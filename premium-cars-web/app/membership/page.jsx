@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import Reveal from "@/components/Reveal";
-import { membershipTiers } from "@/lib/content";
+import SectionHeader from "@/components/SectionHeader";
+import { membershipTiers, membershipFaq } from "@/lib/content";
 
 export const metadata = {
   title: "Membership | Premium Cars",
@@ -40,11 +41,16 @@ export default function MembershipPage() {
           >
             {t.highlight && (
               <span className="mb-4 inline-block w-max rounded-sm bg-amber px-3 py-1 text-[11px] font-semibold uppercase tracking-tech text-floor">
-                Most Popular
+                Paling Banyak Dipilih
               </span>
             )}
             <h3 className="display text-3xl">{t.name}</h3>
             <p className="mt-2 font-display text-xl font-semibold text-amber">{t.price}</p>
+            {t.ringkas && (
+              <p className="mt-4 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+                {t.ringkas}
+              </p>
+            )}
             <ul className="mt-8 flex-1 space-y-4">
               {t.perks.map((p) => (
                 <li key={p} className="flex gap-3 text-sm text-muted">
@@ -59,16 +65,48 @@ export default function MembershipPage() {
                 variant={t.highlight ? "solid" : "ghost"}
                 className="w-full"
               >
-                {t.price === "By Invitation" ? "Ajukan Undangan" : "Bergabung"}
+                {/^\s*(atas undangan|by invitation)/i.test(t.price)
+                  ? "Ajukan Undangan"
+                  : "Bergabung"}
               </Button>
             </div>
           </div>
         ))}
       </Reveal>
 
-      <p className="mt-10 text-center text-sm text-meta">
-        Semua tier mencakup garansi keaslian dan akses ke platform trade-in prioritas.
+      <p className="mt-10 text-center text-sm leading-relaxed text-meta">
+        Seluruh tingkat mencakup jaminan keabsahan dokumen dan berkas kondisi
+        lengkap untuk setiap unit — dua hal yang juga kami berikan kepada
+        pembeli non-anggota.
       </p>
+
+      <section className="mt-section">
+        <Reveal>
+          <SectionHeader
+            index={2}
+            kicker="Sebelum Bergabung"
+            title="Tiga hal yang sebaiknya Anda tanyakan"
+          />
+        </Reveal>
+        <div className="mt-10 border-t border-line">
+          {membershipFaq.map((f, i) => (
+            <Reveal key={f.t} delay={i * 60}>
+              <details className="group border-b border-line">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-6">
+                  <h3 className="display text-lg leading-snug md:text-xl">{f.t}</h3>
+                  <span
+                    aria-hidden="true"
+                    className="mt-1 shrink-0 text-2xl leading-none text-amber transition-transform duration-300 group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="max-w-3xl pb-7 leading-relaxed text-muted">{f.j}</p>
+              </details>
+            </Reveal>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

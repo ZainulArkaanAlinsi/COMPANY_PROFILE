@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Consignment Excellence | PREMIUM CARS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Oswald:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#003357",
+                    "on-primary": "#571f00",
+                    "surface-container": "#1e201f",
+                    "secondary-fixed-dim": "#c8c6c7",
+                    "on-secondary": "#313031",
+                    "on-error-container": "#ffdad6",
+                    "on-background": "#e2e3e1",
+                    "error-container": "#93000a",
+                    "outline-variant": "#5a4136",
+                    "on-secondary-fixed-variant": "#474647",
+                    "secondary-fixed": "#e5e2e3",
+                    "on-primary-fixed-variant": "#7b2f00",
+                    "primary-fixed-dim": "#ffb694",
+                    "surface": "#121413",
+                    "inverse-primary": "#a14000",
+                    "on-secondary-fixed": "#1c1b1c",
+                    "on-primary-fixed": "#351000",
+                    "surface-tint": "#ffb694",
+                    "on-secondary-container": "#bab8b9",
+                    "secondary": "#c8c6c7",
+                    "on-surface": "#e2e3e1",
+                    "on-surface-variant": "#e2bfb0",
+                    "error": "#ffb4ab",
+                    "surface-variant": "#333534",
+                    "on-tertiary": "#003256",
+                    "on-primary-container": "#571f00",
+                    "on-error": "#690005",
+                    "surface-bright": "#383a38",
+                    "tertiary-fixed-dim": "#9ccaff",
+                    "surface-container-high": "#282a29",
+                    "inverse-surface": "#e2e3e1",
+                    "tertiary": "#9ccaff",
+                    "tertiary-container": "#009eff",
+                    "on-tertiary-fixed-variant": "#00497a",
+                    "surface-container-highest": "#333534",
+                    "inverse-on-surface": "#2f3130",
+                    "secondary-container": "#4a494a",
+                    "on-tertiary-fixed": "#001d35",
+                    "background": "#121413",
+                    "surface-container-low": "#1a1c1b",
+                    "outline": "#a98a7d",
+                    "surface-dim": "#121413",
+                    "primary-container": "#ff6a00",
+                    "surface-container-lowest": "#0d0f0e",
+                    "primary-fixed": "#ffdbcc",
+                    "primary": "#ffb694",
+                    "tertiary-fixed": "#d0e4ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "64px",
+                    "section-gap": "120px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Oswald"],
+                    "body-md": ["Inter"],
+                    "display-xl": ["Oswald"],
+                    "display-lg": ["Oswald"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Oswald"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Oswald"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24
+    }
+body {
+    background-color: #0B0B0C;
+    color: #e2e3e1;
+    -webkit-font-smoothing: antialiased
+    }
+.grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBWEinrdS4wGIf4gsmNNDLqlqmeHQNUuLc7Z-dZPtpzSkMO260c5qPtcVH26jLDsRehFC74LSwEODLKcOdGLGtsoFFfdhRxc_DRApGD9N1ZD4vf9C7QkOCXQ1Q2MnV13H0H8nedWN88J8n22wTzNe4IpmjveqAbwjx-RqvXmjNgwx76YOgmlDYo4y69Bs9Mw_m0beMvAStAJCenxYlIRmzDIaz15Ee8rGptEdOE9l7UltU9mur7yduCXA)
+    }
+.editorial-line {
+    height: 1px;
+    background: linear-gradient(90deg, #2A2A30 0%, transparent 100%)
+    }</style>
+</head>
+<body class="selection:bg-primary-container selection:text-on-primary-container">
+<div class="grain"></div>
+<!-- Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant/30">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-[1440px] mx-auto">
+<div class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary dark:text-primary tracking-tighter cursor-pointer active:scale-95">
+                PREMIUM CARS
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer active:scale-95" href="#">Browse</a>
+<a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer active:scale-95" href="#">Sell</a>
+<a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer active:scale-95" href="#">Trade-in</a>
+<a class="font-label-md text-label-md uppercase tracking-widest text-primary border-b-2 border-primary pb-1 cursor-pointer active:scale-95" href="#">Consignment</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-primary cursor-pointer">search</span>
+<button class="font-label-md text-label-md uppercase tracking-widest bg-primary-container text-on-primary-container px-8 py-2 border-radius-DEFAULT hover:opacity-90 transition-all active:scale-95">
+                    Login
+                </button>
+</div>
+</div>
+</nav>
+<main class="pt-32">
+<!-- Hero Section -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto mb-section-gap">
+<div class="grid grid-cols-12 gap-gutter items-end">
+<div class="col-span-12 md:col-span-8">
+<h1 class="font-display-xl text-[60px] md:text-display-xl uppercase leading-none mb-6">
+                        Consignment <br/> <span class="text-primary">Excellence</span>
+</h1>
+<div class="editorial-line mb-8"></div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        An invitation-only ecosystem for the world's most significant automotive assets. We bridge the gap between private collections and global connoisseurs with absolute discretion.
+                    </p>
+</div>
+<div class="col-span-12 md:col-span-4 flex md:justify-end">
+<div class="flex flex-col gap-4 text-right">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em]">Established 1994</span>
+<span class="font-headline-sm text-headline-sm">OVER $2B IN TRANSACTIONS</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Asset 01 - Large Scale Imagery -->
+<section class="mb-section-gap overflow-hidden">
+<div class="relative w-full h-[819px] group cursor-crosshair">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" data-alt="A side profile shot of a pristine, Rosso Corsa Ferrari LaFerrari parked in a dark, atmospheric brutalist concrete garage. The lighting is dramatic, with single overhead cold-white LEDs reflecting off the carbon fiber accents. The scene is high-contrast, moody, and highlights the precision-engineered curves of the hypercar. Professional automotive photography style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjR17IkBx_zDdcmMBEAmK0BRcA-miTiwQeOuyi9XWFvK9U_R43YhuMrgFpo1uQjXAbW1WgtYS1IQ4L8oKsNmuUSYmcxpJ2M6pv5zJQqP4krReVN0OKkpqhyRimpn17EkpQF6_cj4TvgCfN3uFM6V6KYn3kCASMDSAEfH-aLpRyWgvM7sfC-bhD8zTywTH1ZHJN97ZNxXnyoet8_GJtOXmc-Ghr_78jLC0u4ASSOTQ6J0aRKklrTR894w')">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
+<div class="absolute bottom-0 left-0 p-margin-mobile md:p-margin-desktop w-full flex flex-col md:flex-row justify-between items-end gap-8">
+<div>
+<div class="font-label-sm text-label-sm text-primary uppercase mb-2">Available via Private Treaty</div>
+<h2 class="font-display-lg text-display-lg uppercase">FERRARI LAFERRARI</h2>
+<div class="flex gap-12 mt-4">
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Year</div>
+<div class="font-headline-sm text-headline-sm">2014</div>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Mileage</div>
+<div class="font-headline-sm text-headline-sm">412 MI</div>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Location</div>
+<div class="font-headline-sm text-headline-sm">MODENA, IT</div>
+</div>
+</div>
+</div>
+<button class="px-12 py-4 bg-primary-container text-on-primary-container font-label-md text-label-md uppercase tracking-widest border-radius-DEFAULT hover:scale-105 transition-transform">
+                        Inquire Privately
+                    </button>
+</div>
+</div>
+</section>
+<!-- Bento Grid: The Process & Network -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto mb-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Network Stats -->
+<div class="bg-surface-container border border-outline-variant/30 p-10 flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-primary text-4xl mb-6">public</span>
+<h3 class="font-headline-md text-headline-md uppercase mb-4">Global Reach</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Direct access to UHNW collectors across 42 countries. Your asset isn't just listed; it's placed.</p>
+</div>
+<div class="mt-12 text-6xl font-display-lg text-surface-variant/30 select-none">42 COUNTRIES</div>
+</div>
+<!-- Featured Asset 02 -->
+<div class="md:col-span-2 relative h-[400px] border border-outline-variant/30 overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A low-angle, wide-angle shot of a McLaren P1 in Volcano Orange parked on a desert road during blue hour. The car's active rear wing is deployed. The sky is a deep indigo, and the car's headlights pierce through the twilight. Industrial minimalism style, extremely sharp detail, emphasizing the aerodynamic complexity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACIssNo7sv-MMxU9plZp44uv1tkhhfrza8oTq4-kl4R8fdulEq4euXjEttqfd1ME4zCAHPSIaMlnQDCsyXYyKYFJrtc9q1OnZuASN6hvrILnnHhViNkc9MfJ0aPlshyDtie2R54WpBD7Wy8NaTgsDGTpFCR0mDD7QFVM8JehuhMzK9g9b1NchQJ_LEp05Cwdq47bDUks0e3xns-kUdZewJO945DYgef2itOo75AhwhmAw3Oj852BSSkg')">
+</div>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute bottom-8 left-8">
+<h3 class="font-display-lg text-display-lg uppercase leading-none">McLAREN P1</h3>
+<p class="font-label-md text-label-md uppercase tracking-widest text-primary mt-2">Recently Secured</p>
+</div>
+</div>
+<!-- Discreet Service -->
+<div class="md:col-span-2 relative h-[400px] border border-outline-variant/30 overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="An extreme close-up of a high-end luxury car's gear shifter and center console, crafted from brushed titanium and hand-stitched leather. The lighting is soft and warm, emphasizing the 'engineered excellence' and artisanal quality. The focus is sharp on the texture of the materials." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCyvOYRDPmVwl4PMit90dYOFyz8TzYm2etR4rRzU9HDYr5iHTj8P-GqKcmTmjX7Cm9HiZ36zeG6nv8UW5fkmXp1BgRzdV6uRoTEDYhWb_aKq89W_46zvarPipJHCL0p6olt3gMp9q4BIandfJwD53Ag-sQ1JNBffiqBscvMo7A32SJDMemdTN8wEMw0coQV-6eSdJnapHh9B4l_HmQKrGRzcn2BmwFgnZYNSLOd6LVAYgbbH_rV5t5-nw')">
+</div>
+<div class="absolute inset-0 bg-background/80 flex items-center justify-center p-12 text-center">
+<div>
+<h3 class="font-headline-md text-headline-md uppercase mb-4">Absolute Discretion</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto">
+                                For listings that never see the public eye. Our off-market 'Shadow Catalog' connects owners with verified buyers in a closed loop.
+                            </p>
+<button class="mt-8 px-8 py-2 border border-primary text-primary font-label-md text-label-md uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all">
+                                Request Private Access
+                            </button>
+</div>
+</div>
+</div>
+<!-- Expert Verification -->
+<div class="bg-surface-container border border-outline-variant/30 p-10">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">verified</span>
+<h3 class="font-headline-md text-headline-md uppercase mb-4">Forensic Provenance</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Every consignment undergoes a rigorous 140-point verification and historical deep-dive by our master technicians.</p>
+</div>
+</div>
+</section>
+<!-- Discreet Concierge Section -->
+<section class="bg-surface-container-low border-y border-outline-variant/20 py-section-gap">
+<div class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<div class="grid grid-cols-12 gap-gutter">
+<div class="col-span-12 md:col-span-6">
+<h2 class="font-display-lg text-display-lg uppercase mb-8">Discreet <br/> <span class="text-primary">Concierge</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12">
+                            Ready to discuss the placement of your asset? Our senior consultants are available for global travel at short notice to inspect and evaluate your collection.
+                        </p>
+<div class="space-y-8">
+<div class="flex gap-6 items-start">
+<span class="material-symbols-outlined text-primary">encrypted</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm uppercase">Encrypted Communication</h4>
+<p class="font-body-md text-body-md text-on-secondary-container">Secure signal and email channels for all sensitive documentation.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<span class="material-symbols-outlined text-primary">flight_takeoff</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm uppercase">Global Logistics</h4>
+<p class="font-body-md text-body-md text-on-secondary-container">White-glove, insured transport to any destination worldwide.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-6 mt-12 md:mt-0">
+<div class="bg-surface-container p-8 border border-outline-variant/30">
+<form class="space-y-6">
+<div class="grid grid-cols-2 gap-6">
+<div class="col-span-2 md:col-span-1">
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant block mb-2">Name</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 p-4 focus:border-primary outline-none transition-colors" type="text"/>
+</div>
+<div class="col-span-2 md:col-span-1">
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant block mb-2">Preferred Contact</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 p-4 focus:border-primary outline-none transition-colors" type="text"/>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant block mb-2">Asset Details</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant/30 p-4 focus:border-primary outline-none transition-colors" rows="4"></textarea>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md uppercase tracking-[0.2em] py-5 border-radius-DEFAULT hover:opacity-90 active:scale-[0.98] transition-all">
+                                    Establish Contact
+                                </button>
+<p class="text-center font-label-sm text-label-sm text-surface-variant/60 uppercase">Replies typically within 2 hours</p>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Collector Network Callout -->
+<section class="relative h-[600px] flex items-center overflow-hidden">
+
+<div class="absolute inset-0 bg-gradient-to-r from-background to-transparent"></div>
+<div class="relative px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto z-10">
+<div class="max-w-2xl">
+<h2 class="font-display-lg text-display-lg uppercase leading-tight mb-6">Join the <span class="text-primary">Collector</span> Circle</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10">
+                        Our private network receives first-refusal on all incoming assets before they reach our digital gallery. Membership is by invitation or vetting only.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="px-10 py-4 bg-white text-black font-label-md text-label-md uppercase tracking-widest border-radius-DEFAULT hover:bg-primary transition-colors">Apply for Membership</button>
+<button class="px-10 py-4 border border-outline text-on-surface font-label-md text-label-md uppercase tracking-widest border-radius-DEFAULT hover:bg-surface-variant transition-colors">View Criteria</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full border-t border-outline-variant/20 bg-surface-container-lowest">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-section-gap max-w-[1440px] mx-auto">
+<div class="font-display-xl text-primary opacity-20 select-none mb-8 md:mb-0">
+                PREMIUM CARS
+            </div>
+<div class="flex flex-col items-center md:items-end gap-6">
+<div class="flex gap-8 flex-wrap justify-center">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Contact Expert</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Shipping</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">FAQ</a>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">
+                    © 2024 PREMIUM CARS. ENGINEERED EXCLUSIVITY.
+                </div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                // Potential for haptic or light hover effects
+            });
+        });
+
+        // Simple scroll reveal for editorial lines
+        window.addEventListener('scroll', () => {
+            const lines = document.querySelectorAll('.editorial-line');
+            lines.forEach(line => {
+                const rect = line.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    line.style.width = '100%';
+                    line.style.transition = 'width 1.5s cubic-bezier(0.2, 1, 0.3, 1)';
+                }
+            });
+        });
+    </script>
+</body></html>

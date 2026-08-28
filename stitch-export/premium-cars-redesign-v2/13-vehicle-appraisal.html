@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vehicle Appraisal | PREMIUM CARS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#003357",
+                        "on-primary": "#571f00",
+                        "surface-container": "#1e201f",
+                        "secondary-fixed-dim": "#c8c6c7",
+                        "on-secondary": "#313031",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#e2e3e1",
+                        "error-container": "#93000a",
+                        "outline-variant": "#5a4136",
+                        "on-secondary-fixed-variant": "#474647",
+                        "secondary-fixed": "#e5e2e3",
+                        "on-primary-fixed-variant": "#7b2f00",
+                        "primary-fixed-dim": "#ffb694",
+                        "surface": "#121413",
+                        "inverse-primary": "#a14000",
+                        "on-secondary-fixed": "#1c1b1c",
+                        "on-primary-fixed": "#351000",
+                        "surface-tint": "#ffb694",
+                        "on-secondary-container": "#bab8b9",
+                        "secondary": "#c8c6c7",
+                        "on-surface": "#e2e3e1",
+                        "on-surface-variant": "#e2bfb0",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#333534",
+                        "on-tertiary": "#003256",
+                        "on-primary-container": "#571f00",
+                        "on-error": "#690005",
+                        "surface-bright": "#383a38",
+                        "tertiary-fixed-dim": "#9ccaff",
+                        "surface-container-high": "#282a29",
+                        "inverse-surface": "#e2e3e1",
+                        "tertiary": "#9ccaff",
+                        "tertiary-container": "#009eff",
+                        "on-tertiary-fixed-variant": "#00497a",
+                        "surface-container-highest": "#333534",
+                        "inverse-on-surface": "#2f3130",
+                        "secondary-container": "#4a494a",
+                        "on-tertiary-fixed": "#001d35",
+                        "background": "#121413",
+                        "surface-container-low": "#1a1c1b",
+                        "outline": "#a98a7d",
+                        "surface-dim": "#121413",
+                        "primary-container": "#ff6a00",
+                        "surface-container-lowest": "#0d0f0e",
+                        "primary-fixed": "#ffdbcc",
+                        "primary": "#ffb694",
+                        "tertiary-fixed": "#d0e4ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "section-gap": "120px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Oswald"],
+                        "body-md": ["Inter"],
+                        "display-xl": ["Oswald"],
+                        "display-lg": ["Oswald"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Oswald"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Oswald"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-xl": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #ff6a00 !important;
+        }
+        .step-active { color: #ffb694; }
+        .step-inactive { color: #a98a7d; opacity: 0.5; }
+        .bg-industrial { background-color: #0B0B0C; }
+        .border-industrial { border: 1px solid #2A2A30; }
+        .backdrop-glass { backdrop-filter: blur(20px); background: rgba(11, 11, 12, 0.8); }
+    </style>
+</head>
+<body class="bg-industrial text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant/30">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-[1440px] mx-auto">
+<div class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary dark:text-primary tracking-tighter">PREMIUM CARS</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors" href="#">Browse</a>
+<a class="font-label-md text-label-md uppercase tracking-widest text-primary border-b-2 border-primary pb-1" href="#">Sell</a>
+<a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors" href="#">Trade-in</a>
+<a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors" href="#">Consignment</a>
+</nav>
+<button class="bg-primary-container text-on-primary-container px-8 py-2 font-label-md uppercase tracking-widest hover:brightness-110 transition-all active:scale-95">Login</button>
+</div>
+</header>
+<main class="pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Sidebar: Trust Factors -->
+<aside class="md:col-span-3 space-y-12 order-2 md:order-1">
+<div class="sticky top-40 space-y-8">
+<h3 class="font-headline-sm text-headline-sm text-primary uppercase border-b border-outline-variant/20 pb-4">Our Commitment</h3>
+<div class="space-y-6">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">verified_user</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface uppercase mb-1">Certified Experts</h4>
+<p class="text-label-sm text-on-surface-variant leading-relaxed">Every valuation is manually reviewed by our master mechanics and market analysts.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">speed</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface uppercase mb-1">Fast Valuation</h4>
+<p class="text-label-sm text-on-surface-variant leading-relaxed">Receive a preliminary high-end estimate within 24 hours of submission.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">payments</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface uppercase mb-1">Direct Payment</h4>
+<p class="text-label-sm text-on-surface-variant leading-relaxed">Funds are transferred via secure wire within 2 hours of physical handover.</p>
+</div>
+</div>
+</div>
+<div class="border-industrial p-6 bg-surface-container-low">
+<p class="text-label-sm italic text-on-surface-variant">"The process was as precise as the engineering of my 911. Unparalleled service."</p>
+<p class="text-label-sm font-bold text-primary mt-4">— J. Montgomery, Collector</p>
+</div>
+</div>
+</aside>
+<!-- Main Appraisal Form Content -->
+<section class="md:col-span-9 order-1 md:order-2">
+<div class="mb-12">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface uppercase leading-none mb-4">Vehicle Appraisal</h1>
+<p class="text-body-lg text-on-surface-variant max-w-2xl">Initiate the transition of your automotive masterpiece. Complete the fields below with mechanical precision.</p>
+</div>
+<!-- Step Indicator -->
+<div class="flex justify-between items-center mb-16 max-w-4xl">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full border border-primary flex items-center justify-center text-primary font-bold">1</span>
+<span class="font-label-md uppercase tracking-wider text-primary">Identity</span>
+</div>
+<div class="flex-1 h-px bg-outline-variant/30 mx-4"></div>
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant/50 font-bold">2</span>
+<span class="font-label-md uppercase tracking-wider text-on-surface-variant/50">Visuals</span>
+</div>
+<div class="flex-1 h-px bg-outline-variant/30 mx-4"></div>
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant/50 font-bold">3</span>
+<span class="font-label-md uppercase tracking-wider text-on-surface-variant/50">Engine</span>
+</div>
+</div>
+<!-- Form Card -->
+<div class="bg-surface-container border-industrial p-8 md:p-12">
+<form class="space-y-12">
+<!-- Section 1: Vehicle Identity -->
+<div class="space-y-8 animate-in fade-in duration-700" id="step-1">
+<h2 class="font-headline-sm text-headline-sm text-on-surface uppercase flex items-center gap-3">
+                                01 / Vehicle Identity
+                            </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">VIN (Vehicle Identification Number)</label>
+<input class="w-full bg-industrial border-industrial px-4 py-3 text-on-surface focus:border-primary transition-colors" placeholder="17-Digit Alpha-numeric Code" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Make / Manufacturer</label>
+<input class="w-full bg-industrial border-industrial px-4 py-3 text-on-surface focus:border-primary transition-colors" placeholder="e.g. Porsche, Ferrari" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Model & Year</label>
+<input class="w-full bg-industrial border-industrial px-4 py-3 text-on-surface focus:border-primary transition-colors" placeholder="e.g. 2022 911 GT3 RS" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Current Odometer (Miles)</label>
+<input class="w-full bg-industrial border-industrial px-4 py-3 text-on-surface focus:border-primary transition-colors" placeholder="0" type="number"/>
+</div>
+</div>
+</div>
+<!-- Section 2: Visual Condition -->
+<div class="space-y-8 pt-8 border-t border-outline-variant/20" id="step-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface uppercase flex items-center gap-3">
+                                02 / Visual Integrity
+                            </h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="aspect-video bg-industrial border-industrial border-dashed flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mb-2">add_a_photo</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Front 3/4</span>
+</div>
+<div class="aspect-video bg-industrial border-industrial border-dashed flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mb-2">add_a_photo</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Cockpit</span>
+</div>
+<div class="aspect-video bg-industrial border-industrial border-dashed flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mb-2">add_a_photo</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Odometer</span>
+</div>
+<div class="aspect-video bg-industrial border-industrial border-dashed flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mb-2">add_a_photo</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Engine Bay</span>
+</div>
+</div>
+</div>
+<!-- Section 3: Performance -->
+<div class="space-y-8 pt-8 border-t border-outline-variant/20" id="step-3">
+<h2 class="font-headline-sm text-headline-sm text-on-surface uppercase flex items-center gap-3">
+                                03 / Mechanical Specs
+                            </h2>
+<div class="space-y-8">
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Modifications & Aftermarket Enhancements</label>
+<textarea class="w-full bg-industrial border-industrial px-4 py-3 text-on-surface focus:border-primary transition-colors" placeholder="List all modifications including exhaust, tuning, suspension, and aesthetic changes..." rows="4"></textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Last Service Date</label>
+<input class="w-full bg-industrial border-industrial px-4 py-3 text-on-surface focus:border-primary transition-colors" type="date"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Tire Condition (%)</label>
+<select class="w-full bg-industrial border-industrial px-4 py-3 text-on-surface focus:border-primary transition-colors appearance-none">
+<option>90% - 100% (Near New)</option>
+<option>70% - 89% (Optimal)</option>
+<option>50% - 69% (Moderate)</option>
+<option>Below 50% (Replacement Advised)</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<!-- CTA Section -->
+<div class="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-outline-variant/20 gap-8">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span class="text-label-sm">Secure Submission via 256-bit Encryption</span>
+</div>
+<button class="w-full md:w-auto bg-primary-container text-on-primary-container px-12 py-4 font-label-md uppercase tracking-widest hover:brightness-110 transition-all active:scale-95 flex items-center justify-center gap-3" type="submit">
+                                Submit for Review
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</section>
+</div>
+</main>
+<!-- Detailed Appraisal Banner -->
+<section class="w-full bg-surface-container-highest/20 py-24 mb-section-gap">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop grid md:grid-cols-2 gap-12 items-center">
+<div class="relative group overflow-hidden">
+<div class="w-full h-[400px] bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700 border-industrial" data-alt="A moody, high-contrast photograph of a pristine engine block from a high-performance sports car. The lighting is dramatic and industrial, highlighting metallic textures and precision engineering components. Deep blacks and amber highlights dominate the composition, suggesting mechanical perfection and luxury." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDleztcDtIKd8CcPV_Atq-65EerHpDs4E3Cj_4CDlhAiQuNFxy42fzSkoJJVaeOlO3N1sSiohtTyaXheW1FXZQyDp2pOSiLINtZ1yP5GCq6kjolNs6aLwMF_gmEbdqw-eN3nku7DhVPV_xNVbk5ePrlDFoc5Akmyf3nydwFQn26bKQCIzJP_YCDOqRMf99lzuTahaTB9CcEaFV7p_guG5NSHVgPjoLTaLAj18Uw6AIWMdiyQ5FFEet_rA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-industrial via-transparent to-transparent opacity-60"></div>
+</div>
+<div class="space-y-6">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface uppercase leading-tight">Precision <br/>Market Intelligence</h2>
+<p class="text-body-lg text-on-surface-variant">Our valuation algorithms leverage real-time auction data, private sales, and mechanical health assessments to provide an uncompromisingly accurate figure.</p>
+<div class="flex gap-12">
+<div>
+<div class="font-headline-sm text-headline-sm text-primary">0-24H</div>
+<div class="font-label-sm text-label-sm uppercase text-on-surface-variant">Response Time</div>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-primary">98.4%</div>
+<div class="font-label-sm text-label-sm uppercase text-on-surface-variant">Offer Acceptance</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-section-gap max-w-[1440px] mx-auto">
+<div class="font-display-xl text-primary opacity-20 order-2 md:order-1 mt-12 md:mt-0">PREMIUM CARS</div>
+<div class="order-1 md:order-2 space-y-8 w-full md:w-auto text-center md:text-right">
+<nav class="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-4">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Contact Expert</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Shipping</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">FAQ</a>
+</nav>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">© 2024 PREMIUM CARS. ENGINEERED EXCLUSIVITY.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Simple Micro-interaction for inputs
+        document.querySelectorAll('input, textarea').forEach(el => {
+            el.addEventListener('focus', () => {
+                el.parentElement.querySelector('label').classList.add('text-primary');
+            });
+            el.addEventListener('blur', () => {
+                el.parentElement.querySelector('label').classList.remove('text-primary');
+            });
+        });
+
+        // Form submission behavior (simulation)
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Validating...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Application Sent';
+                btn.classList.replace('bg-primary-container', 'bg-tertiary-container');
+            }, 2000);
+        });
+    </script>
+</body></html>

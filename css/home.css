@@ -311,45 +311,45 @@ nav {
   /* di desktop nav_link diposisikan ulang (lihat aturan desktop) */
 }
 
-/* Link nav: garis-bawah cognac tumbuh dari tengah — konsisten dengan
-   css/chrome.css (.site-header). */
+/* Link nav bergaya "pill" — konsisten dengan css/chrome.css (.site-header). */
 .nav_link a {
   position: relative;
   display: inline-block;
-  padding: 0.5rem 0.9rem;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
+  padding: 0.5rem 0.95rem;
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-muted);
-  transition: color var(--t-base) var(--ease);
-}
-
-.nav_link a::after {
-  content: "";
-  position: absolute;
-  left: 0.9rem;
-  right: 0.9rem;
-  bottom: 0.05rem;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform var(--t-base) var(--ease);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  transition: color var(--t-base) var(--ease),
+    border-color var(--t-base) var(--ease),
+    background-color var(--t-base) var(--ease);
 }
 
 .nav_link a:hover {
   color: var(--text);
-}
-
-.nav_link a:hover::after,
-.nav_link a.is-active::after {
-  transform: scaleX(1);
+  border-color: var(--line-soft);
+  background-color: rgba(255, 255, 255, 0.02);
 }
 
 .nav_link a.is-active {
-  color: var(--text);
+  color: var(--accent-soft);
+  border-color: rgba(var(--accent-rgb), 0.45);
+  background-color: rgba(var(--accent-rgb), 0.07);
+}
+
+.nav_link a.is-active::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid var(--accent);
+  border-left: 1.5px solid var(--accent);
+  border-top-left-radius: var(--radius);
 }
 
 .nav_btn .btn {
@@ -620,7 +620,12 @@ nav {
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background-color: var(--bg);
+  /* Spotlight showroom halus — konsisten dgn kartu katalog. */
+  background: radial-gradient(
+    120% 130% at 50% 12%,
+    var(--surface-2) 0%,
+    var(--surface) 68%
+  );
 }
 
 .featured_card__image img {

@@ -1,0 +1,145 @@
+{
+  "designSystem": {
+    "displayName": "Dark Editorial Garage",
+    "styleGuidelines": "## Brand & Style\nThe brand personality is authoritative, engineered, and uncompromising. This design system treats luxury automotive inventory as fine art within an industrial, high-end garage setting. The aesthetic is inspired by premium automotive journalism and high-fashion editorial layouts.\n\nThe visual style is **Industrial Minimalism**. It rejects the \"softness\" of modern SaaS interfaces in favor of precision-engineered elements: sharp corners, high-contrast typography, and hairline strokes. The emotional response should be one of exclusivity, power, and mechanical excellence. Every element must feel intentional and structural, prioritizing clarity and bold photographic content over decorative UI tropes.\n\n## Layout & Spacing\nThe layout follows a strict 12-column grid for desktop with 24px gutters. It is a fluid-to-fixed model where the maximum content width is 1440px, centered on larger displays. \n\nVertical rhythm is expansive; use 120px gaps between major sections to allow the car photography \"room to breathe.\" Components should utilize a 4px base unit. Margins on mobile should be a strict 16px, while desktop margins should be a generous 64px to create an editorial frame around the content.\n\n## Elevation & Depth\nDepth is achieved through **Tonal Layering** and **Hairline Outlines** rather than shadows. \n- **Base:** #0B0B0C (The \"Floor\").\n- **Level 1:** #141417 with a 1px #2A2A30 border (Cards, Modals).\n- **Level 2:** #1C1C21 (Internal sections or hovered states).\n\nThe design system uses \"Ghost Outlines\" for depth. Objects do not float; they are built into the grid. Blur effects (20px-40px) are reserved exclusively for the sticky navigation bar to create a \"glass cockpit\" feel as users scroll through high-contrast car imagery.\n\n## Components\n- **Buttons:** Solid buttons use #FF6A00 background with black text. Ghost buttons use a 1px #2A2A30 border with off-white text. Both feature 2px border-radius, `label-md` typography, and wide horizontal padding (32px+).\n- **Inputs:** Dark #141417 background with a 1px #2A2A30 border. On focus, the border changes to #FF6A00.\n- **Lists/Specs:** Key-value pairs for car specs (e.g., \"0-60 MPH / 2.9s\") should use `label-sm` for keys in #9A9A93 and `headline-sm` for values. Separate with 1px #1F1F24 hairline dividers.\n- **Cards:** No shadows. 1px hairline border #2A2A30. Images should be edge-to-edge with no padding at the top.\n- **Toasts & Modals:** Strictly #141417 background. Modals use a heavy backdrop blur (#000000 at 70% opacity). Borders must be 1px solid #2A2A30.\n- **Navigation:** Sticky top-bar with 20px backdrop blur, #0B0B0C at 80% opacity, and a 1px bottom border in #2A2A30.",
+    "theme": {
+      "bodyFont": "INTER",
+      "bodyFontFamily": "Inter",
+      "colorMode": "DARK",
+      "colorVariant": "FIDELITY",
+      "customColor": "#ff6a00",
+      "designMd": "---\nname: Dark Editorial Garage\ncolors:\n  surface: '#121413'\n  surface-dim: '#121413'\n  surface-bright: '#383a38'\n  surface-container-lowest: '#0d0f0e'\n  surface-container-low: '#1a1c1b'\n  surface-container: '#1e201f'\n  surface-container-high: '#282a29'\n  surface-container-highest: '#333534'\n  on-surface: '#e2e3e1'\n  on-surface-variant: '#e2bfb0'\n  inverse-surface: '#e2e3e1'\n  inverse-on-surface: '#2f3130'\n  outline: '#a98a7d'\n  outline-variant: '#5a4136'\n  surface-tint: '#ffb694'\n  primary: '#ffb694'\n  on-primary: '#571f00'\n  primary-container: '#ff6a00'\n  on-primary-container: '#571f00'\n  inverse-primary: '#a14000'\n  secondary: '#c8c6c7'\n  on-secondary: '#313031'\n  secondary-container: '#4a494a'\n  on-secondary-container: '#bab8b9'\n  tertiary: '#9ccaff'\n  on-tertiary: '#003256'\n  tertiary-container: '#009eff'\n  on-tertiary-container: '#003357'\n  error: '#ffb4ab'\n  on-error: '#690005'\n  error-container: '#93000a'\n  on-error-container: '#ffdad6'\n  primary-fixed: '#ffdbcc'\n  primary-fixed-dim: '#ffb694'\n  on-primary-fixed: '#351000'\n  on-primary-fixed-variant: '#7b2f00'\n  secondary-fixed: '#e5e2e3'\n  secondary-fixed-dim: '#c8c6c7'\n  on-secondary-fixed: '#1c1b1c'\n  on-secondary-fixed-variant: '#474647'\n  tertiary-fixed: '#d0e4ff'\n  tertiary-fixed-dim: '#9ccaff'\n  on-tertiary-fixed: '#001d35'\n  on-tertiary-fixed-variant: '#00497a'\n  background: '#121413'\n  on-background: '#e2e3e1'\n  surface-variant: '#333534'\ntypography:\n  display-xl:\n    fontFamily: Oswald\n    fontSize: 80px\n    fontWeight: '700'\n    lineHeight: 90px\n    letterSpacing: -0.02em\n  display-lg:\n    fontFamily: Oswald\n    fontSize: 56px\n    fontWeight: '700'\n    lineHeight: 64px\n    letterSpacing: -0.01em\n  headline-md:\n    fontFamily: Oswald\n    fontSize: 32px\n    fontWeight: '600'\n    lineHeight: 40px\n    letterSpacing: 0.01em\n  headline-sm:\n    fontFamily: Oswald\n    fontSize: 24px\n    fontWeight: '600'\n    lineHeight: 32px\n    letterSpacing: 0.02em\n  body-lg:\n    fontFamily: Inter\n    fontSize: 18px\n    fontWeight: '400'\n    lineHeight: 28px\n  body-md:\n    fontFamily: Inter\n    fontSize: 16px\n    fontWeight: '400'\n    lineHeight: 24px\n  label-md:\n    fontFamily: Inter\n    fontSize: 14px\n    fontWeight: '500'\n    lineHeight: 20px\n    letterSpacing: 0.05em\n  label-sm:\n    fontFamily: Inter\n    fontSize: 12px\n    fontWeight: '600'\n    lineHeight: 16px\n    letterSpacing: 0.1em\n  display-lg-mobile:\n    fontFamily: Oswald\n    fontSize: 40px\n    fontWeight: '700'\n    lineHeight: 48px\n    letterSpacing: -0.01em\nrounded:\n  sm: 0.125rem\n  DEFAULT: 0.25rem\n  md: 0.375rem\n  lg: 0.5rem\n  xl: 0.75rem\n  full: 9999px\nspacing:\n  unit: 4px\n  gutter: 24px\n  margin-mobile: 16px\n  margin-desktop: 64px\n  section-gap: 120px\n---\n\n## Brand & Style\nThe brand personality is authoritative, engineered, and uncompromising. This design system treats luxury automotive inventory as fine art within an industrial, high-end garage setting. The aesthetic is inspired by premium automotive journalism and high-fashion editorial layouts.\n\nThe visual style is **Industrial Minimalism**. It rejects the \"softness\" of modern SaaS interfaces in favor of precision-engineered elements: sharp corners, high-contrast typography, and hairline strokes. The emotional response should be one of exclusivity, power, and mechanical excellence. Every element must feel intentional and structural, prioritizing clarity and bold photographic content over decorative UI tropes.\n\n## Colors\nThe palette is built on a foundation of \"Charcoal\" and \"Molten Amber.\" The background is deep and matte, allowing the vibrant orange accent to function like a high-performance brake caliper or an illuminated dashboard indicator.\n\n- **Primary (Accent):** #FF6A00 is used sparingly for calls to action and critical status indicators.\n- **Backgrounds:** The primary background is #0B0B0C. Use #141417 for elevated containers and #1C1C21 for nested surface elements to create subtle depth without relying on shadows.\n- **Typography:** Headlines and primary body text use #F2F2F0. Secondary info uses #9A9A93, and metadata uses #6A6A64.\n- **Borders:** Use #2A2A30 for standard structural lines and #1F1F24 for subtle internal separators.\n\n## Typography\nThe typographic system is a study in contrast. **Oswald** provides a condensed, architectural feel for all display and heading roles. It must always be set in uppercase with tight tracking to mimic luxury automotive badging.\n\n**Inter** provides the functional balance. It is used for all body copy and UI labels to ensure maximum legibility against the dark background. Use `label-md` and `label-sm` for technical specifications and data points, always in uppercase with increased letter spacing to maintain an \"engineered\" look.\n\n## Layout & Spacing\nThe layout follows a strict 12-column grid for desktop with 24px gutters. It is a fluid-to-fixed model where the maximum content width is 1440px, centered on larger displays. \n\nVertical rhythm is expansive; use 120px gaps between major sections to allow the car photography \"room to breathe.\" Components should utilize a 4px base unit. Margins on mobile should be a strict 16px, while desktop margins should be a generous 64px to create an editorial frame around the content.\n\n## Elevation & Depth\nDepth is achieved through **Tonal Layering** and **Hairline Outlines** rather than shadows. \n- **Base:** #0B0B0C (The \"Floor\").\n- **Level 1:** #141417 with a 1px #2A2A30 border (Cards, Modals).\n- **Level 2:** #1C1C21 (Internal sections or hovered states).\n\nThe design system uses \"Ghost Outlines\" for depth. Objects do not float; they are built into the grid. Blur effects (20px-40px) are reserved exclusively for the sticky navigation bar to create a \"glass cockpit\" feel as users scroll through high-contrast car imagery.\n\n## Shapes\nThe shape language is sharp and precise. A maximum radius of 4px is applied only to functional interactive elements (buttons, inputs). Container cards and structural sections should use 0px (sharp) corners to maintain the industrial garage aesthetic. Avoid circles except for specific iconography; square or slightly softened corners are preferred.\n\n## Components\n- **Buttons:** Solid buttons use #FF6A00 background with black text. Ghost buttons use a 1px #2A2A30 border with off-white text. Both feature 2px border-radius, `label-md` typography, and wide horizontal padding (32px+).\n- **Inputs:** Dark #141417 background with a 1px #2A2A30 border. On focus, the border changes to #FF6A00.\n- **Lists/Specs:** Key-value pairs for car specs (e.g., \"0-60 MPH / 2.9s\") should use `label-sm` for keys in #9A9A93 and `headline-sm` for values. Separate with 1px #1F1F24 hairline dividers.\n- **Cards:** No shadows. 1px hairline border #2A2A30. Images should be edge-to-edge with no padding at the top.\n- **Toasts & Modals:** Strictly #141417 background. Modals use a heavy backdrop blur (#000000 at 70% opacity). Borders must be 1px solid #2A2A30.\n- **Navigation:** Sticky top-bar with 20px backdrop blur, #0B0B0C at 80% opacity, and a 1px bottom border in #2A2A30.",
+      "font": "OSWALD",
+      "headlineFont": "OSWALD",
+      "headlineFontFamily": "Oswald",
+      "labelFont": "INTER",
+      "labelFontFamily": "Inter",
+      "namedColors": {
+        "background": "#121413",
+        "error": "#ffb4ab",
+        "error_container": "#93000a",
+        "inverse_on_surface": "#2f3130",
+        "inverse_primary": "#a14000",
+        "inverse_surface": "#e2e3e1",
+        "on_background": "#e2e3e1",
+        "on_error": "#690005",
+        "on_error_container": "#ffdad6",
+        "on_primary": "#571f00",
+        "on_primary_container": "#571f00",
+        "on_primary_fixed": "#351000",
+        "on_primary_fixed_variant": "#7b2f00",
+        "on_secondary": "#313031",
+        "on_secondary_container": "#bab8b9",
+        "on_secondary_fixed": "#1c1b1c",
+        "on_secondary_fixed_variant": "#474647",
+        "on_surface": "#e2e3e1",
+        "on_surface_variant": "#e2bfb0",
+        "on_tertiary": "#003256",
+        "on_tertiary_container": "#003357",
+        "on_tertiary_fixed": "#001d35",
+        "on_tertiary_fixed_variant": "#00497a",
+        "outline": "#a98a7d",
+        "outline_variant": "#5a4136",
+        "primary": "#ffb694",
+        "primary_container": "#ff6a00",
+        "primary_fixed": "#ffdbcc",
+        "primary_fixed_dim": "#ffb694",
+        "secondary": "#c8c6c7",
+        "secondary_container": "#4a494a",
+        "secondary_fixed": "#e5e2e3",
+        "secondary_fixed_dim": "#c8c6c7",
+        "surface": "#121413",
+        "surface_bright": "#383a38",
+        "surface_container": "#1e201f",
+        "surface_container_high": "#282a29",
+        "surface_container_highest": "#333534",
+        "surface_container_low": "#1a1c1b",
+        "surface_container_lowest": "#0d0f0e",
+        "surface_dim": "#121413",
+        "surface_tint": "#ffb694",
+        "surface_variant": "#333534",
+        "tertiary": "#9ccaff",
+        "tertiary_container": "#009eff",
+        "tertiary_fixed": "#d0e4ff",
+        "tertiary_fixed_dim": "#9ccaff"
+      },
+      "overrideNeutralColor": "#f2f2f0",
+      "overridePrimaryColor": "#ff6a00",
+      "overrideSecondaryColor": "#0b0b0c",
+      "roundness": "ROUND_FOUR",
+      "spacing": {
+        "gutter": "24px",
+        "margin-desktop": "64px",
+        "margin-mobile": "16px",
+        "section-gap": "120px",
+        "unit": "4px"
+      },
+      "spacingScale": 2,
+      "typography": {
+        "body-lg": {
+          "fontFamily": "Inter",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "28px"
+        },
+        "body-md": {
+          "fontFamily": "Inter",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px"
+        },
+        "display-lg": {
+          "fontFamily": "Oswald",
+          "fontSize": "56px",
+          "fontWeight": "700",
+          "letterSpacing": "-0.01em",
+          "lineHeight": "64px"
+        },
+        "display-lg-mobile": {
+          "fontFamily": "Oswald",
+          "fontSize": "40px",
+          "fontWeight": "700",
+          "letterSpacing": "-0.01em",
+          "lineHeight": "48px"
+        },
+        "display-xl": {
+          "fontFamily": "Oswald",
+          "fontSize": "80px",
+          "fontWeight": "700",
+          "letterSpacing": "-0.02em",
+          "lineHeight": "90px"
+        },
+        "headline-md": {
+          "fontFamily": "Oswald",
+          "fontSize": "32px",
+          "fontWeight": "600",
+          "letterSpacing": "0.01em",
+          "lineHeight": "40px"
+        },
+        "headline-sm": {
+          "fontFamily": "Oswald",
+          "fontSize": "24px",
+          "fontWeight": "600",
+          "letterSpacing": "0.02em",
+          "lineHeight": "32px"
+        },
+        "label-md": {
+          "fontFamily": "Inter",
+          "fontSize": "14px",
+          "fontWeight": "500",
+          "letterSpacing": "0.05em",
+          "lineHeight": "20px"
+        },
+        "label-sm": {
+          "fontFamily": "Inter",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "letterSpacing": "0.1em",
+          "lineHeight": "16px"
+        }
+      }
+    }
+  },
+  "name": "assets/198458fd8fa3466c8e4e6a97e7faf0ea",
+  "version": "1"
+}

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>THE JOURNAL | PREMIUM CARS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0B0B0C;
+            color: #e2e3e1;
+            font-family: 'Inter', sans-serif;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .article-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #2A2A30;
+            background-color: #141417;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .article-card:hover {
+            border-color: #ff6a00;
+        }
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+        .article-image {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-header {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#383a38",
+                        "on-primary-fixed-variant": "#7b2f00",
+                        "on-secondary-fixed": "#1c1b1c",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#571f00",
+                        "surface-container-highest": "#333534",
+                        "secondary": "#c8c6c7",
+                        "on-secondary-container": "#bab8b9",
+                        "outline": "#a98a7d",
+                        "inverse-surface": "#e2e3e1",
+                        "primary-fixed-dim": "#ffb694",
+                        "surface-container": "#1e201f",
+                        "on-surface": "#e2e3e1",
+                        "inverse-primary": "#a14000",
+                        "surface-container-lowest": "#0d0f0e",
+                        "on-tertiary-fixed": "#001d35",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#00497a",
+                        "surface": "#121413",
+                        "secondary-fixed": "#e5e2e3",
+                        "on-primary-fixed": "#351000",
+                        "primary-fixed": "#ffdbcc",
+                        "error": "#ffb4ab",
+                        "tertiary": "#9ccaff",
+                        "surface-tint": "#ffb694",
+                        "tertiary-fixed": "#d0e4ff",
+                        "surface-variant": "#333534",
+                        "surface-container-low": "#1a1c1b",
+                        "on-primary": "#571f00",
+                        "error-container": "#93000a",
+                        "primary": "#ffb694",
+                        "inverse-on-surface": "#2f3130",
+                        "tertiary-fixed-dim": "#9ccaff",
+                        "on-tertiary-container": "#003357",
+                        "secondary-container": "#4a494a",
+                        "background": "#121413",
+                        "secondary-fixed-dim": "#c8c6c7",
+                        "on-tertiary": "#003256",
+                        "tertiary-container": "#009eff",
+                        "on-background": "#e2e3e1",
+                        "on-surface-variant": "#e2bfb0",
+                        "on-secondary": "#313031",
+                        "surface-dim": "#121413",
+                        "surface-container-high": "#282a29",
+                        "on-secondary-fixed-variant": "#474647",
+                        "primary-container": "#ff6a00",
+                        "outline-variant": "#5a4136"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "section-gap": "120px",
+                        "unit": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Oswald"],
+                        "display-xl": ["Oswald"],
+                        "display-lg-mobile": ["Oswald"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Oswald"],
+                        "display-lg": ["Oswald"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "display-xl": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface-dim selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant dark:border-outline-variant">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 mx-auto max-w-[1440px]">
+<div class="font-display-lg text-display-lg-mobile md:text-display-lg font-bold text-on-surface tracking-tighter">
+                PREMIUM CARS
+            </div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">HOME</a>
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">ABOUT</a>
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-primary border-b border-primary pb-1" href="#">KATALOG</a>
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">CICILAN</a>
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">KONTAK</a>
+</nav>
+<button class="bg-primary-container text-on-primary-container px-8 py-2 font-label-md text-label-md uppercase tracking-widest hover:opacity-80 transition-opacity active:scale-95 duration-150 ease-in-out">
+                INQUIRY
+            </button>
+</div>
+</header>
+<main class="pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop mx-auto max-w-[1440px]">
+<!-- Hero Section -->
+<section class="mb-24">
+<div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-12">
+<div class="max-w-3xl">
+<span class="text-primary-container font-label-sm text-label-sm uppercase tracking-[0.3em] mb-4 block">Automotive Excellence</span>
+<h1 class="font-display-xl text-display-lg-mobile md:text-display-xl uppercase leading-none">THE JOURNAL</h1>
+<p class="mt-6 text-on-surface-variant font-body-lg text-body-lg max-w-xl">
+                        Deep dives into the mechanics of performance, the philosophy of luxury design, and the roar of the world's most prestigious circuits.
+                    </p>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Main Feature Grid (Bento Pattern) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Large 2x2 Feature -->
+<article class="article-card md:col-span-8 md:row-span-2 min-h-[600px] flex flex-col group">
+<div class="flex-grow relative overflow-hidden h-full">
+<div class="absolute inset-0 article-image bg-cover bg-center" data-alt="A high-contrast cinematic photograph of a matte black supercar engine bay with molten amber light reflecting off carbon fiber surfaces. The scene is industrial and moody, capturing fine mechanical details in a dark luxury garage. The aesthetic is sharp, precise, and editorial, emphasizing engineered excellence." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACIGc_yG32jPgRz5IDzR4Xk2bLN5_IDc77q4n8Ao6TaWycPBhdRYK-wkLLvZAvvTGV7gKoEVnXoLCfqtzW3nWzS-qwq0rkHoUdfs7PH6pBBrTk4LdF_Ap3jIzjqev5RgDgDnPJDNJZv1EDwBq3jZpzSlbMtnGHGFntTVQnZMT8qI29Fnq_QdxFDgV8Fb6XkRBuaj9A7z4HCU1AbinzXAptAPyQZN98pHbacXuCAb6hf_F0h8loMBr9rw')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+<div class="absolute top-8 left-8">
+<span class="bg-primary-container text-black font-label-sm text-label-sm px-4 py-1 uppercase tracking-widest">Engineering</span>
+</div>
+<div class="absolute bottom-8 left-8 right-8">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg uppercase mb-4 group-hover:text-primary transition-colors">THE V12 RENAISSANCE: WHY MECHANICAL PURITY STILL MATTERS</h2>
+<p class="text-on-surface-variant font-body-md text-body-md max-w-2xl mb-6">Exploring the final frontier of naturally aspirated power in an era of electrification and silent performance.</p>
+<div class="flex items-center gap-4">
+<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">Read Article</span>
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+</div>
+</div>
+</div>
+</article>
+<!-- 1x1 Sidebar Item -->
+<article class="article-card md:col-span-4 min-h-[300px] flex flex-col group">
+<div class="flex-grow relative overflow-hidden">
+<div class="absolute inset-0 article-image bg-cover bg-center" data-alt="A luxurious minimalist interior of a high-end concept car featuring white leather seats and brushed aluminum accents. Soft morning light enters through a panoramic roof, creating a serene and exclusive atmosphere. The design is modern, sleek, and high-contrast, fitting for a premium lifestyle editorial." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDIiv3t_rfwpOPf0g4-mClBn_fsHUb0W7BcxsT2H0YStc5HsTxtNhN2sUT4-55vQRrbbRwXhUoy3j22a9qhjjJA-bSRUPaFuhr1jmg1LsfbPSVOah6Rnd1CCUpM64k7K8NKdajQXh213r9wmvMqCI4lO3g0wbljexCkaR9HzBnHckrGFhFgPs4-sqed0hMRI2Pkq53YI6Yyk-YpgKHqMBb59DVR2Wbz3Ho0eH8p9tKGEgdnyqzm10wBBg')"></div>
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute top-6 left-6">
+<span class="bg-surface-container-highest text-primary font-label-sm text-label-sm px-3 py-1 uppercase tracking-widest">Lifestyle</span>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<h3 class="font-headline-md text-headline-sm uppercase group-hover:text-primary transition-colors">THE NEW MINIMALISM</h3>
+</div>
+</div>
+</article>
+<!-- 1x1 Sidebar Item -->
+<article class="article-card md:col-span-4 min-h-[300px] flex flex-col group">
+<div class="flex-grow relative overflow-hidden">
+<div class="absolute inset-0 article-image bg-cover bg-center" data-alt="A blurred action shot of a racing car's tire glowing orange from heat as it rounds a corner at high speed on a legendary circuit at dusk. Sparks fly from the undercarriage against a dark, dramatic sky. The lighting is dominated by amber and deep blues, reflecting high-performance intensity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAo3J1aMd6N92iFy5KtyA1ZATAnm_IRDyf3f4jiOkFw_3jrVBHc6HnnJbwTwwHcubGCLO6BVvS51HeL8JXzOp1s3EQs9SElskGQADMJ_MwH7LjPfsHgQ9GnBroa1lQhAmBSPsmpXA_sv5fHWMzZGqwhTxJQabzkxqIBVnt9fyJGq3gS7zClmzDq9kFkE3j3V30y74Ehl2NXS6ad4bzhNjeLvc9JOqnY1F89KRDRGPJjyHAY2XejTvQPeQ')"></div>
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute top-6 left-6">
+<span class="bg-surface-container-highest text-primary font-label-sm text-label-sm px-3 py-1 uppercase tracking-widest">Events</span>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<h3 class="font-headline-md text-headline-sm uppercase group-hover:text-primary transition-colors">24 HOURS OF PRECISION</h3>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Secondary Feed -->
+<section class="mt-section-gap">
+<div class="border-b border-outline-variant pb-4 mb-12 flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md uppercase tracking-tight">LATEST DISPATCHES</h2>
+<div class="flex gap-8 font-label-sm text-label-sm tracking-widest uppercase text-on-surface-variant">
+<a class="text-primary border-b border-primary" href="#">ALL</a>
+<a class="hover:text-on-surface transition-colors" href="#">TECH</a>
+<a class="hover:text-on-surface transition-colors" href="#">CULTURE</a>
+<a class="hover:text-on-surface transition-colors" href="#">RACING</a>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Dispatches Article 1 -->
+<article class="group">
+<div class="aspect-[16/10] overflow-hidden border border-outline-variant mb-6 relative">
+<div class="absolute inset-0 article-image bg-cover bg-center" data-alt="A close-up shot of an intricate mechanical watch movement integrated into a luxury car dashboard. The gears are polished steel with gold accents, illuminated by a sharp spotlight in a dark cabin. The image emphasizes high-end craftmanship, engineering precision, and automotive luxury." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC70xY6GjoPXv7gWHz9R0Nz_IfDcRX0wpGFIwd3yVAlj7PVGjvg8qWXU3kBYeDisRe1EVni0XSLQ_L1eaPEGr9UjeN0oYWNyxMyF9SIAtg96tSAI4FpBR2665ciHBHdA-6wk0Z4_Tw3f6SwUeW9LTT5ZCLI-o9Dj1qZPQN6Kjqhodjwc9YtPWBBOf13eZ4n5_hd-cUbKpHLhAXfOSPlIP_fagoiexFhTRmeTRQMYMjTfSx8ZB_SoEgnSw')"></div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-primary-container">
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Tech Deep-Dive</span>
+<span class="text-on-surface-variant font-label-sm">OCT 2024</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm uppercase leading-tight group-hover:text-primary transition-colors">HAPTIC REVOLUTION: REDEFINING THE INTERFACE</h4>
+<p class="text-on-surface-variant font-body-md text-body-md line-clamp-2">How micro-vibrations and sonic feedback are replacing the physical button without losing the soul of the machine.</p>
+<a class="inline-block border-b border-outline-variant pb-1 font-label-sm text-label-sm uppercase tracking-widest hover:border-primary transition-colors" href="#">Continue Reading</a>
+</div>
+</article>
+<!-- Dispatches Article 2 -->
+<article class="group">
+<div class="aspect-[16/10] overflow-hidden border border-outline-variant mb-6 relative">
+<div class="absolute inset-0 article-image bg-cover bg-center" data-alt="A high-altitude shot of a silver hypercar carving through a winding mountain pass in the Alps at sunrise. The landscape is sharp with craggy rocks and deep shadows, while the sky glows with pale orange and cold blue light. The mood is epic, expansive, and high-contrast editorial photography." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBUFxRrORDe6FCtVDLB76kHlZxNFfQxz3zM3WPiF7m2cC9xfXQGH2LHaeTF4LKNn7_P3wQUCBVhmMeRHIp5d1vr6FUGMwzRWBzRZ6gdElfgflULtnp93qmldkkqzkFt0iHfA0JsQD2hZMEnCYAUldAx6GQSHe7L8HJiXV1vEhpuMyfLc_y28JR5dFNbo2sF0Q5es_YNbPrF9q4L6LoPepYzZMUz3omBn2vnuwm9CKtkaibmwIq8sSUaA')"></div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-primary-container">
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Lifestyle</span>
+<span class="text-on-surface-variant font-label-sm">SEP 2024</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm uppercase leading-tight group-hover:text-primary transition-colors">THE ALPINE RUN: 400 MILES OF SILENCE</h4>
+<p class="text-on-surface-variant font-body-md text-body-md line-clamp-2">Testing the limits of endurance and electric performance across Europe's most challenging high-altitude roads.</p>
+<a class="inline-block border-b border-outline-variant pb-1 font-label-sm text-label-sm uppercase tracking-widest hover:border-primary transition-colors" href="#">Continue Reading</a>
+</div>
+</article>
+<!-- Dispatches Article 3 -->
+<article class="group">
+<div class="aspect-[16/10] overflow-hidden border border-outline-variant mb-6 relative">
+<div class="absolute inset-0 article-image bg-cover bg-center" data-alt="A dark industrial workspace with blueprint projections onto a clay model of a futuristic car body. Lasers trace lines of aerodynamics across the surface. The scene is illuminated by cool blue and neon orange light, highlighting the intersection of digital tech and physical design." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCMi1WWNQa6vtxzymfhyymWCD_a-F3bQD-xTJXfyQhKp7BPMOvSCG3vRs7-Vhg53oTOyr6wBkpcLbZuch3PhUBvkHfnviXRUxCgQEbWU-g2d9hmPVbkVSYiErCRob5bDGpyqpwdPZaytk-kwn9Fjji48MxQUlvDkq_j9Hb6C8AAte785B_S2axZFTV7JmzGA8vH6rdMJfgCl3DLy80Kh0VtG9gJpPJRztk-4Pm9xRnohw6iJBSNZFRZVA')"></div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-primary-container">
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Design</span>
+<span class="text-on-surface-variant font-label-sm">SEP 2024</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm uppercase leading-tight group-hover:text-primary transition-colors">AERODYNAMICS OF EMOTION</h4>
+<p class="text-on-surface-variant font-body-md text-body-md line-clamp-2">Inside the wind tunnel where physics meets the pen of the world's most daring automotive designers.</p>
+<a class="inline-block border-b border-outline-variant pb-1 font-label-sm text-label-sm uppercase tracking-widest hover:border-primary transition-colors" href="#">Continue Reading</a>
+</div>
+</article>
+</div>
+</section>
+<!-- Newsletter CTA -->
+<section class="mt-section-gap bg-surface-container border border-outline-variant p-12 md:p-24 text-center">
+<div class="max-w-2xl mx-auto">
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-[0.3em] mb-4 block">THE INNER CIRCLE</span>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg uppercase mb-8">DELIVERED TO YOUR INBOX</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg mb-12">
+                    Exclusive early access to limited edition reveals, event invitations, and curated editorial content.
+                </p>
+<form class="flex flex-col md:flex-row gap-4">
+<input class="flex-grow bg-surface border border-outline-variant px-6 py-4 font-label-md text-label-md focus:border-primary focus:ring-0 rounded-none transition-colors" placeholder="ENTER YOUR EMAIL" type="email"/>
+<button class="bg-primary-container text-on-primary-container px-12 py-4 font-label-md text-label-md uppercase tracking-widest hover:opacity-90 transition-opacity">
+                        SUBSCRIBE
+                    </button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-section-gap gap-gutter mx-auto max-w-[1440px]">
+<div class="font-display-lg text-display-lg text-on-surface-variant">
+                PREMIUM CARS
+            </div>
+<div class="flex flex-col items-center md:items-end gap-6">
+<nav class="flex gap-8 font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">PRIVACY POLICY</a>
+<a class="hover:text-primary transition-colors" href="#">TERMS OF SERVICE</a>
+<a class="hover:text-primary transition-colors" href="#">WARRANTY</a>
+<a class="hover:text-primary transition-colors" href="#">CAREERS</a>
+</nav>
+<div class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest opacity-50">
+                    © 2024 PREMIUM CARS. ENGINEERED EXCELLENCE.
+                </div>
+</div>
+</div>
+</footer>
+<!-- Interactive Layer: Hover Effects and Micro-interactions -->
+<script>
+        document.querySelectorAll('.article-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Sticky Nav subtle appearance change
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-2');
+                header.classList.remove('py-4');
+            } else {
+                header.classList.add('py-4');
+                header.classList.remove('py-2');
+            }
+        });
+    </script>
+</body></html>

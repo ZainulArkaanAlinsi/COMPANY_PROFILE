@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cicilan | PREMIUM CARS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Oswald:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0B0B0C;
+            color: #e2e3e1;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-panel {
+            background: rgba(20, 20, 23, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid #2A2A30;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: #2A2A30;
+            height: 2px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #FF6A00;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-lowest": "#0d0f0e",
+                      "on-error-container": "#ffdad6",
+                      "outline": "#a98a7d",
+                      "tertiary-fixed-dim": "#9ccaff",
+                      "surface": "#121413",
+                      "tertiary": "#9ccaff",
+                      "tertiary-fixed": "#d0e4ff",
+                      "surface-container-high": "#282a29",
+                      "secondary-container": "#4a494a",
+                      "surface-container-low": "#1a1c1b",
+                      "background": "#121413",
+                      "error": "#ffb4ab",
+                      "on-primary-fixed-variant": "#7b2f00",
+                      "surface-bright": "#383a38",
+                      "on-tertiary-container": "#003357",
+                      "on-surface-variant": "#e2bfb0",
+                      "on-background": "#e2e3e1",
+                      "on-tertiary-fixed-variant": "#00497a",
+                      "secondary-fixed-dim": "#c8c6c7",
+                      "on-secondary": "#313031",
+                      "on-secondary-fixed": "#1c1b1c",
+                      "on-primary-container": "#571f00",
+                      "surface-tint": "#ffb694",
+                      "surface-dim": "#121413",
+                      "on-error": "#690005",
+                      "on-tertiary": "#003256",
+                      "inverse-primary": "#a14000",
+                      "tertiary-container": "#009eff",
+                      "secondary": "#c8c6c7",
+                      "secondary-fixed": "#e5e2e3",
+                      "on-secondary-container": "#bab8b9",
+                      "error-container": "#93000a",
+                      "primary": "#ffb694",
+                      "on-primary": "#571f00",
+                      "surface-container": "#1e201f",
+                      "inverse-on-surface": "#2f3130",
+                      "primary-fixed-dim": "#ffb694",
+                      "primary-container": "#ff6a00",
+                      "outline-variant": "#5a4136",
+                      "on-secondary-fixed-variant": "#474647",
+                      "primary-fixed": "#ffdbcc",
+                      "on-tertiary-fixed": "#001d35",
+                      "inverse-surface": "#e2e3e1",
+                      "on-surface": "#e2e3e1",
+                      "on-primary-fixed": "#351000",
+                      "surface-variant": "#333534",
+                      "surface-container-highest": "#333534"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "margin-desktop": "64px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "section-gap": "120px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Oswald"],
+                      "headline-md": ["Oswald"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "display-xl": ["Oswald"],
+                      "headline-sm": ["Oswald"],
+                      "display-lg-mobile": ["Oswald"]
+              },
+              "fontSize": {
+                      "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "display-xl": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                      "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-[20px] border-b border-outline-variant/30">
+<div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<div class="font-display-lg-mobile text-display-lg-mobile md:text-display-lg uppercase tracking-tighter text-on-surface dark:text-on-surface">PREMIUM CARS</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-label-md" href="#">HOME</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-label-md" href="#">ABOUT</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-label-md" href="#">KATALOG</a>
+<a class="text-primary-container font-bold border-b-2 border-primary-container pb-1 font-label-md text-label-md" href="#">CICILAN</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-label-md" href="#">KONTAK</a>
+</div>
+<div class="flex gap-6 items-center">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:opacity-80 transition-opacity">favorite</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:opacity-80 transition-opacity">shopping_cart</span>
+<span class="md:hidden material-symbols-outlined text-on-surface">menu</span>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-section-gap">
+<!-- Hero Section -->
+<header class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto mb-20">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-end">
+<div class="md:col-span-8">
+<span class="font-label-sm text-label-sm text-primary tracking-[0.2em] uppercase mb-4 block">Financing Excellence</span>
+<h1 class="font-display-xl text-[48px] md:text-display-xl leading-none uppercase mb-6">Simulation &amp; <br/><span class="text-primary">Installment.</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        Experience precision in planning. Our financing tool is engineered to provide transparency, allowing you to tailor your journey towards automotive perfection.
+                    </p>
+</div>
+<div class="md:col-span-4 flex justify-end">
+<div class="text-right border-l border-outline-variant/30 pl-8 hidden md:block">
+<span class="block font-label-sm text-label-sm text-on-surface-variant mb-1">CURRENT PRIME RATE</span>
+<span class="block font-headline-sm text-headline-sm">3.25% PA</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<div class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Side: Interactive Calculator -->
+<div class="lg:col-span-7">
+<div class="bg-[#141417] border border-[#2A2A30] p-8 md:p-12 relative overflow-hidden">
+<!-- Subtle ambient shader background -->
+
+<div class="relative z-10 space-y-12">
+<!-- Step 1: Car Model -->
+<section>
+<label class="font-label-sm text-label-sm text-on-surface-variant mb-6 block uppercase tracking-widest">01. Select Automobile</label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<button class="car-option active border-2 border-primary-container bg-surface-container p-6 text-left transition-all" onclick="updatePrice(2450000000, '911 Carrera S')">
+<span class="block font-label-sm text-label-sm text-primary mb-2 uppercase">Sports</span>
+<span class="block font-headline-sm text-headline-sm uppercase">911 Carrera S</span>
+<span class="block font-body-md text-body-md text-on-surface-variant mt-2">IDR 2.450.000.000</span>
+</button>
+<button class="car-option border border-outline-variant/30 hover:border-on-surface-variant bg-surface-container p-6 text-left transition-all" onclick="updatePrice(4100000000, 'G-Class G63')">
+<span class="block font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase">SUV</span>
+<span class="block font-headline-sm text-headline-sm uppercase">G-Class G63</span>
+<span class="block font-body-md text-body-md text-on-surface-variant mt-2">IDR 4.100.000.000</span>
+</button>
+</div>
+</section>
+<!-- Step 2: Parameters -->
+<section class="space-y-10">
+<label class="font-label-sm text-label-sm text-on-surface-variant mb-2 block uppercase tracking-widest">02. Configure Terms</label>
+<!-- DP Slider -->
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<span class="font-body-md text-body-md uppercase">Down Payment (20% - 70%)</span>
+<span class="font-headline-sm text-headline-sm text-primary" id="dp-value">30%</span>
+</div>
+<input class="w-full" id="dp-slider" max="70" min="20" step="5" type="range" value="30"/>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant/50">
+<span>MIN: 20%</span>
+<span>MAX: 70%</span>
+</div>
+</div>
+<!-- Tenor Selector -->
+<div class="space-y-4">
+<span class="font-body-md text-body-md uppercase block">Tenor (Years)</span>
+<div class="grid grid-cols-4 gap-2">
+<button class="tenor-btn border border-outline-variant/30 py-3 font-label-md text-label-md hover:border-primary transition-all" onclick="setTenor(1, this)">1YR</button>
+<button class="tenor-btn border-2 border-primary-container bg-primary-container text-on-primary py-3 font-label-md text-label-md transition-all" onclick="setTenor(3, this)">3YR</button>
+<button class="tenor-btn border border-outline-variant/30 py-3 font-label-md text-label-md hover:border-primary transition-all" onclick="setTenor(5, this)">5YR</button>
+<button class="tenor-btn border border-outline-variant/30 py-3 font-label-md text-label-md hover:border-primary transition-all" onclick="setTenor(7, this)">7YR</button>
+</div>
+</div>
+</section>
+<!-- Interest Rate Display -->
+<section class="pt-6 border-t border-outline-variant/30">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">verified</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Applied Interest Rate (Fixed)</span>
+</div>
+<span class="font-headline-sm text-headline-sm">3.5% PA</span>
+</div>
+</section>
+</div>
+</div>
+</div>
+<!-- Right Side: Breakdown & Summary -->
+<div class="lg:col-span-5">
+<div class="lg:sticky lg:top-28 space-y-6">
+<!-- Result Card -->
+<div class="bg-[#1C1C21] border border-[#2A2A30] p-8">
+<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase block mb-8">Simulation Results</span>
+<div class="space-y-6 mb-10">
+<div class="flex justify-between items-baseline border-b border-outline-variant/20 pb-4">
+<span class="font-body-md text-body-md text-on-surface-variant">Estimated Monthly</span>
+<span class="font-display-lg text-[40px] leading-none text-on-surface" id="monthly-installment">IDR 34.5M</span>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase">Total DP</span>
+<span class="block font-headline-sm text-headline-sm" id="total-dp">IDR 735M</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase">Total Interest</span>
+<span class="block font-headline-sm text-headline-sm" id="total-interest">IDR 142M</span>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container p-4 border border-outline-variant/10">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md uppercase">Daftar Minat</span>
+<span class="material-symbols-outlined text-primary" data-weight="fill">info</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-2 leading-relaxed">
+                                    Interested in the <span class="text-on-surface font-bold" id="summary-model">911 Carrera S</span> simulation. Final prices may vary based on exact specifications and insurance packages.
+                                </p>
+</div>
+<a class="w-full bg-primary-container text-on-primary-container flex items-center justify-center gap-3 py-5 font-label-md text-label-md font-bold uppercase hover:opacity-90 transition-all rounded-none" href="https://wa.me/yournumber">
+<span class="material-symbols-outlined">chat</span>
+                                Consult via WhatsApp
+                            </a>
+<button class="w-full border border-outline-variant/30 text-on-surface flex items-center justify-center gap-3 py-5 font-label-md text-label-md font-bold uppercase hover:bg-on-surface/5 transition-all">
+<span class="material-symbols-outlined">download</span>
+                                Download PDF Quote
+                            </button>
+</div>
+</div>
+<!-- Image Display -->
+<div class="hidden lg:block h-64 overflow-hidden border border-[#2A2A30]">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A cinematic, low-angle photograph of a high-end luxury sports car inside a modern industrial garage with dark concrete floors and minimalist LED lighting. The car's sleek metallic body reflects subtle orange accents from the brand's palette, creating an atmosphere of engineered excellence and exclusivity. Dark mode aesthetic with high contrast and sharp details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS_kXMZZsoWz52Up0lqMEZ7GxkwqzFZ6GemdQGtlpcOG4j7eFB49aH4nE1A6UZLSrg7HpsK7fNRd2MBJdn1XVlPEftjNpp5aaEy3jdVTUVU3x9dS886wpPc8UYIdTzNfipipHK7glXf3PgvN6UT0nGqT8aVmX6JSuKoHGzZWaMXpBKa8_YPMALxt1dURWpPVBVA91NTQntM5LJf_awtAwYzgtNs3o1pbEpGyIbPLCLw8YvrC9CFtPtEA"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Featured Gallery Section -->
+<section class="mt-section-gap px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<div class="border-t border-outline-variant/30 pt-10 mb-12 flex flex-col md:flex-row justify-between items-baseline gap-4">
+<h2 class="font-headline-md text-headline-md uppercase">Inventory Highlights</h2>
+<a class="font-label-md text-label-md text-primary flex items-center gap-2 hover:gap-4 transition-all uppercase" href="#">View All Katalog <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="group cursor-pointer">
+<div class="h-[400px] bg-surface-container overflow-hidden mb-6 border border-outline-variant/20">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A side-profile shot of a dark charcoal luxury sedan parked on a sleek, rain-slicked asphalt road at night. Bright orange headlights cut through the mist. The background features minimalist modern architecture with sharp lines. Dramatic lighting, industrial luxury style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFa3Ouz_5jFR3yA_ysL8Ex-pg1PmzUTOtjo79XbI5XXoPNMhxFogQ8kasaSJdfQS4ABU_74eYOI1Vf3GxbM67Bj54noluusb5wpcnZOO13-LvYweMZjpdPBXkDxqp0KcLBcpCjSowqU2mme0tGfmsgNjpc1hTZKPzgO4Z6hE6yH0vU8yf3S73q-Hh-40uOf5bPZxslC9MTtpqdnmg7uDuhAetpA4ToZE9EaQmWsTKYFk5kjcsr5tcRXQ"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm uppercase">M8 Competition</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Grand Coupe / Black Sapphire</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary">IDR 3.8B</span>
+</div>
+</div>
+<div class="group cursor-pointer">
+<div class="h-[400px] bg-surface-container overflow-hidden mb-6 border border-outline-variant/20">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up architectural detail of a high-performance car's rear wing and tail lights. The lighting is cold and moody, emphasizing the sharp carbon fiber textures. High-contrast blacks and deep shadows with a hint of warm ambient light from the dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfYhZR8z6Ta1vDLDcEz0IPNu7QnfHQfqGNZFtvbbzA0G7s1hBaf_SK-poR04EIczDRpafSYn33xTOxSlDFyu8DdkC5xybB72XfBHoIm-zPhEsvLrWWBFbsknYWqtRysFIhmVEdTlKVuzzspxnpJJh4RfW263XFYZR1SjkSalME2cKYhkr7bvbilAbfStwAQHqP741eJXOST62b-QDeOBokUr6T_n4TNhlu5_T_3QvVxteWrzh-uI38uw"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm uppercase">RS6 Avant</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Performance / Nardo Grey</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary">IDR 4.2B</span>
+</div>
+</div>
+<div class="group cursor-pointer">
+<div class="h-[400px] bg-surface-container overflow-hidden mb-6 border border-outline-variant/20">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A front view of a majestic luxury SUV emerging from shadows in a pristine, white-walled showroom. The car is jet black with gold-tinted brake calipers visible behind large rims. Symmetrical composition, high-fashion automotive editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHn0yzmOMWGZDBBbXeBrU2TxEcCD_zrjH8u5zLMZkAsnV5i49JE4T7W_s7lrfHOcjoMPINzH5vQ00vtpMNh0-XC7tkSu1MVq7gHyIYLQksrEqWdyxr54uc7IFBQ2UpMxl0y8JBt8GAhpFKfLjZShb2TG4s6j_J5i2WoJnE8RCoRzXRCGkar7RJVreIm_Yp1g07Cq87twcnBpkuTDmzl4CWs7aRqCYre9qKkPUi3So49wtOB60w-F_Qjg"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm uppercase">Urus Performante</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">SUV / Nero Noctis</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary">IDR 9.1B</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-dim dark:bg-surface-dim border-t border-outline-variant/30">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter py-section-gap px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<div class="md:col-span-1">
+<div class="font-display-md text-headline-md text-on-surface uppercase mb-6">PREMIUM CARS</div>
+<p class="font-body-md text-body-md text-on-surface-variant">The definitive destination for the world's most exceptional automotive machinery. Precision engineered since 2024.</p>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-sm text-label-sm text-primary uppercase mb-2">QUICK LINKS</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">HOME</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">ABOUT</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">KATALOG</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">CICILAN</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-sm text-label-sm text-primary uppercase mb-2">LEGAL</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">PRIVACY POLICY</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">TERMS OF SERVICE</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">WARRANTY</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-sm text-label-sm text-primary uppercase mb-2">HEADQUARTERS</span>
+<p class="text-on-surface-variant font-body-md">Jl. Automotive Block A, No. 1<br/>Jakarta Selatan, Indonesia</p>
+<div class="flex gap-4 mt-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">language</span>
+</div></div></div></footer></body></html>

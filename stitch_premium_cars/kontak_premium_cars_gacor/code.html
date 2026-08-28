@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KONTAK | PREMIUM CARS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#0d0f0e",
+                    "on-error-container": "#ffdad6",
+                    "outline": "#a98a7d",
+                    "tertiary-fixed-dim": "#9ccaff",
+                    "surface": "#121413",
+                    "tertiary": "#9ccaff",
+                    "tertiary-fixed": "#d0e4ff",
+                    "surface-container-high": "#282a29",
+                    "secondary-container": "#4a494a",
+                    "surface-container-low": "#1a1c1b",
+                    "background": "#121413",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed-variant": "#7b2f00",
+                    "surface-bright": "#383a38",
+                    "on-tertiary-container": "#003357",
+                    "on-surface-variant": "#e2bfb0",
+                    "on-background": "#e2e3e1",
+                    "on-tertiary-fixed-variant": "#00497a",
+                    "secondary-fixed-dim": "#c8c6c7",
+                    "on-secondary": "#313031",
+                    "on-secondary-fixed": "#1c1b1c",
+                    "on-primary-container": "#571f00",
+                    "surface-tint": "#ffb694",
+                    "surface-dim": "#121413",
+                    "on-error": "#690005",
+                    "on-tertiary": "#003256",
+                    "inverse-primary": "#a14000",
+                    "tertiary-container": "#009eff",
+                    "secondary": "#c8c6c7",
+                    "secondary-fixed": "#e5e2e3",
+                    "on-secondary-container": "#bab8b9",
+                    "error-container": "#93000a",
+                    "primary": "#ffb694",
+                    "on-primary": "#571f00",
+                    "surface-container": "#1e201f",
+                    "inverse-on-surface": "#2f3130",
+                    "primary-fixed-dim": "#ffb694",
+                    "primary-container": "#ff6a00",
+                    "outline-variant": "#5a4136",
+                    "on-secondary-fixed-variant": "#474647",
+                    "primary-fixed": "#ffdbcc",
+                    "on-tertiary-fixed": "#001d35",
+                    "inverse-surface": "#e2e3e1",
+                    "on-surface": "#e2e3e1",
+                    "on-primary-fixed": "#351000",
+                    "surface-variant": "#333534",
+                    "surface-container-highest": "#333534"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "section-gap": "120px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Oswald"],
+                    "headline-md": ["Oswald"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-xl": ["Oswald"],
+                    "headline-sm": ["Oswald"],
+                    "display-lg-mobile": ["Oswald"]
+            },
+            "fontSize": {
+                    "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-xl": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0B0B0C;
+            color: #e2e3e1;
+        }
+        .hairline-border {
+            border: 1px solid #2A2A30;
+        }
+        .glass-nav {
+            background-color: rgba(11, 11, 12, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary-container selection:text-white">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 border-b border-outline-variant/30 bg-surface/80 backdrop-blur-[20px] h-20 transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center h-full px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<div class="font-display-lg-mobile text-display-lg-mobile md:text-headline-md uppercase tracking-tighter text-on-surface">
+                PREMIUM CARS
+            </div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">HOME</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">ABOUT</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">KATALOG</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">CICILAN</a>
+<a class="font-label-md text-label-md text-primary-container font-bold border-b-2 border-primary-container pb-1" href="#">KONTAK</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="md:hidden text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-32">
+<!-- Hero Section -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto mb-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-8">
+<h1 class="font-display-xl text-display-lg-mobile md:text-display-xl uppercase leading-none mb-6">
+                        HUBUNGI <br/><span class="text-primary-container">ENGINEERING EXCELLENCE</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                        Konsultasi personal untuk pengalaman berkendara kelas dunia. Tim ahli kami siap membantu Anda menemukan mahakarya otomotif yang sesuai dengan standar Anda.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Main Contact Grid -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto mb-section-gap">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Contact Form (Bento Style) -->
+<div class="lg:col-span-7 bg-[#141417] hairline-border p-8 md:p-12">
+<h2 class="font-headline-md text-headline-md uppercase mb-8">KIRIM PESAN</h2>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Nama Lengkap</label>
+<input class="w-full bg-[#141417] hairline-border focus:border-primary-container focus:ring-0 text-on-surface px-4 py-3 transition-colors outline-none rounded-none" placeholder="John Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Alamat Email</label>
+<input class="w-full bg-[#141417] hairline-border focus:border-primary-container focus:ring-0 text-on-surface px-4 py-3 transition-colors outline-none rounded-none" placeholder="john@premiumcars.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Nomor Telepon</label>
+<input class="w-full bg-[#141417] hairline-border focus:border-primary-container focus:ring-0 text-on-surface px-4 py-3 transition-colors outline-none rounded-none" placeholder="+62 812 3456 7890" type="tel"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase">Pesan Anda</label>
+<textarea class="w-full bg-[#141417] hairline-border focus:border-primary-container focus:ring-0 text-on-surface px-4 py-3 transition-colors outline-none rounded-none resize-none" placeholder="Tuliskan detail permintaan atau jadwal test drive..." rows="5"></textarea>
+</div>
+<button class="w-full md:w-auto bg-primary-container text-on-primary-fixed font-label-md text-label-md px-12 py-4 uppercase tracking-widest hover:opacity-90 transition-opacity active:scale-[0.98]">
+                            KIRIM PESAN
+                        </button>
+</form>
+</div>
+<!-- Info Column -->
+<div class="lg:col-span-5 space-y-12">
+<!-- Business Hours -->
+<div class="bg-[#141417] hairline-border p-8">
+<h3 class="font-headline-sm text-headline-sm uppercase mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="schedule">schedule</span>
+                            JAM OPERASIONAL
+                        </h3>
+<div class="space-y-4">
+<div class="flex justify-between border-b border-[#1F1F24] pb-2">
+<span class="font-label-md text-label-md text-on-surface-variant">SENIN - JUMAT</span>
+<span class="font-headline-sm text-[18px]">09:00 - 20:00</span>
+</div>
+<div class="flex justify-between border-b border-[#1F1F24] pb-2">
+<span class="font-label-md text-label-md text-on-surface-variant">SABTU</span>
+<span class="font-headline-sm text-[18px]">10:00 - 18:00</span>
+</div>
+<div class="flex justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">MINGGU</span>
+<span class="font-headline-sm text-[18px] text-primary-container">DENGAN PERJANJIAN</span>
+</div>
+</div>
+</div>
+<!-- Social Media -->
+<div class="bg-[#141417] hairline-border p-8">
+<h3 class="font-headline-sm text-headline-sm uppercase mb-6">NETWORK</h3>
+<div class="grid grid-cols-2 gap-4">
+<a class="flex items-center gap-3 p-4 hairline-border hover:bg-surface-container-high transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary-container transition-colors" data-icon="share">share</span>
+<span class="font-label-md text-label-md uppercase">Instagram</span>
+</a>
+<a class="flex items-center gap-3 p-4 hairline-border hover:bg-surface-container-high transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary-container transition-colors" data-icon="play_circle">play_circle</span>
+<span class="font-label-md text-label-md uppercase">Youtube</span>
+</a>
+<a class="flex items-center gap-3 p-4 hairline-border hover:bg-surface-container-high transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary-container transition-colors" data-icon="chat">chat</span>
+<span class="font-label-md text-label-md uppercase">WhatsApp</span>
+</a>
+<a class="flex items-center gap-3 p-4 hairline-border hover:bg-surface-container-high transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary-container transition-colors" data-icon="mail">mail</span>
+<span class="font-label-md text-label-md uppercase">Newsletter</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Locations / Maps Section -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto mb-section-gap">
+<h2 class="font-display-lg text-display-lg uppercase mb-12 border-b border-outline-variant/30 pb-6">SHOWROOM LOCATIONS</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Location 1 -->
+<div class="space-y-6">
+<div class="aspect-video w-full hairline-border overflow-hidden relative group">
+<div class="w-full h-full grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer" data-location="Jakarta Selatan, SCBD" style="">
+<!-- Map Placeholder Visual -->
+<div class="absolute inset-0 bg-[#1C1C21] flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-on-surface-variant/20" data-icon="map">map</span>
+</div>
+</div>
+<div class="absolute top-4 left-4 bg-primary-container text-on-primary-fixed px-3 py-1 font-label-sm text-label-sm uppercase">FLAGSHIP</div>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm uppercase mb-2">SCBD HEADQUARTERS</h4>
+<p class="text-on-surface-variant font-body-md mb-4">Jl. Jenderal Sudirman No.Kav 52-53, Senayan, Jakarta Selatan</p>
+<div class="flex gap-4">
+<span class="font-label-md text-label-md text-primary-container">021-555-9000</span>
+<span class="text-on-surface-variant">/</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase cursor-pointer hover:text-on-surface">Dapatkan Rute</span>
+</div>
+</div>
+</div>
+<!-- Location 2 -->
+<div class="space-y-6">
+<div class="aspect-video w-full hairline-border overflow-hidden relative group">
+<div class="w-full h-full grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer" data-location="Surabaya, West Surabaya" style="">
+<div class="absolute inset-0 bg-[#1C1C21] flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-on-surface-variant/20" data-icon="location_on">location_on</span>
+</div>
+</div>
+<div class="absolute top-4 left-4 bg-surface-container-highest text-on-surface px-3 py-1 font-label-sm text-label-sm uppercase">EAST JAVA</div>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm uppercase mb-2">SURABAYA WEST WING</h4>
+<p class="text-on-surface-variant font-body-md mb-4">Mayjen Yono Suwoyo No.2, Surabaya Barat, Jawa Timur</p>
+<div class="flex gap-4">
+<span class="font-label-md text-label-md text-primary-container">031-555-8000</span>
+<span class="text-on-surface-variant">/</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase cursor-pointer hover:text-on-surface">Dapatkan Rute</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / CTA Section -->
+<section class="bg-surface-container-low py-section-gap px-margin-mobile md:px-margin-desktop">
+<div class="max-w-[1440px] mx-auto text-center">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg uppercase mb-8">STAY IN THE FAST LANE</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto mb-10">
+                    Dapatkan akses eksklusif untuk koleksi terbatas dan pembaruan teknologi otomotif terbaru langsung di inbox Anda.
+                </p>
+<div class="flex flex-col md:flex-row justify-center gap-4 max-w-md mx-auto">
+<input class="bg-[#0B0B0C] hairline-border px-6 py-4 outline-none focus:border-primary-container transition-colors grow uppercase font-label-md" placeholder="EMAIL ANDA" type="email"/>
+<button class="bg-on-surface text-surface font-label-md px-8 py-4 uppercase hover:bg-primary-container hover:text-on-primary-fixed transition-all">SUBSCRIBE</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-outline-variant/30 bg-surface-dim">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter py-section-gap px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<div class="md:col-span-1">
+<div class="font-display-md text-headline-md text-on-surface uppercase tracking-tighter mb-6">
+                    PREMIUM CARS
+                </div>
+<p class="text-on-surface-variant text-body-md">
+                    Standard baru dalam kemewahan otomotif. Melayani kolektor dan antusias kendaraan performa tinggi sejak 2010.
+                </p>
+</div>
+<div class="md:col-span-1">
+<h4 class="font-label-md text-label-md text-primary-container mb-6 uppercase">NAVIGASI</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">HOME</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">ABOUT</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">KATALOG</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">CICILAN</a></li>
+</ul>
+</div>
+<div class="md:col-span-1">
+<h4 class="font-label-md text-label-md text-primary-container mb-6 uppercase">LEGAL</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">PRIVACY POLICY</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">TERMS OF SERVICE</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">COOKIES</a></li>
+</ul>
+</div>
+<div class="md:col-span-1">
+<h4 class="font-label-md text-label-md text-primary-container mb-6 uppercase">SOCIAL</h4>
+<div class="flex gap-4">
+<a class="w-10 h-10 hairline-border flex items-center justify-center hover:bg-primary-container hover:text-on-primary-fixed transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="public">public</span>
+</a>
+<a class="w-10 h-10 hairline-border flex items-center justify-center hover:bg-primary-container hover:text-on-primary-fixed transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+</a>
+<a class="w-10 h-10 hairline-border flex items-center justify-center hover:bg-primary-container hover:text-on-primary-fixed transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="podcasts">podcasts</span>
+</a>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant/10 py-8 px-margin-mobile md:px-margin-desktop text-center">
+<p class="font-body-md text-body-md text-on-surface-variant/50">
+                © 2024 PREMIUM CARS. ENGINEERED FOR EXCELLENCE.
+            </p>
+</div>
+</footer>
+<script>
+        // Simple scroll effect for TopAppBar
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('py-2', 'shadow-2xl');
+                header.classList.remove('h-20');
+                header.classList.add('h-16');
+            } else {
+                header.classList.remove('py-2', 'shadow-2xl');
+                header.classList.add('h-20');
+                header.classList.remove('h-16');
+            }
+        });
+
+        // Micro-interaction for form inputs
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('label')?.classList.add('text-primary-container');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.querySelector('label')?.classList.remove('text-primary-container');
+            });
+        });
+    </script>
+</body></html>

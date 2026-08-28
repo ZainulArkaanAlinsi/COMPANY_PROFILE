@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>INNER CIRCLE | PREMIUM CARS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#383a38",
+                        "on-primary-fixed-variant": "#7b2f00",
+                        "on-secondary-fixed": "#1c1b1c",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#571f00",
+                        "surface-container-highest": "#333534",
+                        "secondary": "#c8c6c7",
+                        "on-secondary-container": "#bab8b9",
+                        "outline": "#a98a7d",
+                        "inverse-surface": "#e2e3e1",
+                        "primary-fixed-dim": "#ffb694",
+                        "surface-container": "#1e201f",
+                        "on-surface": "#e2e3e1",
+                        "inverse-primary": "#a14000",
+                        "surface-container-lowest": "#0d0f0e",
+                        "on-tertiary-fixed": "#001d35",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#00497a",
+                        "surface": "#121413",
+                        "secondary-fixed": "#e5e2e3",
+                        "on-primary-fixed": "#351000",
+                        "primary-fixed": "#ffdbcc",
+                        "error": "#ffb4ab",
+                        "tertiary": "#9ccaff",
+                        "surface-tint": "#ffb694",
+                        "tertiary-fixed": "#d0e4ff",
+                        "surface-variant": "#333534",
+                        "surface-container-low": "#1a1c1b",
+                        "on-primary": "#571f00",
+                        "error-container": "#93000a",
+                        "primary": "#ffb694",
+                        "inverse-on-surface": "#2f3130",
+                        "tertiary-fixed-dim": "#9ccaff",
+                        "on-tertiary-container": "#003357",
+                        "secondary-container": "#4a494a",
+                        "background": "#121413",
+                        "secondary-fixed-dim": "#c8c6c7",
+                        "on-tertiary": "#003256",
+                        "tertiary-container": "#009eff",
+                        "on-background": "#e2e3e1",
+                        "on-surface-variant": "#e2bfb0",
+                        "on-secondary": "#313031",
+                        "surface-dim": "#121413",
+                        "surface-container-high": "#282a29",
+                        "on-secondary-fixed-variant": "#474647",
+                        "primary-container": "#ff6a00",
+                        "outline-variant": "#5a4136"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "section-gap": "120px",
+                        "unit": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Oswald"],
+                        "display-xl": ["Oswald"],
+                        "display-lg-mobile": ["Oswald"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Oswald"],
+                        "display-lg": ["Oswald"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["24px", { "lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "display-xl": ["80px", { "lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display-lg": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0B0B0C;
+            color: #e2e3e1;
+            overflow-x: hidden;
+        }
+        .molten-amber {
+            background: linear-gradient(135deg, #FF6A00 0%, #B84D00 100%);
+            box-shadow: 0 0 20px rgba(255, 106, 0, 0.3);
+        }
+        .molten-amber:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 0 30px rgba(255, 106, 0, 0.5);
+        }
+        .glass-panel {
+            background: rgba(20, 20, 23, 0.8);
+            border: 1px solid #2A2A30;
+            backdrop-filter: blur(12px);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(255, 182, 148, 0.4);
+        }
+        .line-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #2A2A30, transparent);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="font-body-md">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant dark:border-outline-variant">
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 mx-auto max-w-[1440px]">
+<div class="font-display-lg text-display-lg-mobile md:text-display-lg font-bold text-on-surface tracking-tighter">
+                PREMIUM CARS
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">HOME</a>
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">ABOUT</a>
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">KATALOG</a>
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-primary border-b border-primary pb-1" href="#">INNER CIRCLE</a>
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">KONTAK</a>
+</div>
+<button class="molten-amber text-on-secondary px-8 py-2 font-label-md text-label-md uppercase tracking-widest active:scale-95 duration-150 transition-all rounded">
+                INQUIRY
+            </button>
+</nav>
+</header>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative h-[921px] flex items-center justify-center overflow-hidden px-margin-mobile md:px-margin-desktop">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#0B0B0C] z-10"></div>
+<div class="w-full h-full bg-cover bg-center" data-alt="A cinematic, low-angle shot of a sleek, dark metallic supercar parked in a modern industrial hangar with dramatic amber strip lighting reflecting off its curves. The atmosphere is moody and exclusive, with a cool blue ambient light contrasted by warm, fiery orange accents. High-end automotive editorial style with sharp focus and deep shadows." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_7vZmBt9j-fXy7x7u51_N48JVbDr0ot779aFAM0YrgDPCLrAoh01jVHuwYb4BYwkMe_bIOlhnRXPeYiSteqTA7IdMERpKtN6ztYj-fzNGEyMOAd_7LW4YgX8dmV67Lpwb6SxFNZf6fF58Hq5NQBbdldqO5IPI0A41nOaoBQobi15Xqpqkgh1TSl17ArkDg5nwK4lu6NLeuN3-yRhfWAl1_MWTYr707mgyjsgC6RD-iB-UhfPl7In5mQ')"></div>
+</div>
+<div class="relative z-20 text-center max-w-4xl">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.4em] mb-4 block">Engineered for the Elite</span>
+<h1 class="font-display-xl text-display-lg-mobile md:text-display-xl text-on-surface mb-6 uppercase leading-none">THE INNER CIRCLE</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-2xl mx-auto">Access a world where automotive excellence meets uncompromising luxury. Your key to the most exclusive inventory and private motoring events on the planet.</p>
+<div class="flex flex-col md:flex-row gap-6 justify-center">
+<a class="molten-amber text-on-secondary px-10 py-4 font-label-md text-label-md uppercase tracking-widest rounded transition-all" href="#signup">Apply for Access</a>
+<a class="border border-outline-variant text-on-surface px-10 py-4 font-label-md text-label-md uppercase tracking-widest rounded hover:bg-white/5 transition-all" href="#benefits">Explore Benefits</a>
+</div>
+</div>
+</section>
+<!-- Benefits Section -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto" id="benefits">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-5">
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase mb-8">UNCOMPROMISING <br/><span class="text-primary">PRIVILEGES</span></h2>
+<div class="space-y-12">
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-primary text-4xl">key</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">EARLY ACCESS STOCK</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Secure your next masterpiece before it hits the open market. Members receive a 48-hour window on all new ultra-rare inventory acquisitions.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-primary text-4xl">event_seat</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">PRIVATE EVENTS</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Invitations to closed-door unveilings, track days at Nürburgring, and private gala dinners with industry legends.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-primary text-4xl">concierge</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">24/7 CONCIERGE</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">A dedicated automotive advisor for global transport, track preparation, and bespoke sourcing of rare mechanical parts.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-7 grid grid-cols-2 gap-4">
+<div class="aspect-[4/5] bg-cover bg-center border border-outline-variant" data-alt="A close-up photograph of a hand in a tailored suit sleeve holding a heavy, custom-engraved metallic membership card with a subtle amber glow. The background shows a blurry, luxurious lounge interior with mahogany and leather textures. High-contrast, moody lighting with a focus on tactile textures." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuADvvoXsL6hWcxsc0vDBsYS5t3jQhSWaPvE3W8aHC4Z2LgfG8mBIzTbMxQTVEEqHsGy2EP3s7aSDiMfo_ClVsfOVa36zYqFfujH5oXSgGLSKXWFiDDfy6_gZA4UriBYd0gOKXa_PvuSTceeQkIGrZSFnZbEr3bCXs4XmwxDQJmD_dPfvNkBmcxYaUFGUNwLEHF4k64jUS2CY4lOWyfPMrTR7VFaKS7VA50-6oPFAkt0YVWjM1U1gzrVVQ')"></div>
+<div class="aspect-[4/5] mt-12 bg-cover bg-center border border-outline-variant" data-alt="Interior of a private luxury garage at night, featuring a rare silver hypercar under a single focused spotlight. The flooring is polished black concrete reflecting the car's silhouette. Minimalist, industrial-chic aesthetic with sharp shadows and architectural precision." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcEGfkvg6nSVfBR6MNIW3od0WWUaIhkYabbhYZdt7zM7CyilZxvvCrShFciDAZfjzVCjcZtvZzaS8urbfBGRUTPYMI_oZvw3JcMWDGxiRztm09wtrP0pg69bTwNWNdsEwTOqAhREPliDr5I8wh_nYKNUgLK7U1nBaPEPbYJn8eWO_tzQVcG41GfDe53DzSLNZx_6kAhfd0y-3EJnq0z8XSs0B-auk--dgQAWiuDukyjhnk1SA3nbidUQ')"></div>
+</div>
+</div>
+</section>
+<!-- Tiers Section -->
+<section class="py-section-gap bg-surface-container-low border-y border-outline-variant">
+<div class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto text-center mb-16">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-4 uppercase">MEMBERSHIP TIERS</h2>
+<div class="w-24 h-1 bg-primary mx-auto"></div>
+</div>
+<div class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Silver Tier -->
+<div class="glass-panel p-10 flex flex-col items-start hover:border-primary transition-all group">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Entry Level</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6 group-hover:text-primary transition-colors">SILVER</h3>
+<ul class="space-y-4 mb-12 flex-grow text-left">
+<li class="flex items-center gap-3 text-body-md text-on-surface-variant"><span class="material-symbols-outlined text-primary text-sm">check</span> 24h Early Stock Access</li>
+<li class="flex items-center gap-3 text-body-md text-on-surface-variant"><span class="material-symbols-outlined text-primary text-sm">check</span> Digital Service Portal</li>
+<li class="flex items-center gap-3 text-body-md text-on-surface-variant"><span class="material-symbols-outlined text-primary text-sm">check</span> Local Event Invites</li>
+<li class="flex items-center gap-3 text-body-md text-on-surface-variant/50"><span class="material-symbols-outlined text-on-surface-variant/30 text-sm">close</span> Private Concierge</li>
+</ul>
+<div class="w-full border-t border-outline-variant pt-8">
+<div class="text-headline-sm text-on-surface mb-4">$5,000 <span class="text-label-sm font-normal text-on-surface-variant">/ YEAR</span></div>
+<button class="w-full py-3 border border-outline-variant hover:bg-on-surface/5 font-label-md text-label-md uppercase tracking-widest rounded transition-all">Select Silver</button>
+</div>
+</div>
+<!-- Gold Tier -->
+<div class="glass-panel p-10 flex flex-col items-start border-primary/50 relative overflow-hidden group">
+<div class="absolute top-0 right-0 molten-amber px-4 py-1 font-label-sm text-on-secondary uppercase tracking-tighter">Recommended</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Mid Tier</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6 text-glow">GOLD</h3>
+<ul class="space-y-4 mb-12 flex-grow text-left">
+<li class="flex items-center gap-3 text-body-md text-on-surface"><span class="material-symbols-outlined text-primary text-sm">check</span> 48h Early Stock Access</li>
+<li class="flex items-center gap-3 text-body-md text-on-surface"><span class="material-symbols-outlined text-primary text-sm">check</span> Priority Workshop Slot</li>
+<li class="flex items-center gap-3 text-body-md text-on-surface"><span class="material-symbols-outlined text-primary text-sm">check</span> Global Gala Invitations</li>
+<li class="flex items-center gap-3 text-body-md text-on-surface"><span class="material-symbols-outlined text-primary text-sm">check</span> Standard Concierge</li>
+</ul>
+<div class="w-full border-t border-outline-variant pt-8">
+<div class="text-headline-sm text-on-surface mb-4">$12,500 <span class="text-label-sm font-normal text-on-surface-variant">/ YEAR</span></div>
+<button class="w-full py-3 molten-amber text-on-secondary font-label-md text-label-md uppercase tracking-widest rounded transition-all">Select Gold</button>
+</div>
+</div>
+<!-- Platinum Tier -->
+<div class="glass-panel p-10 flex flex-col items-start hover:border-primary transition-all group">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Highest Tier</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6 group-hover:text-primary transition-colors">PLATINUM</h3>
+<ul class="space-y-4 mb-12 flex-grow text-left">
+<li class="flex items-center gap-3 text-body-md text-on-surface-variant"><span class="material-symbols-outlined text-primary text-sm">check</span> Priority Reserve on Imports</li>
+<li class="flex items-center gap-3 text-body-md text-on-surface-variant"><span class="material-symbols-outlined text-primary text-sm">check</span> complimentary Global Shipping</li>
+<li class="flex items-center gap-3 text-body-md text-on-surface-variant"><span class="material-symbols-outlined text-primary text-sm">check</span> Nürburgring VIP Access</li>
+<li class="flex items-center gap-3 text-body-md text-on-surface-variant"><span class="material-symbols-outlined text-primary text-sm">check</span> 24/7 Dedicated Concierge</li>
+</ul>
+<div class="w-full border-t border-outline-variant pt-8">
+<div class="text-headline-sm text-on-surface mb-4">$25,000 <span class="text-label-sm font-normal text-on-surface-variant">/ YEAR</span></div>
+<button class="w-full py-3 border border-outline-variant hover:bg-on-surface/5 font-label-md text-label-md uppercase tracking-widest rounded transition-all">Select Platinum</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Quote/Mood Section -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+<div class="absolute inset-0 z-0 flex items-center justify-center opacity-10">
+<span class="font-display-xl text-[20vw] leading-none uppercase select-none">INNER CIRCLE</span>
+</div>
+<div class="relative z-10 max-w-4xl mx-auto text-center italic font-body-lg text-headline-sm md:text-headline-md leading-relaxed text-on-surface-variant">
+                "We don't just sell machines; we curate legacies. The Inner Circle is the bridge between passion and the rarest engineering feats of our time."
+                <div class="mt-8 not-italic font-label-sm text-primary uppercase tracking-widest">— MARCUS VANCE, FOUNDER</div>
+</div>
+</section>
+<!-- Signup Section -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop" id="signup">
+<div class="max-w-[1440px] mx-auto bg-surface-container-highest border border-outline-variant p-8 md:p-24 relative overflow-hidden">
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-primary/20 blur-[120px] rounded-full"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16 relative z-10">
+<div>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface uppercase mb-6 leading-tight">JOIN THE <br/><span class="text-glow">INNER CIRCLE</span></h2>
+<p class="font-body-lg text-on-surface-variant mb-12">Applications are reviewed individually. Please provide your details, and a Senior Consultant will contact you within 24 hours to begin your verification process.</p>
+<div class="space-y-6">
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-sm text-on-surface-variant uppercase tracking-widest">First Name</label>
+<input class="w-full bg-surface border border-outline-variant focus:border-primary text-on-surface p-4 rounded outline-none transition-all" placeholder="John" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-on-surface-variant uppercase tracking-widest">Last Name</label>
+<input class="w-full bg-surface border border-outline-variant focus:border-primary text-on-surface p-4 rounded outline-none transition-all" placeholder="Doe" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-on-surface-variant uppercase tracking-widest">Personal Email</label>
+<input class="w-full bg-surface border border-outline-variant focus:border-primary text-on-surface p-4 rounded outline-none transition-all" placeholder="j.doe@private.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-on-surface-variant uppercase tracking-widest">Interested Tier</label>
+<select class="w-full bg-surface border border-outline-variant focus:border-primary text-on-surface p-4 rounded outline-none transition-all appearance-none">
+<option>Silver Membership</option>
+<option selected="">Gold Membership</option>
+<option>Platinum Membership</option>
+</select>
+</div>
+<div class="pt-6">
+<button class="w-full py-5 molten-amber text-on-secondary font-headline-sm text-headline-sm uppercase tracking-widest rounded transition-all">Submit Application</button>
+</div>
+</div>
+</div>
+<div class="hidden md:flex flex-col justify-between border-l border-outline-variant pl-16">
+<div class="space-y-12">
+<div>
+<h4 class="font-label-md text-primary uppercase mb-2">Headquarters</h4>
+<p class="font-body-md text-on-surface-variant">15 Curzon Street, Mayfair<br/>London, W1J 5H9</p>
+</div>
+<div>
+<h4 class="font-label-md text-primary uppercase mb-2">Direct Line</h4>
+<p class="font-body-md text-on-surface-variant">+44 (0) 20 7946 0123</p>
+</div>
+<div>
+<h4 class="font-label-md text-primary uppercase mb-2">Membership Office</h4>
+<p class="font-body-md text-on-surface-variant">circle@premiumcars.com</p>
+</div>
+</div>
+<div class="pt-12">
+<div class="bg-cover bg-center h-64 border border-outline-variant grayscale hover:grayscale-0 transition-all duration-700" data-alt="A stylized aerial view of a luxury showroom interior with architectural glass and steel features. The lighting is cold blue with sharp horizontal light beams cutting across the frame. Top-down view of high-end automotive design." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBbcMpROh6Fys7E1fk4wfAZUBp128BdI4KAtk4BW7JWhB8rKPK3ETSzpV_-53NwdcO_9Ix7TKZ2PigUkRzu8pDkzZY2vl5WnlN0Ga8Duxqj3s2Xg6sTzhRhm2ym7cuC8dmzAct6XBOft1hlFSDSmShBFeCGWRPUag9TX811AmuU1lZZwEUqb-KmIR0-7R79QN-1vcUQuy7gRNWEjUtBeqgXzOxrTTc8OUe2sU6DeiYL_nbHQXepI9TmXg')"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-outline-variant dark:border-outline-variant bg-surface-container-lowest dark:bg-surface-container-lowest">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-section-gap gap-gutter mx-auto max-w-[1440px]">
+<div class="font-display-lg text-display-lg text-on-surface-variant">PREMIUM CARS</div>
+<div class="flex flex-wrap justify-center gap-8 my-8 md:my-0">
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">PRIVACY POLICY</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">TERMS OF SERVICE</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">WARRANTY</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">CAREERS</a>
+</div>
+<div class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">
+                © 2024 PREMIUM CARS. ENGINEERED EXCELLENCE.
+            </div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Sticky Navbar Reveal on Scroll
+        let lastScroll = 0;
+        const nav = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll <= 0) {
+                nav.classList.remove('translate-y-[-100%]');
+                return;
+            }
+            if (currentScroll > lastScroll && !nav.classList.contains('translate-y-[-100%]')) {
+                // Scroll down
+                nav.classList.add('translate-y-[-100%]');
+            } else if (currentScroll < lastScroll && nav.classList.contains('translate-y-[-100%]')) {
+                // Scroll up
+                nav.classList.remove('translate-y-[-100%]');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Button Click Effect
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
+            btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
+            btn.addEventListener('mouseleave', () => btn.classList.remove('scale-95'));
+        });
+    </script>
+</body></html>

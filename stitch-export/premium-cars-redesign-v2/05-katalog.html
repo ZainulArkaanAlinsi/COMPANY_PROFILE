@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Katalog | PREMIUM CARS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#0d0f0e",
+                    "on-error-container": "#ffdad6",
+                    "outline": "#a98a7d",
+                    "tertiary-fixed-dim": "#9ccaff",
+                    "surface": "#121413",
+                    "tertiary": "#9ccaff",
+                    "tertiary-fixed": "#d0e4ff",
+                    "surface-container-high": "#282a29",
+                    "secondary-container": "#4a494a",
+                    "surface-container-low": "#1a1c1b",
+                    "background": "#121413",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed-variant": "#7b2f00",
+                    "surface-bright": "#383a38",
+                    "on-tertiary-container": "#003357",
+                    "on-surface-variant": "#e2bfb0",
+                    "on-background": "#e2e3e1",
+                    "on-tertiary-fixed-variant": "#00497a",
+                    "secondary-fixed-dim": "#c8c6c7",
+                    "on-secondary": "#313031",
+                    "on-secondary-fixed": "#1c1b1c",
+                    "on-primary-container": "#571f00",
+                    "surface-tint": "#ffb694",
+                    "surface-dim": "#121413",
+                    "on-error": "#690005",
+                    "on-tertiary": "#003256",
+                    "inverse-primary": "#a14000",
+                    "tertiary-container": "#009eff",
+                    "secondary": "#c8c6c7",
+                    "secondary-fixed": "#e5e2e3",
+                    "on-secondary-container": "#bab8b9",
+                    "error-container": "#93000a",
+                    "primary": "#ffb694",
+                    "on-primary": "#571f00",
+                    "surface-container": "#1e201f",
+                    "inverse-on-surface": "#2f3130",
+                    "primary-fixed-dim": "#ffb694",
+                    "primary-container": "#ff6a00",
+                    "outline-variant": "#5a4136",
+                    "on-secondary-fixed-variant": "#474647",
+                    "primary-fixed": "#ffdbcc",
+                    "on-tertiary-fixed": "#001d35",
+                    "inverse-surface": "#e2e3e1",
+                    "on-surface": "#e2e3e1",
+                    "on-primary-fixed": "#351000",
+                    "surface-variant": "#333534",
+                    "surface-container-highest": "#333534"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "section-gap": "120px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Oswald"],
+                    "headline-md": ["Oswald"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-xl": ["Oswald"],
+                    "headline-sm": ["Oswald"],
+                    "display-lg-mobile": ["Oswald"]
+            },
+            "fontSize": {
+                    "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-xl": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        background-color: #0B0B0C;
+        color: #e2e3e1;
+        overflow-x: hidden;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: #141417;
+        border: 1px solid #2A2A30;
+      }
+      .molten-gradient {
+        background: linear-gradient(135deg, #FF6A00 0%, #FF3D00 100%);
+      }
+      .text-glow {
+        text-shadow: 0 0 20px rgba(255, 106, 0, 0.3);
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-[20px] border-b border-outline-variant/30 duration-300 ease-in-out">
+<div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<div class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg uppercase tracking-tighter text-on-surface">
+                PREMIUM CARS
+            </div>
+<div class="hidden md:flex gap-8 items-center font-label-md text-label-md">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors uppercase" href="#">HOME</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors uppercase" href="#">ABOUT</a>
+<a class="text-primary-container font-bold border-b-2 border-primary-container pb-1 uppercase" href="#">KATALOG</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors uppercase" href="#">CICILAN</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors uppercase" href="#">KONTAK</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-on-surface" data-icon="favorite">favorite</span>
+</button>
+<button class="hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-on-surface" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="md:hidden">
+<span class="material-symbols-outlined text-on-surface" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-section-gap max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Header Section -->
+<header class="mb-16">
+<h1 class="font-display-xl text-display-xl uppercase leading-none tracking-tighter mb-4">KATALOG</h1>
+<div class="w-24 h-1 molten-gradient mb-8"></div>
+<p class="max-w-2xl font-body-lg text-body-lg text-on-surface-variant">
+                Experience engineering perfection. Our curated collection of high-performance vehicles represents the pinnacle of automotive excellence and industrial artistry.
+            </p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Sidebar: Filters & Spec Finder -->
+<aside class="lg:col-span-3 space-y-8">
+<!-- Search Bar -->
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-[#141417] border border-[#2A2A30] py-3 pl-10 pr-4 text-label-md focus:border-primary-container outline-none transition-colors" placeholder="Search models..." type="text"/>
+</div>
+<!-- Spec Finder Tool -->
+<section class="glass-card p-6">
+<h3 class="font-headline-sm text-headline-sm uppercase mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="precision_manufacturing">precision_manufacturing</span>
+                        Spec Finder
+                    </h3>
+<div class="space-y-6">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2 block">Drivetrain</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 border border-primary-container text-primary-container text-label-sm font-bold">RWD</button>
+<button class="px-4 py-2 border border-[#2A2A30] text-on-surface-variant text-label-sm hover:border-on-surface transition-colors">AWD</button>
+<button class="px-4 py-2 border border-[#2A2A30] text-on-surface-variant text-label-sm hover:border-on-surface transition-colors">FWD</button>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2 block">Horsepower (HP)</label>
+<input class="w-full h-1 bg-[#2A2A30] appearance-none cursor-pointer accent-primary-container" type="range"/>
+<div class="flex justify-between text-label-sm mt-2 text-on-surface-variant">
+<span>300</span>
+<span>1000+</span>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2 block">Body Style</label>
+<div class="space-y-2">
+<label class="flex items-center gap-2 text-label-md cursor-pointer group">
+<input checked="" class="form-checkbox bg-transparent border-[#2A2A30] text-primary-container focus:ring-0 rounded-none" type="checkbox"/>
+<span class="group-hover:text-primary transition-colors">Coupe</span>
+</label>
+<label class="flex items-center gap-2 text-label-md cursor-pointer group">
+<input class="form-checkbox bg-transparent border-[#2A2A30] text-primary-container focus:ring-0 rounded-none" type="checkbox"/>
+<span class="group-hover:text-primary transition-colors">Sedan</span>
+</label>
+<label class="flex items-center gap-2 text-label-md cursor-pointer group">
+<input class="form-checkbox bg-transparent border-[#2A2A30] text-primary-container focus:ring-0 rounded-none" type="checkbox"/>
+<span class="group-hover:text-primary transition-colors">SUV</span>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Cicilan Calculator -->
+<section class="glass-card p-6 border-primary-container/20">
+<h3 class="font-headline-sm text-headline-sm uppercase mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="payments">payments</span>
+                        Calculator
+                    </h3>
+<div class="space-y-4">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1 block">Down Payment</label>
+<input class="w-full bg-[#1C1C21] border border-[#2A2A30] p-2 text-label-md outline-none" type="text" value="Rp 500.000.000"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1 block">Tenure (Years)</label>
+<select class="w-full bg-[#1C1C21] border border-[#2A2A30] p-2 text-label-md outline-none">
+<option>1 Year</option>
+<option>3 Years</option>
+<option selected="">5 Years</option>
+</select>
+</div>
+<div class="pt-4 border-t border-[#2A2A30]">
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Monthly Installment</p>
+<p class="font-headline-sm text-headline-sm text-primary-container">Rp 24.500.000</p>
+</div>
+</div>
+</section>
+</aside>
+<!-- Main Content: Car Grid -->
+<div class="lg:col-span-9 space-y-gutter">
+<!-- Filter Chips -->
+<div class="flex items-center gap-4 overflow-x-auto hide-scrollbar pb-2">
+<button class="flex-shrink-0 bg-primary-container text-black font-bold px-6 py-2 rounded-none text-label-sm uppercase">All Inventory</button>
+<button class="flex-shrink-0 border border-[#2A2A30] text-on-surface-variant px-6 py-2 rounded-none text-label-sm uppercase hover:border-primary-container transition-colors">New Arrivals</button>
+<button class="flex-shrink-0 border border-[#2A2A30] text-on-surface-variant px-6 py-2 rounded-none text-label-sm uppercase hover:border-primary-container transition-colors">Electric</button>
+<button class="flex-shrink-0 border border-[#2A2A30] text-on-surface-variant px-6 py-2 rounded-none text-label-sm uppercase hover:border-primary-container transition-colors">Track Ready</button>
+<button class="flex-shrink-0 border border-[#2A2A30] text-on-surface-variant px-6 py-2 rounded-none text-label-sm uppercase hover:border-primary-container transition-colors">Limited Edition</button>
+</div>
+<!-- Products Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Car Card 1 -->
+<article class="glass-card group overflow-hidden flex flex-col">
+<div class="relative aspect-[16/10] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A sleek, low-profile matte black supercar positioned on a dark concrete studio floor. High-contrast dramatic lighting highlights the sharp aerodynamic lines and carbon fiber details. The background is a minimalist industrial space with subtle amber rim lighting hitting the car's silhouette. Professional automotive photography style, cinematic and premium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi2K7dyz0CHU5SPWwCuQEHkBn59mDIH3hmzTqoDewaFGJTo1ZdOfL-LrFIrru2NRzgdMcaAE_i03IZEZ7npRFsIvFi09TH2VrOWp1NI-It_hUtjxqBNG6lWHDgBTTTj66U0yQkupXbVhecPToVK7oI2EjAf-0YvNruT_eocWphUalT5_LLpTkjRPxfflC3tb5E-ajPJ6lk6IuksKSEgFp8YpwUO0TLQbpAx9Kobbg7pE-tssmYjve0LA"/>
+<div class="absolute top-4 right-4 bg-primary-container text-black px-3 py-1 text-label-sm font-bold uppercase tracking-widest">In Stock</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-label-sm text-primary-container font-bold uppercase tracking-widest mb-1">V12 HERITAGE</p>
+<h3 class="font-headline-md text-headline-md uppercase">AVENTADOR SVJ</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary-container" data-icon="share">share</span>
+</div>
+<!-- Detailed Specs -->
+<div class="grid grid-cols-2 gap-4 py-6 border-y border-[#2A2A30] mb-6">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Top Speed</p>
+<p class="font-headline-sm text-headline-sm">350 KM/H</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Power</p>
+<p class="font-headline-sm text-headline-sm">770 HP</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">0-100 KM/H</p>
+<p class="font-headline-sm text-headline-sm">2.8 S</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Transmission</p>
+<p class="font-headline-sm text-headline-sm">7-SPEED ISR</p>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Price</p>
+<p class="font-headline-sm text-headline-sm text-glow">IDR 18.250.000.000</p>
+</div>
+<button class="bg-primary-container hover:bg-primary-container/90 text-black px-8 py-3 text-label-md font-bold uppercase transition-all duration-300 transform group-hover:translate-x-1">Details</button>
+</div>
+</div>
+</article>
+<!-- Car Card 2 -->
+<article class="glass-card group overflow-hidden flex flex-col">
+<div class="relative aspect-[16/10] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A silver metallic high-performance grand tourer car showcased in a modern architectural garage with clean lines and glass walls. The lighting is soft and daylight-balanced, emphasizing the elegant curves of the car. The aesthetic is sophisticated and luxurious with a cool-toned industrial color palette. 8k resolution, editorial automotive layout." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAciiidok_7S5RL38x8I7uhKO6RlgcD2jna-a8atkVFNAKX-arMq8Xm6zr1eSpbMPreE39YH5C2zxtT9hdWArSRirgtmdMyjtRsKM-1mZ0QwFtuG2kwDcWks8OGUzqToqp6hoNyPqoQrg6_ZPiA8LeHGfZwb6Jz9aZ6O9KF0ywQVGSGhtrn_hCdvYpLQu6xKbbCrXkfPT4HYlQbFSbGHdUPY_dDAHAfwu3Kh3U-3-1aFCEKRYdp8eM-jg"/>
+<div class="absolute top-4 right-4 bg-surface text-on-surface border border-[#2A2A30] px-3 py-1 text-label-sm font-bold uppercase tracking-widest">Reserved</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-label-sm text-primary-container font-bold uppercase tracking-widest mb-1">GT PERFORMANCE</p>
+<h3 class="font-headline-md text-headline-md uppercase">911 GT3 RS</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary-container" data-icon="share">share</span>
+</div>
+<div class="grid grid-cols-2 gap-4 py-6 border-y border-[#2A2A30] mb-6">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Top Speed</p>
+<p class="font-headline-sm text-headline-sm">296 KM/H</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Power</p>
+<p class="font-headline-sm text-headline-sm">525 HP</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">0-100 KM/H</p>
+<p class="font-headline-sm text-headline-sm">3.2 S</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Weight</p>
+<p class="font-headline-sm text-headline-sm">1430 KG</p>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Price</p>
+<p class="font-headline-sm text-headline-sm text-glow">IDR 9.800.000.000</p>
+</div>
+<button class="border border-[#2A2A30] text-on-surface hover:bg-on-surface hover:text-surface px-8 py-3 text-label-md font-bold uppercase transition-all duration-300">View Specs</button>
+</div>
+</div>
+</article>
+<!-- Car Card 3 -->
+<article class="glass-card group overflow-hidden flex flex-col">
+<div class="relative aspect-[16/10] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A vibrant molten orange electric hypercar parked on a coastal cliffside at golden hour. The setting sun creates long shadows and intense orange highlights on the car's carbon fiber body work. The scene combines extreme technology with dramatic natural beauty. High-end lifestyle automotive photography with rich saturation and deep blacks." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAapBTr137Eju-3ttyGx3M5WuxxdqZm-Fe1xBlCyDeZeX5rzRVxwXZBhLPdYfsKSpj87MOk-6-mQLQKmigc6-rD2hwqAA-TRZbdOwW6rF-QyXkLRafimsAinbzKCGVckAhbQBath8_wkJHuiLsWNl-zGhbOMqkUwUQzML0lDmZDz5tYTOqOHuhliA7-2TzHOgC1un6PIFh5NnEJfKKeEervlVNjvacYFnDU8oTCiLi8Is9RDunNxmClZg"/>
+<div class="absolute top-4 right-4 bg-white text-black px-3 py-1 text-label-sm font-bold uppercase tracking-widest">New Arrival</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-label-sm text-primary-container font-bold uppercase tracking-widest mb-1">ELECTRIC FUTURE</p>
+<h3 class="font-headline-md text-headline-md uppercase">TAYCAN TURBO S</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary-container" data-icon="share">share</span>
+</div>
+<div class="grid grid-cols-2 gap-4 py-6 border-y border-[#2A2A30] mb-6">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Top Speed</p>
+<p class="font-headline-sm text-headline-sm">260 KM/H</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Power</p>
+<p class="font-headline-sm text-headline-sm">761 HP</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Range</p>
+<p class="font-headline-sm text-headline-sm">450 KM</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Charging</p>
+<p class="font-headline-sm text-headline-sm">22.5 MIN</p>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Price</p>
+<p class="font-headline-sm text-headline-sm text-glow">IDR 6.500.000.000</p>
+</div>
+<button class="bg-primary-container hover:bg-primary-container/90 text-black px-8 py-3 text-label-md font-bold uppercase transition-all duration-300">Reserve</button>
+</div>
+</div>
+</article>
+<!-- Car Card 4 -->
+<article class="glass-card group overflow-hidden flex flex-col">
+<div class="relative aspect-[16/10] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close-up detailed shot of a luxury dark navy SUV in a rainy metropolitan setting at night. Wet asphalt reflects neon street lights in shades of blue and orange. The car's headlights are illuminated, casting a sharp beam. The atmosphere is moody, urban, and sophisticated. Highly detailed textures of rain droplets on the polished paintwork." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFYUTHnyo6Q2ySyd25Ikwd-C9C7VqMkuWtHbgIY6gdGMBVGvw83FTy3B0fpSB49CzRQ8MS9YKE6zzHP38F4T04VZe9H39DjHXdx1hiJo8CqTUEWDHTLYLHKepjbZIbiVfHfvOp_FbMANxE0hiPd1--c1TjFEQjQVF_o5vpltGPuMBuXNUWqfBDYhIbZf5l3FLLi8nXMNanc7_t32hQGTadLngzdWpki3Q_6OfdrOdugTT_ESB2oZXYXg"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-label-sm text-primary-container font-bold uppercase tracking-widest mb-1">LUXURY UTILITY</p>
+<h3 class="font-headline-md text-headline-md uppercase">URUS PERFORMANTE</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary-container" data-icon="share">share</span>
+</div>
+<div class="grid grid-cols-2 gap-4 py-6 border-y border-[#2A2A30] mb-6">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Top Speed</p>
+<p class="font-headline-sm text-headline-sm">306 KM/H</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Power</p>
+<p class="font-headline-sm text-headline-sm">666 HP</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">0-100 KM/H</p>
+<p class="font-headline-sm text-headline-sm">3.3 S</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Torque</p>
+<p class="font-headline-sm text-headline-sm">850 NM</p>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Price</p>
+<p class="font-headline-sm text-headline-sm text-glow">IDR 12.400.000.000</p>
+</div>
+<button class="bg-primary-container hover:bg-primary-container/90 text-black px-8 py-3 text-label-md font-bold uppercase transition-all duration-300">Test Drive</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-center gap-4 pt-8">
+<button class="w-12 h-12 flex items-center justify-center border border-[#2A2A30] hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center bg-primary-container text-black font-bold">1</button>
+<button class="w-12 h-12 flex items-center justify-center border border-[#2A2A30] hover:border-on-surface transition-colors">2</button>
+<button class="w-12 h-12 flex items-center justify-center border border-[#2A2A30] hover:border-on-surface transition-colors">3</button>
+<button class="w-12 h-12 flex items-center justify-center border border-[#2A2A30] hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-dim border-t border-outline-variant/30 transition-all duration-200">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter py-section-gap px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<div class="md:col-span-1">
+<div class="font-display-md text-headline-md text-on-surface uppercase mb-6">PREMIUM CARS</div>
+<p class="text-on-surface-variant text-body-md mb-6">
+                    Redefining the standard of luxury automotive acquisition since 1998. Engineered for the extraordinary.
+                </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="facebook">face_nod</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="instagram">infrared</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="youtube_activity">youtube_activity</span>
+</div>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm uppercase mb-6">EXPLORE</h4>
+<div class="flex flex-col gap-3 font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">HOME</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">KATALOG</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">CICILAN</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">ABOUT</a>
+</div>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm uppercase mb-6">SUPPORT</h4>
+<div class="flex flex-col gap-3 font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">KONTAK</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">PRIVACY POLICY</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">TERMS OF SERVICE</a>
+</div>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm uppercase mb-6">SHOWROOM</h4>
+<p class="text-on-surface-variant mb-2">SCBD District 8, Level 42</p>
+<p class="text-on-surface-variant mb-6">Jakarta Selatan, 12190</p>
+<button class="w-full bg-[#141417] border border-[#2A2A30] py-4 text-label-md font-bold uppercase hover:bg-primary-container hover:text-black transition-all">Get Directions</button>
+</div>
+</div>
+<div class="border-t border-outline-variant/10 py-8 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-label-sm text-on-surface-variant uppercase">© 2024 PREMIUM CARS. ENGINEERED FOR EXCELLENCE.</p>
+<div class="flex gap-8 text-label-sm text-on-surface-variant uppercase">
+<span>Designed in Indonesia</span>
+<span>ISO 9001 Certified</span>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interactions for the calculator
+        const range = document.querySelector('input[type="range"]');
+        if (range) {
+            range.addEventListener('input', (e) => {
+                const val = e.target.value;
+                // Just aesthetic feedback for now
+                e.target.style.backgroundSize = val + '% 100%';
+            });
+        }
+
+        // Scroll reveal logic
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('h-16');
+                nav.classList.remove('h-20');
+            } else {
+                nav.classList.add('h-20');
+                nav.classList.remove('h-16');</script></body></html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brand Heritage | PREMIUM CARS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#383a38",
+                    "on-primary-fixed-variant": "#7b2f00",
+                    "on-secondary-fixed": "#1c1b1c",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-container": "#571f00",
+                    "surface-container-highest": "#333534",
+                    "secondary": "#c8c6c7",
+                    "on-secondary-container": "#bab8b9",
+                    "outline": "#a98a7d",
+                    "inverse-surface": "#e2e3e1",
+                    "primary-fixed-dim": "#ffb694",
+                    "surface-container": "#1e201f",
+                    "on-surface": "#e2e3e1",
+                    "inverse-primary": "#a14000",
+                    "surface-container-lowest": "#0d0f0e",
+                    "on-tertiary-fixed": "#001d35",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed-variant": "#00497a",
+                    "surface": "#121413",
+                    "secondary-fixed": "#e5e2e3",
+                    "on-primary-fixed": "#351000",
+                    "primary-fixed": "#ffdbcc",
+                    "error": "#ffb4ab",
+                    "tertiary": "#9ccaff",
+                    "surface-tint": "#ffb694",
+                    "tertiary-fixed": "#d0e4ff",
+                    "surface-variant": "#333534",
+                    "surface-container-low": "#1a1c1b",
+                    "on-primary": "#571f00",
+                    "error-container": "#93000a",
+                    "primary": "#ffb694",
+                    "inverse-on-surface": "#2f3130",
+                    "tertiary-fixed-dim": "#9ccaff",
+                    "on-tertiary-container": "#003357",
+                    "secondary-container": "#4a494a",
+                    "background": "#121413",
+                    "secondary-fixed-dim": "#c8c6c7",
+                    "on-tertiary": "#003256",
+                    "tertiary-container": "#009eff",
+                    "on-background": "#e2e3e1",
+                    "on-surface-variant": "#e2bfb0",
+                    "on-secondary": "#313031",
+                    "surface-dim": "#121413",
+                    "surface-container-high": "#282a29",
+                    "on-secondary-fixed-variant": "#474647",
+                    "primary-container": "#ff6a00",
+                    "outline-variant": "#5a4136"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "section-gap": "120px",
+                    "unit": "4px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Oswald"],
+                    "display-xl": ["Oswald"],
+                    "display-lg-mobile": ["Oswald"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Oswald"],
+                    "display-lg": ["Oswald"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #0B0B0C;
+            color: #e2e3e1;
+            scroll-behavior: smooth;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .line-vertical {
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, #2A2A30, transparent);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 106, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="font-body-md selection:bg-primary-container selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant dark:border-outline-variant">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 mx-auto max-w-[1440px]">
+<div class="font-display-lg text-display-lg-mobile md:text-display-lg font-bold text-on-surface tracking-tighter">PREMIUM CARS</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">HOME</a>
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-primary border-b border-primary pb-1" href="#">ABOUT</a>
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">KATALOG</a>
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">CICILAN</a>
+<a class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">KONTAK</a>
+</div>
+<button class="bg-primary-container text-on-primary px-8 py-2 font-label-md text-label-md uppercase tracking-widest hover:opacity-80 transition-all active:scale-95 duration-150 ease-in-out">
+                INQUIRY
+            </button>
+</div>
+</nav>
+<main class="relative pt-32">
+<!-- Hero Section -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto mb-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-end">
+<div class="md:col-span-8">
+<h1 class="font-display-xl text-display-lg-mobile md:text-display-xl uppercase leading-none mb-6">
+                        The Pursuit of <br/><span class="text-primary">Perfection</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        A decade and a half of engineering excellence. From a single garage in 2010 to a global benchmark in automotive luxury. This is our story.
+                    </p>
+</div>
+<div class="md:col-span-4 flex flex-col items-end gap-2 border-l border-outline-variant pl-6">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Est. 2010</span>
+<span class="font-headline-md text-headline-md">LEGACY OF POWER</span>
+</div>
+</div>
+</section>
+<!-- Stats Section (Bento) -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto mb-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="p-8 border border-outline-variant bg-surface-container flex flex-col justify-between h-48">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Cars Delivered</span>
+<div class="font-display-lg text-display-lg text-primary">1,240+</div>
+</div>
+<div class="p-8 border border-outline-variant bg-surface-container flex flex-col justify-between h-48">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Global Workshops</span>
+<div class="font-display-lg text-display-lg text-on-surface">14</div>
+</div>
+<div class="p-8 border border-outline-variant bg-surface-container flex flex-col justify-between h-48">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Engineers</span>
+<div class="font-display-lg text-display-lg text-on-surface">85</div>
+</div>
+<div class="p-8 border border-outline-variant bg-surface-container flex flex-col justify-between h-48">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Awards Won</span>
+<div class="font-display-lg text-display-lg text-on-surface">32</div>
+</div>
+</div>
+</section>
+<!-- Timeline Section -->
+<section class="relative px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto overflow-hidden">
+<div class="absolute left-1/2 top-0 bottom-0 line-vertical hidden md:block"></div>
+<!-- 2010 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter md:gap-32 mb-section-gap relative">
+<div class="md:text-right flex flex-col justify-center">
+<div class="font-display-lg text-display-lg mb-4 text-primary">2010</div>
+<h3 class="font-headline-md text-headline-md uppercase mb-4">THE FIRST SPARK</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md md:ml-auto">
+                        In a dimly lit industrial space in the heart of the automotive district, three engineers began the mission to curate only the most exceptional machinery ever built.
+                    </p>
+</div>
+<div class="relative group">
+<div class="aspect-[4/5] w-full bg-surface-container-highest grayscale hover:grayscale-0 transition-all duration-700 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" data-alt="A moody, high-contrast black and white photograph of a vintage industrial workshop with shafts of light hitting a partially covered classic sports car. The setting is raw and engineered, featuring exposed brick, steel beams, and various precision tools. The overall aesthetic is one of uncompromising luxury and mechanical focus, matching an elite automotive brand's dark and industrial identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCATOsU7Suv6g5IE0_Jg6KRlK_TGLDogxB-rrVXNp5JCkqmY6ET1eOp0smlUDAAsRbgx79m-IYyOcrmvnM8qcaB9zjJRPoniCIEJyiZCi98yyltPCFeBhktq32j8n1Jx79q34UyZnEvpLao5MF9duOn3hcV989ykmeXgbSS03IY2I1Y57M_icFe8BWi_XCUcvfqtokA2Mrw8-xQ67oj8pxwbzj1mX8-aJvHGZSjewu4Egeef04bqXpuew"/>
+</div>
+</div>
+</div>
+<!-- 2015 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter md:gap-32 mb-section-gap relative">
+<div class="order-2 md:order-1 relative group">
+<div class="aspect-[16/9] w-full bg-surface-container-highest grayscale hover:grayscale-0 transition-all duration-700 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" data-alt="A wide-angle black and white editorial shot of a pristine, modern automotive laboratory. Engineers in dark, professional uniforms are meticulously inspecting a high-performance engine block. The lighting is clinical and sharp, highlighting the chrome and brushed metal surfaces. The scene conveys a sense of rigorous technical excellence and high-end automotive craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuDFetMtJI8dL4a2vYMp3xLlCYVzBk40hx362JuIe5gdPe-ve6b8PpPT4b3pmPL6l3P43mN3KXUW0BkL6Xfu4LqxUIjAaBaYXnc7_v8ORtlhCnKBjwLs_7MJedcp-sKz60yKw6qCVFz16XT88JQXBlMvXJPxiPeVIglHLrC6xdoiCRUaZqW5im2oHkq0IW0TY7otb3DuVVbYn8wrrL1gdB8j1AxF_Bvp1byk6KAz3o495YmP3DFYrv8g"/>
+</div>
+</div>
+<div class="order-1 md:order-2 flex flex-col justify-center">
+<div class="font-display-lg text-display-lg mb-4 text-on-surface">2015</div>
+<h3 class="font-headline-md text-headline-md uppercase mb-4">ENGINEERING EXPANSION</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+                        Our first specialized workshop opened, dedicated exclusively to the restoration and bespoke tuning of supercars. The standard was set: zero margin for error.
+                    </p>
+</div>
+</div>
+<!-- 2020 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter md:gap-32 mb-section-gap relative">
+<div class="md:text-right flex flex-col justify-center">
+<div class="font-display-lg text-display-lg mb-4 text-on-surface">2020</div>
+<h3 class="font-headline-md text-headline-md uppercase mb-4">A NEW ERA</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md md:ml-auto">
+                        PREMIUM CARS became more than a dealer; we became a concierge for the world's most discerning collectors. Our digital platform launched, connecting elite inventory with global demand.
+                    </p>
+</div>
+<div class="relative group">
+<div class="aspect-square w-full bg-surface-container-highest grayscale hover:grayscale-0 transition-all duration-700 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" data-alt="A striking, low-angle black and white photograph of a modern glass-and-steel automotive showroom at night. Multiple luxury supercars are silhouetted against the inner glow of the building. The architecture is sharp and minimalist, reflecting a futuristic and authoritative brand image. The mood is exclusive, mysterious, and high-fashion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpt2U3d0jlb48u8bAkR9Ug9vsooB7D8fTAuF19oXZlRjHN32JvZi_aY9n94ktXwUAA2E4B4igewTmOpiUpwhDzPqF9GHq38GP24T395L5ldyZeGq8bD1lNETHWgpSAeT2IGyrfOg9_8A34N3s4JQy35deHOOB0raSa1gPk2BKJfFRo0pUrL5gg0XjtyIqyEi__HCs0XczEfOCSbUip_Dk5q9KvTrbwBV4Su4yKW220XJJkMsV1EBG6nA"/>
+</div>
+</div>
+</div>
+<!-- 2024 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter md:gap-32 mb-section-gap relative">
+<div class="order-2 md:order-1 relative group">
+<div class="aspect-[4/5] w-full bg-surface-container-highest border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A detailed, high-contrast black and white close-up of a carbon fiber steering wheel and a high-tech digital dashboard of a modern hypercar. The textures of the carbon weave and the precision of the glowing displays are emphasized. This shot represents the pinnacle of current automotive engineering and the 'Premium Cars' brand's commitment to mechanical excellence and luxury technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8Vzyp_qpD5nkCA-G3xDWdBid6FXEJRkAJp1dl5HvRYE1LJZ76_mxv_TARjlZu-4Y3Ny8KzBRbdYXZeaw0-ESC593iUmDQHOfWyClsOEpK282492rQBXrd5gcHEPckFknXFrKCfHY17aNbFYu11lwmDo-85fqurUa99xtw85U4VQRSVYiEf8BWnZroMS9pMm8puDlJL4H3fvRUHcONMZYWJ-llTSYruqdI6kSLMJQaFOAsry5k3Vllrw"/>
+</div>
+</div>
+<div class="order-1 md:order-2 flex flex-col justify-center">
+<div class="font-display-lg text-display-lg mb-4 text-primary">2024</div>
+<h3 class="font-headline-md text-headline-md uppercase mb-4">THE GOLD STANDARD</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+                        Today, we stand as the definitive source for premium automotive heritage. Our legacy is built on every car we deliver and every client we serve. Uncompromising. Engineered. Premium.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Quote Section -->
+<section class="bg-surface-container-lowest py-section-gap px-margin-mobile md:px-margin-desktop border-y border-outline-variant">
+<div class="max-w-4xl mx-auto text-center">
+<span class="material-symbols-outlined text-primary text-6xl mb-8">format_quote</span>
+<blockquote class="font-display-lg text-display-lg-mobile md:text-display-lg uppercase tracking-tight mb-8">
+                    "WE DO NOT SIMPLY SELL CARS. WE PRESERVE MECHANICAL ART FOR THE NEXT GENERATION OF DRIVERS."
+                </blockquote>
+<cite class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">— FOUNDER, PREMIUM CARS</cite>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto text-center">
+<h2 class="font-headline-md text-headline-md uppercase mb-8">Join the Legacy</h2>
+<div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+<button class="bg-primary-container text-on-primary px-12 py-4 font-label-md text-label-md uppercase tracking-widest hover:opacity-90 transition-all border border-primary-container">
+                    VIEW CURRENT INVENTORY
+                </button>
+<button class="border border-outline-variant text-on-surface px-12 py-4 font-label-md text-label-md uppercase tracking-widest hover:bg-surface-container-high transition-all">
+                    CONTACT OUR ARCHIVIST
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline-variant mt-section-gap">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-section-gap gap-gutter mx-auto max-w-[1440px]">
+<div class="font-display-lg text-display-lg text-on-surface-variant">PREMIUM CARS</div>
+<div class="flex flex-col md:flex-row gap-8 items-center">
+<div class="flex gap-6">
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">PRIVACY POLICY</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">TERMS OF SERVICE</a>
+</div>
+<div class="flex gap-6">
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">WARRANTY</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">CAREERS</a>
+</div>
+</div>
+<div class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">
+                © 2024 PREMIUM CARS. ENGINEERED EXCELLENCE.
+            </div>
+</div>
+</footer>
+<script>
+        // Simple scroll reveal for timeline items
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.grid.relative').forEach(item => {
+            item.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(item);
+        });
+
+        // Parallax effect for the hero image if any existed, or just a simple smooth scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const line = document.querySelector('.line-vertical');
+            if(line) {
+                line.style.height = (scrolled * 0.5) + 'px';
+            }
+        });
+    </script>
+</body></html>

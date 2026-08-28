@@ -1,41 +1,18 @@
-# PENTING — soal cakupan pola.
-# Berkas ini dipakai SEMUA project Vercel di repo ini, termasuk project yang
-# Root Directory-nya "premium-cars-web". Pola tanpa garis miring di depan
-# cocok di SEMUA level: "package.json" ikut menyaring
-# premium-cars-web/package.json, sehingga build Next.js selesai dalam
-# hitungan detik tanpa menghasilkan apa pun (404 di semua halaman).
-# Karena itu pengecualian khusus situs statis diawali "/" agar hanya
-# berlaku di akar repo.
+# Repo ini berisi satu aplikasi: premium-cars-web (Next.js).
+#
+# Versi sebelumnya berkas ini panjang karena harus menyembunyikan situs statis
+# lama di akar repo dari project Vercel yang Root Directory-nya
+# "premium-cars-web" — dan salah satu polanya pernah ikut menyaring
+# premium-cars-web/package.json sehingga build menghasilkan 404 di semua
+# halaman. Situs statis itu sudah dihapus, jadi seluruh pengecualian tersebut
+# tidak lagi diperlukan.
+#
+# Yang tersisa hanya hal-hal yang memang tidak pernah perlu diunggah.
 
-# ---------- Hanya di akar repo (situs statis) ----------
-
-# Server Express lokal untuk dev — di produksi pakai /api (serverless functions)
-/server/
-
-# Aset & dokumentasi desain (tak perlu di produksi)
-/stitch-export/
-/stitch_premium_cars/
-
-# Generator halaman unit — dijalankan lokal (npm run build:cars);
-# hasilnya (mobil/*.html) di-commit dan ikut ter-deploy.
-/scripts/
-
-# Dokumentasi internal (Markdown)
-/*.md
-
-# package.json di AKAR hanya dipakai server Express lokal (express +
-# better-sqlite3). Situs statis & fungsi /api tidak butuh dependency apa pun
-# — jangan diunggah agar Vercel tak mencoba meng-compile better-sqlite3
-# (native, gagal di build). premium-cars-web/package.json sengaja TIDAK
-# ikut tersaring: app Next.js justru membutuhkannya.
-/package.json
-/package-lock.json
-
-# ---------- Berlaku di semua level ----------
 .agents/
 .claude/
 .vscode/
-.git/
+docs/
 node_modules/
 .env
 .env.*

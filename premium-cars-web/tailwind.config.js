@@ -31,7 +31,7 @@ module.exports = {
           600: "rgb(var(--pc-amber-600) / <alpha-value>)",
           400: "rgb(var(--pc-amber-400) / <alpha-value>)",
         },
-        danger: "#c0392b",
+        danger: "rgb(var(--pc-danger) / <alpha-value>)",
       },
       fontFamily: {
         display: ["var(--font-display)", "Oswald", "sans-serif"],

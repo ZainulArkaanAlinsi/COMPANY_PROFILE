@@ -11,7 +11,7 @@ export const metadata = {
 
 function Check() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0724A" strokeWidth="2" className="mt-0.5 shrink-0">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mt-0.5 shrink-0 text-amber">
       <path d="M20 6L9 17l-5-5" />
     </svg>
   );

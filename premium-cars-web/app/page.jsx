@@ -49,7 +49,7 @@ export default function HomePage() {
           className="pointer-events-none absolute inset-0 -z-10"
           style={{
             background:
-              "linear-gradient(180deg, rgb(14 13 12) 0%, rgb(14 13 12) 30%, rgb(14 13 12 / 0.55) 46%, rgb(14 13 12 / 0.20) 62%, rgb(14 13 12 / 0.55) 86%, rgb(14 13 12) 100%)",
+              "linear-gradient(180deg, rgb(var(--pc-floor)) 0%, rgb(var(--pc-floor)) 30%, rgb(var(--pc-floor) / 0.55) 46%, rgb(var(--pc-floor) / 0.20) 62%, rgb(var(--pc-floor) / 0.55) 86%, rgb(var(--pc-floor)) 100%)",
           }}
         />
 
@@ -242,7 +242,7 @@ export default function HomePage() {
                 label={c.label}
                 className="aspect-[4/5] w-full"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(15,13,11,0.88)] via-[rgba(15,13,11,0.15)] to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--pc-floor)/0.88)] via-[rgb(var(--pc-floor)/0.15)] to-transparent" />
               <div className="absolute bottom-0 left-0 p-7">
                 <p className="tech text-amber">{c.count} Unit</p>
                 <h3 className="display mt-2 text-2xl text-ink">{c.label}</h3>

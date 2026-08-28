@@ -1,101 +1,68 @@
-# PREMIUM CARS — Company Profile
+# PREMIUM CARS
 
-**Company profile** untuk showroom mobil mewah: memperkenalkan brand, memamerkan
-koleksi unit (katalog interaktif), dan menjadi kanal *lead* (Daftar Minat → WhatsApp,
-form kontak). Dibangun dengan **HTML + CSS + JavaScript vanilla**, tanpa framework
-dan tanpa proses build.
+Company profile sekaligus marketplace untuk showroom kendaraan performa tinggi.
+Aplikasi **Next.js 14 (App Router)**, tayang di
+[heritage-garage-gules.vercel.app](https://heritage-garage-gules.vercel.app).
 
-> Ini company profile, bukan toko online. "Daftar Minat" & "Kirim Permintaan via
-> WhatsApp" berfungsi sebagai *lead generation* (bukan transaksi/pembayaran).
+## Struktur
 
-## Halaman
+```
+premium-cars-web/        ← seluruh aplikasi ada di sini
+├── app/                 20 rute + 7 rute API + sitemap & robots
+├── components/          31 komponen
+├── lib/                 data & logika
+└── vercel.json          konfigurasi build (menang atas setelan project)
 
-| Halaman | File | Isi |
+docs/arsip-situs-lama/   dokumentasi situs statis yang sudah dipensiunkan
+```
+
+Repo ini pernah berisi **dua** situs: aplikasi Next.js di atas, dan sebuah situs
+statis HTML/CSS/JS di akar repo. Yang statis sudah dihapus; berkasnya tetap utuh
+di riwayat git dan di branch `backup/desain-lokal`.
+
+## Menjalankan secara lokal
+
+```bash
+cd premium-cars-web
+npm install
+npm run dev          # http://localhost:3000
+```
+
+`better-sqlite3` adalah modul native. Bila npm memblokir install script-nya:
+
+```bash
+npm install-scripts approve better-sqlite3 && npm install
+```
+
+Tanpa langkah itu situs publik tetap jalan normal — hanya area `/admin` yang gagal,
+karena hanya di sanalah database dipakai.
+
+## Environment
+
+| Variabel | Wajib | Untuk apa |
 |---|---|---|
-| Home | `index.html` | Hero, kategori unit, slider unggulan, cerita, partner, newsletter |
-| Katalog | `penjualan.html` | Katalog dinamis: cari, filter kategori, urutkan, detail unit, Daftar Minat, simulasi cicilan, kontak |
-| About | `about.html` | Profil, hal penting sebelum membeli mobil, kontak |
+| `AUTH_SECRET` | ya, di produksi | Menandatangani cookie sesi. **Tanpa ini, login dinonaktifkan sepenuhnya** — bukan jatuh ke rahasia cadangan. |
+| `NEXT_PUBLIC_SITE_URL` | tidak | Basis URL untuk sitemap, robots, dan Open Graph. Bila kosong, dipakai domain produksi Vercel secara otomatis. |
+| `MARKETCHECK_API_KEY` | tidak | Inventaris live. Bila kosong, katalog memakai data lokal. |
+| `LEADS_ADMIN_TOKEN` | tidak | Membuka endpoint pembacaan leads. |
 
-## Struktur Project
+## Katalog
 
-```
-COMPANY PROFILE/
-├── index.html · penjualan.html · about.html
-│
-├── css/
-│   ├── tokens.css        # design token: warna, font, spasi (SUMBER TUNGGAL)
-│   ├── components.css     # komponen lintas-halaman: toast, modal, tombol
-│   ├── home.css · penjualan.css · about.css
-│
-├── js/
-│   ├── data/cars.js       # dataset unit + kategori
-│   ├── lib/               # format · storage · store (state) · ui (toast/modal)
-│   ├── components/         # catalog · cart · simulator · forms · nav
-│   └── home.js · penjualan.js · about.js   # entry per halaman
-│
-├── image/ · about/ · logo/ · icon/         # aset
-└── PRD.md · SDD.md · README.md              # dokumentasi
-```
+`lib/catalog-data.js` memuat **270 model nyata**, 1970–2025, dari 15 negara.
+Formatnya tabel pipe-delimited yang diurai saat modul dimuat.
 
-Arsitektur memakai namespace global `PC` (PremiumCars). Detail di **[SDD.md](SDD.md)**.
+Aturan yang dipegang berkas itu: spesifikasi teknis diisi angka produksi
+sungguhan; angka yang tidak diketahui pasti ditulis `0` dan tampil sebagai `—`,
+tidak pernah ditebak. Harga adalah estimasi pasar untuk keperluan tampilan, dan
+itu dinyatakan di kepala berkasnya.
 
-## Fitur Katalog (client-side)
+Foto hanya dipasang untuk model yang punya foto terverifikasi. Sisanya memakai
+fallback `SmartImage` — memasang foto mobil yang salah lebih buruk daripada tidak
+ada foto.
 
-- 🔎 **Pencarian** real-time (debounce) + **filter kategori** (chip) + **urut** harga/tahun
-- 🚗 **Modal detail** unit (spesifikasi lengkap)
-- 🔖 **Daftar Minat** tersimpan di `localStorage` → **Kirim Permintaan via WhatsApp**
-- 🧮 **Simulasi cicilan** (DP, tenor, bunga flat)
-- ✅ **Validasi form** kontak & newsletter + notifikasi toast
-- 🔗 Kartu kategori di Home tersambung ke katalog (`penjualan.html?cat=sport`)
+## Deploy
 
-## Menjalankan
-
-Cukup buka `index.html` di browser (semua fitur jalan tanpa server karena data
-di-*embed*, bukan di-`fetch`). Untuk pengalaman terbaik, jalankan server statis:
-
-```bash
-python -m http.server 5500
-# buka http://localhost:5500
-```
-
-## Konfigurasi
-
-- Nomor WhatsApp tujuan lead: ubah `PC.config.whatsapp` di `js/components/cart.js`.
-- Palet & font: `css/tokens.css`. Data unit: `js/data/cars.js`.
-
-### Environment variable (hanya untuk `server/app.js` & `server/proxy.js`)
-
-Semuanya opsional — tanpa ini situs tetap jalan memakai data lokal.
-
-| Variabel | Kegunaan |
-| --- | --- |
-| `MARKETCHECK_API_KEY` | Proxy MarketCheck di `/api/cars` |
-| `API_NINJAS_KEY` | Proxy API Ninjas di `/api/ninjas` (fitur "Cek Spesifikasi") |
-| `CARAPI_TOKEN` + `CARAPI_SECRET` | Proxy CarAPI di `/api/carapi` |
-| `LEADS_ADMIN_TOKEN` | **Wajib** agar `GET /api/leads` bisa diakses |
-
-`GET /api/leads` mengembalikan data pribadi calon pembeli (nama, email,
-telepon). Endpoint itu tertutup kecuali `LEADS_ADMIN_TOKEN` di-set, dan
-permintaan harus membawa header `Authorization: Bearer <token>`:
-
-```bash
-LEADS_ADMIN_TOKEN="rahasia-panjang" npm start
-curl -H "Authorization: Bearer rahasia-panjang" http://localhost:3000/api/leads
-```
-
-## Checklist Produksi (sebelum go-live)
-
-Project sudah lengkap & berfungsi. Tiga hal berikut butuh **data asli Anda**:
-
-- [ ] **Nomor WhatsApp** → `js/components/cart.js` (`PC.config.whatsapp = "62..."`)
-- [ ] **Domain** → ganti `premiumcars.example.com` di `sitemap.xml` & `robots.txt`
-- [ ] **Google Analytics** → buka komentar `<!-- GA4 -->` di `<head>` tiap halaman & isi `G-XXXXXXXXXX`
-
-Opsional (peningkatan performa lanjutan):
-- [ ] Konversi foto besar (`.jpg/.avif`) ke **WebP** untuk ukuran lebih kecil
-- [ ] Jalankan **Lighthouse** di Chrome DevTools untuk skor akhir
-
-## Dokumentasi
-
-- **[PRD.md](PRD.md)** — kebutuhan produk & aturan desain (anti "AI-look").
-- **[SDD.md](SDD.md)** — desain teknis: arsitektur, modul, model data, alur.
+Otomatis lewat Vercel setiap push ke `main`. Root Directory project disetel ke
+`premium-cars-web`; `premium-cars-web/vercel.json` menyatakan framework, install,
+build, dan output directory secara eksplisit sehingga tidak bergantung pada
+setelan di dashboard.

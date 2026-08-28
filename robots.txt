@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-# Domain produksi — samakan dengan konstanta SITE di scripts/build-cars.mjs.
-Sitemap: https://company-profile-phi-ten.vercel.app/sitemap.xml

@@ -94,7 +94,7 @@ export default function FinanceCalculator({
 
 function CalcIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B0724A" strokeWidth="1.5">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-amber">
       <rect x="4" y="3" width="16" height="18" />
       <path d="M8 7h8M8 11h2M14 11h2M8 15h2M14 15h2" />
     </svg>

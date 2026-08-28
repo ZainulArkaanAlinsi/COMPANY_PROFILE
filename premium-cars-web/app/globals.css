@@ -17,13 +17,31 @@
   --pc-surface-2: 34 30 27;   /* #221E1B — well / hover / elevated */
   --pc-ink: 243 239 233;      /* #F3EFE9 bone — teks & fill utama */
   --pc-muted: 172 164 153;    /* #ACA499 — teks sekunder */
-  --pc-meta: 128 120 110;     /* #80786E — meta / caption redup */
+  /* Dinaikkan dari #80786E: nilai lama hanya 4.19:1 di atas surface dan
+     4.47:1 di atas floor — dua-duanya di bawah ambang WCAG AA 4.5:1 untuk
+     teks normal, padahal token ini dipakai untuk caption dan label kecil di
+     seluruh situs. #8F867B adalah kenaikan TERKECIL yang lolos di ketiga
+     latar (floor 5.42, surface 5.09, surface-2 4.62) sehingga rona hangatnya
+     tetap terjaga. */
+  --pc-meta: 143 134 123;     /* #8F867B — meta / caption */
   --pc-line: 54 49 43;        /* #36312B — hairline 1px */
   --pc-line-soft: 41 37 33;   /* #292521 — hairline lebih redup */
   /* Aksen cognac — dicerahkan agar menonjol di atas ink & lolos kontras */
   --pc-amber: 197 133 87;     /* #C58557 */
   --pc-amber-600: 165 108 66; /* #A56C42 — press / hover gelap */
   --pc-amber-400: 216 158 114;/* #D89E72 — cognac lebih terang (underline/detail) */
+  /* Status galat. Sebelumnya #c0392b, ditulis hex mentah langsung di
+     tailwind.config.js — satu-satunya warna yang tidak lewat sistem token.
+     Nilai itu hanya 3.57:1 di atas floor dan 3.35:1 di atas surface, padahal
+     dipakai sebagai WARNA TEKS untuk pesan galat di dashboard admin: justru
+     tempat keterbacaan paling menentukan. #D06252 lolos AA (5.13 / 4.81) dan
+     ronanya hangat, sejalan dengan cognac — bukan merah datar yang dingin. */
+  --pc-danger: 208 98 82;     /* #D06252 */
+
+  /* Warna bayangan. Dulu rgba(26,22,17,...) ditulis langsung di beberapa
+     tempat — nilai hangat yang tidak pernah didokumentasikan di mana pun. */
+  --pc-shadow: 26 22 17;
+
   --pc-glass: rgba(14, 13, 12, 0.72);
 }
 
@@ -81,12 +99,12 @@
   }
   /* Kartu terangkat — elevasi via bayangan sangat halus (retail premium) */
   .card-lift {
-    box-shadow: 0 1px 2px rgba(26, 22, 17, 0.04);
+    box-shadow: 0 1px 2px rgb(var(--pc-shadow) / 0.04);
     transition: box-shadow 0.4s var(--pc-ease, cubic-bezier(0.16, 1, 0.3, 1)),
       transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .card-lift:hover {
-    box-shadow: 0 24px 48px -24px rgba(26, 22, 17, 0.18);
+    box-shadow: 0 24px 48px -24px rgb(var(--pc-shadow) / 0.18);
     transform: translateY(-4px);
   }
   /* Spotlight showroom di belakang mobil — konsisten tiap kartu */

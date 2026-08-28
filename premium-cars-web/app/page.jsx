@@ -10,7 +10,8 @@ import CatalogExplorer from "@/components/CatalogExplorer";
 import HeroScene from "@/components/HeroScene";
 import NewsletterForm from "@/components/NewsletterForm";
 import { cars, collections } from "@/lib/cars";
-import { brandMarquee, journal } from "@/lib/content";
+import { brandMarquee } from "@/lib/content";
+import { journal } from "@/lib/journal";
 
 // Angka diturunkan dari katalog supaya tidak pernah menyimpang dari isinya.
 const negara = new Set(cars.map((c) => c.origin)).size;
@@ -25,8 +26,8 @@ const stats = [
 
 export default function HomePage() {
   const featured = cars.slice(0, 3);
-  const lead = journal.find((j) => j.featured) || journal[0];
-  const rest = journal.filter((j) => j !== lead).slice(0, 3);
+  const [lead, ...sisaJurnal] = journal;
+  const rest = sisaJurnal.slice(0, 3);
 
   return (
     <>
@@ -298,43 +299,47 @@ export default function HomePage() {
             action={{ label: "Semua Cerita", href: "/journal" }}
           />
         </Reveal>
-        <div className="mt-10 grid gap-8 lg:grid-cols-2">
+        <div className="mt-10 grid gap-10 lg:grid-cols-2">
+          {/* Tanpa foto: artikel-artikel ini tidak punya gambar terverifikasi,
+              dan memasang foto stok yang tidak berhubungan justru menurunkan
+              kredibilitas tulisan teknis. Tipografi yang bekerja. */}
           <Reveal delay={80}>
-            <Link href="/journal" className="group block">
-              <div className="card-lift overflow-hidden rounded-3xl border border-line">
-                <SmartImage
-                  src={lead.image}
-                  alt={lead.title}
-                  label={lead.kicker}
-                  className="aspect-[16/10] w-full"
-                />
+            <Link
+              href={`/journal/${lead.slug}`}
+              className="group flex h-full flex-col justify-between rounded-3xl border border-line bg-surface p-8 transition-colors hover:border-amber/50 md:p-10"
+            >
+              <div>
+                <p className="tech text-amber">
+                  {lead.kicker} · {lead.baca}
+                </p>
+                <h3 className="display mt-5 text-2xl leading-tight transition-colors group-hover:text-amber md:text-4xl">
+                  {lead.judul}
+                </h3>
+                <p className="mt-5 leading-relaxed text-muted">{lead.ringkas}</p>
               </div>
-              <p className="tech mt-5 text-amber">
-                {lead.date} · {lead.kicker}
-              </p>
-              <h3 className="display mt-3 text-3xl transition-colors group-hover:text-amber">
-                {lead.title}
-              </h3>
-              <p className="mt-3 max-w-xl text-muted">{lead.excerpt}</p>
-              <span className="tech mt-5 inline-block text-ink transition-colors group-hover:text-amber">
-                Baca Artikel →
+              <span className="tech mt-8 inline-flex items-center gap-2 text-ink transition-colors group-hover:text-amber">
+                Baca
+                <span className="transition-transform group-hover:translate-x-1">→</span>
               </span>
             </Link>
           </Reveal>
 
           <Reveal delay={180} stagger className="flex flex-col divide-y divide-line-soft">
             {rest.map((a) => (
-              <Link key={a.slug} href="/journal" className="group flex gap-5 py-5 first:pt-0">
-                <div className="overflow-hidden rounded-2xl border border-line">
-                  <SmartImage src={a.image} alt={a.title} label={a.kicker} className="h-24 w-32 shrink-0" />
-                </div>
-                <div>
-                  <p className="tech text-meta">{a.kicker}</p>
-                  <h4 className="mt-1 font-display text-xl font-semibold uppercase leading-tight transition-colors group-hover:text-amber">
-                    {a.title}
-                  </h4>
-                  <p className="mt-1 line-clamp-2 text-sm text-muted">{a.excerpt}</p>
-                </div>
+              <Link
+                key={a.slug}
+                href={`/journal/${a.slug}`}
+                className="group block py-6 first:pt-0 last:pb-0"
+              >
+                <p className="tech text-meta">
+                  {a.kicker} · {a.tanggal} · {a.baca}
+                </p>
+                <h4 className="display mt-2 text-lg leading-snug transition-colors group-hover:text-amber md:text-xl">
+                  {a.judul}
+                </h4>
+                <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">
+                  {a.ringkas}
+                </p>
               </Link>
             ))}
           </Reveal>

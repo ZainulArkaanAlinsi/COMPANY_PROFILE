@@ -9,7 +9,7 @@ import { recentTransactions } from "@/lib/content";
 export const metadata = {
   title: "Jual & Tukar Mobil | Premium Cars",
   description:
-    "Convert your masterpiece — appraisal presisi, trade-in program, dan private consignment untuk kendaraan mewah Anda.",
+    "Lepas unit Anda dengan cara yang benar — penilaian terukur, program tukar tambah, dan konsinyasi privat untuk kendaraan performa tinggi.",
 };
 
 const stats = [
@@ -65,11 +65,11 @@ export default function JualPage() {
         <div className="mt-8 max-w-2xl">
           <h1 className="display text-6xl md:text-8xl">
             <span className="hero-line">
-              <span style={{ "--line-delay": "150ms" }}>Convert Your</span>
+              <span style={{ "--line-delay": "150ms" }}>Lepas Unit</span>
             </span>
             <span className="hero-line">
               <span className="text-amber" style={{ "--line-delay": "280ms" }}>
-                Masterpiece
+                Anda
               </span>
             </span>
           </h1>

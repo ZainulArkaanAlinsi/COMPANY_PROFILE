@@ -28,8 +28,10 @@ export const metadata = {
   metadataBase: new URL(SITE_URL),
   openGraph: {
     title: "PREMIUM CARS | Engineered for Excellence",
+    // Ini teks yang muncul di pratinjau tautan WhatsApp dan media sosial —
+    // samakan dengan description utama, jangan versi Inggris yang lain.
     description:
-      "Curated luxury automotive inventory. Company profile + marketplace jual-beli dalam satu website.",
+      "Premium Cars — kurator kendaraan performa tinggi & rumah bagi kolektor. Company profile dan marketplace jual-beli mobil mewah dalam satu tempat.",
     type: "website",
   },
 };

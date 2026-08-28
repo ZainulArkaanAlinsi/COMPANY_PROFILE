@@ -1,4 +1,5 @@
 import { cars } from "@/lib/cars";
+import { journal } from "@/lib/journal";
 import { SITE_URL as base } from "@/lib/site-url";
 
 export default function sitemap() {
@@ -30,5 +31,15 @@ export default function sitemap() {
     priority: 0.6,
   }));
 
-  return [...routes, ...units];
+  // Artikel journal punya halamannya sendiri sejak rute /journal/[slug]
+  // ditambahkan, tetapi sitemap tidak pernah ikut diperbarui — sehingga
+  // halamannya tayang tapi tidak pernah ditemukan mesin pencari.
+  const artikel = journal.map((a) => ({
+    url: `${base}/journal/${a.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...routes, ...units, ...artikel];
 }

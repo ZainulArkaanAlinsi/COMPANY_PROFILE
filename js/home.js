@@ -40,6 +40,14 @@ if (window.PC && PC.nav) {
     }
 }
 
+/* Escape untuk teks yang disisipkan ke innerHTML/atribut. Nama unit bisa
+   memuat tanda kutip (mis. Coupe 4") yang akan merusak markup. */
+function esc(value) {
+    return String(value == null ? "" : value)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+
 /* Render featured inventory grid */
 function renderFeaturedGrid() {
     const grid = document.getElementById("featured-grid");
@@ -54,20 +62,20 @@ function renderFeaturedGrid() {
         var price = (window.PC && PC.format) ? PC.format.compactRupiah(car.price) : "—";
         return '<article class="featured_card">' +
             '<div class="featured_card__image">' +
-            '<span class="featured_card__badge">' + car.badge + '</span>' +
-            '<img src="' + car.image + '" alt="' + car.name + '" loading="lazy" />' +
+            '<span class="featured_card__badge">' + esc(car.badge || car.brand) + '</span>' +
+            '<img src="' + esc(car.image) + '" alt="' + esc(car.name) + '" loading="lazy" />' +
             '</div>' +
             '<div class="featured_card__body">' +
-            '<h3 class="featured_card__name">' + car.name + '</h3>' +
-            '<p class="featured_card__brand">' + car.brand + ' · ' + car.year + '</p>' +
+            '<h3 class="featured_card__name">' + esc(car.name) + '</h3>' +
+            '<p class="featured_card__brand">' + esc(car.brand) + ' · ' + esc(car.year) + '</p>' +
             '<div class="featured_card__specs">' +
             '<div class="featured_card__spec"><div class="featured_card__spec-value">' + s.topSpeed + ' <span>km/h</span></div><div class="featured_card__spec-label">Kecepatan</div></div>' +
             '<div class="featured_card__spec"><div class="featured_card__spec-value">' + s.power + ' <span>hp</span></div><div class="featured_card__spec-label">Tenaga</div></div>' +
             '<div class="featured_card__spec"><div class="featured_card__spec-value">' + s.seats + ' <span>kursi</span></div><div class="featured_card__spec-label">Kapasitas</div></div>' +
             '</div>' +
-            '<div class="featured_card__price">' + price + '</div>' +
+            '<div class="featured_card__price">' + esc(price) + '</div>' +
             '<div class="featured_card__actions">' +
-            '<button class="btn" onclick="location.href=\'penjualan.html?car=' + car.id + '\'">Detail</button>' +
+            '<button class="btn" onclick="location.href=\'penjualan.html?car=' + encodeURIComponent(car.id) + '\'">Detail</button>' +
             '<button class="btn" onclick="location.href=\'penjualan.html\'">Lihat</button>' +
             '</div>' +
             '</div>' +
@@ -83,7 +91,17 @@ const ScrollRevealOption = {
     duration: 1000,
 };
 
-ScrollReveal().reveal(".range_card", {
+/* ScrollReveal & Swiper datang dari CDN pihak ketiga. Bila salah satu gagal
+   dimuat, pemanggilan langsung melempar ReferenceError dan MEMATIKAN sisa
+   file ini (slider, validasi newsletter, progress bar). Bungkus supaya
+   halaman tetap berfungsi tanpa animasi. */
+const hasScrollReveal = typeof ScrollReveal === "function";
+function reveal(selector, options) {
+    if (!hasScrollReveal) return;
+    try { ScrollReveal().reveal(selector, options); } catch (e) { /* animasi opsional */ }
+}
+
+reveal(".range_card", {
     duration: 1000,
     interval: 500,
 });
@@ -108,7 +126,7 @@ if (window.PC && PC.featuredCars) {
         wrapper.innerHTML = featured.map((car) => {
             const s = car.specs;
             return '<div class="swiper-slide"><div class="select_card">' +
-                '<img src="' + car.image + '" alt="' + car.name + '" loading="lazy" />' +
+                '<img src="' + esc(car.image) + '" alt="' + esc(car.name) + '" loading="lazy" />' +
                 '<div class="select_info">' +
                 infoCard("ri-speed-up-line", s.topSpeed, "km/h") +
                 infoCard("ri-flashlight-line", s.power, "hp") +
@@ -125,17 +143,21 @@ if (selectCards[0]) selectCards[0].classList.add("show_info");
 if (priceEL) priceEL.innerText = formatPrice(price[0]);
 
 function updateSwiperImage(eventName, args) {
-    if (eventName === "slideChangeTransitionStart") {
-        const index = args && args[0].realIndex;
-        if (priceEL) priceEL.innerText = formatPrice(price[index]);
-        selectCards.forEach((item) => item.classList.remove("show_info"));
-        if (selectCards[index]) selectCards[index].classList.add("show_info");
-    }
+    if (eventName !== "slideChangeTransitionStart") return;
+    const instance = args && args[0];
+    if (!instance) return;
+    const index = instance.realIndex;
+    // price[] dan selectCards[] bisa berbeda panjang (mis. PC gagal termuat
+    // sehingga price memakai daftar cadangan). Tanpa cek ini label harga
+    // menampilkan "undefined" saat slide melewati batas array.
+    if (priceEL && price[index] != null) priceEL.innerText = formatPrice(price[index]);
+    selectCards.forEach((item) => item.classList.remove("show_info"));
+    if (selectCards[index]) selectCards[index].classList.add("show_info");
 }
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const swiper = new Swiper(".swiper", {
+const swiper = typeof Swiper === "function" ? new Swiper(".swiper", {
     loop: true,
     effect: "coverflow",
     grabCursor: true,
@@ -171,32 +193,34 @@ const swiper = new Swiper(".swiper", {
     onAny(event, ...args) {
         updateSwiperImage(event, args);
     },
-});
+}) : null;
 
-ScrollReveal().reveal(".story_card", {
+reveal(".story_card", {
     ...ScrollRevealOption,
     interval: 500,
 });
 
+/* Marquee: gandakan isi banner agar gulirannya mulus. Guard null wajib —
+   banner.children pada elemen yang tidak ada melempar TypeError dan
+   membatalkan inisialisasi form newsletter serta progress bar di bawah. */
 const banner = document.querySelector(".banner_wrapper");
+if (banner) {
+    Array.from(banner.children).forEach((item) => {
+        const duplicateNode = item.cloneNode(true);
+        duplicateNode.setAttribute("aria-hidden", "true");
+        banner.appendChild(duplicateNode);
+    });
+}
 
-const bannerContent = Array.from(banner.children);
-
-bannerContent.forEach((item) => {
-    const duplicateNode = item.cloneNode(true);
-    duplicateNode.setAttribute("aria-hidden", true);
-    banner.appendChild(duplicateNode);
-});
-
-ScrollReveal().reveal(".download_image img", {
+reveal(".download_image img", {
     ...ScrollRevealOption,
     origin: "right",
 });
-ScrollReveal().reveal(".dowload_content .section_header12", {
+reveal(".dowload_content .section_header12", {
     ...ScrollRevealOption,
     delay: 500,
 });
-ScrollReveal().reveal(".download_link", {
+reveal(".download_link", {
     ...ScrollRevealOption,
     delay: 1000,
 });

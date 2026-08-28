@@ -121,12 +121,19 @@ async function getCarapiToken() {
 
 function canonicalCarapiPath(raw) {
   if (!raw) return "";
-  return raw.replace(/^\/+|\/+$/g, "");
+  return String(raw).replace(/^\/+|\/+$/g, "");
 }
 
-function isAllowedCarapiPath(path) {
-  if (!path) return false;
-  var candidate = canonicalCarapiPath(path);
+/* Allowlist berbasis awalan saja bisa ditembus: "trims/../account/requests"
+   lolos karena berawalan "trims/", lalu fetch menormalkan ".." sehingga
+   endpoint di luar daftar tetap terpanggil. Tolak segmen relatif dan
+   karakter di luar pola path yang wajar. */
+function isAllowedCarapiPath(candidate) {
+  if (!candidate) return false;
+  if (!/^[A-Za-z0-9][A-Za-z0-9._~/-]*$/.test(candidate)) return false;
+  if (candidate.split("/").some(function (seg) {
+    return seg === "" || seg === "." || seg === "..";
+  })) return false;
   return CARAPI_PREFIXES.some(function (prefix) {
     return candidate === prefix || candidate.indexOf(prefix + "/") === 0;
   });
@@ -193,17 +200,34 @@ async function proxyNinjas(req, res) {
   }
 }
 
+/* ROOT saja tidak cukup sebagai penjaga: filePath.startsWith(ROOT) juga
+   bernilai true untuk direktori bersaudara yang namanya berawalan sama
+   (mis. /app/COMPANY_PROFILE_rahasia untuk ROOT /app/COMPANY_PROFILE),
+   sehingga "/../COMPANY_PROFILE_rahasia/.env" ikut tersaji. */
+function insideRoot(filePath) {
+  const rel = path.relative(ROOT, filePath);
+  return rel === "" || (!rel.startsWith("..") && !path.isAbsolute(rel));
+}
+
 function serveStatic(req, res) {
-  let pathname = decodeURIComponent(new URL(req.url, "http://localhost").pathname);
+  let pathname;
+  try {
+    pathname = decodeURIComponent(new URL(req.url, "http://localhost").pathname);
+  } catch (e) {
+    res.writeHead(400); return res.end("Bad request"); // %-encoding rusak
+  }
   if (pathname === "/") pathname = "/index.html";
   const filePath = path.normalize(path.join(ROOT, pathname));
-  if (!filePath.startsWith(ROOT)) {
+  if (!insideRoot(filePath)) {
     res.writeHead(403); return res.end("Forbidden");
   }
-  fs.readFile(filePath, function (err, data) {
-    if (err) { res.writeHead(404); return res.end("Not found"); }
-    res.writeHead(200, { "Content-Type": MIME[path.extname(filePath).toLowerCase()] || "application/octet-stream" });
-    res.end(data);
+  fs.stat(filePath, function (err, stat) {
+    if (err || !stat.isFile()) { res.writeHead(404); return res.end("Not found"); }
+    fs.readFile(filePath, function (err2, data) {
+      if (err2) { res.writeHead(404); return res.end("Not found"); }
+      res.writeHead(200, { "Content-Type": MIME[path.extname(filePath).toLowerCase()] || "application/octet-stream" });
+      res.end(data);
+    });
   });
 }
 

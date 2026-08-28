@@ -8,7 +8,11 @@
       name="description"
       content="Katalog unit PREMIUM CARS: hypercar, sport, SUV, dan mobil keluarga. Cari, filter, simulasi cicilan, dan kirim permintaan via WhatsApp."
     />
-    <!-- SEO / Open Graph -->
+    <!-- SEO / Open Graph — URL absolut, lihat catatan di index.html -->
+    <link
+      rel="canonical"
+      href="https://company-profile-phi-ten.vercel.app/penjualan"
+    />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="PREMIUM CARS" />
     <meta property="og:title" content="Katalog Mobil — PREMIUM CARS" />
@@ -16,7 +20,14 @@
       property="og:description"
       content="Cari, filter, dan lihat detail unit. Simulasi cicilan & kirim permintaan via WhatsApp."
     />
-    <meta property="og:image" content="image/bmwe-removebg-preview.png" />
+    <meta
+      property="og:url"
+      content="https://company-profile-phi-ten.vercel.app/penjualan"
+    />
+    <meta
+      property="og:image"
+      content="https://company-profile-phi-ten.vercel.app/image/bmwe-removebg-preview.png"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="icon/shopping-bag.png" />
     <!-- Google Analytics 4 (opsional): hapus komentar & ganti G-XXXXXXXXXX    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>    <script>      window.dataLayer = window.dataLayer || [];      function gtag(){ dataLayer.push(arguments); }      gtag('js', new Date());      gtag('config', 'G-XXXXXXXXXX');    </script>    -->
@@ -32,12 +43,14 @@
     />
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/chrome.css" />
+    <link rel="stylesheet" href="css/contact.css" />
     <link rel="stylesheet" href="css/penjualan.css" />
   </head>
   <body>
     <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
     <a class="skip-link" href="#main-content">Langsung ke konten</a>
-    <header>
+    <header class="site-header">
       <div class="logo">
         <a href="index.html" class="wordmark">PREMIUM<span>CARS</span></a>
       </div>
@@ -55,6 +68,7 @@
         </ul>
       </nav>
       <div class="header-actions">
+        <a class="header-cta header-cta--ghost" href="#contact">Hubungi</a>
         <button
           class="cart-btn"
           id="cart-btn"
@@ -95,7 +109,8 @@
           <div class="hero-highlight">
             <i class="ri-medal-line" aria-hidden="true"></i>
             <div>
-              <strong>29 Unit Kurasi</strong>
+              <!-- data-count-cars: jumlahnya disetel dari PC.cars saat runtime -->
+              <strong data-count-cars data-count="29" data-suffix=" Unit Tersedia">29 Unit Tersedia</strong>
               <span>Hypercar, sport, SUV &amp; klasik</span>
             </div>
           </div>
@@ -144,7 +159,19 @@
       <div class="catalog__chips" id="catalog-chips"></div>
       <div class="catalog__bar">
         <span id="catalog-count" aria-live="polite">Memuat unit…</span>
-        <div>
+        <div class="catalog__filters">
+          <label class="visually-hidden" for="catalog-brand">Merek</label>
+          <select id="catalog-brand" aria-label="Filter merek">
+            <!-- opsi merek diisi js/components/catalog.js -->
+          </select>
+          <label class="visually-hidden" for="catalog-price">Rentang harga</label>
+          <select id="catalog-price" aria-label="Filter rentang harga">
+            <option value="all">Semua harga</option>
+            <option value="lt1">&lt; Rp 1 M</option>
+            <option value="1-5">Rp 1 – 5 M</option>
+            <option value="5-15">Rp 5 – 15 M</option>
+            <option value="gt15">&gt; Rp 15 M</option>
+          </select>
           <label class="visually-hidden" for="catalog-sort">Urutkan</label>
           <select id="catalog-sort">
             <option value="featured">Urutkan: Unggulan</option>
@@ -155,6 +182,11 @@
         </div>
       </div>
       <div class="product-grid" id="product-grid"></div>
+      <div class="catalog__more-wrap">
+        <button class="btn-ghost" id="catalog-more" type="button" hidden>
+          Muat lebih banyak
+        </button>
+      </div>
     </section>
     <!-- Simulasi cicilan (js/components/simulator.js) -->
     <section class="simulator" id="simulasi">
@@ -300,97 +332,160 @@
       <div id="cab-status" class="cab-status" aria-live="polite"></div>
       <div id="cab-results" class="cab-results"></div>
     </section>
-    <section class="bdy" id="contact">
-      <div class="ctr">
-        <div class="item">
-          <div class="contact">
-            <div class="first-text">Dapatkan informasi unit terbaru</div>
-            <img
-              src="image/gambar-removebg-preview.png"
-              class="gambar2"
-              alt="kontak"
-            />
-            <div class="social-link">
-              <span class="dua-text">Connect with us</span>
-              <ul class="social-media">
-                <li>
-                  <a href="#" aria-label="Instagram"
-                    ><i class="ri-instagram-line" aria-hidden="true"></i
-                  ></a>
-                </li>
-                <li>
-                  <a href="#" aria-label="LinkedIn"
-                    ><i class="ri-linkedin-box-line" aria-hidden="true"></i
-                  ></a>
-                </li>
-                <li>
-                  <a href="https://wa.me/622151408888" target="_blank" rel="noreferrer" aria-label="WhatsApp"
-                    ><i class="ri-whatsapp-line" aria-hidden="true"></i
-                  ></a>
-                </li>
-                <li>
-                  <a href="#" aria-label="GitHub"
-                    ><i class="ri-github-fill" aria-hidden="true"></i
-                  ></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="submit-form">
-            <h4 class="tiga-text text">Hubungi Kami</h4>
-            <form action="">
-              <div class="input-box">
-                <input
-                  type="text"
-                  id="contact-name"
-                  name="name"
-                  class="input"
-                  required
-                  aria-label="Nama"
-                  autocomplete="name"
-                />
-                <label for="contact-name">Nama</label>
+    <!-- ======================================================================
+         TODO SEBELUM PUBLIKASI: ganti setiap <span class="needs-copy"> di
+         bawah dengan alamat showroom, email, dan jam operasional asli.
+         Blok ini kembar dengan section kontak di about.html — ubah keduanya.
+         ====================================================================== -->
+    <section class="contact-v2 reveal" id="contact" aria-labelledby="contact-title">
+      <div class="contact-v2__inner">
+        <div class="contact-v2__intro">
+          <p class="kicker contact-v2__kicker">
+            <span class="kicker__num">05</span> Kontak
+          </p>
+          <h2 id="contact-title" class="contact-v2__title">
+            Sudah menemukan<br />unit <span class="accent-word">yang tepat?</span>
+          </h2>
+          <p class="contact-v2__lead">
+            Tambahkan unit ke daftar minat lalu kirim lewat WhatsApp, atau tulis
+            pesan di sini. Kami bantu cek ketersediaan, hitung cicilan, dan atur
+            jadwal test drive.
+          </p>
+
+          <ul class="contact-channels">
+            <li>
+              <a
+                class="contact-channel"
+                href="https://wa.me/622151408888"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span class="contact-channel__icon" aria-hidden="true">
+                  <i class="ri-whatsapp-line"></i>
+                </span>
+                <span>
+                  <span class="contact-channel__label">WhatsApp — respons tercepat</span>
+                  <span class="contact-channel__value">+62 21 5140 8888</span>
+                </span>
+                <i class="ri-arrow-right-up-line contact-channel__go" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a class="contact-channel" href="tel:+622151408888">
+                <span class="contact-channel__icon" aria-hidden="true">
+                  <i class="ri-phone-line"></i>
+                </span>
+                <span>
+                  <span class="contact-channel__label">Telepon</span>
+                  <span class="contact-channel__value">+62 21 5140 8888</span>
+                </span>
+                <i class="ri-arrow-right-up-line contact-channel__go" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <div class="contact-channel">
+                <span class="contact-channel__icon" aria-hidden="true">
+                  <i class="ri-mail-line"></i>
+                </span>
+                <span>
+                  <span class="contact-channel__label">Email</span>
+                  <span class="contact-channel__value">
+                    <span class="needs-copy">[ISI ALAMAT EMAIL]</span>
+                  </span>
+                </span>
+                <span aria-hidden="true"></span>
               </div>
-              <div class="input-box">
-                <input
-                  type="email"
-                  id="contact-email"
-                  name="email"
-                  class="input"
-                  required
-                  aria-label="Email"
-                  autocomplete="email"
-                />
-                <label for="contact-email">Email</label>
+            </li>
+            <li>
+              <div class="contact-channel">
+                <span class="contact-channel__icon" aria-hidden="true">
+                  <i class="ri-map-pin-2-line"></i>
+                </span>
+                <span>
+                  <span class="contact-channel__label">Showroom</span>
+                  <span class="contact-channel__value">
+                    <span class="needs-copy">[ISI ALAMAT SHOWROOM]</span>, Jakarta
+                  </span>
+                </span>
+                <span aria-hidden="true"></span>
               </div>
-              <div class="input-box">
-                <input
-                  type="tel"
-                  id="contact-phone"
-                  name="phone"
-                  class="input"
-                  required
-                  aria-label="Telepon"
-                  autocomplete="tel"
-                />
-                <label for="contact-phone">Telepon</label>
+            </li>
+            <li>
+              <div class="contact-channel">
+                <span class="contact-channel__icon" aria-hidden="true">
+                  <i class="ri-time-line"></i>
+                </span>
+                <span>
+                  <span class="contact-channel__label">Jam operasional</span>
+                  <span class="contact-channel__value">
+                    <span class="needs-copy">[ISI JAM OPERASIONAL]</span>
+                  </span>
+                </span>
+                <span aria-hidden="true"></span>
               </div>
-              <div class="input-box">
-                <textarea
-                  class="input"
-                  id="contact-message"
-                  name="message"
-                  required
-                  cols="30"
-                  rows="10"
-                  aria-label="Pesan"
-                ></textarea>
-                <label for="contact-message">Pesan</label>
-              </div>
-              <input type="submit" class="btn-solid" value="Kirim Pesan" />
-            </form>
-          </div>
+            </li>
+          </ul>
         </div>
+
+        <form class="contact-form" novalidate>
+          <h3 class="contact-form__title">Kirim pesan</h3>
+          <p class="contact-form__note">
+            Kami balas ke email atau nomor yang Anda tulis di bawah.
+          </p>
+          <div class="field">
+            <label for="contact-name">Nama</label>
+            <input
+              type="text"
+              id="contact-name"
+              name="name"
+              autocomplete="name"
+              placeholder="Nama lengkap"
+              class="contact-input"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="contact-email">Email</label>
+            <input
+              type="email"
+              id="contact-email"
+              name="email"
+              autocomplete="email"
+              placeholder="email@contoh.com"
+              class="contact-input"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="contact-phone">Telepon</label>
+            <input
+              type="tel"
+              id="contact-phone"
+              name="phone"
+              autocomplete="tel"
+              placeholder="08xx xxxx xxxx"
+              class="contact-input"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="contact-message">Pesan</label>
+            <textarea
+              id="contact-message"
+              name="message"
+              rows="6"
+              autocomplete="off"
+              placeholder="Unit yang Anda minati, anggaran, dan waktu test drive yang cocok"
+              class="contact-input"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn-solid">Kirim Pesan</button>
+          <p class="contact-form__alt">
+            Butuh jawaban cepat?
+            <a href="https://wa.me/622151408888" target="_blank" rel="noreferrer">Chat WhatsApp</a>
+          </p>
+        </form>
       </div>
     </section>
     <footer class="site-footer">

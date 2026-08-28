@@ -8,6 +8,19 @@ PC.simulator = (function () {
   var refs = {};
   var RATE = 0.05; // bunga flat per tahun (5%)
 
+  /** Rincian angsuran bunga flat. Dipakai form simulator & halaman detail unit. */
+  function estimate(price, dp, months) {
+    var principal = price - dp;
+    var totalLoan = principal * (1 + RATE * (months / 12));
+    return {
+      monthly: totalLoan / months,
+      principal: principal,
+      totalLoan: totalLoan,
+      totalPay: totalLoan + dp,
+      months: months,
+    };
+  }
+
   /** Label persen diturunkan dari RATE supaya tak pernah berbeda dari hitungan. */
   function rateLabel() {
     return String(Math.round(RATE * 1000) / 10).replace(".", ",") + "%";
@@ -25,18 +38,7 @@ PC.simulator = (function () {
     if (dp >= price) { return show(null, "Uang muka harus lebih kecil dari harga."); }
     if (months <= 0) { return show(null, "Tenor tidak valid."); }
 
-    var principal = price - dp;
-    var years = months / 12;
-    var totalLoan = principal * (1 + RATE * years);
-    var monthly = totalLoan / months;
-
-    show({
-      monthly: monthly,
-      principal: principal,
-      totalLoan: totalLoan,
-      totalPay: totalLoan + dp,
-      months: months,
-    });
+    show(estimate(price, dp, months));
   }
 
   function show(res, err) {
@@ -98,5 +100,5 @@ PC.simulator = (function () {
     });
   }
 
-  return { init: init, prefill: prefill };
+  return { init: init, prefill: prefill, estimate: estimate, RATE: RATE };
 })();

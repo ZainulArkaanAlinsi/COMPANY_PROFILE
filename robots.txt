@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# Ganti domain dengan domain produksi Anda saat dipublikasikan.
-Sitemap: https://premiumcars.example.com/sitemap.xml
+# Domain produksi — samakan dengan konstanta SITE di scripts/build-cars.mjs.
+Sitemap: https://company-profile-phi-ten.vercel.app/sitemap.xml

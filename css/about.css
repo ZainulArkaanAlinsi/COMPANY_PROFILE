@@ -136,7 +136,7 @@ img {
     top: 0;
     left: 0;
     z-index: var(--z-fixed);
-    background-color: rgba(11, 11, 12, 0.78);
+    background-color: rgba(15, 18, 22, 0.78);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--line-soft);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
@@ -189,6 +189,8 @@ img {
     margin-bottom: var(--mb-4);
 }
 
+/* Link nav: garis-bawah cognac tumbuh dari tengah — konsisten dengan
+   css/chrome.css (.site-header). */
 .nav_link {
     position: relative;
     font-size: 0.8rem;
@@ -206,12 +208,13 @@ img {
     position: absolute;
     content: "";
     width: 100%;
-    height: 1.5px;
+    height: 2px;
     left: 0;
     bottom: -6px;
+    border-radius: 2px;
     background-color: var(--accent);
     transform: scaleX(0);
-    transform-origin: left;
+    transform-origin: center;
     transition: transform var(--t-base) var(--ease);
 }
 
@@ -226,7 +229,7 @@ img {
 
 .nav_logo {
     font-family: var(--display-font);
-    font-weight: 900;
+    font-weight: 700;
     font-size: 1.25rem;
     text-transform: uppercase;
     color: var(--text);
@@ -305,7 +308,7 @@ img {
 .home_title {
     font-size: var(--fs-h1);
     font-family: var(--display-font);
-    font-weight: 900;
+    font-weight: 700;
     text-transform: uppercase;
     line-height: 0.95;
     letter-spacing: var(--tracking-head);
@@ -474,93 +477,6 @@ img {
     border-radius: var(--radius);
 }
 
-/* ---------------- Contact ---------------- */
-
-.contact_section {
-    padding-bottom: 4rem;
-}
-
-.Contact_form {
-    display: grid;
-    gap: 1.25rem;
-    max-width: 640px;
-    margin-inline: auto;
-    padding: 2rem;
-    background-color: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
-}
-
-.contact_container {
-    display: grid;
-    padding: 0 0.5rem;
-}
-
-.input_group {
-    display: grid;
-    gap: 0.5rem;
-}
-
-.input_group label {
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 500;
-}
-
-.Contact_input {
-    width: 100%;
-    padding: 0.95rem 1rem;
-    font-family: var(--body-font);
-    font-size: 1rem;
-    color: var(--text);
-    background: linear-gradient(135deg, rgba(20, 20, 23, 0.95), rgba(12, 12, 14, 0.9));
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    outline: none;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-}
-
-.Contact_input::placeholder {
-    color: var(--text-muted);
-}
-
-.Contact_input:focus {
-    border-color: var(--accent);
-}
-
-textarea.Contact_input {
-    resize: vertical;
-}
-
-.Contact_button {
-    justify-self: start;
-    padding: 1.1rem 2.8rem;
-    font-weight: 600;
-    letter-spacing: var(--tracking-wide);
-    text-transform: uppercase;
-    color: var(--bg);
-    background-color: var(--accent);
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.Contact_button:hover {
-    background-color: var(--accent-press);
-    transform: translateY(var(--hover-lift));
-}
-
-.Contact_button:active {
-    transform: translateY(0);
-    transition-duration: var(--t-fast);
-}
-
-.Contact_button:focus-visible {
-    outline: 2px solid rgba(var(--accent-rgb), 0.45);
-    outline-offset: 3px;
-}
 
 /* ---------------- Footer ---------------- */
 
@@ -573,7 +489,7 @@ textarea.Contact_input {
 
 .footer_title {
     font-family: var(--display-font);
-    font-weight: 900;
+    font-weight: 700;
     font-size: 1.5rem;
     text-transform: uppercase;
     color: var(--text);
@@ -662,10 +578,6 @@ textarea.Contact_input {
 
     .about_container {
         column-gap: 3rem;
-    }
-
-    .contact_container {
-        padding: 0;
     }
 }
 

@@ -30,3 +30,4 @@ server/data/
 
 # Lock file skills (tooling Claude/AI)
 skills-lock.json
+.aider*

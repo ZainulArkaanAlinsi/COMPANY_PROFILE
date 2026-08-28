@@ -12,6 +12,10 @@ stitch_premium_cars/
 .vscode/
 .git/
 
+# Generator halaman unit — dijalankan lokal (npm run build:cars);
+# hasilnya (mobil/*.html) di-commit dan ikut ter-deploy.
+scripts/
+
 # Dokumentasi internal (Markdown)
 *.md
 

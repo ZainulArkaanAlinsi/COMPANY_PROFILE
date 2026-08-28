@@ -44,3 +44,10 @@ PC.format = {
       .replace(/^-+|-+$/g, "");
   },
 };
+
+/** Path aset/halaman relatif-root. Halaman di subfolder (mobil/*.html)
+    menyetel window.PC_BASE = "../" sebelum memuat skrip ini. */
+PC.asset = function (path) {
+  if (!path || /^([a-z]+:)?\/\//i.test(path)) return path;
+  return (window.PC_BASE || "") + path;
+};

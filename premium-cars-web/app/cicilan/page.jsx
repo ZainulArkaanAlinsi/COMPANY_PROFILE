@@ -2,6 +2,8 @@ import Link from "next/link";
 import Button from "@/components/Button";
 import FinanceCalculator from "@/components/FinanceCalculator";
 import Reveal from "@/components/Reveal";
+import SectionHeader from "@/components/SectionHeader";
+import { syaratPembiayaan, berkasPembiayaan } from "@/lib/company";
 
 export const metadata = {
   title: "Cicilan & Pembiayaan | Premium Cars",
@@ -24,14 +26,16 @@ export default function CicilanPage() {
       <Reveal as="header">
         <div className="flex items-center justify-between gap-6 border-b border-line pb-4">
           <p className="tech text-amber">
-            <span className="text-meta">N° 09 — </span>Financing
+            <span className="text-meta">N° 09 — </span>Pembiayaan
           </p>
           <p className="tech hidden text-meta sm:block">Pembiayaan Premium</p>
         </div>
         <h1 className="display mt-6 text-6xl leading-[0.9] md:text-8xl">Cicilan</h1>
         <p className="mt-6 max-w-2xl text-muted md:text-lg">
-          Kepemilikan kendaraan impian dengan skema pembiayaan yang transparan.
-          Simulasikan angsuran bulanan Anda secara instan.
+          Simulasikan angsurannya di bawah. Tetapi angka angsuran bukan yang
+          menentukan pengajuan Anda disetujui — empat hal di bagian bawah
+          halaman ini yang menentukannya, dan tiga di antaranya jarang
+          disebutkan sebelum berkas Anda ditolak.
         </p>
       </Reveal>
 
@@ -105,6 +109,50 @@ export default function CicilanPage() {
               {p}
             </span>
           ))}
+        </Reveal>
+      </section>
+
+      {/* ── Apa yang sebenarnya menentukan persetujuan ───────────────── */}
+      <section className="mt-section">
+        <Reveal>
+          <SectionHeader
+            index={2}
+            kicker="Yang Menentukan"
+            title="Empat hal yang menentukan pengajuan Anda"
+          />
+        </Reveal>
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          {syaratPembiayaan.map((x, i) => (
+            <Reveal key={x.judul} delay={i * 70}>
+              <div className="h-full rounded-2xl border border-line bg-surface p-7">
+                <h3 className="display text-lg leading-snug md:text-xl">{x.judul}</h3>
+                <p className="mt-3 leading-relaxed text-muted">{x.isi}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Berkas ───────────────────────────────────────────────────── */}
+      <section className="mt-section">
+        <Reveal>
+          <SectionHeader index={3} kicker="Berkas" title="Yang perlu disiapkan" />
+        </Reveal>
+        <Reveal delay={80}>
+          <ul className="mt-10 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+            {berkasPembiayaan.map((b) => (
+              <li key={b} className="flex gap-3 border-t border-line pt-4 text-sm text-muted">
+                <span aria-hidden="true" className="text-amber">—</span>
+                {b}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 max-w-2xl text-sm leading-relaxed text-meta">
+            Kami menyiapkan dan memeriksa berkas ini bersama Anda sebelum
+            diajukan. Pengajuan yang ditolak tercatat di sistem lembaga
+            pembiayaan, jadi lebih baik ditunda daripada diajukan setengah
+            matang.
+          </p>
         </Reveal>
       </section>
     </div>

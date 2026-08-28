@@ -255,3 +255,53 @@ export const alurSetelahKontak = [
   { no: "03", judul: "Pertemuan", isi: "Di showroom atau di lokasi Anda. Tidak ada biaya, dan tidak ada kewajiban lanjut." },
   { no: "04", judul: "Keputusan", isi: "Bila Anda melanjutkan, seluruh tahapan dan biayanya kami tuliskan sebelum ada pembayaran apa pun — termasuk tanda jadi." },
 ];
+
+// ── Pembiayaan. Kalkulator memberi angka angsuran, tetapi bukan itu yang
+//    membuat pengajuan disetujui atau ditolak.
+export const syaratPembiayaan = [
+  {
+    judul: "Umur kendaraan menentukan tenor",
+    isi: "Mayoritas lembaga pembiayaan membatasi umur unit pada akhir masa cicilan, umumnya 10–12 tahun. Unit tahun 2016 dengan tenor 5 tahun berakhir di umur 14 tahun — di luar batas, dan ini alasan penolakan paling sering yang tidak pernah disebutkan di awal.",
+  },
+  {
+    judul: "Uang muka naik seiring umur unit",
+    isi: "Unit baru umumnya bisa dengan uang muka 20 persen. Unit di atas lima tahun biasanya diminta 30–40 persen, dan unit koleksi di atas sepuluh tahun sering hanya bisa lewat pembiayaan berjaminan aset lain.",
+  },
+  {
+    judul: "Tenor panjang menaikkan total, bukan menurunkan biaya",
+    isi: "Selisih angsuran antara tenor 3 dan 5 tahun terlihat melegakan setiap bulan, tetapi total bunga yang dibayar bisa berbeda ratusan juta pada unit bernilai tinggi. Kalkulator di halaman ini menampilkan total bayar, bukan hanya angsurannya — bacalah angka itu.",
+  },
+  {
+    judul: "Unit koleksi diperlakukan berbeda",
+    isi: "Mobil klasik dan unit langka sering tidak masuk skema pembiayaan kendaraan biasa karena nilainya tidak mengikuti kurva penyusutan standar. Untuk kategori ini, jalur yang realistis biasanya pembiayaan berjaminan aset atau pinjaman pribadi.",
+  },
+];
+
+export const berkasPembiayaan = [
+  "KTP dan Kartu Keluarga",
+  "NPWP",
+  "Rekening koran tiga bulan terakhir",
+  "Slip gaji atau laporan keuangan usaha",
+  "Bukti kepemilikan tempat tinggal atau rekening listrik",
+];
+
+// ── Cara membaca data harga pasar. Tanpa ini, angka di halaman harga pasar
+//    mudah disalahartikan — dan salah membacanya berujung tawaran yang meleset.
+export const bacaHargaPasar = [
+  {
+    judul: "Harga penawaran bukan harga transaksi",
+    isi: "Angka yang tampil di situs jual-beli adalah harga yang DIMINTA penjual, bukan harga yang akhirnya disepakati. Selisih keduanya di pasar Indonesia berkisar 5–12 persen untuk unit umum, dan bisa jauh lebih lebar untuk unit yang lama tidak laku.",
+  },
+  {
+    judul: "Median lebih jujur daripada rata-rata",
+    isi: "Satu unit yang dipasang jauh di atas pasar cukup untuk menarik rata-rata ke atas dan membuat seluruh kesimpulan meleset. Median tidak terpengaruh oleh angka ekstrem, karena itu ia yang kami pakai.",
+  },
+  {
+    judul: "Jumlah listing menceritakan arah harga",
+    isi: "Listing aktif yang menumpuk dengan harga stagnan menandakan pasar yang sedang lemah. Listing sedikit dengan harga naik menandakan pasokan menipis. Angka ini sering lebih berguna daripada harganya sendiri.",
+  },
+  {
+    judul: "Harga internasional bukan patokan langsung",
+    isi: "Sebuah unit seharga USD 60.000 di Amerika tidak berarti setara di Indonesia. Bea masuk, PPN, PPnBM, pengiriman, dan biaya kepabeanan bisa melipatgandakan angkanya — dan status dokumen impor memengaruhi nilai jual kembali jauh lebih besar daripada selisih harga awalnya.",
+  },
+];

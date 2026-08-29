@@ -6,7 +6,7 @@ import FinanceCalculator from "@/components/FinanceCalculator";
 import CarCard from "@/components/CarCard";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
-import { cars, getCar, formatIDR } from "@/lib/cars";
+import { cars, getCar, formatIDR, artOf } from "@/lib/cars";
 import { statusLabel } from "@/lib/labels";
 
 export function generateStaticParams() {
@@ -70,22 +70,24 @@ export default function DetailPage({ params }) {
             <SmartImage
               src={car.gallery[0]}
               alt={`${car.brand} ${car.name}`}
-              label={car.name}
+              art={artOf(car, { plat: true })}
               className="aspect-[16/10] w-full"
             />
           </div>
-          <div className="mt-4 grid grid-cols-3 gap-4">
-            {car.gallery.map((g, i) => (
-              <div key={i} className="overflow-hidden border border-line" data-spotlight>
-                <SmartImage
-                  src={g}
-                  alt={`${car.name} view ${i + 1}`}
-                  label={car.brand}
-                  className="aspect-[4/3] w-full"
-                />
-              </div>
-            ))}
-          </div>
+          {car.gallery.length > 1 && (
+            <div className="mt-4 grid grid-cols-3 gap-4">
+              {car.gallery.map((g, i) => (
+                <div key={i} className="overflow-hidden border border-line" data-spotlight>
+                  <SmartImage
+                    src={g}
+                    alt={`${car.brand} ${car.name} — tampak ${i + 1}`}
+                    art={artOf(car)}
+                    className="aspect-[4/3] w-full"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Info */}

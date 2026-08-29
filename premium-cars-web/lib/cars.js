@@ -66,6 +66,19 @@ export const cars = catalog.map((c) => {
   };
 });
 
+/**
+ * Prop ilustrasi untuk <SmartImage art={...}>. `seed` memakai slug supaya
+ * warna aksennya tetap sama di setiap render — server maupun klien.
+ */
+export const artOf = (car, { plat = false } = {}) => ({
+  bodyStyle: car.bodyStyle,
+  seed: car.slug || `${car.brand}-${car.name}`,
+  // Pelat nama hanya dipasang kalau ilustrasinya berdiri sendiri. Di kartu
+  // katalog ia menabrak badge status di pojok kiri atas sekaligus mengulang
+  // judul kartu tepat di bawahnya.
+  ...(plat ? { brand: car.brand, model: car.name, year: car.year } : {}),
+});
+
 const uniq = (key) => [...new Set(cars.map((c) => c[key]))].sort();
 
 export const brands = uniq("brand");
@@ -99,24 +112,28 @@ const countBy = (fn) => cars.filter(fn).length;
 export const collections = [
   {
     label: "Hypercar",
+    bodyStyle: "Coupe",
     count: countBy((c) => c.category === "Hypercar"),
     image: img("1519245659620-e859806a8d3b"),
     href: "/katalog?kategori=Hypercar",
   },
   {
     label: "Ikon 80–90an",
+    bodyStyle: "Hatchback",
     count: countBy((c) => c.year < 2000),
     image: img("1503736334956-4c8f8e92946d"),
     href: "/katalog?era=90-an",
   },
   {
     label: "Listrik",
+    bodyStyle: "Sedan",
     count: countBy((c) => c.fuel === "Listrik"),
     image: img("1617704548623-340376564e68"),
     href: "/katalog?bahanBakar=Listrik",
   },
   {
     label: "JDM",
+    bodyStyle: "SUV",
     count: countBy((c) => c.origin === "Jepang"),
     image: img("1618843479313-40f8afb4b4d8"),
     href: "/katalog?asal=Jepang",

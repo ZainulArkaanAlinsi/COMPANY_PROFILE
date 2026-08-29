@@ -117,7 +117,7 @@ export default function HomePage() {
               <SmartImage
                 src="https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&w=2000&q=82"
                 alt="Lamborghini Aventador SVJ di showroom Premium Cars"
-                label="Premium Cars"
+                art={{ bodyStyle: "Coupe", seed: "beranda-hero" }}
                 className="aspect-[16/10] w-full sm:aspect-[2/1] lg:aspect-[21/9]"
               />
             </div>
@@ -239,7 +239,7 @@ export default function HomePage() {
               <SmartImage
                 src={c.image}
                 alt={c.label}
-                label={c.label}
+                art={{ bodyStyle: c.bodyStyle, seed: c.label, fit: "meet" }}
                 className="aspect-[4/5] w-full"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--pc-floor)/0.88)] via-[rgb(var(--pc-floor)/0.15)] to-transparent" />

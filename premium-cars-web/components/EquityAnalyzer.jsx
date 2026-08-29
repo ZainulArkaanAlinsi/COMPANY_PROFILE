@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import SmartImage from "@/components/SmartImage";
 import CountUp from "@/components/CountUp";
-import { cars, formatIDR } from "@/lib/cars";
+import { cars, formatIDR, artOf } from "@/lib/cars";
 
 /**
  * Equity Analyzer — terminal trade-in sesuai desain stitch
@@ -109,7 +109,7 @@ export default function EquityAnalyzer() {
             <SmartImage
               src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80"
               alt="Kendaraan Anda saat ini"
-              label="Aset Anda"
+              art={{ bodyStyle: "Sedan", seed: current.model, brand: "Aset Anda", model: current.model }}
               className="mt-5 aspect-[16/9] w-full grayscale"
             />
             <div className="mt-6 flex flex-wrap items-start justify-between gap-4">
@@ -190,7 +190,7 @@ export default function EquityAnalyzer() {
             <SmartImage
               src={target.image}
               alt={target.name}
-              label={target.name}
+              art={artOf(target)}
               className="mt-5 aspect-[16/9] w-full"
             />
             <div className="mt-6 flex flex-wrap items-start justify-between gap-4">

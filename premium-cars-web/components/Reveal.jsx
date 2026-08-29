@@ -31,6 +31,14 @@ export default function Reveal({
       el.classList.add("revealed");
       return;
     }
+    // threshold HARUS 0. Ambang berbasis rasio dihitung terhadap tinggi
+    // elemen, jadi wadah yang lebih tinggi dari viewport tidak akan pernah
+    // memenuhinya: grid katalog setinggi 9.044px butuh 1.085px terlihat untuk
+    // ambang 0,12, padahal di layar normal bagian yang terlihat tidak pernah
+    // sebanyak itu — seluruh grid tetap opacity 0 dan katalog tampak kosong.
+    // Dengan threshold 0, pemicunya adalah tepi elemen menyentuh root, apa pun
+    // tingginya; rootMargin negatif yang menahan animasi sampai elemen benar-
+    // benar masuk layar.
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -38,7 +46,7 @@ export default function Reveal({
           io.disconnect();
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -48px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -64px 0px" }
     );
     io.observe(el);
     return () => io.disconnect();

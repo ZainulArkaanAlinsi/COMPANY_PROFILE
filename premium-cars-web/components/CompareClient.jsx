@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import SmartImage from "@/components/SmartImage";
-import { cars, formatIDR } from "@/lib/cars";
+import { cars, formatIDR, artOf } from "@/lib/cars";
 
 /**
  * Bandingkan dua unit inventaris berdampingan: diagram bar per metrik,
@@ -205,7 +205,7 @@ function CarPicker({ car, value, exclude, onChange, accent = false }) {
       <SmartImage
         src={car.image}
         alt={car.name}
-        label={car.name}
+        art={artOf(car)}
         className="aspect-[16/9] w-full"
       />
       <div className="p-5">

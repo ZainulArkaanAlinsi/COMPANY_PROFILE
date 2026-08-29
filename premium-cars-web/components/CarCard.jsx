@@ -1,6 +1,6 @@
 import Link from "next/link";
 import SmartImage from "./SmartImage";
-import { formatIDR } from "@/lib/cars";
+import { formatIDR, artOf } from "@/lib/cars";
 import { statusLabel } from "@/lib/labels";
 
 const statusStyle = {
@@ -22,7 +22,7 @@ export default function CarCard({ car, cta = "Detail" }) {
         <SmartImage
           src={car.image}
           alt={`${car.brand} ${car.name}`}
-          label={car.name}
+          art={artOf(car)}
           className="aspect-[4/3] w-full"
         />
         <span
